@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project Onboard"
+  short_description: "Onboard Brownfield repos into a durable AS-IS baseline"

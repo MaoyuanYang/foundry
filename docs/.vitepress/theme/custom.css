@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Foundry — Molten Forge design system
+   ========================================================================== */
+
+:root {
+  /* Palette */
+  --fy-bg: #07070a;
+  --fy-bg-soft: #0b0b11;
+  --fy-surface: rgba(255, 255, 255, 0.04);
+  --fy-border: rgba(255, 255, 255, 0.09);
+  --fy-border-strong: rgba(255, 255, 255, 0.16);
+
+  --fy-ember-1: #ff6b1a;
+  --fy-ember-2: #ffb347;
+  --fy-ember-3: #ffd9a0;
+  --fy-gradient: linear-gradient(120deg, #ff6b1a 0%, #ffb347 55%, #ffd9a0 100%);
+  --fy-glow: radial-gradient(circle, rgba(255, 107, 26, 0.45), transparent 70%);
+
+  --fy-text-1: #f4f4f6;
+  --fy-text-2: #a8a8b4;
+  --fy-text-3: #6f6f7d;
+
+  /* Type */
+  --fy-font-display: 'Space Grotesk', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --fy-font-body: 'Inter', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --fy-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* --------------------------------------------------------------------------
+   VitePress theme overrides — dark first
+   -------------------------------------------------------------------------- */
+
+:root {
+  --vp-font-family-base: var(--fy-font-body);
+  --vp-font-family-mono: var(--fy-font-mono);
+}
+
+.dark {
+  --vp-c-bg: var(--fy-bg);
+  --vp-c-bg-alt: #0a0a10;
+  --vp-c-bg-soft: #0e0e15;
+  --vp-c-bg-elv: #101018;
+  --vp-c-border: var(--fy-border);
+  --vp-c-divider: rgba(255, 255, 255, 0.06);
+  --vp-c-gutter: rgba(255, 255, 255, 0.06);
+
+  --vp-c-text-1: var(--fy-text-1);
+  --vp-c-text-2: var(--fy-text-2);
+  --vp-c-text-3: var(--fy-text-3);
+
+  --vp-c-brand-1: #ffa14d;
+  --vp-c-brand-2: #ff8c3a;
+  --vp-c-brand-3: #ff6b1a;
+  --vp-c-brand-soft: rgba(255, 107, 26, 0.14);
+
+  --vp-c-default-1: #8a8a96;
+  --vp-c-default-2: #74747f;
+  --vp-c-default-3: #4c4c56;
+  --vp-c-default-soft: rgba(140, 140, 150, 0.12);
+
+  --vp-c-green-1: #4ade80;
+  --vp-c-green-2: #22c55e;
+  --vp-c-green-3: #16a34a;
+  --vp-c-green-soft: rgba(74, 222, 128, 0.12);
+
+  --vp-button-brand-bg: #f05a0a;
+  --vp-button-brand-hover-bg: #ff6b1a;
+  --vp-button-brand-active-bg: #e04f00;
+  --vp-button-brand-border: rgba(255, 179, 71, 0.4);
+  --vp-button-brand-text: #14090240;
+  --vp-button-brand-text: #1a0d02;
+
+  --vp-button-alt-bg: rgba(255, 255, 255, 0.06);
+  --vp-button-alt-hover-bg: rgba(255, 255, 255, 0.1);
+  --vp-button-alt-border: var(--fy-border-strong);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: var(--fy-gradient);
+  --vp-home-hero-image-background-image: var(--fy-glow);
+
+  --vp-local-search-bg: #0e0e15;
+  --vp-sidebar-bg-color: var(--fy-bg);
+}
+
+/* Light mode fallbacks (site is dark-first, keep light readable) */
+:root:not(.dark) {
+  --vp-c-brand-1: #d94e00;
+  --vp-c-brand-2: #e05a06;
+  --vp-c-brand-3: #f06a12;
+}
+
+/* --------------------------------------------------------------------------
+   Global polish
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--fy-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background-color: var(--fy-bg);
+}
+
+::selection {
+  background: rgba(255, 107, 26, 0.35);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 26, 0.5);
+  background-clip: content-box;
+}
+
+/* Code blocks */
+.dark .vp-doc div[class*='language-'] {
+  background: #0c0c13;
+  border: 1px solid var(--fy-border);
+  border-radius: 12px;
+}
+
+/* Doc content headings use display font */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-family: var(--fy-font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Links */
+.VPDoc a {
+  text-decoration: none;
+}
+
+/* Nav polish */
+.dark .VPNav {
+  background: rgba(7, 7, 10, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--fy-border);
+}
+
+/* Reveal-on-scroll utility (used by landing) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
