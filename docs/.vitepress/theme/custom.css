@@ -173,3 +173,41 @@ body {
     transition: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Mermaid diagram containers — Molten Forge framing
+   -------------------------------------------------------------------------- */
+
+.vp-doc .mermaid-wrap,
+.vp-doc div[class*='mermaid'] {
+  margin: 22px 0;
+}
+
+.vp-doc svg.mermaid {
+  display: block;
+  margin: 0 auto;
+}
+
+.vp-doc .mermaid {
+  background: #0c0c13;
+  border: 1px solid var(--fy-border);
+  border-radius: 14px;
+  padding: 22px 18px;
+  overflow-x: auto;
+}
+
+/* Keep node/edge labels readable on dark */
+.vp-doc .mermaid .nodeLabel,
+.vp-doc .mermaid .edgeLabel {
+  color: #e8e8ee;
+}
+
+/* Callout polish for tips/notes in docs */
+.dark .vp-doc .custom-block {
+  border-radius: 12px;
+  border: 1px solid var(--fy-border);
+}
+.dark .vp-doc .custom-block.tip {
+  border-color: rgba(255, 140, 58, 0.35);
+  background: rgba(255, 107, 26, 0.08);
+}

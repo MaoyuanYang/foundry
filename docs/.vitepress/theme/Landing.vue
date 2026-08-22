@@ -188,7 +188,7 @@ const langHref = computed(() => (isZh.value ? '/' : '/zh/'))
         <a :href="withBase(prefix + '/skills-overview')">{{ t.nav.skills }}</a>
         <a :href="withBase(prefix + '/install')">{{ t.nav.install }}</a>
         <a :href="withBase(prefix + '/workflow')">{{ t.nav.workflow }}</a>
-        <a :href="withBase(prefix + '/faq')">{{ t.nav.faq }}</a>
+        <a :href="withBase(prefix + '/reference/faq')">{{ t.nav.faq }}</a>
       </nav>
       <div class="nav-actions">
         <a class="nav-lang" :href="withBase(langHref)">{{ isZh ? 'EN' : '中文' }}</a>

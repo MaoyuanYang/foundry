@@ -11,7 +11,9 @@ Foundry follows the standard **Agent Skills** format: each skill is a folder con
 
 Clone the repository, then copy the three skill folders into your skills directory.
 
-**OpenCode / Claude-style agents** auto-discover skills in `~/.agents/skills/` and `~/.claude/skills/`:
+**OpenCode / Claude-style agents** auto-discover skills in `~/.agents/skills/` and `~/.claude/skills/`.
+
+### macOS / Linux
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
@@ -20,9 +22,14 @@ cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
 ```
 
-::: tip Windows
-Use `Copy-Item -Recurse foundry\skills\coding-start $HOME\.agents\skills\` in PowerShell, or copy the folders manually.
-:::
+### Windows (PowerShell)
+
+```powershell
+git clone https://github.com/MaoyuanYang/foundry.git
+Copy-Item -Recurse foundry\skills\coding-start    $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-onboard $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\feature-dev     $HOME\.agents\skills\
+```
 
 Then **restart your agent** so it re-scans the skills directory.
 
@@ -34,7 +41,7 @@ For OpenCode, run:
 opencode debug skill
 ```
 
-You should see `coding-start`, `project-onboard`, and `feature-dev` listed with their locations.
+You should see `coding-start`, `project-onboard`, and `feature-dev` listed with their locations. Each skill also validates against the Agent Skills schema (`name` + `description` frontmatter, lowercase-hyphen folder names).
 
 ## What you get
 
@@ -44,9 +51,34 @@ You should see `coding-start`, `project-onboard`, and `feature-dev` listed with 
 | `project-onboard` | `skills/project-onboard/` | Brownfield takeover and AS-IS baseline |
 | `feature-dev` | `skills/feature-dev/` | Single-feature lifecycle (1 → N) |
 
-Each skill is self-contained: `SKILL.md` is the entry point, `references/` holds detailed rules loaded on demand, and `assets/` holds templates.
+Each skill is self-contained:
+
+- `SKILL.md` — the entry point, trigger conditions, and state machine.
+- `references/` — detailed rules loaded on demand at specific stages.
+- `assets/` — templates for the documents the skill generates.
+- `agents/openai.yaml` — host display metadata.
+
+## Updating
+
+Pull the latest and re-copy the three folders (they are self-contained, so replacing the folder is safe):
+
+```bash
+cd foundry && git pull
+cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
+```
+
+Your **project** files (`AGENTS.md`, `docs/`, `specs/`) are never touched by an update — Foundry only changes how the agent works, not what it already produced.
+
+## Uninstall
+
+Remove the three folders from your skills directory and restart your agent:
+
+```bash
+rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev
+```
 
 ## Next
 
 - [The three skills](./skills-overview) — what each does and when it triggers.
 - [Workflow & gates](./workflow) — how a feature moves from idea to `DONE`.
+- [Reference](./reference/glossary) — status glossary and template map.
