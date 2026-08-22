@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useData, withBase } from 'vitepress'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useData, useRoute, withBase } from 'vitepress'
 
 const { lang, site } = useData()
 const isZh = computed(() => lang.value === 'zh-CN')
@@ -15,21 +15,36 @@ function copyInstall() {
   })
 }
 
-onMounted(() => {
-  const els = document.querySelectorAll('[data-reveal]')
-  const io = new IntersectionObserver(
+const route = useRoute()
+let revealObserver: IntersectionObserver | null = null
+
+function setupReveal() {
+  revealObserver?.disconnect()
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           e.target.classList.add('is-visible')
-          io.unobserve(e.target)
+          revealObserver?.unobserve(e.target)
         }
       })
     },
     { threshold: 0.12 }
   )
-  els.forEach((el) => io.observe(el))
+  document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver!.observe(el))
+}
+
+onMounted(() => {
+  setupReveal()
+  // Client-side navigation (e.g. EN <-> ZH switch) reuses this component
+  // without remounting, so re-observe the freshly rendered reveal elements.
+  watch(
+    () => route.path,
+    () => nextTick(setupReveal)
+  )
 })
+
+onUnmounted(() => revealObserver?.disconnect())
 
 const t = computed(() =>
   isZh.value
