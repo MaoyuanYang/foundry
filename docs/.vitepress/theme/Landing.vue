@@ -96,7 +96,17 @@ const t = computed(() =>
           },
           { title: '授权门禁', desc: '写盘、构建、Git、远程操作各自独立，需明确授权。' },
           { title: '语言策略', desc: '工程产物英文优先，产品文案遵循产品需求。' },
-          { title: '设计变更受控', desc: 'L1 / L2 / L3 影响分级 + 命名的决策权限。' }
+          { title: '设计变更受控', desc: 'L1 / L2 / L3 影响分级 + 命名的决策权限。' },
+          {
+            title: '自适应访谈',
+            desc: '聚焦访谈：STANDARD 每轮 2–5 个相关问题，DEEP 每轮一个决策问题，之后强制 Challenge Pass。',
+            chips: ['STANDARD', 'DEEP', 'CHALLENGE PASS']
+          },
+          {
+            title: '先 AS-IS 后 TO-BE',
+            desc: '接管先重建可验证的 AS-IS 基线。已有代码是证据，绝不自动升级为规范。',
+            chips: ['AS-IS', 'TO-BE', 'RECONSTRUCTED']
+          }
         ],
         quick: {
           kicker: '快速开始',
@@ -162,7 +172,17 @@ const t = computed(() =>
           },
           { title: 'Authorization Gates', desc: 'Write, build, git, and remote actions each require explicit approval.' },
           { title: 'Language Policy', desc: 'English-first engineering artifacts; product copy follows product requirements.' },
-          { title: 'Design Change Control', desc: 'L1 / L2 / L3 impact levels with named decision authority.' }
+          { title: 'Design Change Control', desc: 'L1 / L2 / L3 impact levels with named decision authority.' },
+          {
+            title: 'Adaptive Grilling',
+            desc: 'Focused interviews: 2–5 related questions in STANDARD, one decision question per round in DEEP, then a mandatory Challenge Pass.',
+            chips: ['STANDARD', 'DEEP', 'CHALLENGE PASS']
+          },
+          {
+            title: 'AS-IS before TO-BE',
+            desc: 'Takeovers reconstruct a verified AS-IS baseline first. Existing code is evidence — never auto-promoted to the standard.',
+            chips: ['AS-IS', 'TO-BE', 'RECONSTRUCTED']
+          }
         ],
         quick: {
           kicker: 'Quick Start',
