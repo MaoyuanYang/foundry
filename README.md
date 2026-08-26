@@ -12,7 +12,7 @@ An AI-native, spec-driven development suite for coding agents — covering the f
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](./LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-3-ff6b1a.svg)](./skills)
-[![Agent Skills](https://img.shields.io/badge/Agent-Skills-ready-brightgreen.svg)](https://opencode.ai)
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-ready-brightgreen.svg)](https://opencode.ai)
 
 </div>
 
