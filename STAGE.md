@@ -4,11 +4,11 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0007` |
-| Parent Snapshot | `STAGE-0006 / sha256:837034a29887fbe607a5d3a6a889a0ccca64be0b2ce30c4da947882dad5c842d` |
-| Last Reconciled At | `2026-08-26T21:30:30+08:00` |
+| Snapshot Revision | `STAGE-0008` |
+| Parent Snapshot | `STAGE-0007 / sha256:b48e3961bd99fa8e8f88930eacc9b661b39f0462a034a482c348b64119d199e2` |
+| Last Reconciled At | `2026-08-26T21:33:50+08:00` |
 | Reconciled By | `OpenCode` |
-| Repository Ref | `main@0e5da82 (dirty: skill + docs health-check fixes)` |
+| Repository Ref | `main@4329862 (pushed to origin/main)` |
 | Write Coordination | `SINGLE_WRITER:OpenCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
