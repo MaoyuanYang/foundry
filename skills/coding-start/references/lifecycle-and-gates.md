@@ -18,6 +18,8 @@
 
 The flow MAY return to an earlier stage to resolve a newly found macro conflict. If Challenge exposes a problem, return to `PROJECT_DISCOVERY`, update fact statuses and Macro Synthesis, then rerun the affected Challenge. Synchronize formal artifacts only if they already exist.
 
+After valid entry and explicit local-write authorization, create or adopt root `STAGE.md` as an operational checkpoint using `assets/stage.template.md`. Before tracking is resolved it may use `TBD` plus an owner/resolution condition and mark this non-Feature workflow activity `N/A`. Increment its snapshot revision on meaningful transitions and update only the current member/activity plus directly affected blocker, handoff, and project-summary fields. Serialize writes through the repository lock/designated writer or compare revision and SHA-256 immediately before writing. Before `MACRO DESIGN READY`, it MUST NOT contain proposed product or architecture conclusions. `STAGE.md` never substitutes for a Gate and every Gate projection must link to its own authoritative record and revision.
+
 For read-only ideation/evaluation or missing local-write authorization, report before `ARTIFACT_GENERATION`, state that initialization is incomplete, and `STOP`. MUST NOT create files, choose `NEXT`, or claim successful completion. Macro-design confirmation, local writes, Git operations, and remote side effects are four independent authorizations.
 
 ## Macro Readiness Checklist
@@ -222,6 +224,7 @@ On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When 
 - Did formal writes, Git, and remote actions each have the right independent authorization?
 - Did UI work proceed from UX to UI, and was no-UI work explicitly skipped?
 - Were formal documents generated only after `MACRO DESIGN READY`?
+- If `STAGE.md` was created before the Gate, did it remain a factual operational checkpoint with no unconfirmed design, and were unrelated member rows preserved?
 - Were the canonical Documentation, Engineering, and Product Content scopes recorded and enforced with exact defaults `documentation_language = en` and `engineering_language = en`?
 - Did every override have an explicit request and approval by a named authority empowered for project language policy, without assuming the requester had that authority?
 - Can later workflows resolve every repository fallback and scoped override from root `AGENTS.md` without relying on Discovery context?
@@ -229,7 +232,7 @@ On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When 
 
 ### Artifacts
 
-- Are README / PRODUCT / ARCHITECTURE / DATABASE / API / FRONTEND / UX / UI / DESIGN_SYSTEM / TESTING / AGENTS responsibilities distinct and files conditional?
+- Are README / PRODUCT / ARCHITECTURE / DATABASE / API / FRONTEND / UX / UI / DESIGN_SYSTEM / TESTING / AGENTS / STAGE responsibilities distinct and files conditional?
 - Do Spec / Issue / PR-or-Delivery-Record / ADR each serve their own role, with Issues not duplicating Specs?
 - Does AGENTS contain only durable rules, including the full future Feature workflow and the effective values and exact scopes of the Language Policy?
 - Were DTOs, fields, classes, components, and pixel detail left unfrozen?
@@ -248,6 +251,7 @@ On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When 
 - Are generated files nonempty, free of meaningless `N/A`, and linked correctly?
 - Are commands real, or exactly `Not yet established` when absent?
 - Does any fact conflict across documents?
+- Does `STAGE.md` agree with every linked authority, use a unique activity ID, and expose the exact blocker or resume stage when incomplete?
 - Was a recommendation or unknown presented as confirmed fact?
 - Was any unrequested code, Issue, PR, or ADR created?
 

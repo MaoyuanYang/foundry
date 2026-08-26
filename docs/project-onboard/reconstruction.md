@@ -31,7 +31,7 @@ Existing UI is evidence, not a Design System. If buttons use 6px, 8px, and 12px 
 
 ## AS-IS Documentation
 
-Incrementally create or update `README`, `AGENTS`, and `docs/*` (plus `FRONTEND/UX/UI/DESIGN_SYSTEM` when a UI exists):
+Incrementally create or update root `STAGE.md`, `README`, `AGENTS`, and `docs/*` (plus `FRONTEND/UX/UI/DESIGN_SYSTEM` when a UI exists). Stage contains only current coordination and authority links:
 
 - **Preserve** valid content.
 - **Mark** unknowns and conflicts explicitly.

@@ -39,7 +39,7 @@ The default key lines are replaced only by an explicit, scoped override approved
 
 | Category | Controlled Surfaces |
 |---|---|
-| Documentation Language | Formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
+| Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. |
 | Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. |
 
@@ -97,15 +97,19 @@ Do not make a one-time baseline `PASS/FAIL` a permanent rule. Record only stable
 
 ## Work Tracking and Delivery
 
-- Tracking mode: `[remote tracker | local work item | TBD]`
-- During onboarding, `specs/ROADMAP.md` records inventory and recommendation. After a Feature starts, its bound Issue or local work item is the writable Work Status authority; Roadmap is a synchronized projection.
-- A remote authority must be explicitly authorized and writable for the current operation before a status transition can be claimed. Otherwise use a local work item or preserve status and stop.
+- Tracking mode: `[REMOTE | LOCAL | HYBRID | TBD]`
+- Root `STAGE.md` owns current project phase, active-member coordination, blockers, handoffs, and resume points. It links controlling artifacts and must not copy AS-IS facts, Feature requirements, or Gate evidence.
+- During onboarding, `specs/ROADMAP.md` records inventory, ordering, and recommendation. After a Feature starts, its bound remote tracker is the writable Work Status authority. When no remote is bound, the activity row identified by `STAGE_LOCAL:<Activity ID>` in `STAGE.md` is the local Work Status authority. Roadmap is a synchronized projection in either mode.
+- Update Stage only at assignment, meaningful workflow transition, block/resume, handoff, and completion. Preserve unrelated member rows; record a duplicate unexplained assignment as `CONFLICT`.
+- A bound remote remains authoritative when authorization, tooling, authentication, availability, or writing temporarily fails; preserve status and stop. Use `STAGE_LOCAL:<Activity ID>` only when no remote is bound or after an explicitly approved durable migration.
+- Serialize Stage writes through a repository lock or designated canonical writer. Otherwise compare revision and SHA-256 immediately before writing and abort/reconcile on change; allocate `A-xxx` under that guard. Divergent worktree copies are not live Stage state until canonical reconciliation.
+- Transfer Stage-local authority atomically to the receiver's activity before the sender leaves Active Work. Preserve final status and authority when archiving completed activities.
 - Delivery mode: `[PR/MR | explicitly adopted no-PR delivery | TBD]`
 - Remote Issue changes, commit, push, PR/MR, merge, close, and release each require explicit user authorization.
 
 ## Spec and Work Lifecycle
 
-- Spec defines what is correct; Issue records where work is; PR/Delivery Record records what changed in code; ADR records why a significant decision was made.
+- Spec defines what is correct; a remote tracker or identified Stage-local row records where work is; `STAGE.md` shows the project/member snapshot; PR/Delivery Record records what changed in code; ADR records why a significant decision was made.
 - Brownfield `AS_IS_DRAFT/RECONSTRUCTED` describes current behavior and is never `READY`.
 - After Feature selection, `feature-dev` confirms preserve/change/remove decisions, produces a TO-BE Spec, and passes `SPEC READY` before implementation.
 - For UI work, define user flow, UI states, and frontend/backend contract before Coding and pass the adopted UI gate.
@@ -117,7 +121,7 @@ When the project adopts this AI-Native workflow, record the complete lifecycle:
 ```text
 AS_IS_DRAFT / RECONSTRUCTED or DRAFT
 -> Feature Selected (`NEXT`)
--> Issue / local work item linked to Spec
+-> Work item bound (remote Issue or Stage-local authority) and linked to Spec
 -> AS-IS confirmation and TO-BE refinement
 -> SPEC READY
 -> if UI: UX refinement -> UI states/contracts -> UI READY
@@ -161,6 +165,7 @@ Do not make inconsistent historical UI styles into standards. Retain only rules 
 | Artifact | Responsibility |
 |---|---|
 | `README.md` | Fast entry and real commands. |
+| `STAGE.md` | Current project/member coordination, authority links, blockers, handoffs, and resume points. |
 | `docs/*` | Project-level product, architecture, data, API, frontend/UX/UI/Design System, and testing facts. |
 | `specs/ROADMAP.md` | The single Feature Inventory, dependencies, and work ordering. |
 | Feature Spec | Correct Feature behavior with explicit separation of AS-IS and TO-BE. |

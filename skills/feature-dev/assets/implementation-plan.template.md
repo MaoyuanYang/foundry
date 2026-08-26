@@ -11,6 +11,7 @@
 - Plan revision/change-log ID:
 - Plan Status: `CURRENT | STALE`
 - Issue/work item:
+- Stage activity (operational; not a semantic Gate input):
 - Applicable AGENTS/architecture docs:
 
 ## Requirement Guardrail

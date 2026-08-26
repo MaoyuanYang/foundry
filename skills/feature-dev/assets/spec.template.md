@@ -13,6 +13,7 @@
 - `SPEC READY` Status: `NOT_READY | PASS | STALE`
 - Roadmap link/status:
 - Issue/work item:
+- Stage activity:
 - Owner:
 - Decision Authority (named human + role):
 - Dependencies:

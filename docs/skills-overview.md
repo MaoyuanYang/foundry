@@ -15,7 +15,7 @@ Discovery interviews → Macro Synthesis → Challenge Pass → Macro Readiness
 → MACRO DESIGN READY → docs + AGENTS → Feature Map → DRAFT Specs → NEXT → STOP
 ```
 
-**Produces** `README.md`, `AGENTS.md`, `docs/PRODUCT|ARCHITECTURE|DATABASE|API|TESTING`, UI docs when applicable, `specs/ROADMAP.md`, and shallow DRAFT Specs for every feature.
+**Produces** root `STAGE.md`, `README.md`, `AGENTS.md`, `docs/PRODUCT|ARCHITECTURE|DATABASE|API|TESTING`, UI docs when applicable, `specs/ROADMAP.md`, and shallow DRAFT Specs for every feature.
 
 **Boundaries**
 
@@ -38,7 +38,7 @@ Survey → Baseline Verification → Architecture Reconstruction
 → AS-IS Documentation → Feature Inventory → AS-IS Specs → Recommended Next → STOP
 ```
 
-**Produces** `docs/onboarding/BASELINE.md`, Knowledge Gaps, AS-IS canonical docs, Feature Inventory in `specs/ROADMAP.md`, and `AS_IS_DRAFT`/`RECONSTRUCTED` specs.
+**Produces** root `STAGE.md` (created or adopted), `docs/onboarding/BASELINE.md`, Knowledge Gaps, AS-IS canonical docs, Feature Inventory in `specs/ROADMAP.md`, and `AS_IS_DRAFT`/`RECONSTRUCTED` specs.
 
 **Boundaries**
 
@@ -77,3 +77,4 @@ Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-
 
 - `coding-start` and `project-onboard` both end by handing a selected feature to `feature-dev`.
 - Skills hold the **process**; the project's `AGENTS.md` holds the **rules**.
+- Root [`STAGE.md`](./guide/project-stage) holds the current project/member snapshot across all three Skills, while linked trackers and artifacts retain their own authority.

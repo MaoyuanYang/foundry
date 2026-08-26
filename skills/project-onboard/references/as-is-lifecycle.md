@@ -18,6 +18,8 @@ Repository Evidence
 
 This workflow ends when the project can be developed safely by the next workflow, not when the project has been optimized.
 
+Root `STAGE.md` checkpoints this workflow for all active humans and Agents. It records the exact onboarding stage, blocker or handoff, repository ref, and authority links. It is not AS-IS evidence and never substitutes for the Baseline, canonical docs, Roadmap, or Specs.
+
 ## AS-IS and TO-BE
 
 ```text
@@ -60,10 +62,11 @@ Do not turn "the code already does this" into a required future rule. Do not put
 | `docs/onboarding/BASELINE.md` | Reproducible runtime snapshot for the takeover ref/environment. |
 | `docs/onboarding/KNOWLEDGE_GAPS.md` | Unresolved conflicts, unknowns, missing items, clarification, and Technical Debt recommendations. |
 | `AGENTS.md` | Confirmed long-lived AI Coding rules for its scope, including the resolved Language Policy. |
+| `STAGE.md` | Current project phase, active-member coordination, onboarding stage, blockers/conflicts, handoffs, resume points, and authority links. |
 | `specs/ROADMAP.md` | The single Feature Inventory, dependencies, and work ordering. |
 | Feature `spec.md` | Evidenced AS-IS characterization of how one capability currently works. |
 
-Do not create `FEATURE_INVENTORY.md`, `PROJECT_NOTES.md`, or another architecture source of truth. Merge temporary findings into these artifacts or remove them.
+Do not create `FEATURE_INVENTORY.md`, `PROJECT_NOTES.md`, or another architecture source of truth. `STAGE.md` is allowed only for current coordination and authority links; it MUST NOT retain architecture findings or survey notes. Merge temporary findings into their owning artifacts or remove them.
 
 ## Incremental Documentation Maintenance
 
@@ -150,6 +153,8 @@ Ordering signals, highest first:
 
 Always provide one `Recommended Next`. `RECOMMENDED` means onboarding proposes it; `SELECTED` means the named `Roadmap Decision Authority` or authoritative tracker selected it. These values are recommendation-selection metadata, never Work Status. Label an assumption-based recommendation `INFERRED` and explain why alternatives are deferred. Set Work Status to the unique `NEXT` only through that authority; otherwise preserve `UNTRACKED` or the existing status. `NEXT` is not `READY`: the next run uses `feature-dev` to complete TO-BE and gates first.
 
+After selection or recommendation, reconcile `STAGE.md` from the Roadmap and authoritative tracker. Record the target work item, `feature-dev` handoff, required inputs, and exact resume stage. Do not copy the Feature Inventory, recommendation analysis, or AS-IS Spec into Stage.
+
 ## Technical Debt and Design Change
 
 Classify Technical Debt as architecture, data, testing, security, operations, frontend, UX, UI, accessibility, or docs. Record evidence, impact, scope, and recommended handling. Identify, classify, record, and recommend only; never batch-fix it during onboarding.
@@ -171,6 +176,7 @@ Baseline failures, unknowns, and missing items may remain if recorded accurately
 - Reproducible current ref/environment and pre-existing failures.
 - Architecture, data, runtime, and conditional frontend/UI reconstructed to a transferable level.
 - No responsibility drift among canonical docs, `AGENTS.md`, Roadmap, and AS-IS Specs.
+- `STAGE.md` agrees with its linked authorities, preserves every unrelated active member, and exposes the current onboarding activity plus exact blocker or handoff.
 - Explicit labels for every conflict, unknown, and inference.
 - Language Policy explicitly `ADOPTED` by the named `Maintainer Decision Authority`, persisted with actual Documentation and Engineering BCP-47 values plus the resolved Product Content value or evidenced `N/A - no product-content surface` and scope in `AGENTS.md`, and synchronized to Baseline and AS-IS Spec metadata, with no blocking language conflict.
 - One evidenced `Recommended Next`; any `Work Status: NEXT` is confirmed and unique.

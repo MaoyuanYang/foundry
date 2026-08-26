@@ -64,6 +64,7 @@ One label may cover a whole section, but never make unconfirmed inference appear
 - Onboarding snapshot: `docs/onboarding/BASELINE.md`
 - Open knowledge items: `docs/onboarding/KNOWLEDGE_GAPS.md`
 - Feature inventory: `specs/ROADMAP.md`
+- Live project and member status: `STAGE.md`
 
 ## Known Current Constraints
 

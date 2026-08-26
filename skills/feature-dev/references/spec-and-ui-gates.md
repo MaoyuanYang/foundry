@@ -2,6 +2,8 @@
 
 Read this file before Spec Refinement; continue through the UI sections when `UI Impact: YES`. Prefer the project's existing format. This file defines semantics and Gates, not mandatory paths.
 
+During these branches, root `STAGE.md` records only the exact `SPEC_REFINEMENT` or `UI_REFINEMENT` activity stage and a link to each Gate's authoritative record/revision after that record exists. Stage never contains the checklist or participates in the Gate manifest.
+
 ## 1. Facts and Lifecycle
 
 ### Greenfield

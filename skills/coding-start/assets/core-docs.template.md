@@ -26,6 +26,7 @@ Every material product, architecture, data, API, or testing statement MUST retai
 
 ## Current Stage
 
+- [CONFIRMED] Live project and member status: [`STAGE.md`](STAGE.md)
 - [CONFIRMED] Macro design: `MACRO DESIGN READY`
 - [CONFIRMED] Business implementation: Not started
 

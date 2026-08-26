@@ -24,6 +24,8 @@ flowchart TD
   NEXT --> STOP[STOP]
 ```
 
+根 [`STAGE.md`](../guide/project-stage) 为每个活跃人类或 Agent 记录关键流转检查点。它只记录 onboarding 阶段、ref、阻塞、交接、恢复点和权威链接；AS-IS 事实仍属于 Baseline、规范文档、Roadmap 与 Specs。
+
 ## 证据优先级
 
 调查与冲突加权遵循以下顺序（是指引，不是盲信）：
@@ -64,6 +66,7 @@ flowchart LR
 - 基线验证前不改源码；onboarding 期间不做大规模重构、依赖升级、全库格式化、数据迁移或批量还债。
 - 只修改理解项目所需的文档；源码缺陷只记录与分类，不在此修复。
 - 保留有效的仓库内容与历史；增量合并，绝不为套模板而替换。
+- 保留 `STAGE.md` 中其他成员的活动行。过期投影或无法解释的重复认领属于 `CONFLICT`，绝不能据此覆盖他人状态。
 - 本地产物授权与 Git/远程授权相互独立。见[授权](../guide/authorization)。
 
 Skill 以推荐**一项**后续工作（`Recommended Next`）收尾并 `STOP`——不实现它。

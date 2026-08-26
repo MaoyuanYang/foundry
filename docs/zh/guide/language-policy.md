@@ -12,7 +12,7 @@ product_content_language = <由产品需求推导>
 
 | 维度 | 管辖范围 | 默认值 |
 |---|---|---|
-| **文档语言（Documentation）** | 正式产物正文：README、AGENTS、项目文档、Roadmap、ADR、Spec、Baseline/Knowledge Gap 报告、Test Design、Plan、Review、DONE 记录、交付记录 | `en` |
+| **文档语言（Documentation）** | 正式产物正文：README、STAGE、AGENTS、项目文档、Roadmap、ADR、Spec、Baseline/Knowledge Gap 报告、Test Design、Plan、Review、DONE 记录、交付记录 | `en` |
 | **工程语言（Engineering）** | 新建类/方法/变量/包/模块名、数据库表/列、API 路径/定义、配置键（不含任意值）、环境变量、基础设施名、分支名、提交信息、Issue/PR 标题与描述、代码注释、可执行测试名/描述、面向开发者的日志 | `en` |
 | **产品内容语言（Product Content）** | 面向用户的文案与本地化值 | **无默认** —— 由产品需求推导 |
 

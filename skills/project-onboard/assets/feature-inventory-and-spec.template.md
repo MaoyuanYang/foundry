@@ -38,7 +38,7 @@ Do not create a parallel Feature Inventory. Do not mark an AS-IS Spec `READY`. N
 
 The three status columns answer different questions and never substitute for one another. Onboarding proposes one `Recommended Next`; write `NEXT` only after selection by the named `Roadmap Decision Authority` or authoritative tracker. Never promote an AS-IS Spec to `READY`. Roadmap `READY` belongs only to later work with valid `SPEC READY`, applicable `UI READY` or an explicit skip, `TEST DESIGN READY`, Plan, and Tasks.
 
-After a Feature starts, bind it to a writable remote Issue or local work item as Work Status authority; this table mirrors that state. Never claim a remote status transition without authorization to update that authority.
+After a Feature starts, bind it to a writable remote tracker as Work Status authority. Without one, an explicitly identified `STAGE_LOCAL:<Activity ID>` row in root `STAGE.md` may be the local Work Status authority; this table mirrors either source. Never claim a remote status transition without authorization to update that authority.
 
 ## Inventory
 

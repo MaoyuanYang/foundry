@@ -54,13 +54,18 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
 | 对象 | 负责 |
 |---|---|
 | **Spec** | 什么才算正确（事实来源） |
-| **Issue / 工作项** | 工作进行到哪里（进度、状态） |
+| **远程 Issue / Stage-local 行** | 已绑定工作进行到哪里（进度、状态）；仅一个可写 |
+| **STAGE.md** | 整个项目与所有活跃成员当前处于哪里 |
 | **Implementation Plan** | 怎么实现（不得重新定义需求） |
 | **PR / 交付记录** | 代码发生了什么变化 |
 | **ADR** | 为什么做出重要决策 |
 | **AGENTS.md** | 项目长期规则 |
 
-Issue 绝不复制 Spec；Plan 绝不改写需求。
+远程 Issue 或辅助清单绝不复制 Spec；本地清单绝不成为第二份可写状态来源；Plan 绝不改写需求。
+
+## 项目状态与权威
+
+三个 Skill 共同维护根 [`STAGE.md`](./guide/project-stage)。它负责当前项目阶段、活跃成员视图、阻塞、交接和恢复点。Feature 工作项绑定前，`specs/ROADMAP.md` 负责初始状态；绑定后 Stage 投影远程 Tracker，未绑定远程时才由标识为 `STAGE_LOCAL:<Activity ID>` 的行负责本地 Work Status。远程访问暂时失败绝不会转移权威，必须先通过显式且持久的迁移将其解绑。Roadmap 始终负责排序与依赖，Gate 产物始终负责 Gate 证据。
 
 ## 设计变更策略
 

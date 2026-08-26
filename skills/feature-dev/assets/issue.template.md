@@ -9,6 +9,7 @@
 ## Links
 
 - Spec:
+- Stage activity: `STAGE.md` (Active Work row `<Activity ID>`)
 - UX/UI: `N/A - <reason>`
 - Test Design:
 - Implementation Plan:
@@ -17,8 +18,10 @@
 
 ## State
 
-- Roadmap Status: `DRAFT | NEXT | READY | IN_PROGRESS | REVIEW | DONE | BLOCKED`
-- Work Status authority: `remote Issue | local work item` / writable evidence:
+- Work Status: `DRAFT | NEXT | READY | IN_PROGRESS | REVIEW | DONE | BLOCKED`
+- Status field mode: `WRITABLE - this is the bound remote authority | READ_ONLY_PROJECTION - auxiliary local checklist`
+- Work Status authority: `remote tracker | STAGE_LOCAL:<Activity ID>` / binding and writable evidence:
+- Authority mode: `REMOTE | LOCAL`; a bound remote cannot fall back to LOCAL because of temporary authorization, tool, authentication, availability, or write failure:
 - Blocked From: `N/A | <prior status>`
 - Gates:
   - `SPEC READY`: `PASS | NOT_READY | STALE` / input manifest link:
@@ -27,6 +30,7 @@
   - `DONE`: `PASS | NOT_READY | STALE` / input manifest link:
 - Priority:
 - Implementation assignee:
+- Collaborating members / responsibility boundaries: `N/A | <members and boundaries>`
 - Decision Authority (named human + role):
 
 ## Acceptance Checklist
@@ -54,6 +58,8 @@
 - Delivery record/link: `N/A | <link>`
 
 ## Progress Notes
+
+Record only decisions and evidence that belong to this work item. When this template is an auxiliary local checklist, State is a read-only projection from the named authority. Current project/member stage, handoffs, and resume points belong in `STAGE.md`.
 
 | Date | Status | Evidence/decision | Next step |
 | --- | --- | --- | --- |

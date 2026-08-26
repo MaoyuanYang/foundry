@@ -7,11 +7,12 @@ Documents exist to support decisions, collaboration, and verification, not to fi
 ```text
 Spec = what makes a Feature correct
 Issue = where the work stands
+STAGE.md = where the project and its active members stand
 PR / Delivery Record = what changed in the code
 ADR = why a significant technology or architecture decision was made
 ```
 
-An Issue MUST NOT copy its Spec. It links the Spec and records status, owner, blockers, and delivery coordination; acceptance rules remain owned by the Spec.
+An Issue MUST NOT copy its Spec. It links the Spec and records status, owner, blockers, and delivery coordination; acceptance rules remain owned by the Spec. `STAGE.md` is the project-wide current-state and coordination view. Before Feature work is bound, the Roadmap owns its initial status. After binding, Stage projects a remote Work Status authority; when no remote is bound, the identified `STAGE_LOCAL:<Activity ID>` row is the local authority. Temporary remote access failure does not transfer authority; only an explicit durable migration may unbind it. Stage links every other source and MUST NOT copy the Roadmap, Spec, Gate evidence, Plan, or delivery record.
 
 ## Language Contract
 
@@ -22,7 +23,7 @@ documentation_language = en
 engineering_language = en
 ```
 
-- Documentation Language governs formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
+- Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
 - Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language follows product requirements. Record actual BCP-47 value(s), `UNKNOWN - <resolution action>` for a potentially relevant unresolved surface, or `N/A - no product-content surface` for a confirmed no-content scope. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
 - Conversation MAY follow the user's language, but MUST NOT alter any dimension. The requester is not automatically an authority empowered for project language policy.
@@ -36,7 +37,7 @@ engineering_language = en
 
 | Artifact | Sole primary responsibility | Include | Exclude / boundary |
 | --- | --- | --- | --- |
-| `README.md` | Quick project entry | Summary, core capabilities, stack summary, current stage, real Start/Build/Test entry points, documentation navigation | Full product argument, detailed architecture, complete Specs; unavailable commands MUST be `Not yet established` |
+| `README.md` | Quick project entry | Summary, core capabilities, stack summary, brief current stage with a `STAGE.md` link, real Start/Build/Test entry points, documentation navigation | Live member/activity coordination, full product argument, detailed architecture, complete Specs; unavailable commands MUST be `Not yet established` |
 | `docs/PRODUCT.md` | Why the project exists and what it does | Vision, Problem, Users, scenarios, MVP, Scope, Out of Scope, principles, success criteria, and challenged assumptions or rejected scope with durable value | Raw interviews, technical implementation plans, class/table/API detail |
 | `docs/ARCHITECTURE.md` | Overall system structure and module collaboration | Architecture style, module responsibilities, boundaries, dependencies, data flow, sync/async direction, external services, deployment, and observability direction | Single-Feature Implementation Plans or complete package/class design |
 | `docs/DATABASE.md` | Project-level data principles and current direction | Database choice, Source of Truth assignments, core entities and relationships, ID/time/naming, uniqueness, transactions, deletion, and cache relationship | Freezing all fields, SQL, indexes, or Feature-private schemas at once |
@@ -47,6 +48,7 @@ engineering_language = en
 | `docs/DESIGN_SYSTEM.md` | Global visual tokens and reusable component rules | Typography, Color, Spacing, Radius, Shadow, Breakpoints, foundational components, states, and extension rules | Feature-specific page design or page structure duplicated from UI.md |
 | `docs/TESTING.md` | Project testing strategy and Definition of Done | Risk layers, Unit/Integration/API/Component/Interaction/E2E, Accessibility, justified performance/visual/concurrency checks, environments, data, and real commands | Complete Test Design for one Feature or invented commands |
 | `AGENTS.md` | Durable AI coding protocol | Architecture and module constraints, Build/Test, stable conventions, Spec lifecycle, Feature workflow, UI/Design System rules, Design Change, language policy, documentation sync, and durable pitfalls | Current task status, debug logs, temporary workarounds, Issue progress, or unconfirmed inference |
+| `STAGE.md` | Current project and multi-member coordination snapshot | Project lifecycle/phase, milestone state, active human/Agent activities, Skill stages, projected Gates, blockers/conflicts, handoffs, resume points, authority links, and recent completions | Requirements, Feature ordering, Gate evidence manifests, implementation tasks, durable rules, command logs, chat history, or full delivery history |
 | `specs/ROADMAP.md` | Feature Map, order, dependencies, and lifecycle status | ID, Name, Goal, Business Value, Priority, Dependencies, allowed Status, Summary; sole `NEXT` rationale on success; zero `NEXT` entries, plus blocker, owner, unblock condition, and resume stage for `BLOCKED_HANDOFF` | Complete Feature correctness, implementation tasks, or PR change record |
 | Feature `spec.md` | Source of Truth for what makes the Feature correct | Goal, User Story, Scope, Out of Scope, Flow, Rules, Entities, Major API, UI Impact, Dependencies, Acceptance Criteria, and Open Questions | Work progress, owner coordination, code diff, or global durable rules; DRAFT MUST NOT include implementation minutiae |
 | Issue | Feature work status and coordination | Spec link, current status, owner, blocker, necessary task links, and acceptance/verification links | Copying the Spec, redefining acceptance, or durable architecture rules |
@@ -69,6 +71,7 @@ engineering_language = en
 | `DESIGN_SYSTEM.md` | `UI: YES` and multiple interfaces need shared visual/component rules; a tiny single-interface project MAY keep minimal direction in UI.md first |
 | `TESTING.md` | Software behavior requires verification; usually applicable |
 | `AGENTS.md` | `coding-start` MUST create or maintain it |
+| `STAGE.md` | `coding-start` MUST create or incrementally adopt it after valid entry and explicit local-write authorization; before `MACRO DESIGN READY` it contains operational state only |
 | `ROADMAP.md` and DRAFT Specs | `coding-start` MUST create them |
 | ADR index / ADR | The project adopts ADRs or a significant record-worthy decision exists; the ADR reaches the project's implementation-authorizing state (for example, Accepted or Effective) before Coding, not after implementation; MUST NOT manufacture an ADR when none exists |
 | Issue / PR / Delivery Record | `coding-start` does not create these by default; after `feature-dev`, follow the explicitly adopted tracking/delivery workflow |

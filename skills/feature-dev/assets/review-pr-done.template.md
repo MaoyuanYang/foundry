@@ -5,6 +5,7 @@
 ## Review Context
 
 - Issue/work item:
+- Stage activity / snapshot revision:
 - Spec / Gate / revision:
 - UX/UI / Gate / revision: `<link and PASS revision> | SKIPPED (N/A) - <complete skip-decision link>`
 - Test Design / Gate / revision:
@@ -49,6 +50,7 @@
 | --- | --- | --- | --- |
 | Current Spec | YES |  |  |
 | ROADMAP / Issue | YES |  |  |
+| STAGE project/member snapshot | YES |  |  |
 | API / DATABASE / ARCHITECTURE / TESTING | N/A |  |  |
 | FRONTEND / UX / UI / DESIGN_SYSTEM | N/A |  |  |
 | AGENTS / ADR | N/A |  |  |
@@ -156,3 +158,4 @@ Each controlling artifact MUST use an independent change ID or working-tree cont
 - Roadmap Status: `DONE | REVIEW | BLOCKED`
 - If not DONE, exact blocker/unperformed action:
 - Resume from:
+- Final Stage activity state / snapshot revision:

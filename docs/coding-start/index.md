@@ -35,6 +35,8 @@ flowchart TD
   REV --> STOP[STOP]
 ```
 
+After valid entry and explicit local-write authorization, root [`STAGE.md`](../guide/project-stage) is the sole pre-Gate operational artifact. It checkpoints the current member, Skill stage, blocker, next question, ref, and authority links so Discovery can resume. It contains no unconfirmed product/architecture decisions and never implies `MACRO DESIGN READY`.
+
 Formal project documents are generated only after `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
 
 ## Non-negotiable boundaries

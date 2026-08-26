@@ -1,12 +1,12 @@
 # coding-start — Generated Artifacts
 
-After `MACRO DESIGN READY` and explicit local-write authorization, `coding-start` generates a project documentation system. Files are created **on demand** — never empty files, never full-page `N/A`, never invented commands (an absent command is written exactly as `Not yet established`).
+After valid entry and explicit local-write authorization, `coding-start` creates or incrementally adopts root `STAGE.md` as an operational checkpoint so Discovery can resume across sessions. It contains no unconfirmed design and does not bypass the Gate. After `MACRO DESIGN READY`, the Skill generates the remaining project documentation system. Files are created **on demand** — never empty files, never full-page `N/A`, never invented commands (an absent command is written exactly as `Not yet established`).
 
 ## The documentation tree
 
 <DocTree />
 
-- Base projects always get `README.md`, `AGENTS.md`, `specs/ROADMAP.md`, and the applicable `docs/*`.
+- Base projects always get `STAGE.md`, `README.md`, `AGENTS.md`, `specs/ROADMAP.md`, and the applicable `docs/*`.
 - `FRONTEND.md`, `UX.md`, `UI.md`, and `DESIGN_SYSTEM.md` are created **only** when `UI: YES`.
 - A DRAFT `spec.md` is generated for **every** Feature under `specs/Fxxx-feature-slug/`.
 
@@ -14,7 +14,8 @@ After `MACRO DESIGN READY` and explicit local-write authorization, `coding-start
 
 | Document | Sole responsibility | Excluded |
 |---|---|---|
-| `README.md` | Quick entry: summary, capabilities, stack, stage, real Start/Build/Test, navigation | Full product argument, detailed architecture, complete Specs |
+| `README.md` | Quick entry: summary, capabilities, stack, brief stage + Stage link, real Start/Build/Test, navigation | Live member coordination, full product argument, detailed architecture, complete Specs |
+| `STAGE.md` | Current project phase, active members/Agents, blockers, handoffs, resume points, authority links | Requirements, Feature ordering, Gate evidence, Tasks, durable rules, command logs |
 | `docs/PRODUCT.md` | Why the project exists: vision, problem, users, scenarios, MVP, scope, principles, success criteria, challenged assumptions | Implementation plans, class/table/API detail |
 | `docs/ARCHITECTURE.md` | Overall structure and module collaboration | Single-Feature Plans, complete package/class design |
 | `docs/DATABASE.md` | Data principles and current direction (schema evolves with Features) | Frozen fields, SQL, indexes, Feature-private schemas |
@@ -46,5 +47,6 @@ Each DRAFT Spec records: Goal, Business Value, User Story, Scope, Out of Scope, 
 - Analyze dependencies, risk, and learning value; recommend the smallest Feature that validates the end-to-end direction.
 - The `Roadmap Decision Authority` confirms; exactly one confirmed Feature becomes `NEXT`.
 - If no Feature can safely be `NEXT`, return to the interview. If only an unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: zero `NEXT`, with blocker, owner, unblock condition, and resume stage recorded.
+- Reconcile `STAGE.md` from the Roadmap result and record the `feature-dev` handoff or exact blocked resume point without copying the Feature map.
 
 Either way, every Spec remains `DRAFT`, and the skill ends with `STOP`.

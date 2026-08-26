@@ -20,7 +20,7 @@ Search selectively for existing material:
 
 - README, LICENSE, AGENTS, CONTRIBUTING, docs, and ADRs.
 - `pom.xml`, Gradle files, `package.json`, lockfiles, and manifests for Python, Rust, Go, .NET, Ruby, PHP, or other ecosystems.
-- Issue/PR templates, tracker links, Git remotes, branch policy, and existing work-status authority.
+- Root `STAGE.md`, active member/activity claims, Issue/PR templates, tracker links, Git remotes, branch policy, and existing work-status authority. Verify every projected Stage status against its linked source and expose stale or duplicate ownership as `CONFLICT`.
 - Workspace/monorepo configuration, Makefiles, task runners, and scripts.
 - Dockerfiles, compose files, devcontainers, deployment, and infrastructure as code.
 - CI/CD workflows, release configuration, and artifact definitions.
@@ -35,7 +35,7 @@ Inspect every surface in this matrix, not only representative files:
 
 | Category | Controlled Surfaces | Evidence to Inspect |
 |---|---|---|
-| Documentation Language | Formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. | Existing formal artifacts, templates, contribution rules, and history. |
+| Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. | Existing formal artifacts, templates, contribution rules, and history. |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. | Code, schema, API/config/infra definitions, tests, logs, Git history, tracker templates, and applicable AGENTS rules. |
 | Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. | UI, CLI text, emails/messages, localization resources, tests, and runtime behavior. |
 | Governing Rules | Every applicable `AGENTS.md`. | Exact rule, scope, precedence, authority, and adoption evidence. |

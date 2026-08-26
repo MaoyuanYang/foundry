@@ -24,6 +24,8 @@ flowchart TD
   NEXT --> STOP[STOP]
 ```
 
+Root [`STAGE.md`](../guide/project-stage) checkpoints each meaningful transition for every active human or Agent. It records only the onboarding stage, ref, blockers, handoffs, resume points, and authority links; AS-IS facts still belong to the Baseline, canonical docs, Roadmap, and Specs.
+
 ## Evidence priority
 
 Investigation and conflict weighting follow this order (it is a guide, not blind trust):
@@ -64,6 +66,7 @@ After exhausting repository evidence, record conflicts, unknowns, missing items,
 - No source change before baseline verification; no broad refactor, dependency upgrade, repo-wide formatting, data migration, or batch debt fix during onboarding.
 - Only the documentation needed to understand the project is modified; source defects are recorded and classified, not fixed here.
 - Valid repository content and history are preserved; merge incrementally, never replace to fit a template.
+- Preserve unrelated `STAGE.md` activity rows. A stale projection or unexplained duplicate work claim is `CONFLICT`, never an excuse to overwrite another member.
 - Local artifact authorization is separate from Git/remote authorization. See [Authorization](../guide/authorization).
 
 The skill ends by recommending **one** next item (`Recommended Next`) and `STOP`s — it does not implement it.

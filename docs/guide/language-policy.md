@@ -12,7 +12,7 @@ product_content_language = <derived from product requirements>
 
 | Dimension | Governs | Default |
 |---|---|---|
-| **Documentation Language** | Formal artifact prose: README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline/Knowledge Gap reports, Test Design, Plans, Reviews, DONE records, Delivery Records | `en` |
+| **Documentation Language** | Formal artifact prose: README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline/Knowledge Gap reports, Test Design, Plans, Reviews, DONE records, Delivery Records | `en` |
 | **Engineering Language** | New class/method/variable/package/module names, DB tables/columns, API paths/definitions, config keys (not arbitrary values), env vars, infrastructure names, branch names, commit messages, Issue/PR titles/descriptions, code comments, executable test names/descriptions, developer-facing logs | `en` |
 | **Product Content Language** | User-facing copy and localized values | **No default** — derived from product requirements |
 

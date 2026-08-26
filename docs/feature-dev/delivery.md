@@ -18,7 +18,7 @@ Findings are recorded `Critical/High/Medium/Low`. Every Critical finding blocks 
 
 ## Documentation Sync
 
-Update only affected documents: Current Spec, ROADMAP, API, DATABASE, ARCHITECTURE, TESTING, ADR, AGENTS, and Issue; for a UI Feature also FRONTEND, UX, UI, DESIGN_SYSTEM. The Spec must reflect approved final behavior while preserving Brownfield AS-IS with explicit TO-BE. Never lower Acceptance to match a divergent implementation. New durable rules enter `AGENTS.md` only after explicit `ADOPTED` by a maintainer.
+Update only affected documents: Current Spec, STAGE, ROADMAP, API, DATABASE, ARCHITECTURE, TESTING, ADR, AGENTS, and Issue; for a UI Feature also FRONTEND, UX, UI, DESIGN_SYSTEM. The Spec must reflect approved final behavior while preserving Brownfield AS-IS with explicit TO-BE. Never lower Acceptance to match a divergent implementation. New durable rules enter `AGENTS.md` only after explicit `ADOPTED` by a maintainer.
 
 ## READY FOR PR / READY FOR DELIVERY
 
@@ -36,9 +36,11 @@ Record `DONE Status: PASS` and `Roadmap Status: DONE` together only when **all**
 4. No Critical flaky test or Critical review finding remains; every High waiver meets DoD with an explicit risk-acceptance record.
 5. UI behavior matches the UI Gate when applicable.
 6. Design Changes are synchronized; every confirmed L3 decision has a revision-bound ADR in the project's implementation-authorizing state.
-7. Affected Docs and the Issue/work item are synchronized per authorization/convention.
+7. Affected semantic Docs and the Issue/work item are synchronized per authorization/convention.
 8. The confirmed PR, merge, or no-PR delivery standard is met.
 9. The `DONE` record contains an independent revision/hash manifest for the current Spec, affected Dependency Specs, relevant ADR/API/Architecture/AGENTS, applicable UX/UI/Test Design, Plan, reviewed diff, Review, and delivery evidence.
+
+After the authoritative `DONE` decision, reconcile `STAGE.md` as a post-Gate projection. A Stage conflict or unavailable writer leaves that projection stale and must be reported and retried, but Stage is not a semantic `DONE` input and cannot retroactively invalidate the Gate.
 
 **With UI**, additionally: complete User Flow and navigation match the approved UI artifact; Loading, Empty (or justified N/A), Error/recovery, Success, and applicable Permission/disabled/offline states are verified; Responsive is verified on target viewports; Accessibility requirements are verified; Design System reuse/extension is compliant and documented; required interaction/UI/E2E tests pass or have an approved risk-based N/A.
 

@@ -2,6 +2,8 @@
 
 Foundry uses **Spec-Driven + Test-Oriented Development**. Before coding, ask: *how will this Feature be proven correct?* Test Design is a risk model and a verifiability design — not a race to accumulate test count.
 
+During this branch, `STAGE.md` uses `TEST_DESIGN` and adds only a link/revision projection after the authoritative Test Gate record exists; scenarios and evidence remain in Test Design and the Gate record.
+
 ## AC → Test Scenario
 
 Derive `TS-*` scenarios from each `AC-*`, business invariant, failure mode, and change risk. The mapping must be explicit; one scenario may protect several related criteria. Maintain the traceability chain:

@@ -29,6 +29,7 @@ Foundry 由三个可复用的 **Agent Skill** 组成，把 AI 编码智能体变
 - **门禁式流转** —— `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`。
 - **证据优先于假设** —— 观察、文档、确认、推断，绝不静默猜测。
 - **受控的设计变更** —— L1/L2/L3 影响分级 + 明确的决策权限。
+- **项目级协作状态** —— 根 `STAGE.md` 展示生命周期、活跃人类/Agent、阻塞、交接与恢复点。
 
 ## 三个 Skill
 
@@ -66,13 +67,13 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 
 > "初始化一个全新的 greenfield 项目：社区本地生活平台。"
 
-`coding-start` 会逐轮访谈、运行 Macro Readiness 门禁，产出 `README`、`AGENTS.md`、`docs/*`、`specs/ROADMAP.md` 和 DRAFT Specs，然后以唯一的 `NEXT` Feature 停止。
+`coding-start` 会逐轮访谈、运行 Macro Readiness 门禁，产出 `STAGE.md`、`README`、`AGENTS.md`、`docs/*`、`specs/ROADMAP.md` 和 DRAFT Specs，然后以唯一的 `NEXT` Feature 停止。
 
 **接管已有仓库：**
 
 > "接管这个仓库，建立可持续的 AS-IS 基线。"
 
-`project-onboard` 会勘察仓库、验证基线、重建架构与 Feature，产出 AS-IS 文档，然后以推荐的下一项工作停止。
+`project-onboard` 会勘察仓库、验证基线、重建架构与 Feature，创建或增量接管根 `STAGE.md`，产出 AS-IS 文档，然后以推荐的下一项工作停止。
 
 **开发一个 Feature：**
 
@@ -84,12 +85,13 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 
 1. 宏观设计先于编码 —— 但避免 Big Design Up Front。
 2. 可以一次生成所有 DRAFT Spec，但只深化当前选中的那一个。
-3. Spec 定义正确性；Issue 管进度；PR 记录变化；ADR 记录为什么。
+3. Spec 定义正确性；绑定的远程 Issue 管进度，没有远程绑定时由已确认的 Stage-local 行负责；PR 记录变化；ADR 记录为什么。
 4. 不可验证的关键需求，不进入编码。
 5. 测试外部行为，不测内部实现细节。
 6. 已有代码是证据，不是规范；已有 UI 是证据，不是设计系统。
 7. 代码不能长期领先于文档。
 8. Skill 保存流程；`AGENTS.md` 保存项目规则。
+9. `STAGE.md` 保存当前项目/成员快照；Tracker、Spec、Gate 与 Roadmap 各自保留权威职责。
 
 ## 语言策略
 

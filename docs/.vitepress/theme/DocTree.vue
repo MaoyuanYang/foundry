@@ -28,6 +28,7 @@ const defaultTree: Node[] = [
     kind: 'dir',
     children: [
       { name: 'README.md', kind: 'file', note: 'quick entry' },
+      { name: 'STAGE.md', kind: 'file', note: 'project + member status' },
       { name: 'AGENTS.md', kind: 'file', note: 'durable AI rules' },
       {
         name: 'docs/',

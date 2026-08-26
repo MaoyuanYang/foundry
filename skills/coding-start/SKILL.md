@@ -11,7 +11,7 @@ Move an unimplemented project idea to a state that can be handed to Feature deve
 
 ## Entry Decision
 
-Before starting, inspect only enough of the target directory to classify the request and determine whether the user wants initialization or read-only ideation/evaluation.
+Before starting, inspect only enough of the target directory to classify the request and determine whether the user wants initialization or read-only ideation/evaluation. Read an existing root `STAGE.md` as the project coordination snapshot, but verify every linked authority before relying on a projected status.
 
 Enter only when:
 
@@ -28,7 +28,7 @@ MUST NOT enter when:
 
 If Greenfield versus Brownfield is unclear, ask one entry-classification question; MUST NOT guess or overwrite existing content in the name of initialization.
 
-Before the first file write, list every path to be created or updated and obtain explicit local-write authorization. Approval of the macro design is not file-write authorization. Without write authorization, report Discovery and Gate results, state that initialization is incomplete, and `STOP`.
+Before the first file write, list every path to be created or updated, including root `STAGE.md`, and obtain explicit local-write authorization. Approval of the macro design is not file-write authorization. Without write authorization, report Discovery and Gate results, state that initialization is incomplete, and `STOP`.
 
 ## Non-Negotiable Boundaries
 
@@ -50,7 +50,7 @@ documentation_language = en
 engineering_language = en
 ```
 
-- Documentation Language governs formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
+- Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
 - Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language follows product requirements. Record actual BCP-47 value(s) when a product-content surface is known, `UNKNOWN - <resolution action>` while a potentially relevant surface is unresolved, or `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
 - Conversation MAY follow the user's language. Conversation language MUST NOT silently override any artifact-language dimension.
@@ -66,6 +66,7 @@ Read every supporting resource directly from this file; MUST NOT follow secondar
 | --- | --- |
 | [Discovery interview guide](references/discovery.md) | After entry is valid and before the first questions; reread when changing interview intensity or running the Challenge Pass. |
 | [Lifecycle and gates](references/lifecycle-and-gates.md) | Before Challenge Pass or Macro Readiness; recheck before choosing `NEXT` and during final Self Review. |
+| [Project Stage template](assets/stage.template.md) | After valid entry and before creating or adopting root `STAGE.md`; reread before changing tracking mode or status authority. |
 | [Artifact responsibility contracts](references/artifact-contracts.md) | After `MACRO DESIGN READY` and before writing any formal artifact. |
 | [Core documentation templates](assets/core-docs.template.md) | After the Gate; read and trim only applicable core documents. |
 | [UI documentation templates](assets/ui-docs.template.md) | Only when `UI: YES` and after the Gate. MUST NOT read or generate them for a no-UI project. |
@@ -96,6 +97,10 @@ ENTRY_CHECK
 ```
 
 Formal project documents MUST NOT be generated before `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
+
+Root `STAGE.md` is the sole operational exception. After valid entry and explicit local-write authorization, create or incrementally adopt it from the [Project Stage template](assets/stage.template.md) so interrupted Discovery can resume. Before the Gate it may use `Tracking Mode: TBD`, Work Status `N/A`, and `N/A - project workflow activity`; record only the current Skill stage, member/activity, explicit blockers, next checkpoint, repository ref, and known authority links. It MUST NOT persist unconfirmed product or architecture conclusions or imply that Macro Readiness passed. Update it only on meaningful stage transitions, block/resume, handoff, and completion. Serialize writes through a repository lock or designated canonical writer; otherwise compare revision and SHA-256 immediately before writing and abort/reconcile on change. Allocate `A-xxx` under that guard, reread the latest file, and preserve every unrelated member row.
+
+An unresolved Stage binding, freshness, revision/hash, activity identity, duplicate assignment, or authority conflict MUST stop the affected transition, handoff, or completion. Unrelated read-only Discovery may continue; MUST NOT silently select a value or overwrite another member.
 
 ## Fact Status Contract
 
@@ -180,7 +185,7 @@ MACRO DESIGN READY
 
 After the Gate, read [Artifact responsibility contracts](references/artifact-contracts.md). Use its responsibility table and conditional matrix to select files. Re-list actual paths, verify local-write authorization, read only applicable templates, and trim them. Replace every `{{...}}`, delete inapplicable sections, and MUST NOT create empty files, full-page `N/A`, or invented commands. An absent command MUST be written exactly as `Not yet established`.
 
-All formal artifacts MUST follow the recorded language dimensions and default to English. They contain macro state, constraints, and explicit fact statuses only. Feature-level schemas, business APIs, screen details, and implementation structures remain for refinement. Apply Design Change, Documentation Sync, and ADR rules from the contract, updating only affected artifacts.
+All formal artifacts, including `STAGE.md` prose, MUST follow the recorded language dimensions and default to English. They contain macro state, constraints, and explicit fact statuses only. Feature-level schemas, business APIs, screen details, and implementation structures remain for refinement. Apply Design Change, Documentation Sync, and ADR rules from the contract, updating only affected artifacts. Keep README's stage summary brief and link to `STAGE.md` for the live multi-member snapshot.
 
 ## Feature Map and DRAFT Specs
 
@@ -194,6 +199,7 @@ Use [Roadmap and DRAFT Spec templates](assets/roadmap-and-draft-spec.template.md
 6. Generate a shallow DRAFT Spec for every Feature. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
 7. DRAFT Specs MAY include initial Acceptance Criteria and UI impact but MUST retain Open Questions, MUST NOT mature to `READY`, and MUST NOT freeze DTOs, fields, classes, components, or pixel design.
 8. If no Feature can safely become `NEXT`, return to the interview. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then `STOP` with initialization incomplete. MUST NOT choose arbitrarily to finish the flow.
+9. Reconcile `STAGE.md` from the confirmed Roadmap result: project phase, the current activity, Work Status authority, blockers, handoff target, and exact resume stage. The Roadmap still owns ordering and dependencies; `STAGE.md` MUST NOT copy the Feature map.
 
 ## Minimal Non-Business Scaffolding Exception
 
@@ -222,6 +228,7 @@ Before finishing, use [Lifecycle and gates](references/lifecycle-and-gates.md) a
 - The success path has exactly one confirmed `NEXT`; `BLOCKED_HANDOFF` has zero `NEXT` entries, plus a blocker, owner, unblock condition, and resume stage. Neither path marks a Feature `READY`.
 - Every Spec remains `DRAFT`, with dependencies and Open Questions visible.
 - AGENTS contains durable rules, the full Feature workflow, applicable UI rules, L1/L2/L3 Design Change Policy, and the durable Language Policy, including every effective language value and exact scope.
+- `STAGE.md` exists when writes were authorized, contains the current project and member snapshot, links rather than duplicates every authority, and preserves unrelated concurrent activity.
 - The canonical language matrix was enforced with `documentation_language = en` and `engineering_language = en`; every override was explicitly requested and approved by a named authority empowered for project language policy; Product Content Language exceptions did not alter surrounding artifact or engineering text.
 - No formal artifact write bypassed the bidirectional mixed-document gate, and no scoped override remained only in Discovery context.
 - No business code was written; any explicitly authorized minimal scaffold has accurate scope and verification.
@@ -232,6 +239,7 @@ Fix every discovered issue before reporting. The final response MUST list:
 - The `MACRO DESIGN READY` result and key evidence.
 - Challenge assumptions retained, revised, or rejected.
 - Files created/updated and conditionally omitted files with reasons.
+- The `STAGE.md` snapshot revision, tracking mode, current activity, authority, and resume point.
 - On success, the sole `NEXT`, rationale, dependencies, and refinement questions; when blocked, zero `NEXT` entries and the unblock condition.
 - `RECOMMENDED` and non-blocking `UNKNOWN` items.
 - Whether authorized minimal non-business scaffolding was created and its verification result.

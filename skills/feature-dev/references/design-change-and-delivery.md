@@ -78,16 +78,17 @@ Record findings as `Critical/High/Medium/Low`. Every Critical finding blocks `DO
 
 ## 4. Documentation Sync
 
-Before completion, check Current Spec, ROADMAP, API, DATABASE, ARCHITECTURE, TESTING, ADR, AGENTS, and Issue according to actual impact; for a UI Feature, also check FRONTEND, UX, UI, and DESIGN_SYSTEM.
+Before completion, check Current Spec, STAGE, ROADMAP, API, DATABASE, ARCHITECTURE, TESTING, ADR, AGENTS, and Issue according to actual impact; for a UI Feature, also check FRONTEND, UX, UI, and DESIGN_SYSTEM.
 
 - The Spec MUST reflect approved final behavior and preserve Brownfield AS-IS with explicit TO-BE/results. If Code deviates, correct the Code or repeat confirmation; MUST NOT lower Acceptance to match a divergent implementation.
 - Update only affected docs; MUST NOT create files to increase document count.
 - Create ADRs for significant architectural decisions according to project standards; keep ordinary implementation choices in the Plan/PR.
 - Write a new stable project rule to applicable `AGENTS.md` only after Decision Authority explicitly marks it `ADOPTED`. Temporary debugging, task status, one-off workarounds, and unconfirmed inferences MUST NOT be written there.
+- Reconcile `STAGE.md` from its authorities. It records current coordination, projected Gate links, blockers, handoffs, and resume points only; it is not a controlling semantic Gate input.
 
 ## 5. Platform-Neutral Issue/PR Strategy
 
-First detect GitHub, GitLab, Jira, or local conventions, then bind one writable remote Issue or local work item as Work Status authority; the Roadmap is only a synchronized mirror. If current write authorization for a remote authority is absent, use a user-confirmed local work item or `STOP`; MUST NOT claim a status transition. By default, one Feature binds to one work item; suggest a sub-issue only when part of the work can be delivered independently. A Bug/Change to a `DONE` Feature uses a new work item.
+First detect GitHub, GitLab, Jira, or local conventions, then bind one writable remote tracker as Work Status authority. When no remote is bound, use a user-confirmed `STAGE_LOCAL:<Activity ID>` row as the local authority; the Roadmap is only a synchronized mirror. A bound remote remains authoritative during temporary authorization, tool, authentication, availability, or write failures; preserve status and `STOP` unless an explicit durable migration unbinds it. If neither valid authority is writable and confirmed, `STOP`; MUST NOT claim a status transition. By default, one Feature binds to one work item; suggest a sub-issue only when part of the work can be delivered independently. A Bug/Change to a `DONE` Feature uses a new work item. A second unexplained Stage claim on the same work item is `CONFLICT` unless explicit collaboration boundaries exist.
 
 These operations have side effects:
 
@@ -128,8 +129,10 @@ When implementation, verification, Review, and Docs are complete, but PR mode la
 - No Critical test is flaky, and no Critical review finding remains; every High waiver meets project DoD and has an explicit risk-acceptance record.
 - UI behavior matches the UI Gate when applicable.
 - Design Changes are synchronized, and every confirmed L3 architectural decision has an ADR bound to the named Architecture Decision Authority and decision revision in the project's implementation-authorizing state (for example, Accepted or Effective).
-- Affected Docs and the Issue/work item are synchronized according to authorization/convention.
+- Affected semantic Docs and the Issue/work item are synchronized according to authorization/convention.
 - The project's confirmed PR, merge, or no-PR delivery standard is met.
 - The `DONE` record contains an independent revision/hash manifest for the current Spec, affected Dependency Specs, relevant ADR/API/Architecture/AGENTS, applicable UX/UI/Test Design, Plan, reviewed diff, Review, and delivery evidence.
+
+After the authoritative `DONE` decision, reconcile `STAGE.md` as a post-Gate projection. A Stage conflict or unavailable writer leaves the projection stale and MUST be reported and retried, but it is not a semantic `DONE` input and does not retroactively invalidate the Gate.
 
 When tests were not run, results are unknown, required delivery is incomplete, or an external action is only planned, MUST NOT record `DONE`; on first validation record `DONE Status: NOT_READY`. Change it to `STALE` and revalidate only when a manifest input changes semantically after a prior `DONE Status: PASS`. A later Bug/Change to a historically completed Feature still uses a new work item and MUST NOT rewrite the original delivery record.

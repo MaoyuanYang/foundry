@@ -1,12 +1,12 @@
 # coding-start —— 生成的产物体系
 
-在 `MACRO DESIGN READY` 与明确的本地写盘授权之后，`coding-start` 生成一套项目文档体系。文件**按需**创建——不产生空文件、不产生整页 `N/A`、不虚构命令（缺失的命令一律写 `Not yet established`）。
+有效进入并获得明确本地写盘授权后，`coding-start` 会创建或增量接管根 `STAGE.md` 作为运营检查点，让 Discovery 能跨会话恢复。它不包含未确认设计，也不绕过 Gate。通过 `MACRO DESIGN READY` 后，Skill 再生成其余项目文档体系。文件**按需**创建——不产生空文件、不产生整页 `N/A`、不虚构命令（缺失的命令一律写 `Not yet established`）。
 
 ## 文档体系树
 
 <DocTree />
 
-- 基础项目必有 `README.md`、`AGENTS.md`、`specs/ROADMAP.md` 与适用的 `docs/*`。
+- 基础项目必有 `STAGE.md`、`README.md`、`AGENTS.md`、`specs/ROADMAP.md` 与适用的 `docs/*`。
 - `FRONTEND.md`、`UX.md`、`UI.md`、`DESIGN_SYSTEM.md` **仅当** `UI: YES` 时创建。
 - 每个 Feature 都在 `specs/Fxxx-feature-slug/` 下生成一份 DRAFT `spec.md`。
 
@@ -14,7 +14,8 @@
 
 | 文档 | 唯一职责 | 排除 |
 |---|---|---|
-| `README.md` | 快速入口：简介、能力、技术栈、阶段、真实 Start/Build/Test、导航 | 完整产品论证、详细架构、完整 Spec |
+| `README.md` | 快速入口：简介、能力、技术栈、阶段摘要 + Stage 链接、真实 Start/Build/Test、导航 | 实时成员协作、完整产品论证、详细架构、完整 Spec |
+| `STAGE.md` | 当前项目阶段、活跃成员/Agent、阻塞、交接、恢复点、权威链接 | 需求、Feature 排序、Gate 证据、Tasks、长期规则、命令日志 |
 | `docs/PRODUCT.md` | 项目为何存在：愿景、问题、用户、场景、MVP、范围、原则、成功标准、挑战后的假设 | 实现计划、类/表/API 细节 |
 | `docs/ARCHITECTURE.md` | 总体结构与模块协作 | 单 Feature Plan、完整包/类设计 |
 | `docs/DATABASE.md` | 数据原则与当前方向（Schema 随 Feature 演进） | 冻结字段、SQL、索引、Feature 私有 Schema |
@@ -46,5 +47,6 @@
 - 分析依赖、风险与学习价值，推荐能验证端到端方向的最小 Feature。
 - 由 `Roadmap Decision Authority` 确认；恰好一个被确认的 Feature 成为 `NEXT`。
 - 若无 Feature 能安全成为 `NEXT`，回到访谈。若仅剩不可解的外部阻塞，进入 `BLOCKED_HANDOFF`：零 `NEXT`，记录 blocker、owner、解除条件与恢复阶段。
+- 根据 Roadmap 结果同步 `STAGE.md`，记录 `feature-dev` 交接或精确的阻塞恢复点，但不复制 Feature Map。
 
 无论哪种结果，所有 Spec 保持 `DRAFT`，Skill 以 `STOP` 收尾。

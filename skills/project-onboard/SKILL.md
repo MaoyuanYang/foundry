@@ -14,6 +14,7 @@ Recover an unfamiliar existing repository into a verifiable, traceable, transfer
 Read resources at the applicable stage rather than improvising from this file:
 
 - Before the survey, read [survey-and-evidence.md](references/survey-and-evidence.md) for scope, evidence labels, conflict handling, and the question threshold.
+- After routing is valid and before creating or adopting root `STAGE.md`, read [stage.template.md](assets/stage.template.md); reread it before changing tracking mode or status authority.
 - Before baseline verification or architecture reconstruction, read [baseline-and-reconstruction.md](references/baseline-and-reconstruction.md) for command safety, result classification, and backend, data, and frontend reconstruction.
 - Before documentation, Feature Inventory, AS-IS Specs, or `Recommended Next`, read [as-is-lifecycle.md](references/as-is-lifecycle.md) for artifact ownership, state transitions, and STOP conditions.
 - For `docs/onboarding/BASELINE.md` and `docs/onboarding/KNOWLEDGE_GAPS.md`, read [baseline-and-knowledge-gaps.template.md](assets/baseline-and-knowledge-gaps.template.md).
@@ -27,13 +28,15 @@ Adopt templates selectively. Remove inapplicable `N/A` sections instead of creat
 
 **Enter only when:** the user explicitly asks to take over, inventory, onboard, or recover durable knowledge for an existing Brownfield, legacy, incomplete, or under-documented repository. First entry into an unknown repository is not sufficient.
 
+After entry is valid, read an existing root `STAGE.md` and verify its linked tracker, Roadmap, Gate, and ref evidence before relying on any projected status. Treat an unexplained duplicate assignment or stale authority as `CONFLICT`; do not overwrite another member's activity.
+
 **Do not enter for:** ordinary Q&A, read-only code review, diagnosis-only bug work, or a one-off explanation. Use `coding-start` for an empty repository or Greenfield project. Use `feature-dev` for the TO-BE design, tests, implementation, or delivery of one selected Feature.
 
 If the repository is effectively empty, STOP onboarding and route to `coding-start`. If takeover and development are requested together, complete onboarding and `STOP`; do not cross into Feature implementation in the same run.
 
 ## Authorization Gates
 
-Before the first write, list the baseline, canonical docs, `AGENTS.md`, `specs/ROADMAP.md`, and Specs that would be created or updated, then obtain explicit local artifact authorization. Without it, perform only the explicitly requested investigation that is proven read-only and `STOP` before any write; onboarding remains incomplete.
+Before the first write, list root `STAGE.md`, the baseline, canonical docs, `AGENTS.md`, `specs/ROADMAP.md`, and Specs that would be created or updated, then obtain explicit local artifact authorization. Without it, perform only the explicitly requested investigation that is proven read-only and `STOP` before any write; onboarding remains incomplete.
 
 Treat commands that may generate build, test, snapshot, codegen, or coverage artifacts as local write side effects. Declare their output boundaries and obtain explicit authorization before running them, even during baseline work. Check the full worktree and local processes after each command.
 
@@ -47,7 +50,7 @@ Local artifact authorization never includes `git commit`, `git push`, a remote I
 4. Record conflicting sources, claims, environments, and impact side by side. Never resolve a conflict silently by rank.
 5. Existing code, tests, docs, and UI are evidence, not automatic product requirements, correct design, or a Design System.
 6. Make no source-code change before baseline verification. During onboarding, do not refactor broadly, upgrade dependencies, format the repository, migrate data, batch-fix debt, or make any unapproved behavior change.
-7. Modify only documentation needed to understand the project, scoped `AGENTS.md`, `specs/ROADMAP.md`, and AS-IS Specs. Record and classify source defects; do not fix them here.
+7. Modify only root `STAGE.md`, documentation needed to understand the project, scoped `AGENTS.md`, `specs/ROADMAP.md`, and AS-IS Specs. `STAGE.md` contains current coordination only and MUST NOT become another AS-IS fact source. Record and classify source defects; do not fix them here.
 8. Preserve valid repository content and history. Merge incrementally instead of replacing content to fit a template.
 9. Keep local artifact authorization separate from Git and remote authorization.
 
@@ -66,7 +69,7 @@ The policy controls these surfaces:
 
 | Category | Controlled Surfaces |
 |---|---|
-| Documentation Language | Formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
+| Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. |
 | Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. |
 
@@ -104,6 +107,8 @@ Feature implementation state, Roadmap work status, Spec status, and recommendati
 4. Define survey scope across applications, shared libraries, stores, deployment units, frontend, tests, and docs.
 5. Detect every Documentation, Engineering, and Product Content Language surface above; record detected and resolved BCP-47 values or the allowed Product Content `UNKNOWN/N/A` state, applicable AGENTS rules, scope, conflicts, authority, and adoption state.
 
+After valid routing and explicit local artifact authorization, create or incrementally adopt root `STAGE.md` from the Stage template. Use these exact onboarding stage tokens: `PREFLIGHT`, `REPOSITORY_SURVEY`, `BASELINE_VERIFICATION`, `ARCHITECTURE_RECONSTRUCTION`, `FRONTEND_RECONSTRUCTION`, `DOCS_REALITY`, `KNOWLEDGE_GAPS`, `CANONICAL_DOCUMENTATION`, `AGENTS_UPDATE`, `FEATURE_INVENTORY`, `AS_IS_SPEC_RECONSTRUCTION`, `NEXT_RECOMMENDATION`, and `COMPLETE`. Increment the snapshot only at a meaningful transition, block/resume, assignment, handoff, or completion. Serialize Stage writes through the repository lock or designated canonical writer; otherwise compare revision and SHA-256 immediately before writing and abort/reconcile on change. Allocate `A-xxx` under the same guard, and never treat a divergent worktree copy as live state before canonical reconciliation. Update only the current activity and directly affected coordination rows after rereading the latest file; preserve unrelated members. A Stage projection never upgrades evidence or Work Status.
+
 ### 1. Repository Survey
 
 Follow [survey-and-evidence.md](references/survey-and-evidence.md) from outside in. Build a repository/module map and evidence ledger covering toolchains, runtime and deployment units, data, external systems, frontend, tests, and docs. Map first, then trace representative startup, read, write, authorization, and user flows. Keep locatable file/line, command, route/UI, migration, or runtime evidence for important claims; do not traverse the whole repository without purpose.
@@ -140,6 +145,7 @@ Read [as-is-docs.template.md](assets/as-is-docs.template.md), then incrementally
 - `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/API.md`, and `docs/TESTING.md`.
 - With a frontend/UI: `docs/FRONTEND.md`, `docs/UX.md`, `docs/UI.md`, and `docs/DESIGN_SYSTEM.md`.
 - `docs/adr/` only to preserve or index evidenced historical decisions. Never invent an ADR when historical reasoning is unknown.
+- Root `STAGE.md` for the live project/member snapshot, authority links, blockers, and handoff. It MUST NOT contain canonical AS-IS behavior or duplicate the Feature Inventory.
 
 Put canonical facts in `README.md`, `AGENTS.md`, or the responsible `docs/*`, not temporary survey notes. Preserve valid content, correct evidenced stale claims, label unknowns and conflicts, and update only applicable documents.
 
@@ -150,8 +156,9 @@ Read [agents-update.template.md](assets/agents-update.template.md) and increment
 1. Preserve valid rules and scope.
 2. `CONFIRMED` AS-IS evidence does not create a future rule. Every durable rule, including the Language Policy, requires a named `Maintainer Decision Authority` to mark it explicitly `ADOPTED`.
 3. If this workflow is adopted, record the full DRAFT/AS-IS through Spec, UI, Test, Plan, Coding, Review, Docs, delivery, and DONE lifecycle, plus tracking/delivery mode and the single work-status authority.
-4. State that Spec defines what is correct, Issue tracks where work is, PR/Delivery Record records code changes, and ADR records why a significant decision was made.
+4. State that Spec defines what is correct, Issue or a Stage-local authority tracks where work is, `STAGE.md` shows the project/member snapshot, PR/Delivery Record records code changes, and ADR records why a significant decision was made.
 5. Persist the adopted Language Policy with actual Documentation and Engineering BCP-47 values, the resolved Product Content value or evidenced `N/A - no product-content surface`, scope, authority, and synchronization record. An `UNKNOWN` Product Content state may be recorded but prevents completion while applicable. Do not record current progress, debug logs, one-off workarounds, unconfirmed inference, or temporary Feature status.
+6. Record that current progress and multi-member coordination belong in root `STAGE.md`; durable rules remain here. In remote tracking mode the tracker owns a bound work item's Work Status. In local mode the explicitly identified `STAGE_LOCAL:<Activity ID>` row may own that status after Feature work begins.
 
 ### 9. Feature Inventory
 
@@ -175,6 +182,7 @@ Use confirmed priority, broken core flows, security/data risk, blockers, impleme
 - Set `NEXT` only after explicit confirmation by the named authority or proof from the authoritative tracker.
 - Otherwise preserve status; use `UNTRACKED` where no historical tracking exists and label an inferred recommendation `INFERRED`.
 - If multiple existing `NEXT` items exist, record `CONFLICT` and request confirmation. Never silently rewrite team status.
+- Reconcile the `STAGE.md` project summary and onboarding activity from the Roadmap and recommendation result. The Roadmap remains authoritative for Feature ordering and onboarding-era status; Stage records the handoff target and exact resume point only.
 
 ## Design Change Boundary
 
@@ -192,10 +200,12 @@ Read-only mode ends before the first write and must report onboarding incomplete
 - Feature Inventory exists only in `specs/ROADMAP.md`, with independent status dimensions.
 - AS-IS Specs use only `AS_IS_DRAFT/RECONSTRUCTED` and include evidence, conflicts, unknowns, test coverage, and a TO-BE handoff.
 - One evidenced `Recommended Next` is recorded. A unique `Work Status: NEXT` exists only if confirmed.
+- `STAGE.md` identifies the onboarding activity, current project phase, tracking mode, linked authorities, conflicts/blockers, and exact handoff or resume point without duplicating AS-IS facts or another member's work.
+- No unresolved Stage binding, freshness, revision/hash, activity identity, duplicate assignment, or authority-transfer conflict affects the onboarding handoff or completion.
 - Every resource link resolves; no empty or meaningless artifact was created.
 - No source behavior, broad refactor, or batch Technical Debt fix occurred.
 
-Report the baseline summary, created/updated docs, major conflicts and gaps, Feature Inventory and AS-IS Spec status, `Recommended Next`, its evidence label, whether it became `NEXT`, and the resolved Language Policy. Then output exactly:
+Report the baseline summary, created/updated docs, major conflicts and gaps, Feature Inventory and AS-IS Spec status, `Recommended Next`, its evidence label, whether it became `NEXT`, the resolved Language Policy, and the `STAGE.md` snapshot revision/current activity/handoff. Then output exactly:
 
 ```text
 STOP

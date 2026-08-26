@@ -54,13 +54,18 @@ Existing code, tests, docs, and UI are **evidence**, not requirements.
 | Object | Owns |
 |---|---|
 | **Spec** | What is correct (source of truth) |
-| **Issue / work item** | Where the work is (progress, status) |
+| **Remote Issue / Stage-local row** | Where the bound work is (progress, status); exactly one is writable |
+| **STAGE.md** | Where the project and all active members are now |
 | **Implementation Plan** | How to build it (must not redefine requirements) |
 | **PR / delivery record** | What changed in code |
 | **ADR** | Why a significant decision was made |
 | **AGENTS.md** | Durable project rules |
 
-An Issue never duplicates the Spec. A Plan never rewrites requirements.
+A remote Issue or auxiliary checklist never duplicates the Spec. A local checklist never becomes a second writable status source. A Plan never rewrites requirements.
+
+## Project status and authority
+
+All three Skills maintain root [`STAGE.md`](./guide/project-stage). It owns the current project phase, active-member view, blockers, handoffs, and resume points. Before a Feature work item is bound, `specs/ROADMAP.md` owns its initial status. After binding, Stage projects the remote tracker; when no remote is bound, the row identified by `STAGE_LOCAL:<Activity ID>` is the local Work Status authority. Temporary remote access failure never transfers authority; an explicit durable migration must unbind it first. Roadmap always owns ordering and dependencies, and Gate artifacts always own Gate evidence.
 
 ## Design Change Policy
 

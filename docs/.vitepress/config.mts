@@ -47,6 +47,7 @@ export default withMermaid(
               text: 'Guide',
               items: [
                 { text: 'Workflow & Gates', link: '/workflow' },
+                { text: 'Project Stage', link: '/guide/project-stage' },
                 { text: 'Authorization', link: '/guide/authorization' },
                 { text: 'Language Policy', link: '/guide/language-policy' },
                 { text: 'Design Change', link: '/guide/design-change' }
@@ -83,6 +84,7 @@ export default withMermaid(
               text: 'Concepts',
               items: [
                 { text: 'Authorization & Authority', link: '/guide/authorization' },
+                { text: 'Project Stage & Coordination', link: '/guide/project-stage' },
                 { text: 'Language Policy', link: '/guide/language-policy' },
                 { text: 'Design Change Policy', link: '/guide/design-change' }
               ]
@@ -137,6 +139,7 @@ export default withMermaid(
               text: '指南',
               items: [
                 { text: '工作流与门禁', link: '/zh/workflow' },
+                { text: '项目状态面板', link: '/zh/guide/project-stage' },
                 { text: '授权与决策权限', link: '/zh/guide/authorization' },
                 { text: '语言策略', link: '/zh/guide/language-policy' },
                 { text: '设计变更', link: '/zh/guide/design-change' }
@@ -173,6 +176,7 @@ export default withMermaid(
               text: '核心概念',
               items: [
                 { text: '授权与决策权限', link: '/zh/guide/authorization' },
+                { text: '项目状态与协作', link: '/zh/guide/project-stage' },
                 { text: '语言策略', link: '/zh/guide/language-policy' },
                 { text: '设计变更策略', link: '/zh/guide/design-change' }
               ]

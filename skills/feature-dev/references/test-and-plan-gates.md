@@ -2,6 +2,8 @@
 
 Read after completing the Spec Gate and optional UI Gate. The fixed order is: define correctness -> define how to prove correctness -> define how to implement.
 
+During these branches, root `STAGE.md` records only the exact `TEST_DESIGN` or `IMPLEMENTATION_PLAN` activity stage and links a Test Gate projection only after its authoritative record/revision exists. Stage never stores scenarios, Tasks, manifests, or Gate evidence.
+
 ## 1. Test Design First
 
 Test Design models risk and establishes verifiability; it is not an early test-count exercise. First derive `TS-*` from every `AC-*`, business invariant, failure mode, and change risk.

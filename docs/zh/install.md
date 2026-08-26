@@ -67,7 +67,7 @@ cd foundry && git pull
 cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
 ```
 
-更新**不会**触碰你的**项目**文件（`AGENTS.md`、`docs/`、`specs/`）——Foundry 只改变智能体的工作方式，不改变它已经产出的内容。
+更新**不会**触碰你的**项目**文件（`STAGE.md`、`AGENTS.md`、`docs/`、`specs/`）——Foundry 只改变智能体的工作方式，不改变它已经产出的内容。
 
 ## 卸载
 

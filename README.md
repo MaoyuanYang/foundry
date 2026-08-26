@@ -29,6 +29,7 @@ Foundry is a set of three reusable **Agent Skills** that turn an AI coding agent
 - **Gated transitions** — `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`.
 - **Evidence over assumptions** — observed, documented, confirmed, inferred — never silently guessed.
 - **Controlled design change** — L1/L2/L3 impact levels with explicit decision authority.
+- **Project-wide coordination** — root `STAGE.md` shows the lifecycle, active humans/agents, blockers, handoffs, and resume points.
 
 ## The Three Skills
 
@@ -66,13 +67,13 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 
 > "Initialize a new greenfield project: a community local-services platform."
 
-`coding-start` interviews you round by round, runs the Macro Readiness Gate, and produces `README`, `AGENTS.md`, `docs/*`, `specs/ROADMAP.md`, and DRAFT Specs — then stops with one selected `NEXT` feature.
+`coding-start` interviews you round by round, runs the Macro Readiness Gate, and produces `STAGE.md`, `README`, `AGENTS.md`, `docs/*`, `specs/ROADMAP.md`, and DRAFT Specs — then stops with one selected `NEXT` feature.
 
 **Take over an existing repo:**
 
 > "Take over this repository and build a durable AS-IS baseline."
 
-`project-onboard` surveys the repo, verifies the baseline, reconstructs architecture and features, and produces AS-IS documentation — then stops with a recommended next item.
+`project-onboard` surveys the repo, verifies the baseline, reconstructs architecture and features, creates or adopts root `STAGE.md`, and produces AS-IS documentation — then stops with a recommended next item.
 
 **Develop a feature:**
 
@@ -84,12 +85,13 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 
 1. Macro design before coding — but no Big Design Up Front.
 2. All Specs can be drafted at once; only the selected one is deepened.
-3. The Spec defines correctness; the Issue tracks progress; the PR records changes; the ADR records why.
+3. The Spec defines correctness; a bound remote Issue tracks progress, or the confirmed Stage-local row does when no remote is bound; the PR records changes; the ADR records why.
 4. Critical requirements must be verifiable before coding starts.
 5. Test behavior, not implementation details.
 6. Existing code is evidence, not the standard. Existing UI is evidence, not the design system.
 7. Code must not stay ahead of docs.
 8. Skills hold the process; `AGENTS.md` holds the project rules.
+9. `STAGE.md` holds the current project/member snapshot; trackers, Specs, Gates, and the Roadmap keep their own authority.
 
 ## Language Policy
 

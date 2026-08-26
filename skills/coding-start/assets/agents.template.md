@@ -12,7 +12,7 @@ unconfirmed inference here. This comment may be removed after adoption.
 - Product purpose: {{ONE_SENTENCE_PURPOSE}}
 - Architecture style: {{CONFIRMED_ARCHITECTURE_STYLE}}
 - Primary runtime boundaries: {{BOUNDARIES}}
-- Project documentation: `README.md`, `docs/`, `specs/ROADMAP.md`
+- Project documentation: `README.md`, `STAGE.md`, `docs/`, `specs/ROADMAP.md`
 
 ## Language Policy
 
@@ -35,7 +35,7 @@ Add one row for every effective scoped override and delete the example override 
 
 At initialization, this root file stores every effective value exactly once. Repository-global branch, commit, and Issue/PR language uses the root Engineering Language unless an approved override explicitly names those global surfaces. A later nested `AGENTS.md` MAY become authoritative for a subtree-only override; in that case, replace the root value row with a link to the nested policy rather than duplicating it.
 
-- Documentation Language governs formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
+- Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
 - Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language follows product requirements. Localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions MAY use it. `UNKNOWN` is unresolved; `N/A - no product-content surface` is valid only with confirmed scope evidence.
 - Surrounding formal prose remains under Documentation Language. Executable test names/descriptions, assertion code, comments, and other engineering text remain under Engineering Language even when they contain an exact Product Content assertion value.
@@ -96,9 +96,13 @@ Only deepen the selected `NEXT` Spec. MUST NOT prematurely finalize unrelated DR
 
 ## Work Tracking and Delivery
 
-- Tracking mode: `{{REMOTE_TRACKER | LOCAL_WORK_ITEM | TBD}}`
-- Before `feature-dev`, `specs/ROADMAP.md` owns only initial `DRAFT/NEXT/BLOCKED`; `BLOCKED` requires a named blocker and unblock condition. Once a work item is bound, that Issue/local work item is the writable Work Status authority and Roadmap is a synchronized projection.
-- A remote authority MUST be both explicitly authorized for the action and writable before claiming a transition; otherwise adopt a local work item or stop without changing status.
+- Tracking mode: `{{REMOTE | LOCAL | HYBRID | TBD}}`
+- `STAGE.md` owns the current project phase, active-member coordination, blockers, handoffs, and resume points. It links to controlling artifacts and MUST NOT copy their content.
+- Before `feature-dev`, `specs/ROADMAP.md` owns only initial `DRAFT/NEXT/BLOCKED`; `BLOCKED` requires a named blocker and unblock condition. Once a work item is bound, its remote tracker is the writable Work Status authority. When no remote is bound, the activity row identified by `STAGE_LOCAL:<Activity ID>` in `STAGE.md` is the local Work Status authority. Roadmap is a synchronized projection in either mode.
+- Update `STAGE.md` only at assignment, meaningful workflow transition, block/resume, handoff, and completion. Preserve unrelated member rows and record conflicts instead of silently overwriting them.
+- A bound remote remains authoritative when authorization, tooling, authentication, availability, or writing temporarily fails; preserve status and stop. Use `STAGE_LOCAL:<Activity ID>` only when no remote is bound or after an explicitly approved durable migration.
+- Serialize Stage writes through a repository lock or designated canonical writer. Otherwise compare the revision and SHA-256 immediately before writing and abort/reconcile on change; allocate `A-xxx` under the same guard. Divergent worktree copies are not live Stage state until canonical reconciliation.
+- Transfer Stage-local authority atomically to the receiver's activity before the sender leaves Active Work. Preserve final status and authority when archiving completed activities.
 - Delivery mode: `{{PR_OR_MR | EXPLICIT_NO_PR_DELIVERY | TBD}}`
 - A remote Issue, commit, push, PR/MR, merge, or close MUST occur only after the user explicitly authorizes that action class.
 
@@ -108,7 +112,7 @@ Only deepen the selected `NEXT` Spec. MUST NOT prematurely finalize unrelated DR
 Macro Design
 -> Feature DRAFT Spec
 -> Feature Selected (`NEXT`)
--> Issue Opened and Linked to Spec
+-> Work item bound (remote Issue or Stage-local authority) and linked to Spec
 -> Spec Clarification and Refinement
 -> SPEC READY
 -> if UI:
@@ -194,7 +198,8 @@ Code MUST NOT remain ahead of its controlling documentation. MUST NOT update una
 ## Artifact Relationships
 
 - Spec is the Source of Truth for what makes a Feature correct.
-- Issue tracks where the work is, who owns it, and what blocks it. It links to the Spec and MUST NOT copy the Spec.
+- A bound remote Issue tracks where the work is, who owns it, and what blocks it. With no bound remote, the identified Stage-local row owns Work Status. Any Issue or auxiliary checklist links the Spec and MUST NOT copy it or maintain a second writable status.
+- `STAGE.md` shows where the project and all active members stand. It projects linked authorities, or supplies the local Work Status authority when explicitly identified, without copying requirements or Gate evidence.
 - Task / Sub-Issue records concrete implementation steps when coordination needs them.
 - PR/MR or the explicitly adopted no-PR Delivery Record explains what code changed, links the Issue and Spec, includes verification evidence, and reports documentation sync.
 - ADR explains why a significant architecture or technology decision was made, identifies its named Architecture Decision Authority and approval evidence, and does not track implementation progress.
@@ -202,6 +207,7 @@ Code MUST NOT remain ahead of its controlling documentation. MUST NOT update una
 ## Documentation Rules
 
 - `README.md` is the quick entry, not the full design.
+- `STAGE.md` is the current project and member coordination snapshot, not a Roadmap, Spec, Plan, or event log.
 - `docs/PRODUCT.md` owns product intent and scope.
 - `docs/ARCHITECTURE.md` owns system boundaries and collaboration.
 - When present, `docs/DATABASE.md` and `docs/API.md` own project-level data and interface conventions; Feature details evolve with Specs.

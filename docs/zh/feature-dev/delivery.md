@@ -18,7 +18,7 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 
 ## Documentation Sync
 
-只更新受影响的文档：当前 Spec、ROADMAP、API、DATABASE、ARCHITECTURE、TESTING、ADR、AGENTS、Issue；UI Feature 再加 FRONTEND、UX、UI、DESIGN_SYSTEM。Spec 必须反映已批准的最终行为，同时保留 Brownfield AS-IS 与显式 TO-BE。绝不为了迁就偏离的实现而降低 Acceptance。新的长期规则仅在维护者明确 `ADOPTED` 后才进入 `AGENTS.md`。
+只更新受影响的文档：当前 Spec、STAGE、ROADMAP、API、DATABASE、ARCHITECTURE、TESTING、ADR、AGENTS、Issue；UI Feature 再加 FRONTEND、UX、UI、DESIGN_SYSTEM。Spec 必须反映已批准的最终行为，同时保留 Brownfield AS-IS 与显式 TO-BE。绝不为了迁就偏离的实现而降低 Acceptance。新的长期规则仅在维护者明确 `ADOPTED` 后才进入 `AGENTS.md`。
 
 ## READY FOR PR / READY FOR DELIVERY
 
@@ -36,9 +36,11 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 4. 无 Critical flaky 测试、无 Critical 评审发现；每个 High 豁免符合 DoD 并有明确风险接受记录。
 5. 适用时，UI 行为与 UI 门禁一致。
 6. Design Change 已同步；每个已确认的 L3 决策都有绑定 revision、处于项目实施授权状态的 ADR。
-7. 受影响 Docs 与 Issue/工作项已按授权/约定同步。
+7. 受影响的语义 Docs 与 Issue/工作项已按授权/约定同步。
 8. 已满足确认的 PR、merge 或 no-PR 交付标准。
 9. `DONE` 记录包含独立 revision/hash 清单：当前 Spec、受影响 Dependency Specs、相关 ADR/API/Architecture/AGENTS、适用 UX/UI/Test Design、Plan、已评审 diff、Review 与交付证据。
+
+权威 `DONE` 决策完成后，再把 `STAGE.md` 作为 Gate 后投影进行同步。Stage 冲突或 writer 不可用会使投影陈旧，必须报告并重试；但 Stage 不是 `DONE` 的语义输入，也不能反向使 Gate 失效。
 
 **有 UI 时**，另需：完整 User Flow 与导航符合已批准的 UI 产物；Loading、Empty（或正当 N/A）、Error/恢复、Success、适用的 Permission/disabled/offline 状态已验证；响应式在目标视口已验证；可访问性需求已验证；Design System 复用/扩展合规且已记录；必需的交互/UI/E2E 测试通过或有经批准的风险级 N/A。
 

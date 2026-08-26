@@ -2,6 +2,8 @@
 
 对触及用户界面的 Feature，绝不从 Spec 直接开始写代码。顺序是：**Spec → User Flow → UI States → 前后端契约 → UI READY → Test Design → 实现。**先确定用户要完成什么任务，再决定页面长什么样——绝不从按钮颜色、圆角、阴影开始。
 
+此分支期间，`STAGE.md` 使用 `UI_REFINEMENT`；只有权威 Gate 或跳过决策记录存在后，才添加其链接/revision 投影。
+
 ## UI 检测
 
 在 `SPEC READY` 后回答。任一为 YES 通常意味着 `UI Impact: YES`：

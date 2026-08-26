@@ -35,6 +35,8 @@ flowchart TD
   REV --> STOP[STOP]
 ```
 
+有效进入并获得明确本地写盘授权后，根 [`STAGE.md`](../guide/project-stage) 是唯一可在 Gate 前创建的运营产物。它记录当前成员、Skill 阶段、阻塞、下一问题、ref 与权威链接，让 Discovery 可恢复；不包含未确认的产品/架构决策，也绝不暗示已通过 `MACRO DESIGN READY`。
+
 正式项目文档只在 `MACRO DESIGN READY` 之后生成。访谈摘要与候选建议不是正式产物。
 
 ## 不可违反的边界

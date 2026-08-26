@@ -25,9 +25,11 @@ flowchart TD
 
 Roadmap status flows `DRAFT → NEXT → READY → IN_PROGRESS → REVIEW → DONE`, with any active state able to move to `BLOCKED` (recording `Blocked From`). A `DONE` Feature's Bug/Change uses a **new** work-item ID and never erases the parent's completion state.
 
+At each meaningful transition, root [`STAGE.md`](../guide/project-stage) updates the current member's Skill stage, next checkpoint, blockers/handoff, and projected Gate links. It is never a controlling semantic Gate input.
+
 ## Preflight context
 
-Before anything else, read the applicable `AGENTS.md` chain and Language Policy, then discover and read: `README`, `PRODUCT`, `ARCHITECTURE`, `DATABASE`, `API`, `TESTING`, `ROADMAP`, the current Spec, Dependency Specs, relevant ADRs, relevant code and tests, and the existing Issue/work item. If UI impact is possible, also read `FRONTEND`, `UX`, `UI`, `DESIGN_SYSTEM`, affected pages, and existing components.
+Before anything else, read the applicable `AGENTS.md` chain and Language Policy, then discover and read: root `STAGE.md`, `README`, `PRODUCT`, `ARCHITECTURE`, `DATABASE`, `API`, `TESTING`, `ROADMAP`, the current Spec, Dependency Specs, relevant ADRs, relevant code and tests, and the existing Issue/work item. Verify every Stage projection against its authority. If UI impact is possible, also read `FRONTEND`, `UX`, `UI`, `DESIGN_SYSTEM`, affected pages, and existing components.
 
 If Code / Spec / Docs / UI disagree, resolve the mismatch, repair the baseline, or enter Design Change **before** any gate. If the project baseline is missing, route to `coding-start` (Greenfield) or `project-onboard` (Brownfield) and `STOP`.
 
@@ -47,9 +49,13 @@ Every gate records `Status: PASS | NOT_READY | STALE`, a complete input manifest
 1. The scope is not exactly one selected work item.
 2. A Greenfield lacks a project-level baseline, or a Brownfield lacks trustworthy onboarding.
 3. A Critical Open Question is `OPEN`/`DEFERRED`, a Language Policy is missing/conflicting/unpersisted, a material Docs/Code conflict is unresolved, or a core requirement is unverifiable.
-4. After all autonomous clarification, a required gate still cannot be met because an external decision, evidence, or environment is unavailable (a normal initial `NOT_READY` refines instead of stopping).
-5. A Design Change affecting approved behavior lacks Decision Authority confirmation, or L2/L3 confirmation is incomplete.
-6. A user decision is required for tracker/work item, major dependency, destructive migration, or delivery standard.
-7. A required Git/remote side effect lacks authorization, tooling, or authentication.
+4. Local writes are required but their exact paths or generated-output boundaries lack explicit authorization.
+5. After all autonomous clarification, a required gate still cannot be met because an external decision, evidence, or environment is unavailable (a normal initial `NOT_READY` refines instead of stopping).
+6. A Design Change affecting approved behavior lacks Decision Authority confirmation, or L2/L3 confirmation is incomplete.
+7. A user decision is required for tracker/Stage-local authority, major dependency, destructive migration, or delivery standard.
+8. A required Git/remote side effect lacks authorization, tooling, or authentication.
+9. Stage binding, freshness, revision/hash, activity identity, duplicate assignment, or authority transfer is unresolved; stop the affected transition, handoff, or completion while unrelated read-only investigation may continue.
 
 Every `STOP` reports current Roadmap Status, passed/skipped gates, blocking evidence, who must answer what, and the resume step.
+
+With authorized local writes, the same blocker and resume stage are synchronized to the current Stage activity while unrelated member rows remain untouched.

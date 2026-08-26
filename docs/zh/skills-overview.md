@@ -15,7 +15,7 @@ Foundry 把软件生命周期拆成三个职责单一的 Skill。每个 Skill �
 → MACRO DESIGN READY → 文档 + AGENTS → Feature Map → DRAFT Specs → NEXT → STOP
 ```
 
-**产出**：`README.md`、`AGENTS.md`、`docs/PRODUCT|ARCHITECTURE|DATABASE|API|TESTING`、（如有 UI）UI 文档、`specs/ROADMAP.md`，以及每个 Feature 的浅层 DRAFT Spec。
+**产出**：根 `STAGE.md`、`README.md`、`AGENTS.md`、`docs/PRODUCT|ARCHITECTURE|DATABASE|API|TESTING`、（如有 UI）UI 文档、`specs/ROADMAP.md`，以及每个 Feature 的浅层 DRAFT Spec。
 
 **边界**
 
@@ -38,7 +38,7 @@ Repository Survey → 基线验证 → 架构重建
 → AS-IS 文档 → Feature Inventory → AS-IS Specs → 推荐下一项 → STOP
 ```
 
-**产出**：`docs/onboarding/BASELINE.md`、Knowledge Gaps、AS-IS 规范文档、`specs/ROADMAP.md` 中的 Feature Inventory，以及 `AS_IS_DRAFT`/`RECONSTRUCTED` 状态的 Spec。
+**产出**：根 `STAGE.md`（创建或增量接管）、`docs/onboarding/BASELINE.md`、Knowledge Gaps、AS-IS 规范文档、`specs/ROADMAP.md` 中的 Feature Inventory，以及 `AS_IS_DRAFT`/`RECONSTRUCTED` 状态的 Spec。
 
 **边界**
 
@@ -77,3 +77,4 @@ Repository Survey → 基线验证 → 架构重建
 
 - `coding-start` 与 `project-onboard` 都以"把选中的 Feature 交给 `feature-dev`"收尾。
 - Skill 保存**流程**；项目的 `AGENTS.md` 保存**规则**。
+- 根 [`STAGE.md`](./guide/project-stage) 贯穿三个 Skill，保存当前项目/成员快照；关联 Tracker 与产物仍保留各自权威。

@@ -17,6 +17,28 @@ Foundry 中使用的全部状态、标签与门禁令牌，集中于此。
 | `BLOCKED` | 存在显式阻塞；已记录原因/owner/解除条件 |
 | `UNTRACKED` | 无可信工作历史（仅 Brownfield 勘察） |
 
+## Project Stage 快照
+
+项目阶段：
+
+`INITIALIZATION | ONBOARDING | DELIVERY | MAINTENANCE`
+
+总体状态：
+
+`ACTIVE | WAITING | BLOCKED | COMPLETE`
+
+活动状态：
+
+`ACTIVE | WAITING | BLOCKED | HANDOFF`
+
+Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 `STAGE.md` 中的项目/成员快照，绝不替代 Roadmap 状态或 Gate 状态。
+
+追踪模式为 `REMOTE | LOCAL | HYBRID | TBD`；`TBD` 必须带 owner 与解除条件。Feature 工作项绑定前由 Roadmap 负责初始状态；绑定后由远程 Tracker 负责 Work Status，未绑定远程时，`STAGE_LOCAL:<Activity ID>` 标识负责本地 Work Status 的 Stage 行。远程访问暂时失败不会转移权威。
+
+稳定活动 ID 使用 `A-xxx`；阻塞/冲突 ID 使用 `B-xxx` / `C-xxx`。
+
+交接状态为 `PENDING | ACCEPTED | COMPLETE`。Stage-local 交接必须在发送方完成前，把权威原子地转移到接收方活动。
+
 ## 门禁状态
 
 `PASS | NOT_READY | STALE`
@@ -25,7 +47,7 @@ Foundry 中使用的全部状态、标签与门禁令牌，集中于此。
 - `NOT_READY` —— 尚未通过。
 - `STALE` —— 此前的 `PASS` 因输入语义变化而失效。
 
-门禁：`SPEC READY`、`UI READY`（无 UI 时为 `SKIPPED (N/A)`）、`TEST DESIGN READY`、`DONE`。无 UI 的跳过是一份被记录的决定，不是通过的门禁。
+门禁：`SPEC READY`、`UI READY`（无 UI 时为 `SKIPPED (N/A)`）、`TEST DESIGN READY`、`DONE`。无 UI 的跳过是一份被记录的决定，不是通过的门禁。Stage 只有在该 Gate 自己的权威记录与 revision 存在后才添加投影；普通 `N/A` 不是 Gate 状态。
 
 ## 事实状态
 
@@ -73,4 +95,4 @@ Foundry 中使用的全部状态、标签与门禁令牌，集中于此。
 
 ## 稳定 ID
 
-`AC-*`（Acceptance Criterion）、`TS-*`（Test Scenario）、`OQ-*` / `UIQ-*` / `TQ-*`（Open Questions）、`BR-*`（Business Rule）、`Fxxx`（Feature）。
+`AC-*`（Acceptance Criterion）、`TS-*`（Test Scenario）、`OQ-*` / `UIQ-*` / `TQ-*`（Open Questions）、`BR-*`（Business Rule）、`Fxxx`（Feature）、`A-xxx`（Stage Activity）。

@@ -30,7 +30,7 @@ Component Structure → State Management → API Layer → Design Tokens → UI 
 
 ## AS-IS 文档
 
-增量创建或更新 `README`、`AGENTS` 与 `docs/*`（有 UI 时另加 `FRONTEND/UX/UI/DESIGN_SYSTEM`）：
+增量创建或更新根 `STAGE.md`、`README`、`AGENTS` 与 `docs/*`（有 UI 时另加 `FRONTEND/UX/UI/DESIGN_SYSTEM`）。Stage 只承载当前协作与权威链接：
 
 - **保留**有效内容。
 - **标记**未知与冲突。

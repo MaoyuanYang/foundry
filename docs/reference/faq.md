@@ -25,6 +25,12 @@ Roadmap status (`DRAFT…DONE`) tracks where the work is. Gate status (`PASS/NOT
 **What does `STALE` mean?**
 A prior `PASS` was invalidated because a controlling input changed semantically. Stale gates must be re-validated before work resumes.
 
+**What is `STAGE.md`, and is it another source of truth?**
+It is the root project/member coordination snapshot: current phase, active work, blockers, handoffs, and resume points. Before a Feature work item is bound, the Roadmap owns its initial status. After binding, Stage projects a remote tracker; when no remote is bound, an explicitly identified `STAGE_LOCAL:<Activity ID>` row may own local Work Status. Temporary access failure never transfers a bound remote's authority. Specs, Gate records, `AGENTS.md`, and delivery records keep their existing responsibilities. See [Project Stage](../guide/project-stage).
+
+**Can multiple people or Agents work at once?**
+Yes, but Stage writes are serialized rather than lock-free. Each member has a stable activity row and changes only its own work plus directly affected blockers/handoffs through the repository lock, a designated canonical writer, or a revision/hash guard. Divergent worktree copies are not live Stage state until reconciled. Two members may share a work item only with explicit collaboration boundaries; otherwise Foundry records `CONFLICT` instead of silently overwriting ownership.
+
 **Does Foundry force TDD?**
 No. It uses **Test Design First** — scenarios are designed before coding — but does not mechanically require Red-Green-Refactor. TDD is recommended for state machines, core business rules, pure functions, and bug fixes.
 

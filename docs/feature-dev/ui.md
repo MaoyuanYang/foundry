@@ -2,6 +2,8 @@
 
 For Features that touch a user interface, coding never starts directly from the Spec. The order is: **Spec → User Flow → UI States → Frontend/Backend Contract → UI READY → Test Design → Implementation.** First decide what task the user is completing, then what the screens look like — never start from button colors, radii, or shadows.
 
+During this branch, `STAGE.md` uses `UI_REFINEMENT` and adds only a link/revision projection after the authoritative Gate or skip-decision record exists.
+
 ## UI Detection
 
 Answer after `SPEC READY`. Any YES normally means `UI Impact: YES`:

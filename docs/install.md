@@ -67,7 +67,7 @@ cd foundry && git pull
 cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
 ```
 
-Your **project** files (`AGENTS.md`, `docs/`, `specs/`) are never touched by an update — Foundry only changes how the agent works, not what it already produced.
+Your **project** files (`STAGE.md`, `AGENTS.md`, `docs/`, `specs/`) are never touched by an update — Foundry only changes how the agent works, not what it already produced.
 
 ## Uninstall
 

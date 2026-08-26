@@ -48,4 +48,4 @@ A `High` review finding may be waived only when the project Definition of Done p
 - A Language Policy that is missing, conflicting, or unpersisted.
 - A Design Change affecting approved behavior without Decision Authority confirmation.
 - A required Git/remote side effect lacking authorization, tooling, or authentication.
-- A decision needed for tracker/work item, major dependency, destructive migration, or delivery standard.
+- A decision needed for tracker/Stage-local authority, major dependency, destructive migration, or delivery standard.

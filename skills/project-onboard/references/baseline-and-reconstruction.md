@@ -13,7 +13,7 @@ A baseline is the known state of this ref in this environment when onboarding be
 - Working directory and relevant environment-variable names, never secret values.
 - Dependency/install state and required DB, cache, MQ, browser, container, or external service.
 - Local/dev/test configuration and known feature flags.
-- Documentation Language across formal artifact prose in README, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
+- Documentation Language across formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
 - Engineering Language across new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language across user-facing copy and localized values, plus every applicable AGENTS rule. Record evidence-supported BCP-47 value(s), `UNKNOWN - <resolution action>` for a potentially relevant unresolved surface, or `N/A - no product-content surface` only after the scoped survey confirms absence, together with scope, evidence, named authority, adoption state, and synchronization status.
 
