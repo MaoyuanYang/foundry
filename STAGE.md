@@ -4,15 +4,15 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0004` |
-| Parent Snapshot | `STAGE-0003 / sha256:08d43670f190a65abefc1772c34948a11ab74c9f90a4bd3b93d51c3609fe5e1a` |
-| Last Reconciled At | `2026-08-26T15:51:46+08:00` |
+| Snapshot Revision | `STAGE-0005` |
+| Parent Snapshot | `STAGE-0004 / sha256:d34db194abcdef8fbc638d4e7835d83479e3fac9a04862dd5163f91bc3b8f280` |
+| Last Reconciled At | `2026-08-26T16:00:25+08:00` |
 | Reconciled By | `OpenCode` |
-| Repository Ref | `main@3b1987c; working tree contains the authorized GitHub Issue #1 change` |
+| Repository Ref | `main@d8254e9 (pushed to origin/main)` |
 | Write Coordination | `SINGLE_WRITER:OpenCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
-| Project Phase | `DELIVERY` |
-| Overall State | `ACTIVE` |
+| Project Phase | `MAINTENANCE` |
+| Overall State | `COMPLETE` |
 | Current Milestone | `Project-wide STAGE.md coordination across all Foundry Skills` |
 | Tracking Mode | `REMOTE` |
 
@@ -20,18 +20,16 @@
 
 | Area / Milestone | State | Authoritative Evidence | Next Condition |
 | --- | --- | --- | --- |
-| Foundry public baseline | `COMPLETE` | `README.md`, published Skill packages, and `main@3b1987c` | Preserve current behavior while extending the artifact contract |
-| Project-wide `STAGE.md` coordination | `ACTIVE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) | Authorized commit and push of the verified working tree |
+| Foundry public baseline | `COMPLETE` | `README.md`, published Skill packages, and `main@d8254e9` | Preserve current behavior while extending the artifact contract |
+| Project-wide `STAGE.md` coordination | `COMPLETE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) and commit `d8254e9` | Delivered; future changes follow the new Stage contract |
 
 ## Active Work
 
-| Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `A-001` | `#1 Add project-wide STAGE.md coordination across Foundry skills` | `OpenCode` | `AGENT` | `external` | `N/A - Foundry meta-maintenance, not Feature-lifecycle governed` | `ACTIVE` | `IN_PROGRESS` | `main` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) | Obtain explicit authorization for commit and push | `2026-08-26T15:51:46+08:00` |
+None.
 
 ## Gate Snapshot
 
-Not applicable: `A-001` is classified as `external` Foundry meta-maintenance, so no Feature Gate projection is claimed.
+Not applicable: `A-001` was classified as `external` Foundry meta-maintenance, so no Feature Gate projection is claimed.
 
 ## Blockers and Conflicts
 
@@ -45,7 +43,9 @@ None.
 
 ## Recently Completed
 
-None.
+| Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `A-001` | `#1 Add project-wide STAGE.md coordination across Foundry skills` | `OpenCode` | Root `STAGE.md` contract shipped to all three Skills with bilingual docs, write guards, and verified installed copies | `DONE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) (closed as completed) | Commit `d8254e9` on `main` | `2026-08-26T16:00:25+08:00` |
 
 ## Authority and Update Rules
 
