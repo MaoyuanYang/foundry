@@ -1,6 +1,6 @@
 # Feature Inventory and AS-IS Spec Templates
 
-This file contains two templates. Put the single Feature Inventory in `specs/ROADMAP.md`. Put each capability's current behavior in the existing Spec path, or use `specs/<feature-id>-<slug>/spec.md` when the project has no convention. Remove inapplicable `N/A` sections.
+This file contains two templates. Put the single Feature Inventory in `specs/ROADMAP.md`. Put each capability's current behavior in the existing Spec path, or use `specs/<feature-id>-<slug>/spec.md` when the project has no convention. Remove inapplicable `N/A` sections. IDs such as `FI-xxx`, `E-xxx`, and `C-xxx` are local to this artifact; when referencing an ID defined in another artifact (for example, Stage or Baseline), qualify it with the artifact name.
 
 Do not create a parallel Feature Inventory. Do not mark an AS-IS Spec `READY`. New Spec prose follows the resolved Documentation Language. Preserve existing IDs; every new ID, slug, or technical name uses English and matches repository shape unless an explicit, authority-approved scoped Engineering Language override applies. Preserve established user-facing product copy.
 
@@ -17,14 +17,14 @@ Do not create a parallel Feature Inventory. Do not mark an AS-IS Spec `READY`. N
 **Implementation State (current implementation state):**
 
 - `IMPLEMENTED`: core current behavior works with no known blocking gap.
-- `PARTIAL`: only part of a critical path, state, or role works.
+- `PARTIAL`: part exists, but a critical path, state, or role is missing or unusable.
 - `BROKEN`: evidence shows that an expected core path currently fails.
-- `UNKNOWN`: evidence is insufficient.
-- `DEPRECATED`: explicit evidence shows retirement.
+- `UNKNOWN`: evidence is insufficient for a responsible judgment.
+- `DEPRECATED`: explicit evidence shows retirement; dead-looking code alone is insufficient.
 
 **Work Status (workflow progress):**
 
-- `UNTRACKED`: no credible tracker/history proves an adopted work status; Brownfield survey only.
+- `UNTRACKED`: no credible tracker/history proves an adopted work status; assigned during Brownfield survey and preserved until an authoritative work status exists.
 - `DRAFT | NEXT | READY | IN_PROGRESS | REVIEW | DONE | BLOCKED`
 
 **AS-IS Spec Status (reconstruction confidence):**
@@ -36,7 +36,7 @@ Do not create a parallel Feature Inventory. Do not mark an AS-IS Spec `READY`. N
 - `RECOMMENDED`: onboarding proposes the item; no scheduling decision is implied.
 - `SELECTED`: the named `Roadmap Decision Authority` or authoritative tracker has selected the item. This metadata is not Work Status; synchronize Work Status to `NEXT` only through that authority.
 
-The three status columns answer different questions and never substitute for one another. Onboarding proposes one `Recommended Next`; write `NEXT` only after selection by the named `Roadmap Decision Authority` or authoritative tracker. Never promote an AS-IS Spec to `READY`. Roadmap `READY` belongs only to later work with valid `SPEC READY`, applicable `UI READY` or an explicit skip, `TEST DESIGN READY`, Plan, and Tasks.
+The three status columns answer different questions and never substitute for one another. Onboarding proposes one `Recommended Next`; write `NEXT` only after selection by the named `Roadmap Decision Authority` or authoritative tracker. Never promote an AS-IS Spec to `READY`. Roadmap `READY` belongs only to later work with valid `SPEC READY`, applicable `UI READY` or an explicit skip, `TEST DESIGN READY`, Plan, and Tasks (these lifecycle artifacts belong to `feature-dev`).
 
 After a Feature starts, bind it to a writable remote tracker as Work Status authority. Without one, an explicitly identified `STAGE_LOCAL:<Activity ID>` row in root `STAGE.md` may be the local Work Status authority; this table mirrors either source. Never claim a remote status transition without authorization to update that authority.
 
@@ -90,7 +90,7 @@ The final check requires one `Recommended Next`. If unconfirmed, preserve `UNTRA
 | Status | `[AS_IS_DRAFT or RECONSTRUCTED]` |
 | Last Verified | `[date, commit/ref, environment if runtime-dependent]` |
 | Inventory Entry | `specs/ROADMAP.md` |
-| Reconstruction Basis | `[Runtime/Tests/Code/DB/UI/Docs]` |
+| Reconstruction Basis | `[Runtime/Tests/Code/DB/Config/CI/Docs/Comments]` |
 | Documentation Language | `[actual resolved BCP-47 value]` |
 | Engineering Language | `[actual resolved BCP-47 value]` |
 | Product Content Language/Locales | `[actual resolved BCP-47 value(s) and source / UNKNOWN - <resolution action> / N/A - no product-content surface with scoped survey evidence]` |
@@ -186,7 +186,7 @@ These are characterization criteria for description and regression observation, 
 
 | Evidence ID | Claim Protected | Type | Location/Command/Runtime Context | Label | Limits |
 |---|---|---|---|---|---|
-| E-001 | `[claim]` | `[Runtime/Test/Code/DB/Config/CI/Docs/Comment]` | `[reproducible locator]` | `[OBSERVED/DOCUMENTED/CONFIRMED/INFERRED/NEEDS_CONFIRMATION/CONFLICT/UNKNOWN/MISSING]` | `[environment/version]` |
+| E-001 | `[claim]` | `[Runtime/Tests/Code/DB/Config/CI/Docs/Comments]` | `[reproducible locator]` | `[OBSERVED/DOCUMENTED/CONFIRMED/INFERRED/NEEDS_CONFIRMATION/CONFLICT/UNKNOWN/MISSING]` | `[environment/version]` |
 
 ## Docs-vs-Reality Conflicts
 

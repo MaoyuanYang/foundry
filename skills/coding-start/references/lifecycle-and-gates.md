@@ -11,14 +11,14 @@
 | `MACRO_READINESS` | Challenge Pass is complete and the revised synthesis is confirmed | Check every core item, language dimension, and conditional UI item | `NEEDS_CLARIFICATION` or `MACRO DESIGN READY` |
 | `ARTIFACT_GENERATION` | `MACRO DESIGN READY` and explicit local-write authorization exist | Generate only applicable project documents with distinct responsibilities and the recorded languages | Enter Feature Map when documents are consistent |
 | `FEATURE_MAPPING` | Macro documents are usable | Define vertical slices and analyze value, priority, and dependencies | Generate Specs when the Feature Map is complete |
-| `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature | Every Feature has a DRAFT Spec |
-| `NEXT_SELECTION` | Dependencies can be analyzed | Select exactly one `NEXT` | The sole `NEXT` can be handed to `feature-dev` |
+| `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature | Every Feature has a DRAFT Spec; enter `NEXT_SELECTION` |
+| `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select exactly one `NEXT` | The sole `NEXT` can be handed to `feature-dev`; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS CLARIFICATION`; then enter `SELF_REVIEW` |
 | `BLOCKED_HANDOFF` | No safe candidate exists and a currently unresolvable external blocker remains | Allow zero `NEXT` entries; record blocker, owner, unblock condition, and resume stage | Enter `SELF_REVIEW`, then `STOP` as incomplete; MUST NOT claim readiness |
 | `SELF_REVIEW` | Artifacts exist | Fix boundary, status, language, link, duplication, and overdesign problems | `STOP` only after all checks pass |
 
-The flow MAY return to an earlier stage to resolve a newly found macro conflict. If Challenge exposes a problem, return to `PROJECT_DISCOVERY`, update fact statuses and Macro Synthesis, then rerun the affected Challenge. Synchronize formal artifacts only if they already exist.
+The flow MAY return to an earlier stage to resolve a newly found macro conflict. If Challenge exposes a problem, return to `PROJECT_DISCOVERY`, update fact statuses and Macro Synthesis, then rerun the affected Challenge. If `NEXT_SELECTION` finds no safe candidate for reasons other than an external blocker, return to `PROJECT_DISCOVERY` the same way. Synchronize formal artifacts only if they already exist.
 
-After valid entry and explicit local-write authorization, create or adopt root `STAGE.md` as an operational checkpoint using `assets/stage.template.md`. Before tracking is resolved it may use `TBD` plus an owner/resolution condition and mark this non-Feature workflow activity `N/A`. Increment its snapshot revision on meaningful transitions and update only the current member/activity plus directly affected blocker, handoff, and project-summary fields. Serialize writes through the repository lock/designated writer or compare revision and SHA-256 immediately before writing. Before `MACRO DESIGN READY`, it MUST NOT contain proposed product or architecture conclusions. `STAGE.md` never substitutes for a Gate and every Gate projection must link to its own authoritative record and revision.
+After valid entry and explicit local-write authorization, create or adopt root `STAGE.md` as an operational checkpoint from the Project Stage template listed in SKILL.md. Before tracking is resolved it may use `TBD` plus an owner/resolution condition and mark this non-Feature workflow activity `N/A`. Increment its snapshot revision on meaningful transitions and update only the current member/activity plus directly affected blocker, handoff, and project-summary fields. Serialize writes through the repository lock/designated writer or compare revision and SHA-256 immediately before writing. Before `MACRO DESIGN READY`, it MUST NOT contain proposed product or architecture conclusions. `STAGE.md` never substitutes for a Gate and every Gate projection must link to its own authoritative record and revision.
 
 For read-only ideation/evaluation or missing local-write authorization, report before `ARTIFACT_GENERATION`, state that initialization is incomplete, and `STOP`. MUST NOT create files, choose `NEXT`, or claim successful completion. Macro-design confirmation, local writes, Git operations, and remote side effects are four independent authorizations.
 
@@ -53,7 +53,7 @@ Use `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN` for every item, with one sentence o
 - Engineering Language, defaulting exactly to `engineering_language = en`
 - Product Content Language as actual requirement-derived BCP-47 value(s), `UNKNOWN - <resolution action>`, or `N/A - no product-content surface` for a confirmed no-content scope
 - The canonical Documentation and Engineering Language scopes, with Product Content exceptions limited to localized resource/configuration values, labeled exact-copy quotations, and exact-copy assertions
-- Explicit request plus approval by a named authority empowered for project language policy for every override; requester status alone is insufficient
+- Explicit request plus approval by a named `Maintainer Decision Authority` empowered for project language policy for every override; requester status alone is insufficient
 - Approval source, scope, and affected artifacts for every override
 - Root `AGENTS.md` persistence rows for every repository fallback and approved scoped effective value
 - Existing target-document prose checked against the resolved Documentation Language in both directions, with mixed or translation-requiring updates blocked
@@ -95,7 +95,7 @@ Any of these unknowns MUST block:
 - Challenge Pass has not run, or its high-impact conflicts, counterexamples, or unknowns remain unresolved.
 - A core statement still relies on unverifiable terms such as "simple," "smart," "real-time," "secure," or "scalable," or success cannot be falsified.
 - The revised macro synthesis lacks explicit Decision Authority confirmation.
-- Any language dimension is unrecorded, Product Content Language lacks an allowed value/state, any scope contradicts the canonical matrix, or an override lacks both an explicit request and approval by a named authority empowered for project language policy.
+- Any language dimension is unrecorded, Product Content Language lacks an allowed value/state, any scope contradicts the canonical matrix, or an override lacks both an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy.
 - Any existing target's formal prose is mixed or differs from the resolved Documentation Language and lacks named-authority resolution plus separately authorized translation/update scope.
 
 When blocked, output:
@@ -136,7 +136,7 @@ Within `coding-start`:
 - All other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition.
 - MUST NOT set `READY`, `IN_PROGRESS`, `REVIEW`, or `DONE`.
 - Non-`NEXT` Features normally remain `DRAFT`.
-- The Roadmap Decision Authority MUST confirm `NEXT`. If every safe candidate is externally blocked, MUST NOT force a selection: produce an incomplete `BLOCKED_HANDOFF`, allow zero `NEXT` entries, and wait for the blocker to clear.
+- The Roadmap Decision Authority MUST confirm `NEXT`. If every safe candidate is externally blocked, MUST NOT force a selection: produce an incomplete `BLOCKED_HANDOFF`, allow zero `NEXT` entries, record the controlled handoff token `INITIALIZATION INCOMPLETE` in the Roadmap and README handoff sections, and wait for the blocker to clear.
 - Roadmap `NEXT` indicates development order; its Spec maturity remains `DRAFT`.
 
 Later, `feature-dev` refines the sole `NEXT`, passes Feature-level Gates, and advances Roadmap status.
@@ -226,7 +226,7 @@ On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When 
 - Were formal documents generated only after `MACRO DESIGN READY`?
 - If `STAGE.md` was created before the Gate, did it remain a factual operational checkpoint with no unconfirmed design, and were unrelated member rows preserved?
 - Were the canonical Documentation, Engineering, and Product Content scopes recorded and enforced with exact defaults `documentation_language = en` and `engineering_language = en`?
-- Did every override have an explicit request and approval by a named authority empowered for project language policy, without assuming the requester had that authority?
+- Did every override have an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy, without assuming the requester had that authority?
 - Can later workflows resolve every repository fallback and scoped override from root `AGENTS.md` without relying on Discovery context?
 - Was each existing target checked bidirectionally for mixed prose or a mismatch with the resolved Documentation Language before it was updated?
 

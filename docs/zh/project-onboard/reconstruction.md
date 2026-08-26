@@ -45,10 +45,10 @@ Component Structure → State Management → API Layer → Design Tokens → UI 
 | 状态 | 含义 |
 |---|---|
 | `IMPLEMENTED` | 核心当前行为可用，无已知阻塞缺口 |
-| `PARTIAL` | 仅部分关键路径/状态/角色可用 |
+| `PARTIAL` | 部分存在，但某条关键路径、状态或角色缺失或不可用 |
 | `BROKEN` | 证据表明某条预期核心路径当前失败 |
-| `UNKNOWN` | 证据不足 |
-| `DEPRECATED` | 有显式证据表明已退役 |
+| `UNKNOWN` | 证据不足以做出负责任的判断 |
+| `DEPRECATED` | 有显式证据表明已退役；仅看似死代码不足以判定 |
 
 Inventory 只存放在 `specs/ROADMAP.md`（绝不另建平行清单），分别记录实现状态、工作状态、依赖、当前行为、证据、冲突/未知与测试覆盖。
 

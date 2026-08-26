@@ -28,6 +28,8 @@ MUST NOT enter when:
 
 If Greenfield versus Brownfield is unclear, ask one entry-classification question; MUST NOT guess or overwrite existing content in the name of initialization.
 
+A credible macro baseline exists when the repository already documents product scope, system boundaries, the test method, the current Roadmap, trustworthy Brownfield AS-IS where applicable, and a valid persisted Language Policy.
+
 Before the first file write, list every path to be created or updated, including root `STAGE.md`, and obtain explicit local-write authorization. Approval of the macro design is not file-write authorization. Without write authorization, report Discovery and Gate results, state that initialization is incomplete, and `STOP`.
 
 ## Non-Negotiable Boundaries
@@ -43,7 +45,7 @@ Before the first file write, list every path to be created or updated, including
 
 ## Language Policy
 
-Use these exact defaults unless an override is both explicitly requested and approved by a named human empowered for project language policy:
+Use these exact defaults unless an override is both explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy:
 
 ```text
 documentation_language = en
@@ -54,8 +56,8 @@ engineering_language = en
 - Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language follows product requirements. Record actual BCP-47 value(s) when a product-content surface is known, `UNKNOWN - <resolution action>` while a potentially relevant surface is unresolved, or `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
 - Conversation MAY follow the user's language. Conversation language MUST NOT silently override any artifact-language dimension.
-- Every override MUST be explicitly requested and approved by a named authority empowered for project language policy; the requester is not automatically that authority. Discovery MUST record the request, authority, approval source, scope, and affected artifacts. Generated content MUST follow the matrix above and default to English.
-- Before writing or updating any formal artifact, inspect the existing target's formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the proposed update would introduce a second prose language or require translation, record `CONFLICT` and `STOP`. Resume only after a named language-policy authority approves one whole-document language and the user separately authorizes the required translation/update scope. This gate applies in both language directions, including pre-existing notes promoted into formal artifacts.
+- Every override MUST be explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority. Discovery MUST record the request, authority, approval source, scope, and affected artifacts. Generated content MUST follow the matrix above and default to English.
+- Before writing or updating any formal artifact, inspect the existing target's formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the proposed update would introduce a second prose language or require translation, record `CONFLICT` and `STOP`. Resume only after a named `Maintainer Decision Authority` empowered for project language policy approves one whole-document language and the user separately authorizes the required translation/update scope. This gate applies in both language directions, including pre-existing notes promoted into formal artifacts.
 - Before handoff, persist every effective value exactly once. During Greenfield initialization, root `AGENTS.md` is the authoritative location for repository-wide fallbacks, global engineering surfaces, and any scoped override because this Skill does not create nested policy files. If a later workflow adopts a nested policy, root MAY link to it but MUST NOT duplicate the value. Discovery notes or another unspecified document are not sufficient; later `feature-dev` work MUST be able to resolve every applicable dimension from the root-to-target `AGENTS.md` chain.
 
 ## Resource Loading
@@ -91,6 +93,7 @@ ENTRY_CHECK
   -> FEATURE_MAPPING
   -> DRAFT_SPEC_GENERATION
   -> NEXT_SELECTION
+       -> NEEDS_CLARIFICATION -> PROJECT_DISCOVERY
        -> BLOCKED_HANDOFF
   -> SELF_REVIEW
   -> STOP
@@ -98,7 +101,7 @@ ENTRY_CHECK
 
 Formal project documents MUST NOT be generated before `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
 
-Root `STAGE.md` is the sole operational exception. After valid entry and explicit local-write authorization, create or incrementally adopt it from the [Project Stage template](assets/stage.template.md) so interrupted Discovery can resume. Before the Gate it may use `Tracking Mode: TBD`, Work Status `N/A`, and `N/A - project workflow activity`; record only the current Skill stage, member/activity, explicit blockers, next checkpoint, repository ref, and known authority links. It MUST NOT persist unconfirmed product or architecture conclusions or imply that Macro Readiness passed. Update it only on meaningful stage transitions, block/resume, handoff, and completion. Serialize writes through a repository lock or designated canonical writer; otherwise compare revision and SHA-256 immediately before writing and abort/reconcile on change. Allocate `A-xxx` under that guard, reread the latest file, and preserve every unrelated member row.
+Root `STAGE.md` is the sole operational exception. After valid entry and explicit local-write authorization, create or incrementally adopt it from the [Project Stage template](assets/stage.template.md) so interrupted Discovery can resume. Before the Gate it may use `Tracking Mode: TBD`, Work Status `N/A`, and `N/A - project workflow activity`; besides the template's Snapshot Revision, Parent Snapshot, and Write Coordination fields required by the write guard, record only the current Skill stage, member/activity, explicit blockers, next checkpoint, repository ref, and known authority links. It MUST NOT persist unconfirmed product or architecture conclusions or imply that Macro Readiness passed. Update it only on assignment, meaningful stage transitions, block/resume, handoff, and completion. Serialize writes through a repository lock or designated canonical writer; otherwise compare revision and SHA-256 immediately before writing and abort/reconcile on change; if neither serialization nor hash comparison is available, `STOP` before writing. Allocate `A-xxx` under that guard, reread the latest file, and preserve every unrelated member row.
 
 An unresolved Stage binding, freshness, revision/hash, activity identity, duplicate assignment, or authority conflict MUST stop the affected transition, handoff, or completion. Unrelated read-only Discovery may continue; MUST NOT silently select a value or overwrite another member.
 
@@ -112,7 +115,7 @@ Maintain a concise Decision Ledger from the first round. Every material item use
 
 Update the Ledger after each answer before choosing the next questions. Surface conflicts and request confirmation; MUST NOT silently choose one answer.
 
-`Decision Authority` MUST be a named human empowered to approve the relevant Scope, Roadmap, or architecture decision. The requester does not automatically hold that authority. Record name/role, confirmation source, and scope; the Agent MUST NOT self-approve.
+`Decision Authority` MUST be a named human empowered to approve the relevant Scope, Roadmap, or architecture decision. The requester does not automatically hold that authority. Record name/role, confirmation source, time, and scope; the Agent MUST NOT self-approve.
 
 Also record `Discovery Intensity: STANDARD | DEEP`. This controls interaction depth only and does not change fact statuses.
 
@@ -124,6 +127,7 @@ Also record `Discovery Intensity: STANDARD | DEEP`. This controls interaction de
 4. Investigate facts available from the environment or supplied material first. Product and high-impact decisions require Decision Authority confirmation; the Agent MUST NOT self-approve.
 5. A low-risk unknown MAY become `RECOMMENDED` with a revisit trigger. A high-impact business rule or architecture choice MUST NOT be silently defaulted.
 6. MUST NOT repeat answered questions, add unrelated topics before the current question is resolved, or prematurely decide fields, DTOs, classes, components, SQL, CSS, or internal functions.
+7. If a Decision Authority cannot be reached for a high-impact item, MUST NOT loop indefinitely: report the blocker, state that initialization is incomplete, and `STOP`.
 
 Use [Discovery interview guide](references/discovery.md) for topics, risk triggers, and examples. Select by risk rather than mechanically running a checklist, and MUST NOT choose complex architecture merely to appear professional.
 
@@ -163,14 +167,14 @@ Required checks:
 - Technology Constraints or evidence-based recommendations.
 - Data Source of Truth, Data Strategy, and API Strategy.
 - Testing Strategy and risk-driven Non-functional Requirements.
-- `documentation_language`, `engineering_language`, and Product Content Language, with every override explicitly requested and approved by a named authority empowered for project language policy.
+- `documentation_language`, `engineering_language`, and Product Content Language, with every override explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy.
 - The target documents' existing formal-prose languages, any mixed-document conflict, and the root `AGENTS.md` persistence destination for every effective global or scoped value.
 - Challenge conclusions and explicit Decision Authority confirmation of the revised synthesis.
 
 When `UI: YES`, also check:
 
-- Target Platform, Primary User Flow, Page/Screen Map, and Navigation.
-- UX Principles, Frontend Architecture, and Design System Direction.
+- Target Platform, Primary Device, Primary User Flow, Page/Screen Map, and Navigation / Information Architecture.
+- UX Principles including major non-happy-path states, Frontend Architecture, and Design System Direction.
 - Responsive and Accessibility Requirements.
 
 Mark every item with a fact status. Any `UNKNOWN` that can alter product correctness, boundaries, the core flow, Source of Truth, security/compliance, artifact language, or the primary UI flow produces `NEEDS CLARIFICATION` and returns to the interview. Use 2-5 questions in `STANDARD` and one in `DEEP`.
@@ -194,16 +198,16 @@ Use [Roadmap and DRAFT Spec templates](assets/roadmap-and-draft-spec.template.md
 1. Define Features as vertical slices of deliverable business value. They MUST NOT be technical layers such as "create database" or "write controller."
 2. Give every Feature a stable ID and record Goal, Business Value, Priority, Dependencies, Status, and Summary.
 3. Roadmap status MUST be one of `DRAFT/NEXT/READY/IN_PROGRESS/REVIEW/DONE/BLOCKED`.
-4. Analyze dependencies, risk, and learning value; recommend the smallest first Feature that validates end-to-end direction, then obtain Roadmap Decision Authority confirmation.
-5. Mark exactly one authority-confirmed Feature `NEXT`. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition.
-6. Generate a shallow DRAFT Spec for every Feature. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
-7. DRAFT Specs MAY include initial Acceptance Criteria and UI impact but MUST retain Open Questions, MUST NOT mature to `READY`, and MUST NOT freeze DTOs, fields, classes, components, or pixel design.
-8. If no Feature can safely become `NEXT`, return to the interview. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then `STOP` with initialization incomplete. MUST NOT choose arbitrarily to finish the flow.
-9. Reconcile `STAGE.md` from the confirmed Roadmap result: project phase, the current activity, Work Status authority, blockers, handoff target, and exact resume stage. The Roadmap still owns ordering and dependencies; `STAGE.md` MUST NOT copy the Feature map.
+4. Analyze dependencies, risk, and learning value, and identify the smallest first Feature that validates end-to-end direction.
+5. Generate a shallow DRAFT Spec for every Feature, recording `Roadmap Status: DRAFT` in each Spec header.
+6. DRAFT Specs MAY include initial Acceptance Criteria and UI impact but MUST retain Open Questions, MUST NOT mature to `READY`, and MUST NOT freeze DTOs, fields, classes, components, or pixel design.
+7. In `NEXT_SELECTION`, obtain Roadmap Decision Authority confirmation for the recommended Feature, then mark exactly one authority-confirmed Feature `NEXT` in the Roadmap and update that Feature's Spec header. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
+8. If no Feature can safely become `NEXT`, return to the interview via `NEEDS CLARIFICATION`. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then enter `SELF_REVIEW` and `STOP` with initialization incomplete. `INITIALIZATION INCOMPLETE` is the controlled handoff token for this path. MUST NOT choose arbitrarily to finish the flow.
+9. Reconcile `STAGE.md` and the README handoff section from the confirmed Roadmap result: project phase, the current activity, Work Status authority, blockers, handoff target, and exact resume stage; replace the README's pending handoff line with the matching Confirmed NEXT or BLOCKED_HANDOFF branch. The Roadmap still owns ordering and dependencies; `STAGE.md` MUST NOT copy the Feature map.
 
 ## Minimal Non-Business Scaffolding Exception
 
-Run only when all conditions hold:
+Optional step between `NEXT_SELECTION` and `SELF_REVIEW`; run only when all conditions hold:
 
 - `MACRO DESIGN READY` has passed.
 - The Decision Authority confirmed stack and scope, and the user separately authorized scaffold writes.
@@ -229,7 +233,7 @@ Before finishing, use [Lifecycle and gates](references/lifecycle-and-gates.md) a
 - Every Spec remains `DRAFT`, with dependencies and Open Questions visible.
 - AGENTS contains durable rules, the full Feature workflow, applicable UI rules, L1/L2/L3 Design Change Policy, and the durable Language Policy, including every effective language value and exact scope.
 - `STAGE.md` exists when writes were authorized, contains the current project and member snapshot, links rather than duplicates every authority, and preserves unrelated concurrent activity.
-- The canonical language matrix was enforced with `documentation_language = en` and `engineering_language = en`; every override was explicitly requested and approved by a named authority empowered for project language policy; Product Content Language exceptions did not alter surrounding artifact or engineering text.
+- The canonical language matrix was enforced with `documentation_language = en` and `engineering_language = en`; every override was explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy; Product Content Language exceptions did not alter surrounding artifact or engineering text.
 - No formal artifact write bypassed the bidirectional mixed-document gate, and no scoped override remained only in Discovery context.
 - No business code was written; any explicitly authorized minimal scaffold has accurate scope and verification.
 - Generated relative paths and navigation work; no empty or meaningless placeholder artifact remains.

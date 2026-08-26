@@ -15,7 +15,7 @@ Every status, label, and gate token used across Foundry, in one place.
 | `REVIEW` | Implementation complete; review/docs/delivery underway |
 | `DONE` | The confirmed delivery standard is met |
 | `BLOCKED` | An explicit blocker exists; reason/owner/unblock recorded |
-| `UNTRACKED` | No trustworthy work history (Brownfield survey only) |
+| `UNTRACKED` | No trustworthy work history; assigned during Brownfield survey and preserved until an authoritative work status exists |
 
 ## Project Stage snapshot
 
@@ -87,7 +87,7 @@ Gates: `SPEC READY`, `UI READY` (or `SKIPPED (N/A)` for no-UI), `TEST DESIGN REA
 
 ## Delivery handoff
 
-`READY FOR PR` (PR mode) / `READY FOR DELIVERY` (no-PR mode) / `BLOCKED_HANDOFF` (coding-start, zero `NEXT`).
+`READY FOR PR` (PR mode) / `READY FOR DELIVERY` (no-PR mode) / `DELIVERED` (Definition of Done met; recorded with `DONE Status: PASS` and `Roadmap Status: DONE`) / `BLOCKED_HANDOFF` (coding-start, zero `NEXT`; handoff token `INITIALIZATION INCOMPLETE`).
 
 ## Language policy
 

@@ -3,16 +3,19 @@
 ## Lifecycle
 
 ```text
-Repository Evidence
--> Baseline
--> AS-IS Reconstruction
--> Docs-vs-Reality
--> Knowledge Gaps / Clarification
--> Canonical AS-IS Docs
--> AGENTS
--> Feature Inventory
--> AS-IS Specs
--> One Recommended Next
+Preflight (PREFLIGHT)
+-> Repository Survey (REPOSITORY_SURVEY)
+-> Baseline Verification (BASELINE_VERIFICATION)
+-> Architecture Reconstruction (ARCHITECTURE_RECONSTRUCTION)
+-> Frontend/UI Reconstruction (FRONTEND_RECONSTRUCTION, conditional)
+-> Docs-vs-Reality (DOCS_REALITY)
+-> Knowledge Gaps / Clarification (KNOWLEDGE_GAPS)
+-> Canonical AS-IS Docs (CANONICAL_DOCUMENTATION)
+-> AGENTS Update (AGENTS_UPDATE)
+-> Feature Inventory (FEATURE_INVENTORY)
+-> AS-IS Specs (AS_IS_SPEC_RECONSTRUCTION)
+-> One Recommended Next (NEXT_RECOMMENDATION)
+-> COMPLETE
 -> STOP
 ```
 

@@ -25,6 +25,8 @@ Goal、Spec 链接、Status、Priority、Assignee、Acceptance checklist、Imple
 DRAFT → clarification → refinement → SPEC READY
 ```
 
+从 `coding-start` 继承的 DRAFT Spec 可能带有 `RECOMMENDED` 建议与 `UNKNOWN` 项；精化必须在 `SPEC READY` 前，通过证据或 Decision Authority 的显式确认逐一解决。
+
 **Brownfield**
 
 ```text

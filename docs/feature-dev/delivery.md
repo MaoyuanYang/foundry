@@ -4,7 +4,7 @@
 
 Only when `SPEC READY` + `UI READY` (or explicit skip) + `TEST DESIGN READY` all pass for current revisions with nothing `STALE`. The Plan records those revisions and answers **only** "how to implement": affected modules/files/pages/components, current and target data/API flow, domain/service/persistence/integration/frontend changes, transactions, cache, messaging, validation, security, error handling, observability, migration/rollout/rollback, a test execution entry for every `TS-*`, and risks.
 
-The Plan must not add business rules or Acceptance, expand Scope, silently change API/UI contracts, or introduce major dependencies/architecture. Requirement changes return to the Spec through Design Change. Record `Roadmap Status: READY` only when gate/plan/task revisions align.
+The Plan must not add business rules or Acceptance, expand Scope, silently change API/UI contracts, or introduce major dependencies/architecture. Requirement changes return to the Spec through Design Change. Record `Roadmap Status: READY` only when gate/plan/task revisions align; if an upstream gate becomes invalid, withdraw readiness back to `NEXT` with the reason and resume point recorded.
 
 ## Tasks
 
@@ -25,6 +25,8 @@ Update only affected documents: Current Spec, STAGE, ROADMAP, API, DATABASE, ARC
 When implementation, verification, Review, and Docs are complete but PR mode lacks authorization/tools/authentication (or no-PR mode lacks its delivery record): produce a PR-ready summary and suggested title; list changed files/modules, test commands and results, UI/Design changes, risks, breaking/migration, rollback; state unperformed external actions explicitly; record `READY FOR PR` (PR mode) or `READY FOR DELIVERY` (no-PR mode); keep `Roadmap Status: REVIEW` and `DONE Status: NOT_READY`; then `STOP`.
 
 Each delivery side effect (remote Issue, commit, push, PR, merge, close) requires separate explicit authorization plus available tools, valid authentication, and a known target. "Implement the Feature" is never authorization.
+
+Once the confirmed Definition of Done is met (authorized PR opened/approved/merged, or the explicitly adopted no-PR delivery record exists), record `DELIVERED` together with `DONE Status: PASS` and `Roadmap Status: DONE`.
 
 ## DONE gate
 

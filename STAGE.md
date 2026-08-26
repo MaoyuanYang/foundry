@@ -4,16 +4,16 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0005` |
-| Parent Snapshot | `STAGE-0004 / sha256:d34db194abcdef8fbc638d4e7835d83479e3fac9a04862dd5163f91bc3b8f280` |
-| Last Reconciled At | `2026-08-26T16:00:25+08:00` |
+| Snapshot Revision | `STAGE-0007` |
+| Parent Snapshot | `STAGE-0006 / sha256:837034a29887fbe607a5d3a6a889a0ccca64be0b2ce30c4da947882dad5c842d` |
+| Last Reconciled At | `2026-08-26T21:30:30+08:00` |
 | Reconciled By | `OpenCode` |
-| Repository Ref | `main@d8254e9 (pushed to origin/main)` |
+| Repository Ref | `main@0e5da82 (dirty: skill + docs health-check fixes)` |
 | Write Coordination | `SINGLE_WRITER:OpenCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
 | Overall State | `COMPLETE` |
-| Current Milestone | `Project-wide STAGE.md coordination across all Foundry Skills` |
+| Current Milestone | `System health-check fixes across all three Foundry Skills` |
 | Tracking Mode | `REMOTE` |
 
 ## Lifecycle Progress
@@ -45,6 +45,7 @@ None.
 
 | Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A-002` | `System health-check fixes for coding-start / project-onboard / feature-dev` | `OpenCode` | Fixed 1 HIGH + 10 MEDIUM + 30 LOW audit findings across all three Skills, the shared Stage template, and the bilingual docs website; installed copies re-verified byte-identical | `DONE` | `STAGE_LOCAL:A-002` | Uncommitted skill/docs changes verified by grep recheck and `npm run docs:build` | `2026-08-26T21:30:30+08:00` |
 | `A-001` | `#1 Add project-wide STAGE.md coordination across Foundry skills` | `OpenCode` | Root `STAGE.md` contract shipped to all three Skills with bilingual docs, write guards, and verified installed copies | `DONE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) (closed as completed) | Commit `d8254e9` on `main` | `2026-08-26T16:00:25+08:00` |
 
 ## Authority and Update Rules

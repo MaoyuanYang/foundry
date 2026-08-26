@@ -12,7 +12,7 @@ During these branches, root `STAGE.md` records only the exact `SPEC_REFINEMENT` 
 DRAFT -> selected Feature -> clarification -> refinement -> SPEC READY
 ```
 
-Refine only the current Feature. Other Specs remain `DRAFT`; MUST NOT freeze the entire Roadmap early for this implementation.
+Refine only the current Feature. Other Specs remain `DRAFT`; MUST NOT freeze the entire Roadmap early for this implementation. A DRAFT Spec inherited from `coding-start` may carry `RECOMMENDED` proposals and `UNKNOWN` items; refinement MUST resolve each through evidence or explicit Decision Authority confirmation before `SPEC READY`.
 
 ### Brownfield
 
@@ -23,7 +23,7 @@ AS_IS_DRAFT -> evidence collection -> RECONSTRUCTED -> explicit TO-BE -> SPEC RE
 - `AS_IS_DRAFT`: current behavior is incomplete and includes unverified inferences.
 - `RECONSTRUCTED`: current behavior is supported by code, runtime results, tests, data, or confirmed knowledge.
 - AS-IS MUST be preserved; TO-BE describes this change separately.
-- Use onboarding-compatible labels such as `OBSERVED`, `CONFIRMED`, `INFERRED`, `CONFLICT`, `UNKNOWN`, and `NEEDS_CONFIRMATION`. `INFERRED` MUST NOT be presented as confirmed fact, and a `CONFIRMED` AS-IS does not automatically become the future standard.
+- Use only the onboarding evidence labels: `OBSERVED`, `DOCUMENTED`, `CONFIRMED`, `INFERRED`, `NEEDS_CONFIRMATION`, `CONFLICT`, `UNKNOWN`, and `MISSING`. `INFERRED` MUST NOT be presented as confirmed fact, and a `CONFIRMED` AS-IS does not automatically become the future standard.
 - Existing Code, Tests, Docs, and UI are evidence; they do not automatically define correct requirements or the Design System.
 
 ## 2. The Spec Defines Correctness

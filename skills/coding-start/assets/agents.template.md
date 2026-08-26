@@ -40,7 +40,7 @@ At initialization, this root file stores every effective value exactly once. Rep
 - Product Content Language follows product requirements. Localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions MAY use it. `UNKNOWN` is unresolved; `N/A - no product-content surface` is valid only with confirmed scope evidence.
 - Surrounding formal prose remains under Documentation Language. Executable test names/descriptions, assertion code, comments, and other engineering text remain under Engineering Language even when they contain an exact Product Content assertion value.
 - Conversation MAY follow the user's language, but conversation language MUST NOT silently override any dimension.
-- Every override MUST be explicitly requested and approved by a named human empowered for project language policy. The requester is not automatically that authority.
+- Every override MUST be explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy. The requester is not automatically that authority.
 - Record the override request, authority name/role, approval source, exact scope, affected artifacts, and synchronization requirements in the table above. An override recorded only elsewhere is not effective for later workflow handoff.
 
 ## Architecture Constraints
@@ -156,9 +156,11 @@ Macro Design
 
 ## Design System Rules
 
-<!-- Delete this section when the project has no shared UI system. -->
+<!-- Keep this section only when the macro design confirms a shared UI system
+that will be documented in `docs/DESIGN_SYSTEM.md`; otherwise delete the whole
+section. -->
 
-- Reuse tokens and components defined in `docs/DESIGN_SYSTEM.md`.
+- Reuse tokens and components defined in `docs/DESIGN_SYSTEM.md` once it exists.
 - Extend the system only when an explicit Feature need cannot be met by composition or an existing variant.
 - Document shared variants and states; MUST NOT hide them as Feature-local CSS.
 - Review visual, interaction, accessibility and regression impact before changing shared foundations.

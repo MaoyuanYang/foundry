@@ -81,6 +81,7 @@
 - [ ] All required Gates are PASS, or UI has a complete `SKIPPED (N/A)` decision record with revision, evidence, time, authority, approval source, and scope.
 - [ ] Gate input manifests match current working-tree artifact revisions, not only the base commit.
 - [ ] Plan MUST NOT redefine Scope, rules, contract, or Acceptance.
+- [ ] File/module impact is consistent with project architecture.
 - [ ] Major dependency/architecture/migration decisions are confirmed.
 - [ ] Tasks interleave code, tests, and docs.
 - [ ] Each Task has a verification point.

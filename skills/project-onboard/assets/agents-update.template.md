@@ -41,7 +41,7 @@ The default key lines are replaced only by an explicit, scoped override approved
 |---|---|
 | Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. |
-| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. |
+| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content; exact-copy assertions MAY use the Product Content Language. |
 
 | Policy Key | Resolved Value / State | Scope | Named Authority / Adoption | Evidence / Date |
 |---|---|---|---|---|

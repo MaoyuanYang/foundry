@@ -49,12 +49,19 @@ Status `N/A` and `N/A - project workflow activity` as Status Authority.
 This is a projection only. Add a row only when its complete authoritative Gate
 record or UI skip decision exists. Link every projection to its own record and
 revision; never copy a checklist or evidence manifest into this file.
+Projection values: `PASS` projects a passed Gate, `NOT_READY` projects a Gate
+not yet passed, `STALE` projects a prior `PASS` invalidated by a semantic
+input change, and `DONE` is the completion Gate.
 
 | Work Item | Gate | Projection | Authoritative Record / Revision |
 | --- | --- | --- | --- |
 | `<ID>` | `SPEC READY | UI READY | TEST DESIGN READY | DONE` | `PASS | NOT_READY | STALE`; `UI READY` may instead be `SKIPPED (N/A)` | `<record link + independent revision/hash>` |
 
 ## Blockers and Conflicts
+
+IDs in this file are local to this Stage file; when referencing an ID defined
+in another artifact (for example, a Baseline command), qualify it with the
+artifact name.
 
 | ID | Affected Activity / Work Item | Type | Evidence | Owner | Unblock / Resolution Condition |
 | --- | --- | --- | --- | --- | --- |
@@ -80,7 +87,7 @@ delivery record retain full history.
 1. `STAGE.md` owns the current project phase, active-member view, coordination blockers, handoffs, and resume points.
 2. Before Feature work is bound, `specs/ROADMAP.md` owns its initial `DRAFT/NEXT/BLOCKED` status. After binding, a remote tracker owns Work Status and its `STAGE.md` row is a projection. Temporary authorization, tool, authentication, or availability failure never transfers that authority: preserve status and stop. Use `STAGE_LOCAL:<Activity ID>` only when no remote is bound or after an explicit durable migration unbinds it.
 3. `specs/ROADMAP.md` always owns Feature ordering and dependencies and mirrors Work Status after binding. A Feature Spec owns correctness. Gate artifacts own Gate decisions and evidence. `AGENTS.md` owns durable rules. PRs or Delivery Records own delivered changes.
-4. Serialize Stage writes through the repository's existing lock or one designated canonical writer. When neither exists, use an optimistic guard: retain the revision and SHA-256 read, compare both immediately before writing, and abort/reconcile if either changed. Allocate the next `A-xxx` ID under the same guard. A divergent worktree copy is not live project state until the canonical Stage writer reconciles it.
+4. Serialize Stage writes through the repository's existing lock or one designated canonical writer. When neither exists, use an optimistic guard: retain the revision and SHA-256 read, compare both immediately before writing, and abort/reconcile if either changed. After two consecutive aborts on unexpected change, record `CONFLICT` and stop the affected update; when neither serialization nor hash comparison is available, stop before writing. Allocate the next `A-xxx` ID under the same guard. A divergent worktree copy is not live project state until the canonical Stage writer reconciles it.
 5. Read the latest file and every applicable status authority immediately before updating. Preserve unrelated member rows and user changes; never replace the whole file to fit this template. Record the prior revision/hash as `Parent Snapshot`, then reread after writing and stop on a duplicate ID or unexpected result.
 6. Each member or agent changes only its activity and directly affected blocker or handoff rows; a designated writer may apply that scoped change. Change project-level fields only when authoritative evidence supports the transition.
 7. Two members may reference the same work item only when explicit collaboration and responsibility boundaries are recorded. Otherwise add a `CONFLICT` and stop the affected transition.

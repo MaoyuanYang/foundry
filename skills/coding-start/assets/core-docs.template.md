@@ -2,7 +2,7 @@
 
 Copy each applicable `FILE` section to its target and replace every `{{PLACEHOLDER}}`. Delete inapplicable sections; MUST NOT retain empty headings, full sections of `N/A`, or unexplained placeholders. Replace every unavailable command with exactly `Not yet established`; MUST NOT invent commands.
 
-Formal artifact prose follows Documentation Language. New engineering names follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language. Any override requires both an explicit request and approval by a named authority empowered for project language policy; the requester is not automatically that authority.
+Formal artifact prose follows Documentation Language. New engineering names follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language. Any override requires both an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority.
 
 Every material product, architecture, data, API, or testing statement MUST retain an explicit status. Replace each `{{FACT_STATUS}}` with exactly `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN, NON_BLOCKING`. Keep the bracketed status on prose and the `Status` column in tables; MUST NOT infer status from nearby text.
 
@@ -29,8 +29,11 @@ Every material product, architecture, data, API, or testing statement MUST retai
 - [CONFIRMED] Live project and member status: [`STAGE.md`](STAGE.md)
 - [CONFIRMED] Macro design: `MACRO DESIGN READY`
 - [CONFIRMED] Business implementation: Not started
+- [CONFIRMED] Feature handoff: `PENDING NEXT SELECTION - reconcile from specs/ROADMAP.md after NEXT_SELECTION`
 
-<!-- Template note: Keep exactly one Handoff branch below. -->
+<!-- Template note: Replace the pending handoff line above with exactly one of
+the two branches below during NEXT_SELECTION reconciliation (Feature Map step
+9), then delete the other branch and this note. -->
 
 ### Confirmed NEXT
 

@@ -1,6 +1,6 @@
 # Baseline and Knowledge Gaps Templates
 
-This file contains two output templates, for `docs/onboarding/BASELINE.md` and `docs/onboarding/KNOWLEDGE_GAPS.md`. Adopt them separately and remove inapplicable `N/A` sections. Never merge them into another parallel fact document.
+This file contains two output templates, for `docs/onboarding/BASELINE.md` and `docs/onboarding/KNOWLEDGE_GAPS.md`. Adopt them separately and remove inapplicable `N/A` sections. Never merge them into another parallel fact document. IDs such as `B-xxx`, `C-xxx`, `KG-xxx`, and `PF-xxx` are local to this artifact; when referenced from `STAGE.md` or another artifact, qualify them with the artifact name (for example, `BASELINE B-001`).
 
 ---
 
@@ -35,7 +35,7 @@ Defaults are `documentation_language = en` and `engineering_language = en`. Conv
 |---|---|---|---|
 | Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. | `[actual value(s); consistent/mixed/unknown]` | `[paths/history]` |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. | `[actual value(s); consistent/mixed/unknown]` | `[code/schema/API/config/infra/Git/tracker/test/log paths]` |
-| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. | `[actual BCP-47 value(s)/locales; UNKNOWN - <resolution action>; or N/A - no product-content surface]` | `[UI/CLI/messages/resources/runtime or complete scoped absence survey]` |
+| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content; exact-copy assertions MAY use the Product Content Language. | `[actual BCP-47 value(s)/locales; UNKNOWN - <resolution action>; or N/A - no product-content surface]` | `[UI/CLI/messages/resources/runtime or complete scoped absence survey]` |
 | Governing Rules | Every applicable `AGENTS.md`, including broader and nested scopes. | `[actual requirement or none]` | `[path:line]` |
 
 ### Resolution and Adoption
@@ -50,12 +50,12 @@ Preserve existing identifiers, comments, docs, and product content; never mass-t
 
 ## Safety and Constraints
 
-- Local documentation authorization `[OBSERVED]`: `[authorized paths and boundaries]`
-- Build/test artifact side-effect authorization `[OBSERVED]`: `[authorized commands and expected output directories]`
+- Local documentation authorization `[CONFIRMED]`: `[authorized paths and boundaries]`
+- Build/test artifact side-effect authorization `[CONFIRMED]`: `[authorized commands and expected output directories]`
 - Result `SKIPPED`: `[command not run because of production risk, cost, secrets, or missing authorization; include reason]`
 - Result `UNAVAILABLE`: `[missing tool, service, environment, and condition for resuming]`
 - Pre-existing worktree changes `[OBSERVED]`: `[changes present before this run]`
-- Git/remote authorization `[OBSERVED]`: `[none unless independently and explicitly granted]`
+- Git/remote authorization `[CONFIRMED]`: `[none unless independently and explicitly granted]`
 
 ## Command Results
 

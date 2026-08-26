@@ -4,7 +4,7 @@ Copy the first `FILE` section to `specs/ROADMAP.md`. Copy the second `FILE` sect
 
 On successful completion, the Roadmap has exactly one `NEXT` confirmed by a named Roadmap Decision Authority. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker. If every safe candidate has a currently unresolvable external blocker, use `BLOCKED_HANDOFF`: allow zero `NEXT` entries, remove the sole-`NEXT` statement, and record owner, unblock condition, and resume stage. In both branches, every Feature Spec remains `DRAFT` and MUST NOT be marked `READY`.
 
-Roadmap and Spec prose follows Documentation Language. New engineering names inside them follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while surrounding engineering text remains under Engineering Language. Any override requires both an explicit request and approval by a named authority empowered for project language policy; the requester is not automatically that authority.
+Roadmap and Spec prose follows Documentation Language. New engineering names inside them follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while surrounding engineering text remains under Engineering Language. Any override requires both an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority.
 
 Every material Roadmap or Spec claim MUST carry `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN` inline or in a dedicated Fact Status column. Roadmap lifecycle status and Spec maturity MUST NOT substitute for Fact Status.
 
@@ -59,7 +59,7 @@ Keep exactly one branch below.
 - Why now: `[CONFIRMED/RECOMMENDED]` {{SMALLEST_END_TO_END_VALUE_AND_RISK_REDUCTION}}
 - Dependencies satisfied: `[CONFIRMED]` {{EVIDENCE}}
 - Expected learning: `[RECOMMENDED]` {{PRODUCT_OR_ARCHITECTURE_ASSUMPTION_TO_VALIDATE}}
-- Refinement still required: `[UNKNOWN]` {{OPEN_QUESTIONS_FOR_FEATURE_DEV}}
+- Refinement still required: `[UNKNOWN, NON_BLOCKING]` {{OPEN_QUESTIONS_FOR_FEATURE_DEV}}
 
 ### Branch B: BLOCKED_HANDOFF
 
@@ -169,7 +169,7 @@ These are refinement inputs, not a complete Test Design.
 
 ## Open Questions
 
-- [ ] [UNKNOWN] {{QUESTION_THAT_FEATURE_DEV_MUST_RESOLVE}}
+- [ ] [UNKNOWN, NON_BLOCKING] {{QUESTION_THAT_FEATURE_DEV_MUST_RESOLVE}}
 
 ## Deliberately Deferred Detail
 

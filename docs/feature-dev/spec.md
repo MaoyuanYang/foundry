@@ -25,6 +25,8 @@ A newly selected `DRAFT/UNTRACKED` item moves to `NEXT` only after confirmation 
 DRAFT → clarification → refinement → SPEC READY
 ```
 
+A DRAFT Spec inherited from `coding-start` may carry `RECOMMENDED` proposals and `UNKNOWN` items; refinement resolves each through evidence or explicit Decision Authority confirmation before `SPEC READY`.
+
 **Brownfield**
 
 ```text

@@ -16,7 +16,7 @@ An Issue MUST NOT copy its Spec. It links the Spec and records status, owner, bl
 
 ## Language Contract
 
-Use these defaults unless an override is both explicitly requested and approved by a named human empowered for project language policy:
+Use these defaults unless an override is both explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy:
 
 ```text
 documentation_language = en
@@ -26,8 +26,8 @@ engineering_language = en
 - Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
 - Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
 - Product Content Language follows product requirements. Record actual BCP-47 value(s), `UNKNOWN - <resolution action>` for a potentially relevant unresolved surface, or `N/A - no product-content surface` for a confirmed no-content scope. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
-- Conversation MAY follow the user's language, but MUST NOT alter any dimension. The requester is not automatically an authority empowered for project language policy.
-- Every override MUST have an explicit request and approval by a named authority empowered for project language policy. Record request, authority, approval source, scope, and affected artifacts.
+- Conversation MAY follow the user's language, but MUST NOT alter any dimension. The requester is not automatically the `Maintainer Decision Authority` empowered for project language policy.
+- Every override MUST have an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy. Record request, authority, approval source, scope, and affected artifacts.
 - Persist repository-wide fallbacks and every approved scoped effective value, exact scope, authority, and approval source in root `AGENTS.md`; no Discovery-only or unspecified-document override may survive handoff.
 - Before changing an existing formal artifact, inspect its formal-prose language. Excluding clearly labeled exact Product Content, a mixed document, a difference from the resolved Documentation Language, or an edit that would add a second prose language or require translation is `CONFLICT` and `STOP` in either direction. Resume only after named-authority approval of one whole-document language and separate authorization for the required translation/update scope.
 - Every generated heading, table label, status explanation, and surrounding prose or engineering text MUST use its governing default unless that two-part override is recorded.

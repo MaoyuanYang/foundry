@@ -15,7 +15,7 @@ Foundry 中使用的全部状态、标签与门禁令牌，集中于此。
 | `REVIEW` | 实现完成；评审/文档/交付进行中 |
 | `DONE` | 已满足确认的交付标准 |
 | `BLOCKED` | 存在显式阻塞；已记录原因/owner/解除条件 |
-| `UNTRACKED` | 无可信工作历史（仅 Brownfield 勘察） |
+| `UNTRACKED` | 无可信工作历史；在 Brownfield 勘察时赋值，并保留至出现权威工作状态 |
 
 ## Project Stage 快照
 
@@ -87,7 +87,7 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 
 ## 交付交接
 
-`READY FOR PR`（PR 模式）/ `READY FOR DELIVERY`（no-PR 模式）/ `BLOCKED_HANDOFF`（coding-start，零 `NEXT`）。
+`READY FOR PR`（PR 模式）/ `READY FOR DELIVERY`（no-PR 模式）/ `DELIVERED`（已满足 Definition of Done；与 `DONE Status: PASS` 及 `Roadmap Status: DONE` 一同记录）/ `BLOCKED_HANDOFF`（coding-start，零 `NEXT`；交接令牌 `INITIALIZATION INCOMPLETE`）。
 
 ## 语言策略
 

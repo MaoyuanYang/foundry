@@ -4,7 +4,7 @@
 
 仅当 `SPEC READY` + `UI READY`（或显式跳过）+ `TEST DESIGN READY` 对当前 revision 全部通过、且无 `STALE` 时才写。Plan 记录这些 revision，且**只**回答"如何实现"：受影响模块/文件/页面/组件、当前与目标数据/API 流、领域/服务/持久化/集成/前端变更、事务、缓存、消息、校验、安全、错误处理、可观测性、迁移/发布/回滚、每个 `TS-*` 的测试执行条目、风险。
 
-Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI 契约，或引入重大依赖/架构。需求变更回到 Spec 走 Design Change。仅当门禁/计划/任务 revision 对齐时才记 `Roadmap Status: READY`。
+Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI 契约，或引入重大依赖/架构。需求变更回到 Spec 走 Design Change。仅当门禁/计划/任务 revision 对齐时才记 `Roadmap Status: READY`；若上游门禁失效，将就绪状态撤回至 `NEXT`，并记录原因与恢复点。
 
 ## Tasks
 
@@ -25,6 +25,8 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 当实现、验证、Review、Docs 已完成，但 PR 模式缺授权/工具/认证（或 no-PR 模式缺交付记录）时：产出 PR-ready 摘要与建议标题；列出变更文件/模块、测试命令与结果、UI/Design 变更、风险、破坏性/迁移、回滚；明确未执行的外部动作；记录 `READY FOR PR`（PR 模式）或 `READY FOR DELIVERY`（no-PR 模式）；保持 `Roadmap Status: REVIEW` 与 `DONE Status: NOT_READY`；然后 `STOP`。
 
 每个交付副作用（远程 Issue、commit、push、PR、merge、close）都需独立的明确授权，加可用工具、有效认证与已知目标。"实现这个 Feature"绝不是授权。
+
+当已确认的 Definition of Done 被满足（授权的 PR 已打开/批准/合并，或显式采纳的 no-PR 交付记录存在）时，将 `DELIVERED` 与 `DONE Status: PASS`、`Roadmap Status: DONE` 一同记录。
 
 ## DONE 门禁
 

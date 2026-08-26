@@ -21,13 +21,13 @@ Status rules:
 
 Discovery MUST record all three dimensions before Macro Readiness:
 
-| Dimension | Default / value | Status | Override request | Named language-policy authority / approval | Scope or next action |
+| Dimension | Default / value | Status | Override request | Named `Maintainer Decision Authority` / approval | Scope or next action |
 | --- | --- | --- | --- | --- | --- |
 | Documentation Language | `en` | `CONFIRMED` | {{NONE_OR_EXPLICIT_REQUEST_SOURCE}} | {{DEFAULT_POLICY_OR_NAMED_AUTHORITY_AND_APPROVAL_SOURCE}} | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records |
 | Engineering Language | `en` | `CONFIRMED` | {{NONE_OR_EXPLICIT_REQUEST_SOURCE}} | {{DEFAULT_POLICY_OR_NAMED_AUTHORITY_AND_APPROVAL_SOURCE}} | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages |
 | Product Content Language | {{BCP47_VALUES_OR_UNKNOWN_OR_NA}} | `CONFIRMED/RECOMMENDED/UNKNOWN` | {{PRODUCT_REQUIREMENT_OR_EXPLICIT_CHANGE_REQUEST}} | {{NAMED_AUTHORITY_AND_APPROVAL_SOURCE_OR_PENDING}} | Localized resource/configuration values, labeled exact-copy quotations, exact-copy assertions, or `N/A - no product-content surface`; include scope and resolution action when unresolved |
 
-Apply these exact defaults unless an override is explicitly requested and approved by a named human empowered for project language policy:
+Apply these exact defaults unless an override is explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy:
 
 ```text
 documentation_language = en
@@ -36,7 +36,7 @@ engineering_language = en
 
 Documentation Language governs formal artifact prose. Engineering Language governs the engineering names and workflow text listed in the matrix; configuration keys are included, arbitrary configuration values are not. Product Content Language follows product requirements and permits localized resource/configuration values, exact product copy quoted in clearly labeled docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
 
-Conversation MAY follow the user's language, but MUST NOT change any dimension. Every override MUST be explicitly requested and approved by a named human empowered for project language policy; the requester is not automatically that authority. Record request source, authority name/role, approval source, scope, affected artifacts, and the root `AGENTS.md` rows that will persist every effective fallback and scoped value. If a potentially relevant Product Content Language is unresolved, retain `UNKNOWN - <resolution action>`; if it changes current product correctness or UI direction, it is blocking. Use `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. Discovery context alone MUST NOT be the durable source of an override.
+Conversation MAY follow the user's language, but MUST NOT change any dimension. Every override MUST be explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority. Record request source, authority name/role, approval source, scope, affected artifacts, and the root `AGENTS.md` rows that will persist every effective fallback and scoped value. If a potentially relevant Product Content Language is unresolved, retain `UNKNOWN - <resolution action>`; if it changes current product correctness or UI direction, it is blocking. Use `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. Discovery context alone MUST NOT be the durable source of an override.
 
 ## Adaptive Grilling
 
@@ -216,10 +216,10 @@ Confirm and record:
 - Engineering Language: keep `en` for all engineering names and workflow text named in the matrix unless an override satisfies both approval conditions.
 - Product Content Language: derive actual BCP-47 value(s) from explicit product requirements, retain an evidenced `UNKNOWN - <resolution action>`, or record `N/A - no product-content surface` for a confirmed no-content scope; constrain exceptions to localized resource/configuration values, labeled exact-copy quotations, and exact-copy assertions.
 - Whether an explicit override request applies globally or only to named artifacts, engineering surfaces, or product surfaces.
-- Which named human is empowered for project language policy, and where that human approved the request.
+- Which named human holds the `Maintainer Decision Authority` role for project language policy, and where that human approved the request.
 - Which exact root `AGENTS.md` scope row will persist each repository fallback and approved scoped override for later workflows.
 
-Conversation language alone MUST NOT be treated as an override request or approval. The requester MUST NOT be treated as an authority empowered for project language policy without evidence of that role.
+Conversation language alone MUST NOT be treated as an override request or approval. The requester MUST NOT be treated as the `Maintainer Decision Authority` empowered for project language policy without evidence of that role.
 
 ## 8. Data, API, and Integration
 

@@ -16,7 +16,7 @@ Read resources at the applicable stage rather than improvising from this file:
 - Before the survey, read [survey-and-evidence.md](references/survey-and-evidence.md) for scope, evidence labels, conflict handling, and the question threshold.
 - After routing is valid and before creating or adopting root `STAGE.md`, read [stage.template.md](assets/stage.template.md); reread it before changing tracking mode or status authority.
 - Before baseline verification or architecture reconstruction, read [baseline-and-reconstruction.md](references/baseline-and-reconstruction.md) for command safety, result classification, and backend, data, and frontend reconstruction.
-- Before documentation, Feature Inventory, AS-IS Specs, or `Recommended Next`, read [as-is-lifecycle.md](references/as-is-lifecycle.md) for artifact ownership, state transitions, and STOP conditions.
+- Before documentation, the AGENTS Update stage, Feature Inventory, AS-IS Specs, or `Recommended Next`, read [as-is-lifecycle.md](references/as-is-lifecycle.md) for artifact ownership, state transitions, and STOP conditions.
 - For `docs/onboarding/BASELINE.md` and `docs/onboarding/KNOWLEDGE_GAPS.md`, read [baseline-and-knowledge-gaps.template.md](assets/baseline-and-knowledge-gaps.template.md).
 - For canonical `README` and `docs/*`, read [as-is-docs.template.md](assets/as-is-docs.template.md).
 - For any scoped `AGENTS.md`, read [agents-update.template.md](assets/agents-update.template.md).
@@ -32,7 +32,7 @@ After entry is valid, read an existing root `STAGE.md` and verify its linked tra
 
 **Do not enter for:** ordinary Q&A, read-only code review, diagnosis-only bug work, or a one-off explanation. Use `coding-start` for an empty repository or Greenfield project. Use `feature-dev` for the TO-BE design, tests, implementation, or delivery of one selected Feature.
 
-If the repository is effectively empty, STOP onboarding and route to `coding-start`. If takeover and development are requested together, complete onboarding and `STOP`; do not cross into Feature implementation in the same run.
+If the repository is effectively empty, STOP onboarding and route to `coding-start`. If takeover and development are requested together, complete onboarding and `STOP`; do not cross into Feature implementation in the same run. If the repository contains documentation but no implementation and the request is ambiguous between initialization and takeover, ask one entry-classification question before proceeding. Project-level multi-Feature planning on a healthy Brownfield repository is outside all three Skills: request an explicit takeover first, or select one Feature for `feature-dev`.
 
 ## Authorization Gates
 
@@ -49,7 +49,7 @@ Local artifact authorization never includes `git commit`, `git push`, a remote I
 3. Use only `OBSERVED`, `DOCUMENTED`, `CONFIRMED`, `INFERRED`, `NEEDS_CONFIRMATION`, `CONFLICT`, `UNKNOWN`, and `MISSING`. Never rewrite `INFERRED` as an unlabeled fact.
 4. Record conflicting sources, claims, environments, and impact side by side. Never resolve a conflict silently by rank.
 5. Existing code, tests, docs, and UI are evidence, not automatic product requirements, correct design, or a Design System.
-6. Make no source-code change before baseline verification. During onboarding, do not refactor broadly, upgrade dependencies, format the repository, migrate data, batch-fix debt, or make any unapproved behavior change.
+6. Make no source-code change at any point during onboarding: do not refactor broadly, upgrade dependencies, format the repository, migrate data, batch-fix debt, or make any behavior change, approved or not.
 7. Modify only root `STAGE.md`, documentation needed to understand the project, scoped `AGENTS.md`, `specs/ROADMAP.md`, and AS-IS Specs. `STAGE.md` contains current coordination only and MUST NOT become another AS-IS fact source. Record and classify source defects; do not fix them here.
 8. Preserve valid repository content and history. Merge incrementally instead of replacing content to fit a template.
 9. Keep local artifact authorization separate from Git and remote authorization.
@@ -71,7 +71,7 @@ The policy controls these surfaces:
 |---|---|
 | Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
 | Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. |
-| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content. |
+| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content; exact-copy assertions MAY use the Product Content Language. |
 
 During Preflight, inspect every listed surface, every applicable `AGENTS.md` language rule, and the BCP-47 language values and scopes that the evidence supports. Product Content Language has no default: record actual BCP-47 value(s) when supported, `UNKNOWN - <resolution action>` when a potentially relevant surface is unresolved, or `N/A - no product-content surface` only after the survey confirms that no user-facing or localized content exists in scope. `UNKNOWN` is unresolved and prevents complete adoption when applicable; evidenced `N/A` is a resolved state. The language used in the conversation or current request never overrides repository policy.
 
@@ -83,6 +83,7 @@ Apply these rules:
 - Before a required formal-artifact update, inspect the target's existing formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the update would introduce a second prose language or require translation, record `CONFLICT` and `STOP` in either direction. Resume only after named-authority approval of one whole-document language and separate authorization for the required translation/update scope.
 - A non-English Documentation or Engineering Language rule is already resolved only when it has a valid scoped BCP-47 value, named authority, explicit `ADOPTED` evidence, source, and date with no conflicting policy. Preserve such an existing override. Otherwise record `CONFLICT` and `STOP`, regardless of nested precedence, until the named authority resolves and adopts it.
 - Only a named `Maintainer Decision Authority` may explicitly mark the Language Policy `ADOPTED` or approve an override. Record each value's actual BCP-47 value, scope, authority, evidence, and date. Persist it exactly once in the nearest `AGENTS.md` whose scope fully governs it: repository-wide fallbacks and global engineering surfaces belong in root; a subtree-only override belongs in the nearest governing nested file, or root when none exists. Broader files MAY link to that authoritative entry but MUST NOT duplicate it. Synchronize the Baseline language table and AS-IS Spec metadata. Defaults are replaced only within the approved scope.
+- Obtain adoption explicitly: after Language Preflight detection, present the resolved values or the English default proposal to the named `Maintainer Decision Authority` and request explicit `ADOPTED` (or an approved scoped override) before canonical documentation generation. If the authority cannot be reached, record a blocking `NEEDS_CONFIRMATION` in Knowledge Gaps, stop before canonical documentation, and report onboarding incomplete.
 
 A complete authorized onboarding must have the resolved Language Policy explicitly `ADOPTED` by the named `Maintainer Decision Authority` and persist actual BCP-47 values for Documentation and Engineering Language plus either actual Product Content BCP-47 value(s) or evidenced `N/A - no product-content surface` in the single authoritative `AGENTS.md` location for each scope. `UNKNOWN` may be recorded during investigation but remains unresolved. Under the defaults, the section is English. After an approved Documentation Language override, render its prose consistently in that resolved language while preserving the exact ASCII policy keys. Onboarding remains incomplete while adoption, resolution, synchronization, or persistence is missing.
 
@@ -95,7 +96,7 @@ A complete authorized onboarding must have the resolved Language Policy explicit
 - AS-IS Spec status: only `AS_IS_DRAFT | RECONSTRUCTED`; onboarding never promotes it to `READY`.
 - Recommendation-selection metadata: `RECOMMENDED | SELECTED`; it is not Work Status.
 
-Feature implementation state, Roadmap work status, Spec status, and recommendation-selection metadata are independent dimensions and never substitute for one another.
+Feature implementation state, Roadmap work status, Spec status, and recommendation-selection metadata are independent dimensions and never substitute for one another. Test stability uses `STABLE | FLAKY | UNKNOWN`, and Baseline coverage confidence uses `high | medium | low`. Feature lifecycle artifacts and Gates named in this Skill's controlled surfaces (Test Design documents, Implementation Plans, Review documents, Done Checklists, Delivery Records, `SPEC READY`, `UI READY`, `TEST DESIGN READY`) belong to the `feature-dev` vocabulary.
 
 ## Workflow
 
@@ -127,7 +128,7 @@ Use [baseline-and-reconstruction.md](references/baseline-and-reconstruction.md) 
 
 ### 4. Conditional Frontend/UI Reconstruction
 
-Only for a user-facing UI, recover engineering structure, Page/Screen Map, flows, components and state, API/auth/forms/errors, tests, tokens, interaction states, responsive behavior, and accessibility. With no UI, record `N/A` and create no placeholder doc. An observed pattern is not a standard; record inconsistencies as `CONFLICT` or Technical Debt.
+Only for a user-facing UI, recover engineering structure, Page/Screen Map, flows, components and state, API/auth/forms/errors, tests, tokens, interaction states, responsive behavior, and accessibility. With no UI, record `N/A` in the Baseline Coverage Summary `Frontend/UI` row and create no placeholder doc. An observed pattern is not a standard; record inconsistencies as `CONFLICT` or Technical Debt.
 
 ### 5. Docs-vs-Reality
 
@@ -143,7 +144,7 @@ Read [as-is-docs.template.md](assets/as-is-docs.template.md), then incrementally
 
 - `README.md` for trustworthy entry, prerequisites, start/build/test commands, and navigation.
 - `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/API.md`, and `docs/TESTING.md`.
-- With a frontend/UI: `docs/FRONTEND.md`, `docs/UX.md`, `docs/UI.md`, and `docs/DESIGN_SYSTEM.md`.
+- With a frontend/UI that baseline evidence justifies documenting: `docs/FRONTEND.md`, `docs/UX.md`, `docs/UI.md`, and `docs/DESIGN_SYSTEM.md`.
 - `docs/adr/` only to preserve or index evidenced historical decisions. Never invent an ADR when historical reasoning is unknown.
 - Root `STAGE.md` for the live project/member snapshot, authority links, blockers, and handoff. It MUST NOT contain canonical AS-IS behavior or duplicate the Feature Inventory.
 
@@ -205,7 +206,7 @@ Read-only mode ends before the first write and must report onboarding incomplete
 - Every resource link resolves; no empty or meaningless artifact was created.
 - No source behavior, broad refactor, or batch Technical Debt fix occurred.
 
-Report the baseline summary, created/updated docs, major conflicts and gaps, Feature Inventory and AS-IS Spec status, `Recommended Next`, its evidence label, whether it became `NEXT`, the resolved Language Policy, and the `STAGE.md` snapshot revision/current activity/handoff. Then output exactly:
+Report the baseline summary, created/updated docs, major conflicts and gaps, Feature Inventory and AS-IS Spec status, `Recommended Next`, its evidence label, whether it became `NEXT`, the resolved Language Policy, and the `STAGE.md` snapshot revision/current activity/handoff. A blocking halt earlier in this file is also written `STOP`, but it always names the blocker and resume condition; the terminal `STOP` below means this onboarding report is complete. Then output exactly:
 
 ```text
 STOP

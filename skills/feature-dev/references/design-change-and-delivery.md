@@ -119,6 +119,10 @@ When implementation, verification, Review, and Docs are complete, but PR mode la
 - In PR mode, record `READY FOR PR`; in no-PR mode, record `READY FOR DELIVERY`.
 - Keep `Roadmap Status: REVIEW`, record `DONE Status: NOT_READY`, then `STOP`.
 
+### `DELIVERED`
+
+`DELIVERED` means the confirmed Definition of Done is met: the authorized PR is opened, approved, or merged, or the explicitly adopted no-PR delivery record exists. Record `DELIVERED` only together with `DONE Status: PASS` and `Roadmap Status: DONE`; it is the terminal delivery state in the Issue and Review templates.
+
 ### `DONE`
 
 `DONE Status: PASS` and `Roadmap Status: DONE` may be recorded together only when every condition holds:

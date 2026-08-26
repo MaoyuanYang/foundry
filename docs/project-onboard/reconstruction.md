@@ -46,10 +46,10 @@ Identify **what is already implemented**, grouped by understandable business cap
 | State | Meaning |
 |---|---|
 | `IMPLEMENTED` | Core current behavior works with no known blocking gap |
-| `PARTIAL` | Only part of a critical path, state, or role works |
+| `PARTIAL` | Part exists, but a critical path, state, or role is missing or unusable |
 | `BROKEN` | Evidence shows an expected core path currently fails |
-| `UNKNOWN` | Evidence is insufficient |
-| `DEPRECATED` | Explicit evidence shows retirement |
+| `UNKNOWN` | Evidence is insufficient for a responsible judgment |
+| `DEPRECATED` | Explicit evidence shows retirement; dead-looking code alone is insufficient |
 
 The Inventory lives only in `specs/ROADMAP.md` (never a parallel inventory), recording implementation state, work status, dependencies, current behavior, evidence, conflicts/unknowns, and test coverage separately.
 
