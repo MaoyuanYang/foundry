@@ -63,7 +63,7 @@ Macro Synthesis 之后必跑一次反驳关。每个假设记录为 `RETAINED`�
 5. **Success Falsifiability** —— 哪个可观察结果意味着成功、哪个意味着方向错了？
 6. **Complexity** —— 每项重大复杂度有什么业务/风险/规模证据支撑？
 
-新的阻塞未知回到 `NEEDS CLARIFICATION` 与 Discovery。Challenge 不得下沉到 DTO/Schema/API/组件；沉默不等于确认。
+新的阻塞未知回到 `NEEDS_CLARIFICATION` 与 Discovery。Challenge 不得下沉到 DTO/Schema/API/组件；沉默不等于确认。
 
 ## Macro Readiness 清单
 
@@ -71,7 +71,7 @@ Macro Synthesis 之后必跑一次反驳关。每个假设记录为 `RETAINED`�
 
 **`UI: YES` 追加项** —— Target Platform、Primary User Flow、Page/Screen Map、Navigation、UX Principles、Frontend Architecture、Design System Direction、Responsive Requirements、Accessibility Requirements。
 
-任何可能改变产品正确性、边界、核心流程、Source of Truth、安全/合规、产物语言或 UI 主流程的 `UNKNOWN` 都会触发 `NEEDS CLARIFICATION`。只有高影响未知全部消除后，Gate 才输出：
+任何可能改变产品正确性、边界、核心流程、Source of Truth、安全/合规、产物语言或 UI 主流程的 `UNKNOWN` 都会触发 `NEEDS_CLARIFICATION`。只有高影响未知全部消除后，Gate 才输出：
 
 ```text
 MACRO DESIGN READY

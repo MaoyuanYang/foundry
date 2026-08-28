@@ -369,6 +369,6 @@ Do not duplicate token definitions here. Tokens and reusable-component rules bel
 
 | ADR | Status | Decision Known | Reasoning Known | Evidence/Conflict |
 |---|---|---|---|---|
-| `[path/title]` | `[accepted/superseded/unknown]` | `[summary]` | `[summary/UNKNOWN]` | `[source]` |
+| `[path/title]` | `[Accepted/Superseded/Unknown]` | `[summary]` | `[summary/UNKNOWN]` | `[source]` |
 
 Never fabricate past Context, Decision, or Reasoning to explain existing code. Onboarding records future L3 ADR requirements only; after authority confirmation, `feature-dev` creates future design ADRs.

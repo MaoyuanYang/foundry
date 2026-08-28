@@ -12,7 +12,7 @@
 | `ARTIFACT_GENERATION` | `MACRO DESIGN READY` and explicit local-write authorization exist | Generate only applicable project documents with distinct responsibilities and the recorded languages | Enter Feature Map when documents are consistent |
 | `FEATURE_MAPPING` | Macro documents are usable | Define vertical slices and analyze value, priority, and dependencies | Generate Specs when the Feature Map is complete |
 | `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature | Every Feature has a DRAFT Spec; enter `NEXT_SELECTION` |
-| `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select exactly one `NEXT` | The sole `NEXT` can be handed to `feature-dev`; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS CLARIFICATION`; then enter `SELF_REVIEW` |
+| `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select exactly one `NEXT` | The sole `NEXT` can be handed to `feature-dev`; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS_CLARIFICATION`; then enter `SELF_REVIEW` |
 | `BLOCKED_HANDOFF` | No safe candidate exists and a currently unresolvable external blocker remains | Allow zero `NEXT` entries; record blocker, owner, unblock condition, and resume stage | Enter `SELF_REVIEW`, then `STOP` as incomplete; MUST NOT claim readiness |
 | `SELF_REVIEW` | Artifacts exist | Fix boundary, status, language, link, duplication, and overdesign problems | `STOP` only after all checks pass |
 
@@ -101,7 +101,7 @@ Any of these unknowns MUST block:
 When blocked, output:
 
 ```text
-NEEDS CLARIFICATION
+NEEDS_CLARIFICATION
 ```
 
 Then return to the dynamic interview at the current intensity: 2-5 related questions per `STANDARD` round or one decision question per `DEEP` round.

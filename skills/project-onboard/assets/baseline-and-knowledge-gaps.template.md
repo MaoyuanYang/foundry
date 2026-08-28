@@ -61,14 +61,14 @@ Preserve existing identifiers, comments, docs, and product content; never mass-t
 
 Use only `PASS`, `FAIL`, `UNAVAILABLE`, or `SKIPPED`.
 
-| ID | Area | Exact Command | Working Directory | Environment / Preconditions | Result | Duration | Evidence / Key Output | Notes |
+| ID | Area | Exact Command | Working Directory | Environment / Preconditions | Result (PASS/FAIL/UNAVAILABLE/SKIPPED) | Duration | Evidence / Key Output | Notes |
 |---|---|---|---|---|---|---|---|---|
-| B-001 | Backend/General Build | `[command]` | `[path]` | `[versions/services]` | `[RESULT]` | `[time]` | `[exit code/artifact/log]` | `[scope]` |
-| B-002 | Existing Tests | `[command]` | `[path]` | `[versions/services]` | `[RESULT]` | `[time]` | `[pass/fail/skip counts]` | `[scope]` |
-| B-003 | Smoke | `[command]` | `[path]` | `[data/role/services]` | `[RESULT]` | `[time]` | `[observable result]` | `[side-effect controls]` |
-| B-004 | Application Startup | `[command]` | `[path]` | `[profile/ports/services]` | `[RESULT]` | `[time]` | `[health/readiness/exit]` | `[cleanup]` |
-| B-005 | Frontend Build | `[command]` | `[path]` | `[node/package manager]` | `[RESULT]` | `[time]` | `[exit/artifact]` | `[scope]` |
-| B-006 | Frontend Tests | `[command]` | `[path]` | `[browser/dom/runtime]` | `[RESULT]` | `[time]` | `[pass/fail/skip counts]` | `[scope]` |
+| B-001 | Backend/General Build | `[command]` | `[path]` | `[versions/services]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[exit code/artifact/log]` | `[scope]` |
+| B-002 | Existing Tests | `[command]` | `[path]` | `[versions/services]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[pass/fail/skip counts]` | `[scope]` |
+| B-003 | Smoke | `[command]` | `[path]` | `[data/role/services]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[observable result]` | `[side-effect controls]` |
+| B-004 | Application Startup | `[command]` | `[path]` | `[profile/ports/services]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[health/readiness/exit]` | `[cleanup]` |
+| B-005 | Frontend Build | `[command]` | `[path]` | `[node/package manager]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[exit/artifact]` | `[scope]` |
+| B-006 | Frontend Tests | `[command]` | `[path]` | `[browser/dom/runtime]` | `[PASS/FAIL/UNAVAILABLE/SKIPPED]` | `[time]` | `[pass/fail/skip counts]` | `[scope]` |
 
 ## Pre-existing Failures
 

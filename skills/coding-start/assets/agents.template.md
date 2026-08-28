@@ -29,9 +29,13 @@ The key lines above are repository-wide fallbacks. Replace every placeholder. Us
 | `documentation_language` | `en` | `repository-wide fallback` | `default policy` | {{SOURCE_AND_DATE}} |
 | `engineering_language` | `en` | `repository-wide fallback` | `default policy` | {{SOURCE_AND_DATE}} |
 | `product_content_language` | {{ACTUAL_BCP47_VALUES_OR_UNKNOWN_OR_NA}} | {{PRODUCT_SURFACE_SCOPE_OR_NA}} | {{PRODUCT_REQUIREMENT_SOURCE_OR_NAMED_AUTHORITY}} | {{SOURCE_AND_DATE}} |
-| {{POLICY_KEY_FOR_EACH_APPROVED_OVERRIDE}} | {{ACTUAL_EFFECTIVE_BCP47_VALUE}} | {{EXACT_ARTIFACT_PATH_OR_ENGINEERING_SURFACE_SCOPE}} | {{NAMED_AUTHORITY_AND_APPROVAL_SOURCE}} | {{SOURCE_AND_DATE}} |
 
-Add one row for every effective scoped override and delete the example override row when none exists. This table is the durable handoff source: a later workflow MUST be able to resolve the applicable value from this `AGENTS.md` without Discovery context or an unspecified document.
+<!-- Example scoped-override row: copy this format into the table above as one
+row for every approved override, then delete this comment when none exists.
+| `{{POLICY_KEY_FOR_EACH_APPROVED_OVERRIDE}}` | `{{ACTUAL_EFFECTIVE_BCP47_VALUE}}` | `{{EXACT_ARTIFACT_PATH_OR_ENGINEERING_SURFACE_SCOPE}}` | `{{NAMED_AUTHORITY_AND_APPROVAL_SOURCE}}` | `{{SOURCE_AND_DATE}}` |
+-->
+
+This table is the durable handoff source: a later workflow MUST be able to resolve the applicable value from this `AGENTS.md` without Discovery context or an unspecified document.
 
 At initialization, this root file stores every effective value exactly once. Repository-global branch, commit, and Issue/PR language uses the root Engineering Language unless an approved override explicitly names those global surfaces. A later nested `AGENTS.md` MAY become authoritative for a subtree-only override; in that case, replace the root value row with a link to the nested policy rather than duplicating it.
 

@@ -56,7 +56,7 @@ const defaultTree: Node[] = [
         children: [
           { name: 'ROADMAP.md', kind: 'file', note: 'Feature Map' },
           {
-            name: 'Fxxx-feature-slug/',
+            name: '<feature-id>-<slug>/',
             kind: 'dir',
             children: [{ name: 'spec.md', kind: 'file', note: 'DRAFT Spec ×N' }]
           }

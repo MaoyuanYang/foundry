@@ -1,12 +1,12 @@
 # Roadmap and DRAFT Spec Templates
 
-Copy the first `FILE` section to `specs/ROADMAP.md`. Copy the second `FILE` section to `specs/Fxxx-feature-slug/spec.md` for every Feature. Replace all placeholders and delete inapplicable sections, but retain explicit Open Questions.
+Copy the first `FILE` section to `specs/ROADMAP.md`. Copy the second `FILE` section to `specs/<feature-id>-<slug>/spec.md` for every Feature. Replace all placeholders and delete inapplicable sections, but retain explicit Open Questions.
 
 On successful completion, the Roadmap has exactly one `NEXT` confirmed by a named Roadmap Decision Authority. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker. If every safe candidate has a currently unresolvable external blocker, use `BLOCKED_HANDOFF`: allow zero `NEXT` entries, remove the sole-`NEXT` statement, and record owner, unblock condition, and resume stage. In both branches, every Feature Spec remains `DRAFT` and MUST NOT be marked `READY`.
 
 Roadmap and Spec prose follows Documentation Language. New engineering names inside them follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while surrounding engineering text remains under Engineering Language. Any override requires both an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority.
 
-Every material Roadmap or Spec claim MUST carry `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN` inline or in a dedicated Fact Status column. Roadmap lifecycle status and Spec maturity MUST NOT substitute for Fact Status.
+Every material Roadmap or Spec claim MUST carry `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN, NON_BLOCKING` inline or in a dedicated Fact Status column. Roadmap lifecycle status and Spec maturity MUST NOT substitute for Fact Status.
 
 ---
 
@@ -67,7 +67,7 @@ Keep exactly one branch below.
 - Status: `INITIALIZATION INCOMPLETE`
 - Blocked candidates: `[CONFIRMED]` {{FEATURE_IDS_AND_BLOCKERS}}
 - Owner / Decision Authority: `[CONFIRMED]` {{NAMED_HUMAN_OR_EXTERNAL_OWNER}}
-- Unblock condition: `[CONFIRMED/UNKNOWN]` {{CONCRETE_CONDITION}}
+- Unblock condition: `[CONFIRMED/UNKNOWN, NON_BLOCKING]` {{CONCRETE_CONDITION}}
 - Resume from: `NEXT_SELECTION`
 - MUST NOT invoke `feature-dev` until a NEXT Feature is confirmed.
 
@@ -81,13 +81,13 @@ Keep exactly one branch below.
 
 ---
 
-## FILE: `specs/Fxxx-feature-slug/spec.md`
+## FILE: `specs/<feature-id>-<slug>/spec.md`
 
 # {{FEATURE_ID}}: {{FEATURE_TITLE}}
 
 - Spec Status: `DRAFT`
 - Roadmap Status: `DRAFT/NEXT/BLOCKED`
-- Fact Status rule: every material claim below uses `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN`
+- Fact Status rule: every material claim below uses `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN, NON_BLOCKING`
 - Priority: `P0/P1/P2`
 - Owner: Unassigned until Feature development starts
 - Last Updated: {{YYYY-MM-DD}}

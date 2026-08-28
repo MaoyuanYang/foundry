@@ -63,7 +63,7 @@ After Macro Synthesis, one mandatory counterargument pass runs. Each assumption 
 5. **Success Falsifiability** — which observable result means success, which means the direction is wrong?
 6. **Complexity** — what business/risk/scale evidence supports each major complexity?
 
-A new blocking unknown returns to `NEEDS CLARIFICATION` and Discovery. The Challenge must not descend into DTOs/schema/APIs/components, and silence is not confirmation.
+A new blocking unknown returns to `NEEDS_CLARIFICATION` and Discovery. The Challenge must not descend into DTOs/schema/APIs/components, and silence is not confirmation.
 
 ## Macro Readiness checklist
 
@@ -71,7 +71,7 @@ A new blocking unknown returns to `NEEDS CLARIFICATION` and Discovery. The Chall
 
 **Additional when `UI: YES`** — Target Platform, Primary User Flow, Page/Screen Map, Navigation, UX Principles, Frontend Architecture, Design System Direction, Responsive Requirements, Accessibility Requirements.
 
-Any `UNKNOWN` that can alter product correctness, boundaries, the core flow, Source of Truth, security/compliance, artifact language, or the primary UI flow produces `NEEDS CLARIFICATION`. Only when all high-impact unknowns are resolved does the Gate output:
+Any `UNKNOWN` that can alter product correctness, boundaries, the core flow, Source of Truth, security/compliance, artifact language, or the primary UI flow produces `NEEDS_CLARIFICATION`. Only when all high-impact unknowns are resolved does the Gate output:
 
 ```text
 MACRO DESIGN READY

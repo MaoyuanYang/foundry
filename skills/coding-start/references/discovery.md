@@ -116,7 +116,7 @@ Challenge the smallest relevant set below. Explain why an item does not apply ra
 5. **Success Falsifiability**: Which observable result means success, and which result means the direction or assumption is wrong?
 6. **Complexity Challenge**: Which business, risk, or scale evidence supports each major complexity, and what trigger would justify an upgrade?
 
-On a new conflict or blocking unknown, output `NEEDS CLARIFICATION` and return to Discovery. After updating Macro Synthesis, rerun affected Challenges. Once every Challenge has an outcome, replay the revised macro synthesis and obtain explicit Decision Authority confirmation; silence is not confirmation. The Challenge MUST NOT descend into DTOs, schema fields, complete APIs, component trees, or implementation tasks, and does not replace Feature Refinement.
+On a new conflict or blocking unknown, output `NEEDS_CLARIFICATION` and return to Discovery. After updating Macro Synthesis, rerun affected Challenges. Once every Challenge has an outcome, replay the revised macro synthesis and obtain explicit Decision Authority confirmation; silence is not confirmation. The Challenge MUST NOT descend into DTOs, schema fields, complete APIs, component trees, or implementation tasks, and does not replace Feature Refinement.
 
 The Challenge Record is working conversation context, not a project artifact. Formal documents retain only confirmed assumptions, rejected scope, rationale, and revisit triggers with durable value; they MUST NOT copy raw interview rounds.
 

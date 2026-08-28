@@ -8,7 +8,7 @@ After valid entry and explicit local-write authorization, `coding-start` creates
 
 - Base projects always get `STAGE.md`, `README.md`, `AGENTS.md`, `specs/ROADMAP.md`, and the applicable `docs/*`.
 - `FRONTEND.md`, `UX.md`, `UI.md`, and `DESIGN_SYSTEM.md` are created **only** when `UI: YES`.
-- A DRAFT `spec.md` is generated for **every** Feature under `specs/Fxxx-feature-slug/`.
+- A DRAFT `spec.md` is generated for **every** Feature under `specs/<feature-id>-<slug>/`.
 
 ## Document responsibilities
 

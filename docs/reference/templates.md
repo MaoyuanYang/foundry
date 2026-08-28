@@ -10,7 +10,7 @@ Each skill ships templates in its `assets/` folder. A template is read only at i
 | `assets/core-docs.template.md` | `README.md`, `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/API.md`, `docs/TESTING.md`, `docs/adr/README.md` + ADR | After the Gate; only applicable docs |
 | `assets/ui-docs.template.md` | `docs/FRONTEND.md`, `docs/UX.md`, `docs/UI.md`, `docs/DESIGN_SYSTEM.md` | Only when `UI: YES`, after the Gate |
 | `assets/agents.template.md` | `AGENTS.md` | After the Gate, when creating/maintaining root AGENTS |
-| `assets/roadmap-and-draft-spec.template.md` | `specs/ROADMAP.md`, `specs/Fxxx-feature-slug/spec.md` (×N) | Before generating the Feature Map and DRAFT Specs |
+| `assets/roadmap-and-draft-spec.template.md` | `specs/ROADMAP.md`, `specs/<feature-id>-<slug>/spec.md` (×N) | Before generating the Feature Map and DRAFT Specs |
 
 ## project-onboard
 

@@ -8,7 +8,7 @@
 
 - 基础项目必有 `STAGE.md`、`README.md`、`AGENTS.md`、`specs/ROADMAP.md` 与适用的 `docs/*`。
 - `FRONTEND.md`、`UX.md`、`UI.md`、`DESIGN_SYSTEM.md` **仅当** `UI: YES` 时创建。
-- 每个 Feature 都在 `specs/Fxxx-feature-slug/` 下生成一份 DRAFT `spec.md`。
+- 每个 Feature 都在 `specs/<feature-id>-<slug>/` 下生成一份 DRAFT `spec.md`。
 
 ## 文档职责
 

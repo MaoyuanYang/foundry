@@ -29,7 +29,7 @@ Every material product, architecture, data, API, or testing statement MUST retai
 - [CONFIRMED] Live project and member status: [`STAGE.md`](STAGE.md)
 - [CONFIRMED] Macro design: `MACRO DESIGN READY`
 - [CONFIRMED] Business implementation: Not started
-- [CONFIRMED] Feature handoff: `PENDING NEXT SELECTION - reconcile from specs/ROADMAP.md after NEXT_SELECTION`
+- [CONFIRMED] Feature handoff: pending - reconcile from `specs/ROADMAP.md` after the `NEXT_SELECTION` stage
 
 <!-- Template note: Replace the pending handoff line above with exactly one of
 the two branches below during NEXT_SELECTION reconciliation (Feature Map step

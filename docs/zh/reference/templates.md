@@ -10,7 +10,7 @@
 | `assets/core-docs.template.md` | `README.md`、`docs/PRODUCT.md`、`docs/ARCHITECTURE.md`、`docs/DATABASE.md`、`docs/API.md`、`docs/TESTING.md`、`docs/adr/README.md` + ADR | Gate 之后；仅适用文档 |
 | `assets/ui-docs.template.md` | `docs/FRONTEND.md`、`docs/UX.md`、`docs/UI.md`、`docs/DESIGN_SYSTEM.md` | 仅当 `UI: YES`，Gate 之后 |
 | `assets/agents.template.md` | `AGENTS.md` | Gate 之后，创建/维护根 AGENTS 时 |
-| `assets/roadmap-and-draft-spec.template.md` | `specs/ROADMAP.md`、`specs/Fxxx-feature-slug/spec.md`（×N） | 生成 Feature Map 与 DRAFT Specs 之前 |
+| `assets/roadmap-and-draft-spec.template.md` | `specs/ROADMAP.md`、`specs/<feature-id>-<slug>/spec.md`（×N） | 生成 Feature Map 与 DRAFT Specs 之前 |
 
 ## project-onboard
 

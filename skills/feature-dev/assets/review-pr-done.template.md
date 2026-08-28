@@ -34,9 +34,9 @@
 
 ## Verification Results
 
-| Command/check | Scope | Result | Evidence/notes |
+| Command/check | Scope | Result (PASS/FAIL/NOT RUN) | Evidence/notes |
 | --- | --- | --- | --- |
-|  |  | `PASS/FAIL/NOT RUN` |  |
+|  |  |  |  |
 
 ### Acceptance Traceability
 
@@ -120,31 +120,39 @@ Each controlling artifact MUST use an independent change ID or working-tree cont
 
 ## `DONE` Checklist
 
-- [ ] Spec reflects current behavior; Brownfield AS-IS and TO-BE remain clear.
-- [ ] All Acceptance Criteria are satisfied.
-- [ ] Core Acceptance has test or confirmed alternative evidence.
-- [ ] Necessary focused, regression and broader tests PASS.
-- [ ] Required concurrency/performance/UI/E2E checks PASS or justified N/A.
-- [ ] No Critical test is flaky, and no Critical finding remains; every High waiver has explicit Decision Authority, rationale, residual risk, and follow-up allowed by project DoD.
-- [ ] Review complete and affected Docs synced.
-- [ ] Design Changes are synchronized; every confirmed L3 architectural decision has an ADR bound to the named Architecture Decision Authority and decision revision in the project's implementation-authorizing state (for example, Accepted or Effective).
-- [ ] Issue/work item updated as authorized/required.
-- [ ] Confirmed PR/MR standard or explicitly adopted no-PR delivery-record standard is met.
-- [ ] The `DONE` input manifest is complete; if incomplete on first validation, record `DONE Status: NOT_READY`.
-- [ ] No semantic manifest input changed after a prior `DONE Status: PASS`; if one changed, record `DONE Status: STALE` and revalidate.
+Every item MUST have an evidence row. Record `DONE Status: PASS` only when all 12 rows are `YES` and the record includes the complete input manifest above, validation time, and Decision Authority approval source and scope. A risk-specific N/A reason may support `YES` only where the checklist item explicitly permits it; the row itself MUST NOT be bypassed as `N/A`:
+
+| ID | Checklist item | Result | Evidence |
+| --- | --- | --- | --- |
+| DR-01 | Spec reflects current behavior; Brownfield AS-IS and TO-BE remain clear. | `YES/NO` |  |
+| DR-02 | All Acceptance Criteria are satisfied. | `YES/NO` |  |
+| DR-03 | Core Acceptance has test or confirmed alternative evidence. | `YES/NO` |  |
+| DR-04 | Necessary focused, regression and broader tests PASS. | `YES/NO` |  |
+| DR-05 | Required concurrency/performance/UI/E2E checks PASS or justified N/A. | `YES/NO` |  |
+| DR-06 | No Critical test is flaky, and no Critical finding remains; every High waiver has explicit Decision Authority, rationale, residual risk, and follow-up allowed by project DoD. | `YES/NO` |  |
+| DR-07 | Review complete and affected Docs synced. | `YES/NO` |  |
+| DR-08 | Design Changes are synchronized; every confirmed L3 architectural decision has an ADR bound to the named Architecture Decision Authority and decision revision in the project's implementation-authorizing state (for example, Accepted or Effective). | `YES/NO` |  |
+| DR-09 | Issue/work item updated as authorized/required. | `YES/NO` |  |
+| DR-10 | Confirmed PR/MR standard or explicitly adopted no-PR delivery-record standard is met. | `YES/NO` |  |
+| DR-11 | The `DONE` input manifest is complete; if incomplete on first validation, record `DONE Status: NOT_READY`. | `YES/NO` |  |
+| DR-12 | No semantic manifest input changed after a prior `DONE Status: PASS`; if one changed, record `DONE Status: STALE` and revalidate. | `YES/NO` |  |
 
 ### UI Completion (If Applicable)
 
-- [ ] Complete User Flow and navigation match the approved UI artifact.
-- [ ] Loading behavior is implemented and verified.
-- [ ] Empty behavior is implemented and verified, or `N/A - <reason>` is recorded.
-- [ ] Error and recovery behavior are implemented and verified.
-- [ ] Success behavior and exit are implemented and verified.
-- [ ] Permission/disabled/offline states are verified where applicable, with N/A reasons otherwise.
-- [ ] Responsive behavior is verified on target devices/viewports.
-- [ ] Accessibility requirements are verified.
-- [ ] Design System reuse/extension is compliant and documented.
-- [ ] Required interaction/UI/E2E tests pass or have an approved risk-based N/A reason.
+Applies only when `UI Impact: YES`; then `PASS requires all 10 rows to be YES`, recorded together with the rows above. With `UI Impact: NO`, record `N/A - no UI impact` for this subsection:
+
+| ID | Checklist item | Result | Evidence |
+| --- | --- | --- | --- |
+| DUC-01 | Complete User Flow and navigation match the approved UI artifact. | `YES/NO` |  |
+| DUC-02 | Loading behavior is implemented and verified. | `YES/NO` |  |
+| DUC-03 | Empty behavior is implemented and verified, or `N/A - <reason>` is recorded. | `YES/NO` |  |
+| DUC-04 | Error and recovery behavior are implemented and verified. | `YES/NO` |  |
+| DUC-05 | Success behavior and exit are implemented and verified. | `YES/NO` |  |
+| DUC-06 | Permission/disabled/offline states are verified where applicable, with N/A reasons otherwise. | `YES/NO` |  |
+| DUC-07 | Responsive behavior is verified on target devices/viewports. | `YES/NO` |  |
+| DUC-08 | Accessibility requirements are verified. | `YES/NO` |  |
+| DUC-09 | Design System reuse/extension is compliant and documented. | `YES/NO` |  |
+| DUC-10 | Required interaction/UI/E2E tests pass or have an approved risk-based N/A reason. | `YES/NO` |  |
 
 ## Final State
 

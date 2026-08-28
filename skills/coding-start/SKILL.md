@@ -153,7 +153,7 @@ This is blocking. Resolve it next; MUST NOT bypass the branch to enter the Gate.
 
 After Macro Synthesis, run one mandatory `CHALLENGE_PASS` using [Discovery interview guide](references/discovery.md). Challenge, in order: whether the problem is real; what can still be removed from the MVP; counterexamples and failure paths in the core flow; Decision Authority and Source of Truth; success and failure criteria; and whether technical complexity has business evidence.
 
-Record each outcome as `RETAINED`, `REVISED`, or `REJECTED`, still using `CONFIRMED/RECOMMENDED/UNKNOWN`. New blocking unknowns or contradictions produce `NEEDS CLARIFICATION` and return to Discovery. The Challenge MUST NOT introduce Feature-level implementation detail. Enter Macro Readiness only after the Challenge is complete and the Decision Authority explicitly confirms the revised macro synthesis; silence is not confirmation.
+Record each outcome as `RETAINED`, `REVISED`, or `REJECTED`, still using `CONFIRMED/RECOMMENDED/UNKNOWN`. New blocking unknowns or contradictions produce `NEEDS_CLARIFICATION` and return to Discovery. The Challenge MUST NOT introduce Feature-level implementation detail. Enter Macro Readiness only after the Challenge is complete and the Decision Authority explicitly confirms the revised macro synthesis; silence is not confirmation.
 
 ## Macro Readiness
 
@@ -177,7 +177,7 @@ When `UI: YES`, also check:
 - UX Principles including major non-happy-path states, Frontend Architecture, and Design System Direction.
 - Responsive and Accessibility Requirements.
 
-Mark every item with a fact status. Any `UNKNOWN` that can alter product correctness, boundaries, the core flow, Source of Truth, security/compliance, artifact language, or the primary UI flow produces `NEEDS CLARIFICATION` and returns to the interview. Use 2-5 questions in `STANDARD` and one in `DEEP`.
+Mark every item with a fact status. Any `UNKNOWN` that can alter product correctness, boundaries, the core flow, Source of Truth, security/compliance, artifact language, or the primary UI flow produces `NEEDS_CLARIFICATION` and returns to the interview. Use 2-5 questions in `STANDARD` and one in `DEEP`.
 
 Only after all high-impact unknowns are resolved and low-risk open items are visibly `RECOMMENDED` or non-blocking `UNKNOWN` with validation timing, output the sole passing Gate:
 
@@ -202,7 +202,7 @@ Use [Roadmap and DRAFT Spec templates](assets/roadmap-and-draft-spec.template.md
 5. Generate a shallow DRAFT Spec for every Feature, recording `Roadmap Status: DRAFT` in each Spec header.
 6. DRAFT Specs MAY include initial Acceptance Criteria and UI impact but MUST retain Open Questions, MUST NOT mature to `READY`, and MUST NOT freeze DTOs, fields, classes, components, or pixel design.
 7. In `NEXT_SELECTION`, obtain Roadmap Decision Authority confirmation for the recommended Feature, then mark exactly one authority-confirmed Feature `NEXT` in the Roadmap and update that Feature's Spec header. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
-8. If no Feature can safely become `NEXT`, return to the interview via `NEEDS CLARIFICATION`. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then enter `SELF_REVIEW` and `STOP` with initialization incomplete. `INITIALIZATION INCOMPLETE` is the controlled handoff token for this path. MUST NOT choose arbitrarily to finish the flow.
+8. If no Feature can safely become `NEXT`, return to the interview via `NEEDS_CLARIFICATION`. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then enter `SELF_REVIEW` and `STOP` with initialization incomplete. `INITIALIZATION INCOMPLETE` is the controlled handoff token for this path. MUST NOT choose arbitrarily to finish the flow.
 9. Reconcile `STAGE.md` and the README handoff section from the confirmed Roadmap result: project phase, the current activity, Work Status authority, blockers, handoff target, and exact resume stage; replace the README's pending handoff line with the matching Confirmed NEXT or BLOCKED_HANDOFF branch. The Roadmap still owns ordering and dependencies; `STAGE.md` MUST NOT copy the Feature map.
 
 ## Minimal Non-Business Scaffolding Exception
