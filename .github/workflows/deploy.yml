@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify skill packages
+        run: npm run skills:verify
+
       - name: Build VitePress site
         run: npm run docs:build
 

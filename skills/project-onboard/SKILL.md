@@ -58,34 +58,35 @@ A `Decision Authority` is a named human with authority to approve Roadmap, futur
 
 ## Language Policy
 
-Defaults are:
+This section is the single authoritative Language Policy location for `project-onboard`; its references link here instead of restating the contract.
+
+<!-- lang-policy-core-start -->
+Use these exact defaults unless an override is both explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy:
 
 ```text
 documentation_language = en
 engineering_language = en
 ```
 
-The policy controls these surfaces:
+- Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
+- Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
+- Product Content Language follows product requirements and has no default. Record actual BCP-47 value(s) when a product-content surface is known, `UNKNOWN - <resolution action>` while a potentially relevant surface is unresolved, or `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
+- Conversation MAY follow the user's language. Conversation language MUST NOT silently override any artifact-language dimension.
+- Every override MUST be explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority. Record request source, authority name/role, approval source, scope, and affected artifacts. The Agent MUST NOT self-approve; a solo maintainer MAY hold the `Maintainer Decision Authority` role and approve their own explicit override request, recording request source, approval source, date, and scope like any other approval.
+- Before writing or updating a formal artifact, inspect its existing formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the update would introduce a second prose language or require translation, record `CONFLICT` and `STOP`. Resume only after a named `Maintainer Decision Authority` approves one whole-document language and the user separately authorizes the required translation/update scope. This gate applies in both language directions.
+- Persist every effective value exactly once in the nearest `AGENTS.md` whose scope fully governs it: repository-wide fallbacks and global engineering surfaces belong in root; a subtree-only override belongs in the nearest governing nested file, or root when none exists. Broader files MAY link to that authoritative entry but MUST NOT duplicate its value. Defaults are replaced only within the approved scope.
+<!-- lang-policy-core-end -->
 
-| Category | Controlled Surfaces |
-|---|---|
-| Documentation Language | Formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records. |
-| Engineering Language | New class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages. |
-| Product Content Language | User-facing copy and localized values. Exact quoted copy is allowed in formal artifacts only when labeled as product content; exact-copy assertions MAY use the Product Content Language. |
+Onboarding-specific rules:
 
-During Preflight, inspect every listed surface, every applicable `AGENTS.md` language rule, and the BCP-47 language values and scopes that the evidence supports. Product Content Language has no default: record actual BCP-47 value(s) when supported, `UNKNOWN - <resolution action>` when a potentially relevant surface is unresolved, or `N/A - no product-content surface` only after the survey confirms that no user-facing or localized content exists in scope. `UNKNOWN` is unresolved and prevents complete adoption when applicable; evidenced `N/A` is a resolved state. The language used in the conversation or current request never overrides repository policy.
-
-Apply these rules:
-
-- If documentation and engineering surfaces are consistently English, preserve that policy. In mixed repositories, new formal artifacts and engineering surfaces use the English defaults unless a scoped override is approved.
-- Preserve existing identifiers and established Product Content Language. Never mass-translate existing code comments, docs, identifiers, or product content.
+- During Preflight, inspect every listed surface, every applicable `AGENTS.md` language rule, and the BCP-47 language values and scopes that the evidence supports. `UNKNOWN` may be recorded during investigation but is unresolved and prevents complete adoption when applicable; evidenced `N/A - no product-content surface` is a resolved state. The language used in the conversation or current request never overrides repository policy.
+- If documentation and engineering surfaces are consistently English, preserve that policy. In mixed repositories, new formal artifacts and engineering surfaces use the English defaults unless a scoped override is approved. Preserve existing identifiers and established Product Content Language; never mass-translate existing code comments, docs, identifiers, or product content.
 - Every new ID, slug, or technical name must use English under the default Engineering Language and fit repository shape. Only an explicit, authority-approved scoped Engineering Language override may change that value.
-- Before a required formal-artifact update, inspect the target's existing formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the update would introduce a second prose language or require translation, record `CONFLICT` and `STOP` in either direction. Resume only after named-authority approval of one whole-document language and separate authorization for the required translation/update scope.
 - A non-English Documentation or Engineering Language rule is already resolved only when it has a valid scoped BCP-47 value, named authority, explicit `ADOPTED` evidence, source, and date with no conflicting policy. Preserve such an existing override. Otherwise record `CONFLICT` and `STOP`, regardless of nested precedence, until the named authority resolves and adopts it.
-- Only a named `Maintainer Decision Authority` may explicitly mark the Language Policy `ADOPTED` or approve an override. Record each value's actual BCP-47 value, scope, authority, evidence, and date. Persist it exactly once in the nearest `AGENTS.md` whose scope fully governs it: repository-wide fallbacks and global engineering surfaces belong in root; a subtree-only override belongs in the nearest governing nested file, or root when none exists. Broader files MAY link to that authoritative entry but MUST NOT duplicate it. Synchronize the Baseline language table and AS-IS Spec metadata. Defaults are replaced only within the approved scope.
+- Only a named `Maintainer Decision Authority` may explicitly mark the Language Policy `ADOPTED` or approve an override. Record each value's actual BCP-47 value, scope, authority, evidence, and date. Synchronize the Baseline language table and AS-IS Spec metadata.
 - Obtain adoption explicitly: after Language Preflight detection, present the resolved values or the English default proposal to the named `Maintainer Decision Authority` and request explicit `ADOPTED` (or an approved scoped override) before canonical documentation generation. If the authority cannot be reached, record a blocking `NEEDS_CONFIRMATION` in Knowledge Gaps, stop before canonical documentation, and report onboarding incomplete.
 
-A complete authorized onboarding must have the resolved Language Policy explicitly `ADOPTED` by the named `Maintainer Decision Authority` and persist actual BCP-47 values for Documentation and Engineering Language plus either actual Product Content BCP-47 value(s) or evidenced `N/A - no product-content surface` in the single authoritative `AGENTS.md` location for each scope. `UNKNOWN` may be recorded during investigation but remains unresolved. Under the defaults, the section is English. After an approved Documentation Language override, render its prose consistently in that resolved language while preserving the exact ASCII policy keys. Onboarding remains incomplete while adoption, resolution, synchronization, or persistence is missing.
+A complete authorized onboarding must have the resolved Language Policy explicitly `ADOPTED` by the named `Maintainer Decision Authority` and persist actual BCP-47 values for Documentation and Engineering Language plus either actual Product Content BCP-47 value(s) or evidenced `N/A - no product-content surface` in the single authoritative `AGENTS.md` location for each scope. Under the defaults, the section is English. After an approved Documentation Language override, render its prose consistently in that resolved language while preserving the exact ASCII policy keys. Onboarding remains incomplete while adoption, resolution, synchronization, or persistence is missing.
 
 ## Status Vocabulary
 

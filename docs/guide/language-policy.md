@@ -27,7 +27,11 @@ A Chinese consumer app still ships Chinese UI strings even though engineering ar
 
 ## Overrides require authority
 
-An override of any dimension must be **explicitly requested and approved by a named authority** empowered for project language policy. The requester is not automatically that authority. Every override records request, authority, approval source, scope, and affected artifacts, and is persisted in `AGENTS.md`.
+An override of any dimension must be **explicitly requested and approved by a named authority** empowered for project language policy. The requester is not automatically that authority. A solo maintainer MAY hold that authority role and approve their own explicit override request, recording request source, approval source, date, and scope like any other approval. Every override records request, authority, approval source, scope, and affected artifacts, and is persisted in `AGENTS.md`.
+
+## Where the contract lives
+
+Each skill carries the full canonical contract exactly once, and its other files link to it: `coding-start` in `references/language-policy.md`, `project-onboard` and `feature-dev` in the Language Policy section of their `SKILL.md`. The three copies are byte-identical in their shared Core (verified by `npm run skills:verify`) so every skill stays independently installable.
 
 ## How each skill applies it
 

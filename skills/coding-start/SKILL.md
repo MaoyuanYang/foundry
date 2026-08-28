@@ -45,20 +45,16 @@ Before the first file write, list every path to be created or updated, including
 
 ## Language Policy
 
-Use these exact defaults unless an override is both explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy:
+All language rules are defined once in [Language policy](references/language-policy.md); read it before the first language-dimension recording in Discovery, before writing or updating any formal artifact, and before persisting the policy into root `AGENTS.md`. Summary:
 
 ```text
 documentation_language = en
 engineering_language = en
 ```
 
-- Documentation Language governs formal artifact prose in README, STAGE, AGENTS, project docs, Roadmaps, ADRs, Specs, Baseline and Knowledge Gap reports, Test Design documents, Implementation Plans, Review documents, Done Checklists, and Delivery Records.
-- Engineering Language governs new class, method, variable, package, and module names; database tables and columns; API paths and definitions; configuration keys but not arbitrary values; environment variables; infrastructure names; branch names; commit messages; Issue/PR titles and descriptions; code comments; executable test names and descriptions; and developer-facing log messages.
-- Product Content Language follows product requirements. Record actual BCP-47 value(s) when a product-content surface is known, `UNKNOWN - <resolution action>` while a potentially relevant surface is unresolved, or `N/A - no product-content surface` only when the confirmed scope has no user-facing or localized content. It permits localized resource/configuration values, exact product copy quoted in clearly labeled formal docs, and exact-copy assertions. Surrounding formal prose remains under Documentation Language; executable test names/descriptions, assertion code, and other engineering text remain under Engineering Language.
-- Conversation MAY follow the user's language. Conversation language MUST NOT silently override any artifact-language dimension.
-- Every override MUST be explicitly requested and approved by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority. Discovery MUST record the request, authority, approval source, scope, and affected artifacts. Generated content MUST follow the matrix above and default to English.
-- Before writing or updating any formal artifact, inspect the existing target's formal-prose language. Excluding clearly labeled exact Product Content, if it is mixed, differs from the resolved Documentation Language, or the proposed update would introduce a second prose language or require translation, record `CONFLICT` and `STOP`. Resume only after a named `Maintainer Decision Authority` empowered for project language policy approves one whole-document language and the user separately authorizes the required translation/update scope. This gate applies in both language directions, including pre-existing notes promoted into formal artifacts.
-- Before handoff, persist every effective value exactly once. During Greenfield initialization, root `AGENTS.md` is the authoritative location for repository-wide fallbacks, global engineering surfaces, and any scoped override because this Skill does not create nested policy files. If a later workflow adopts a nested policy, root MAY link to it but MUST NOT duplicate the value. Discovery notes or another unspecified document are not sufficient; later `feature-dev` work MUST be able to resolve every applicable dimension from the root-to-target `AGENTS.md` chain.
+- Product Content Language follows product requirements; record actual BCP-47 value(s), `UNKNOWN - <resolution action>`, or `N/A - no product-content surface` — never a silent default.
+- Every override requires an explicit request plus approval by a named `Maintainer Decision Authority` empowered for project language policy; conversation language never changes any dimension.
+- Before handoff, persist every effective value exactly once in root `AGENTS.md` so later `feature-dev` work can resolve every applicable dimension from the root-to-target `AGENTS.md` chain.
 
 ## Resource Loading
 
@@ -67,6 +63,7 @@ Read every supporting resource directly from this file; MUST NOT follow secondar
 | Resource | When to read |
 | --- | --- |
 | [Discovery interview guide](references/discovery.md) | After entry is valid and before the first questions; reread when changing interview intensity or running the Challenge Pass. |
+| [Language policy](references/language-policy.md) | Before the first language-dimension recording in Discovery, before writing or updating any formal artifact, and before persisting the policy into root `AGENTS.md`. |
 | [Lifecycle and gates](references/lifecycle-and-gates.md) | Before Challenge Pass or Macro Readiness; recheck before choosing `NEXT` and during final Self Review. |
 | [Project Stage template](assets/stage.template.md) | After valid entry and before creating or adopting root `STAGE.md`; reread before changing tracking mode or status authority. |
 | [Artifact responsibility contracts](references/artifact-contracts.md) | After `MACRO DESIGN READY` and before writing any formal artifact. |
