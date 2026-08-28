@@ -70,9 +70,8 @@ REMOTE | LOCAL | HYBRID | TBD
 ## 多成员协作
 
 - 每条活动获得稳定的 `A-xxx` ID，并标记成员类型 `HUMAN` 或 `AGENT`。
-- Stage 写入通过仓库既有锁或唯一指定的 canonical writer 串行化。两者都没有时，writer 在写入前比较此前读取的 revision 与 SHA-256；任一变化就中止并重新对账。下一个 `A-xxx` ID 也在同一 guard 下分配。
+- Stage 写入通过仓库既有锁或唯一指定的 canonical writer 串行化。两者都没有时，每次写入都按同一套六步 guard 顺序执行：重读 Stage 与每个关联状态权威；写入前比较此前保留的 revision 与 SHA-256，任一变化即中止并重新对账；只更新限定范围的行，保留其他成员的记录与用户改动；把先前 revision/哈希记为 `Parent Snapshot`；写入并递增快照修订号；写入后再次读取，发现重复 ID 或意外内容即停止。下一个 `A-xxx` ID 也在同一 guard 下分配。
 - 成员只变更自己的活动及直接相关的 blocker 或 handoff 行；指定 writer 可以代为应用这份限定变更。
-- 写入前，Skill 重新读取 Stage 和关联的状态权威，保留其他成员的记录与用户改动；写入后再次读取，发现重复 ID 或意外内容就停止。
 - 两个成员只有在协作关系和职责边界明确时才能引用同一工作项；否则记录 `CONFLICT` 并停止受影响的流转。
 - 记录 branch 或 worktree，确保并行改动可定位；分叉 worktree 中的 Stage 副本在 canonical writer 对账前不是实时状态。
 - Stage-local 交接必须在一次受 guard 保护的更新中：创建/确认接收方行、保留 Work Status、把权威改为 `STAGE_LOCAL:<接收方 Activity ID>`、标记发送方已转移并接受交接。转移成功前发送方保持活跃。

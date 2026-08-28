@@ -70,9 +70,8 @@ Each activity also records the exact stage token from its Skill, such as `PROJEC
 ## Multi-member coordination
 
 - Every activity receives a stable `A-xxx` ID and names its member type as `HUMAN` or `AGENT`.
-- Stage writes are serialized through an existing repository lock or one designated canonical writer. Without either, the writer compares the revision and SHA-256 it read immediately before writing and aborts/reconciles if either changed. The next `A-xxx` ID is allocated under the same guard.
+- Stage writes are serialized through an existing repository lock or one designated canonical writer. Without either, every write runs the same six-step guard in order: reread Stage and every linked status authority; compare the retained revision and SHA-256 immediately before writing and abort/reconcile if either changed; update only the scoped rows while preserving unrelated rows and user changes; record the prior revision/hash as `Parent Snapshot`; write and increment the snapshot revision; reread after writing and stop on a duplicate ID or unexpected result. The next `A-xxx` ID is allocated under the same guard.
 - A member changes only its own activity and directly affected blocker or handoff rows; the designated writer may apply that scoped change.
-- Before writing, the Skill rereads Stage and the linked status authority, then preserves unrelated rows and user changes. After writing it rereads the result and stops on duplicate IDs or unexpected content.
 - Two members may reference the same work item only when collaboration and responsibility boundaries are explicit. Otherwise the Skill records `CONFLICT` and stops the affected transition.
 - Branch or worktree identity is recorded so parallel changes remain locatable. A divergent worktree's Stage copy is not live state until the canonical writer reconciles it.
 - A Stage-local handoff atomically creates/confirms the receiver row, preserves Work Status, moves authority to `STAGE_LOCAL:<receiver Activity ID>`, marks the sender transferred, and accepts the handoff. The sender remains active until the transfer succeeds.
