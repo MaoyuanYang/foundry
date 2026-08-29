@@ -26,7 +26,13 @@ When implementation, verification, Review, and Docs are complete but PR mode lac
 
 Each delivery side effect (remote Issue, commit, push, PR, merge, close) requires separate explicit authorization plus available tools, valid authentication, and a known target. "Implement the Feature" is never authorization.
 
-Once the confirmed Definition of Done is met (authorized PR opened/approved/merged, or the explicitly adopted no-PR delivery record exists), record `DELIVERED` together with `DONE Status: PASS` and `Roadmap Status: DONE`.
+## IN PR REVIEW
+
+When an authorized PR exists and external review feedback arrives, the Stage activity moves to `PR_REVIEW` and the delivery state to `IN PR REVIEW`. Every external finding is imported into the Findings table with reviewer identity and severity mapping — a **Critical** external finding blocks `DONE` exactly like a self-review Critical, and a **High** finding may be waived only through the Decision Authority path. Fixes return as a scoped `CODING_TESTING` slice under the same work item before `Roadmap Status: REVIEW` resumes; a fix that changes approved Scope, Acceptance, or an external contract first runs Design Change.
+
+Before merge and `DELIVERED`, the claiming member completes the integration protocol: sync the work-item branch with the integration base, rerun the Test Design integration slice and the recorded regression scope, and record commands and results in the Review record. A merge conflict revealing a semantic conflict on a shared contract or Spec is an **L2** Design Change. Merge itself is a separately authorized action, performed by or with the responsible maintainer.
+
+Once the confirmed Definition of Done is met (authorized PR opened, its review feedback resolved, and approved and merged by or with the responsible maintainer, or the explicitly adopted no-PR delivery record exists), record `DELIVERED` together with `DONE Status: PASS` and `Roadmap Status: DONE`.
 
 ## DONE gate
 
@@ -41,6 +47,7 @@ Record `DONE Status: PASS` and `Roadmap Status: DONE` together only when **all**
 7. Affected semantic Docs and the Issue/work item are synchronized per authorization/convention.
 8. The confirmed PR, merge, or no-PR delivery standard is met.
 9. The `DONE` record contains an independent revision/hash manifest for the current Spec, affected Dependency Specs, relevant ADR/API/Architecture/AGENTS, applicable UX/UI/Test Design, Plan, reviewed diff, Review, and delivery evidence.
+10. When a PR review occurred, every external finding is resolved or explicitly waived with Decision Authority record, no Critical external finding remains, and the required integration rerun evidence is recorded (`N/A - no PR review occurred` only when no PR exists).
 
 After the authoritative `DONE` decision, reconcile `STAGE.md` as a post-Gate projection. A Stage conflict or unavailable writer leaves that projection stale and must be reported and retried, but Stage is not a semantic `DONE` input and cannot retroactively invalidate the Gate.
 

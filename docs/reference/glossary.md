@@ -9,7 +9,7 @@ Every status, label, and gate token used across Foundry, in one place.
 | Status | Meaning |
 |---|---|
 | `DRAFT` | Known but unselected or still coarse |
-| `NEXT` | The one currently selected work item |
+| `NEXT` | A work item currently selected for active development; parallel selections are valid when each is claimed by a distinct active member |
 | `READY` | Required gates, Plan, and Tasks are ready |
 | `IN_PROGRESS` | Implementation and verification underway |
 | `REVIEW` | Implementation complete; review/docs/delivery underway |
@@ -87,7 +87,7 @@ Gates: `SPEC READY`, `UI READY` (or `SKIPPED (N/A)` for no-UI), `TEST DESIGN REA
 
 ## Delivery handoff
 
-`READY FOR PR` (PR mode) / `READY FOR DELIVERY` (no-PR mode) / `DELIVERED` (Definition of Done met; recorded with `DONE Status: PASS` and `Roadmap Status: DONE`) / `BLOCKED_HANDOFF` (coding-start, zero `NEXT`; handoff token `INITIALIZATION INCOMPLETE`).
+`READY FOR PR` (PR mode) / `READY FOR DELIVERY` (no-PR mode) / `IN PR REVIEW` (PR open, external review feedback being resolved) / `DELIVERED` (Definition of Done met; recorded with `DONE Status: PASS` and `Roadmap Status: DONE`) / `BLOCKED_HANDOFF` (coding-start, zero `NEXT`; handoff token `INITIALIZATION INCOMPLETE`).
 
 ## Language policy
 

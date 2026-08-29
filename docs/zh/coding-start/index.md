@@ -66,7 +66,7 @@ flowchart TD
 7. `AGENTS.md` 包含长期规则与语言策略。
 8. Feature Map、依赖分析与 Roadmap 存在。
 9. 每个 Feature 都有浅层 DRAFT Spec。
-10. 恰好一个经权限确认的 `NEXT`（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
+10. 至少一个经权限确认的 `NEXT`——通常恰好一个；并行多选仅在确有不同成员认领时确认（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
 11. 无业务代码；已授权的最小脚手架通过验证。Self Review 完成且所有发现已修复。
 
-成功时，`coding-start` 建议把唯一的 `NEXT` 交给 `feature-dev`——但不会自动调用它。
+成功时，`coding-start` 建议把每个选定的 `NEXT` 交给 `feature-dev`——每项一个认领成员；但不会自动调用它。

@@ -89,14 +89,14 @@ Any non-DONE state -> BLOCKED -> prior valid state
 ```
 
 - `DRAFT`: macro intent only; open questions and change are expected.
-- `NEXT`: the sole selected Feature awaiting refinement.
+- `NEXT`: a Feature selected for active development; parallel selections are valid when distinct members claim them.
 - `READY`: `SPEC READY`, `UI READY` or an explicit UI skip, `TEST DESIGN READY`, and a valid current Plan and Tasks; `coding-start` MUST NOT set it.
 - `IN_PROGRESS`: implementation is active.
 - `REVIEW`: implementation and evidence are under review.
 - `DONE`: behavior, tests, review and documentation sync are complete.
 - `BLOCKED`: a named blocker prevents progress; record the blocker in the Issue/Roadmap.
 
-Only deepen the selected `NEXT` Spec. MUST NOT prematurely finalize unrelated DRAFT Specs.
+Only deepen a selected `NEXT` Spec claimed by the current member. MUST NOT prematurely finalize unrelated DRAFT Specs.
 
 ## Work Tracking and Delivery
 
@@ -109,6 +109,16 @@ Only deepen the selected `NEXT` Spec. MUST NOT prematurely finalize unrelated DR
 - Transfer Stage-local authority atomically to the receiver's activity before the sender leaves Active Work. Preserve final status and authority when archiving completed activities.
 - Delivery mode: `{{PR_OR_MR | EXPLICIT_NO_PR_DELIVERY | TBD}}`
 - A remote Issue, commit, push, PR/MR, merge, or close MUST occur only after the user explicitly authorizes that action class.
+
+## Parallel Work Policy
+
+- Foundry contract version: `{{FOUNDRY_CONTRACT_VERSION}}` — the installed Foundry Skill contract version this project's rules were built against; a Skill whose contract version differs MUST stop and be synchronized first.
+- Multiple `NEXT` work items may be active concurrently; each MUST be claimed by exactly one active member activity in `STAGE.md`, and a duplicate claim on the same item is `CONFLICT`.
+- WIP limit: `{{NONE_OR_ADOPTED_NUMERIC_LIMIT}}` — a numeric concurrency bound MAY be adopted by the named Maintainer Decision Authority; without one, per-claim uniqueness is the only constraint.
+- Multi-member or multi-machine work SHOULD bind a remote tracker (GitHub/GitLab/Jira) as the Work Status authority. Each machine keeps a local `STAGE.md` projection refreshed from the tracker; the tracker wins any disagreement, and a Git-level conflict on `STAGE.md` is resolved by regenerating the projection from authoritative sources.
+- Each claimed work item develops on its own branch recorded in the Stage `Branch / Worktree` column; branch names follow the Engineering Language and project convention.
+- Before merge and `DELIVERED`, the claiming member syncs with the integration base, reruns the Test Design integration slice and regression scope, and records the evidence in the Review record. A merge conflict revealing a semantic conflict on a shared contract or Spec is an L2 Design Change.
+- PR review feedback is consumed in `IN PR REVIEW`: Critical external findings block `DONE`; High findings may be waived only through the Decision Authority path. Merge is separately authorized and performed by or with the responsible maintainer.
 
 ## Complete Feature Workflow
 
@@ -133,6 +143,7 @@ Macro Design
 -> Review
 -> Documentation Sync
 -> PR/MR or the explicitly adopted no-PR delivery record
+-> PR review feedback resolved (PR mode: IN PR REVIEW)
 -> DONE
 ```
 

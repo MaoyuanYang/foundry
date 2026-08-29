@@ -45,7 +45,7 @@ Each DRAFT Spec records: Goal, Business Value, User Story, Scope, Out of Scope, 
 ## NEXT selection
 
 - Analyze dependencies, risk, and learning value; recommend the smallest Feature that validates the end-to-end direction.
-- The `Roadmap Decision Authority` confirms; exactly one confirmed Feature becomes `NEXT`.
+- The `Roadmap Decision Authority` confirms; one or more confirmed Features become `NEXT` (default: the smallest validating set, usually one; parallel selections only when distinct members will claim them).
 - If no Feature can safely be `NEXT`, return to the interview. If only an unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: zero `NEXT`, with blocker, owner, unblock condition, and resume stage recorded.
 - Reconcile `STAGE.md` from the Roadmap result and record the `feature-dev` handoff or exact blocked resume point without copying the Feature map.
 

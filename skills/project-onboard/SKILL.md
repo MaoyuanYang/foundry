@@ -6,6 +6,7 @@ description: "Use ONLY when the user explicitly requests takeover, inventory, or
 # Project Onboard
 
 > Part of **Foundry**, an AI-native, spec-driven development suite. Role: Brownfield takeover (unknown to understood). Siblings: `coding-start`, `feature-dev`.
+> Foundry contract version: `2026-08-30`.
 
 Recover an unfamiliar existing repository into a verifiable, traceable, transferable `AS-IS` baseline. Understand reality before discussing `TO-BE`. Finish by recommending one next item; never implement it automatically.
 
@@ -104,7 +105,7 @@ Feature implementation state, Roadmap work status, Spec status, and recommendati
 ### 0. Preflight
 
 1. Identify repository root, current `commit/ref`, branch, worktree state, and monorepo subprojects. Record `UNAVAILABLE` when Git is absent.
-2. Before commands or writes, read all applicable `AGENTS.md` files from root to target, plus contribution and safety guidance.
+2. Before commands or writes, read all applicable `AGENTS.md` files from root to target, plus contribution and safety guidance. If root `AGENTS.md` records `foundry_contract_version` and it differs from this Skill's contract version recorded above, report both values and `STOP` until the installed Skill copy is synchronized with the repository contract.
 3. Identify pre-existing user changes. Never overwrite, revert, or classify them as baseline failures.
 4. Define survey scope across applications, shared libraries, stores, deployment units, frontend, tests, and docs.
 5. Detect every Documentation, Engineering, and Product Content Language surface above; record detected and resolved BCP-47 values or the allowed Product Content `UNKNOWN/N/A` state, applicable AGENTS rules, scope, conflicts, authority, and adoption state.
@@ -183,7 +184,7 @@ Use confirmed priority, broken core flows, security/data risk, blockers, impleme
 - Record rationale, dependencies, risks, alternatives, evidence label, and recommendation-selection metadata: `RECOMMENDED` until selected, then `SELECTED` only through the named `Roadmap Decision Authority` or authoritative tracker.
 - Set `NEXT` only after explicit confirmation by the named authority or proof from the authoritative tracker.
 - Otherwise preserve status; use `UNTRACKED` where no historical tracking exists and label an inferred recommendation `INFERRED`.
-- If multiple existing `NEXT` items exist, record `CONFLICT` and request confirmation. Never silently rewrite team status.
+- Pre-existing parallel `NEXT` entries are valid when each is claimed by a distinct active member; record unclaimed or duplicate-claimed `NEXT` entries as `NEEDS_CONFIRMATION` and request confirmation. Never silently rewrite team status.
 - Reconcile the `STAGE.md` project summary and onboarding activity from the Roadmap and recommendation result. The Roadmap remains authoritative for Feature ordering and onboarding-era status; Stage records the handoff target and exact resume point only.
 
 ## Design Change Boundary
@@ -201,7 +202,7 @@ Read-only mode ends before the first write and must report onboarding incomplete
 - The Language Policy is explicitly `ADOPTED` by the named `Maintainer Decision Authority`; actual Documentation and Engineering BCP-47 values and the resolved Product Content value or evidenced `N/A - no product-content surface` are synchronized with scope in the single authoritative `AGENTS.md` policy location for each value, plus Baseline and AS-IS Spec metadata, with no duplicate policy values or unresolved language conflict.
 - Feature Inventory exists only in `specs/ROADMAP.md`, with independent status dimensions.
 - AS-IS Specs use only `AS_IS_DRAFT/RECONSTRUCTED` and include evidence, conflicts, unknowns, test coverage, and a TO-BE handoff.
-- One evidenced `Recommended Next` is recorded. A unique `Work Status: NEXT` exists only if confirmed.
+- One evidenced `Recommended Next` is recorded. Every `Work Status: NEXT` entry exists only if confirmed; parallel confirmed entries are valid when distinctly claimed.
 - `STAGE.md` identifies the onboarding activity, current project phase, tracking mode, linked authorities, conflicts/blockers, and exact handoff or resume point without duplicating AS-IS facts or another member's work.
 - No unresolved Stage binding, freshness, revision/hash, activity identity, duplicate assignment, or authority-transfer conflict affects the onboarding handoff or completion.
 - Every resource link resolves; no empty or meaningless artifact was created.

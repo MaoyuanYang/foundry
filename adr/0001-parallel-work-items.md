@@ -1,0 +1,38 @@
+# ADR-0001: Parallel Work Items, Tracker-First Collaboration, and PR Peer Review
+
+| Field | Value |
+| --- | --- |
+| Status | `Accepted` |
+| Date | `2026-08-30` |
+| Architecture Decision Authority | `MaoyuanYang` (Maintainer Decision Authority) |
+| Approval source | ZCode planning session; user-approved retrofit plan |
+| Approval scope | All three Foundry Skills, shared templates, `scripts/verify-skills.mjs`, bilingual documentation |
+| Decision revision | `1` |
+
+## Context
+
+- Foundry currently serializes work: the Roadmap holds exactly one `NEXT` project-wide, `feature-dev` advances exactly one work item per run, and no branch, merge, or integration semantics exist anywhere in the Skills.
+- Review is executing-agent self review plus Decision Authority approval. No mechanism exists for consuming human peer-review feedback after a PR is created.
+- Real teams run multiple members (`HUMAN` and `AGENT`), on multiple machines, each with its own installed Skill copy, working concurrently on distinct features through issues, branches, PRs, and maintainer merge.
+- The Stage write guard (revision + SHA-256 comparison) is a single-filesystem optimistic lock. It cannot serialize writes across machines, and a distributed file-locking protocol over Git would narrow the per-action Git authorization model.
+
+## Decision
+
+1. **Parallel work items.** Multiple `NEXT` entries are valid by default. Every `NEXT` item must be claimed by exactly one active Stage activity; a duplicate claim on the same item is `CONFLICT`. A project MAY adopt a numeric `WIP Limit: <n>` policy in root `AGENTS.md` (Maintainer Decision Authority approval required). `coding-start` succeeds with one or more confirmed `NEXT` items (still recommending the smallest validating set); `BLOCKED_HANDOFF` keeps zero.
+2. **Tracker-first collaboration.** Multi-member or multi-endpoint projects bind a remote tracker (GitHub/GitLab/Jira). The tracker is the Work Status authority and is server-side, therefore safe across machines. `STAGE.md` is the team status board: each machine holds a local projection refreshed from authoritative sources; when a projection disagrees with the tracker, the tracker wins; a Git-level conflict on `STAGE.md` is resolved by regenerating the projection from authoritative sources, never by hand-picking sides. The six-step write guard remains for `LOCAL` tracking mode (one member, multiple sessions, one machine/worktree).
+3. **Branch-per-work-item and integration.** Active development happens on an isolated branch recorded in the Stage `Branch / Worktree` column. Before `DELIVERED`, the member syncs with the integration base, reruns the Test Design integration slice and regression scope, and records the evidence in the Review record. A merge conflict that reveals a semantic conflict on a shared contract or Spec escalates to an L2 Design Change.
+4. **PR peer review.** The delivery state machine gains `IN PR REVIEW` between `READY FOR PR` and `DELIVERED`, with the `PR_REVIEW` Feature-stage token. External review findings import into the Findings table with severity mapping: Critical blocks `DONE`; High may be waived only through the existing Decision Authority path. Merge remains a separately authorized action performed by or confirmed with the responsible maintainer.
+5. **Contract version token.** Root `AGENTS.md` records `foundry_contract_version`. Every Skill verifies its local contract version against the repository record at entry; on mismatch it `STOP`s with a resync instruction, preventing cross-endpoint version drift.
+
+## Alternatives Considered
+
+- **Default `WIP Limit: 1`** (byte-compatible with previous behavior; parallelism opt-in): rejected by Maintainer decision. Parallelism is the default; per-claim uniqueness is the real invariant.
+- **Git as the Stage serialization medium** (dedicated Stage-only commits under a standing authorization): rejected. It narrows the per-action Git authorization model and duplicates what a bound tracker already provides.
+- **A distributed Stage merge protocol** (cross-machine snapshot reconciliation rules): rejected. Stage is a projection, not an authority; regenerate the projection from authoritative sources instead of merging projections.
+
+## Consequences
+
+- Roadmap semantics change: multiple `NEXT` entries become valid. Repositories adopting the updated Skills may hold states that were previously conflicts; `project-onboard` records pre-existing multiple `NEXT` entries as `NEEDS_CONFIRMATION` instead of `CONFLICT` and never rewrites them silently.
+- `feature-dev` remains one-work-item-per-run. Concurrency comes from distinct members and agents each running it against their own claimed item.
+- The consistency net must stay synchronized: `review-pr-done.template.md` DONE checklist grows to 13 rows, `test-design.template.md` to 11, `scripts/verify-skills.mjs` constants and checks follow, and the bilingual documentation website mirrors every change.
+- The safety model is unchanged: every Git or remote side-effect class still requires separate explicit user authorization, and local-write authorization still never implies commit, push, PR, or merge.

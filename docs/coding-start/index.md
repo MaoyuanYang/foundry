@@ -66,7 +66,7 @@ The success path stops only when all are true:
 7. `AGENTS.md` contains durable rules and the language policy.
 8. Feature Map, dependency analysis, and Roadmap exist.
 9. Every Feature has a shallow DRAFT Spec.
-10. Exactly one authority-confirmed `NEXT` (or a `BLOCKED_HANDOFF` with zero).
+10. At least one authority-confirmed `NEXT` — usually exactly one; parallel selections are confirmed only when distinct members will claim them (or a `BLOCKED_HANDOFF` with zero).
 11. No business code exists; any authorized minimal scaffold is verified. Self Review is complete and every finding is fixed.
 
-On success, `coding-start` recommends handing the sole `NEXT` to `feature-dev` — it does not invoke it automatically.
+On success, `coding-start` recommends handing each selected `NEXT` to `feature-dev` — one claiming member per item; it does not invoke it automatically.

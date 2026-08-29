@@ -153,7 +153,7 @@ Ordering signals, highest first:
 4. A `BROKEN/PARTIAL` capability with reasonably clear value, boundary, and dependencies.
 5. A small complete vertical slice that reduces the greatest uncertainty.
 
-Always provide one `Recommended Next`. `RECOMMENDED` means onboarding proposes it; `SELECTED` means the named `Roadmap Decision Authority` or authoritative tracker selected it. These values are recommendation-selection metadata, never Work Status. Label an assumption-based recommendation `INFERRED` and explain why alternatives are deferred. Set Work Status to the unique `NEXT` only through that authority; otherwise preserve `UNTRACKED` or the existing status. `NEXT` is not `READY`: the next run uses `feature-dev` to complete TO-BE and gates first.
+Always provide one `Recommended Next`. `RECOMMENDED` means onboarding proposes it; `SELECTED` means the named `Roadmap Decision Authority` or authoritative tracker selected it. These values are recommendation-selection metadata, never Work Status. Label an assumption-based recommendation `INFERRED` and explain why alternatives are deferred. Set Work Status to `NEXT` only through that authority; parallel confirmed `NEXT` entries are valid when each is claimed by a distinct active member, and unclaimed or duplicate-claimed entries are `NEEDS_CONFIRMATION`. Otherwise preserve `UNTRACKED` or the existing status. `NEXT` is not `READY`: the next run uses `feature-dev` to complete TO-BE and gates first.
 
 After selection or recommendation, reconcile `STAGE.md` from the Roadmap and authoritative tracker. Record the target work item, `feature-dev` handoff, required inputs, and exact resume stage. Do not copy the Feature Inventory, recommendation analysis, or AS-IS Spec into Stage.
 
@@ -181,7 +181,7 @@ Baseline failures, unknowns, and missing items may remain if recorded accurately
 - `STAGE.md` agrees with its linked authorities, preserves every unrelated active member, and exposes the current onboarding activity plus exact blocker or handoff.
 - Explicit labels for every conflict, unknown, and inference.
 - Language Policy explicitly `ADOPTED` by the named `Maintainer Decision Authority`, persisted with actual Documentation and Engineering BCP-47 values plus the resolved Product Content value or evidenced `N/A - no product-content surface` and scope in `AGENTS.md`, and synchronized to Baseline and AS-IS Spec metadata, with no blocking language conflict.
-- One evidenced `Recommended Next`; any `Work Status: NEXT` is confirmed and unique.
+- One evidenced `Recommended Next`; every `Work Status: NEXT` is confirmed, and parallel entries are distinctly claimed.
 - No business-behavior change and no start of later Feature implementation.
 
 Finish with explicit `STOP` and wait for the user to decide whether to start `feature-dev`.

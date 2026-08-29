@@ -3,11 +3,11 @@
 ## Bind one Issue / work item
 
 1. Detect existing GitHub, GitLab, Jira, or local conventions (repo config, templates, links, Roadmap records, and Stage activity claims).
-2. Bind the matching work item if present; otherwise prepare **only the current one** — never create in bulk. A Bug/Change uses an independent work item and never implicitly reopens or downgrades a `DONE` parent Feature.
+2. Bind the matching work item if present; otherwise prepare **only the current one** — never create in bulk. A Bug/Change uses an independent work item and never implicitly reopens or downgrades a `DONE` parent Feature. In a multi-member repository, the claiming member files or binds exactly one Issue for their claimed `NEXT` item before development starts.
 3. When no remote tracker is bound, ask whether the current `STAGE.md` activity may become the local authority; set `STAGE_LOCAL:<Activity ID>` only after confirmation. A temporarily unauthorized, unavailable, unauthenticated, or unwritable bound remote remains authoritative unless an explicit durable migration unbinds it.
 4. Use the project format, or the Issue template when an auxiliary local checklist is useful; it links to Stage and must not maintain a second writable status.
 
-The bound remote tracker or identified `STAGE_LOCAL:<Activity ID>` row is the **single writable Work Status authority**; `STAGE.md` projects remote status and `specs/ROADMAP.md` mirrors either source. A remote authority requires explicit authorization, available tools, and valid authentication for a transition. Without them, keep status and `STOP`; never fall back to Stage-local merely because the bound remote is temporarily unwritable.
+The bound remote tracker or identified `STAGE_LOCAL:<Activity ID>` row is the **single writable Work Status authority for that work item**; `STAGE.md` projects remote status and `specs/ROADMAP.md` mirrors either source. Other members' concurrently claimed `NEXT` items are read-only for this run. A remote authority requires explicit authorization, available tools, and valid authentication for a transition. Without them, keep status and `STOP`; never fall back to Stage-local merely because the bound remote is temporarily unwritable.
 
 A Stage-local handoff transfers authority atomically under the Stage write guard: create or confirm the receiver activity, preserve Work Status, change authority to `STAGE_LOCAL:<receiver Activity ID>`, mark the sender transferred, and accept the handoff in one update. The sender remains active until transfer succeeds.
 

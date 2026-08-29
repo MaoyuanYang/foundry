@@ -49,7 +49,7 @@ You should see `coding-start`, `project-onboard`, and `feature-dev` listed with 
 |---|---|---|
 | `coding-start` | `skills/coding-start/` | Greenfield project initialization (0 → 1) |
 | `project-onboard` | `skills/project-onboard/` | Brownfield takeover and AS-IS baseline |
-| `feature-dev` | `skills/feature-dev/` | Single-feature lifecycle (1 → N) |
+| `feature-dev` | `skills/feature-dev/` | Single-feature lifecycle (1 → N); parallel members each run it on their own claimed item |
 
 Each skill is self-contained:
 

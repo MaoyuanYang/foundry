@@ -3,11 +3,11 @@
 ## 绑定一个 Issue / 工作项
 
 1. 检测既有的 GitHub、GitLab、Jira 或本地约定（仓库配置、模板、链接、Roadmap 记录与 Stage 活动认领）。
-2. 有匹配的工作项就绑定；否则**只准备当前这一个**——绝不批量创建。Bug/Change 使用独立工作项，绝不隐式重开或降级 `DONE` 的父 Feature。
+2. 有匹配的工作项就绑定；否则**只准备当前这一个**——绝不批量创建。Bug/Change 使用独立工作项，绝不隐式重开或降级 `DONE` 的父 Feature。多成员仓库中，认领成员在开发开始前为自己认领的 `NEXT` 项提交或绑定恰好一个 Issue。
 3. 未绑定远程 Tracker 时，先询问当前 `STAGE.md` 活动能否成为本地权威；只有确认后才设置 `STAGE_LOCAL:<Activity ID>`。已绑定远程即使暂时缺授权、不可用、未认证或不可写，仍保持权威，除非一次显式且持久的迁移将其解绑。
 4. 需要辅助本地清单时使用项目格式或 Issue 模板；它必须链接 Stage，不能维护第二份可写状态。
 
-绑定的远程 Tracker 或标识为 `STAGE_LOCAL:<Activity ID>` 的行是**唯一可写的 Work Status 权威**；`STAGE.md` 投影远程状态，`specs/ROADMAP.md` 镜像任一来源。远程状态流转需要明确授权、可用工具与有效认证；缺少任一条件时保持状态并 `STOP`，绝不能只因远程暂时不可写就回退到 Stage-local。
+绑定的远程 Tracker 或标识为 `STAGE_LOCAL:<Activity ID>` 的行是**该工作项唯一可写的 Work Status 权威**；`STAGE.md` 投影远程状态，`specs/ROADMAP.md` 镜像任一来源。其他成员并行认领的 `NEXT` 项对本次运行只读。远程状态流转需要明确授权、可用工具与有效认证；缺少任一条件时保持状态并 `STOP`，绝不能只因远程暂时不可写就回退到 Stage-local。
 
 Stage-local 交接必须在 Stage write guard 下原子转移权威：创建或确认接收方活动、保留 Work Status、把权威改为 `STAGE_LOCAL:<接收方 Activity ID>`、标记发送方已转移并在同一次更新中接受交接。转移成功前发送方保持活跃。
 

@@ -12,7 +12,7 @@
 | `ARTIFACT_GENERATION` | `MACRO DESIGN READY` and explicit local-write authorization exist | Generate only applicable project documents with distinct responsibilities and the recorded languages | Enter Feature Map when documents are consistent |
 | `FEATURE_MAPPING` | Macro documents are usable | Define vertical slices and analyze value, priority, and dependencies | Generate Specs when the Feature Map is complete |
 | `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature | Every Feature has a DRAFT Spec; enter `NEXT_SELECTION` |
-| `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select exactly one `NEXT` | The sole `NEXT` can be handed to `feature-dev`; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS_CLARIFICATION`; then enter `SELF_REVIEW` |
+| `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select one or more `NEXT` (default: the smallest validating set, usually one) | Each selected `NEXT` can be handed to `feature-dev` by its claiming member; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS_CLARIFICATION`; then enter `SELF_REVIEW` |
 | `BLOCKED_HANDOFF` | No safe candidate exists and a currently unresolvable external blocker remains | Allow zero `NEXT` entries; record blocker, owner, unblock condition, and resume stage | Enter `SELF_REVIEW`, then `STOP` as incomplete; MUST NOT claim readiness |
 | `SELF_REVIEW` | Artifacts exist | Fix boundary, status, language, link, duplication, and overdesign problems | `STOP` only after all checks pass |
 
@@ -132,14 +132,14 @@ BLOCKED
 
 Within `coding-start`:
 
-- Exactly one Feature is `NEXT` on the success path.
+- One or more Features are `NEXT` on the success path (default: the smallest validating set, usually one); each is later claimed by a distinct member activity.
 - All other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition.
 - MUST NOT set `READY`, `IN_PROGRESS`, `REVIEW`, or `DONE`.
 - Non-`NEXT` Features normally remain `DRAFT`.
 - The Roadmap Decision Authority MUST confirm `NEXT`. If every safe candidate is externally blocked, MUST NOT force a selection: produce an incomplete `BLOCKED_HANDOFF`, allow zero `NEXT` entries, record the controlled handoff token `INITIALIZATION INCOMPLETE` in the Roadmap and README handoff sections, and wait for the blocker to clear.
 - Roadmap `NEXT` indicates development order; its Spec maturity remains `DRAFT`.
 
-Later, `feature-dev` refines the sole `NEXT`, passes Feature-level Gates, and advances Roadmap status.
+Later, `feature-dev` refines a claimed `NEXT`, passes Feature-level Gates, and advances Roadmap status; parallel `NEXT` items are refined by their own claiming members.
 
 ## `NEXT` Selection Rules
 
@@ -150,6 +150,8 @@ Evaluate in this order:
 3. It tests the largest product or architecture risk early.
 4. It is small enough for one Feature lifecycle.
 5. It has a verifiable result without forcing unrelated DRAFT Specs to mature.
+
+When the Roadmap Decision Authority confirms parallel selections, evaluate these rules per Feature and record which distinct member will claim each; otherwise select a single Feature.
 
 Record the selection rationale and why higher-priority alternatives were not selected.
 
@@ -199,11 +201,11 @@ The success path can stop only when all are true:
 - AGENTS contains durable development and language protocols, including every effective language value and exact scope needed by later workflows.
 - Feature Map, dependency analysis, and Roadmap exist.
 - Every Feature has a shallow DRAFT Spec.
-- The success path has exactly one Roadmap Decision Authority-confirmed `NEXT`. The `BLOCKED_HANDOFF` path instead has zero `NEXT` entries, plus complete blocker, owner, unblock-condition, and resume-stage data. No Feature is `READY`.
+- The success path has at least one Roadmap Decision Authority-confirmed `NEXT`. The `BLOCKED_HANDOFF` path instead has zero `NEXT` entries, plus complete blocker, owner, unblock-condition, and resume-stage data. No Feature is `READY`.
 - No business code exists; any explicitly authorized minimal non-business scaffold is verified.
 - Self Review is complete and every finding is fixed.
 
-On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When blocked, explicitly state that initialization is incomplete and `feature-dev` MUST NOT be invoked. Both paths end with `STOP`; MUST NOT start the next workflow automatically.
+On success, explicitly recommend handing each selected `NEXT` to `feature-dev`. When blocked, explicitly state that initialization is incomplete and `feature-dev` MUST NOT be invoked. Both paths end with `STOP`; MUST NOT start the next workflow automatically.
 
 ## Self Review
 
@@ -242,7 +244,7 @@ On success, explicitly recommend handing the sole `NEXT` to `feature-dev`. When 
 ### Feature Lifecycle
 
 - Are all Roadmap statuses from the allowed set?
-- Does the success path have exactly one confirmed `NEXT`? Does `BLOCKED_HANDOFF` have zero `NEXT` entries, plus a blocker, owner, unblock condition, and resume stage? Are all other initial entries only `DRAFT/BLOCKED`?
+- Does the success path have at least one confirmed `NEXT`? Does `BLOCKED_HANDOFF` have zero `NEXT` entries, plus a blocker, owner, unblock condition, and resume stage? Are all other initial entries only `DRAFT/BLOCKED`?
 - Are all Specs still `DRAFT`, with Open Questions?
 - Are Features vertical slices rather than technical layers?
 

@@ -29,6 +29,7 @@ Foundry is a set of three reusable **Agent Skills** that turn an AI coding agent
 - **Gated transitions** — `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`.
 - **Evidence over assumptions** — observed, documented, confirmed, inferred — never silently guessed.
 - **Controlled design change** — L1/L2/L3 impact levels with explicit decision authority.
+- **Parallel team development** — multiple humans and agents work concurrent items through Issue + branch + PR + maintainer merge; the tracker is the authority, `STAGE.md` is the team status board.
 - **Project-wide coordination** — root `STAGE.md` shows the lifecycle, active humans/agents, blockers, handoffs, and resume points.
 
 ## The Three Skills
@@ -67,7 +68,7 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 
 > "Initialize a new greenfield project: a community local-services platform."
 
-`coding-start` interviews you round by round, runs the Macro Readiness Gate, and produces `STAGE.md`, `README`, `AGENTS.md`, `docs/*`, `specs/ROADMAP.md`, and DRAFT Specs — then stops with one selected `NEXT` feature.
+`coding-start` interviews you round by round, runs the Macro Readiness Gate, and produces `STAGE.md`, `README`, `AGENTS.md`, `docs/*`, `specs/ROADMAP.md`, and DRAFT Specs — then stops with confirmed `NEXT` feature(s) (usually one; parallel selections only when distinct members will claim them).
 
 **Take over an existing repo:**
 
@@ -84,7 +85,7 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 ## Design Principles
 
 1. Macro design before coding — but no Big Design Up Front.
-2. All Specs can be drafted at once; only the selected one is deepened.
+2. All Specs can be drafted at once; only the selected ones are deepened — one claiming member per `NEXT` item.
 3. The Spec defines correctness; a bound remote Issue tracks progress, or the confirmed Stage-local row does when no remote is bound; the PR records changes; the ADR records why.
 4. Critical requirements must be verifiable before coding starts.
 5. Test behavior, not implementation details.

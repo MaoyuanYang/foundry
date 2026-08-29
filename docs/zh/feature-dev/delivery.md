@@ -26,7 +26,13 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 
 每个交付副作用（远程 Issue、commit、push、PR、merge、close）都需独立的明确授权，加可用工具、有效认证与已知目标。"实现这个 Feature"绝不是授权。
 
-当已确认的 Definition of Done 被满足（授权的 PR 已打开/批准/合并，或显式采纳的 no-PR 交付记录存在）时，将 `DELIVERED` 与 `DONE Status: PASS`、`Roadmap Status: DONE` 一同记录。
+## IN PR REVIEW
+
+当已授权的 PR 存在且收到外部评审意见时，Stage 活动转入 `PR_REVIEW`，交付状态转入 `IN PR REVIEW`。每条外部意见导入 Findings 表，附评审人身份与严重度映射——**Critical** 级外部发现与自审 Critical 同等阻断 `DONE`，**High** 级只能通过 Decision Authority 豁免路径处理。修复以同一工作项下的 `CODING_TESTING` 小切片返回，之后恢复 `Roadmap Status: REVIEW`；改变已批准 Scope、Acceptance 或外部契约的修复先走 Design Change。
+
+合并与 `DELIVERED` 之前，认领成员完成集成协议：工作项分支与集成基线同步、重跑测试设计的集成切片与记录的回归范围、命令与结果记入 Review 记录。揭示共享契约或 Spec 语义冲突的合并冲突属于 **L2** Design Change。合并本身是独立授权的动作，由负责人或与其确认后执行。
+
+当已确认的 Definition of Done 被满足（授权的 PR 已打开、评审意见已解决、并由负责人或与其确认后批准合并，或显式采纳的 no-PR 交付记录存在）时，将 `DELIVERED` 与 `DONE Status: PASS`、`Roadmap Status: DONE` 一同记录。
 
 ## DONE 门禁
 
@@ -41,6 +47,7 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 7. 受影响的语义 Docs 与 Issue/工作项已按授权/约定同步。
 8. 已满足确认的 PR、merge 或 no-PR 交付标准。
 9. `DONE` 记录包含独立 revision/hash 清单：当前 Spec、受影响 Dependency Specs、相关 ADR/API/Architecture/AGENTS、适用 UX/UI/Test Design、Plan、已评审 diff、Review 与交付证据。
+10. 发生过 PR 评审时，每条外部意见已解决或经 Decision Authority 记录显式豁免，无未解决的 Critical 外部发现，且必需的集成重跑证据已记录（仅在无 PR 时记 `N/A - no PR review occurred`）。
 
 权威 `DONE` 决策完成后，再把 `STAGE.md` 作为 Gate 后投影进行同步。Stage 冲突或 writer 不可用会使投影陈旧，必须报告并重试；但 Stage 不是 `DONE` 的语义输入，也不能反向使 Gate 失效。
 

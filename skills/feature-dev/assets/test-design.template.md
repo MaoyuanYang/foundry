@@ -55,6 +55,7 @@
 - Concurrency/transaction/consistency: `N/A - <reason>`
 - Retry/timeout/recovery: `N/A - <reason>`
 - Migration/backward compatibility: `N/A - <reason>`
+- Parallel-feature integration/merge regression: `N/A - <reason>`
 - Performance/capacity: `N/A - <reason>`
 - Security/privacy: `N/A - <reason>`
 - Observability: `N/A - <reason>`
@@ -78,7 +79,7 @@ Status MUST be `OPEN | RESOLVED | DEFERRED`. A Critical Test Question at `OPEN` 
 
 ## `TEST DESIGN READY` Evidence
 
-Each Result MUST be `YES` or `NO`. A risk-specific N/A reason may appear in Evidence only where the requirement explicitly permits it. `PASS` requires all 10 rows to be `YES`, plus a complete manifest, validation time, and Decision Authority.
+Each Result MUST be `YES` or `NO`. A risk-specific N/A reason may appear in Evidence only where the requirement explicitly permits it. `PASS` requires all 11 rows to be `YES`, plus a complete manifest, validation time, and Decision Authority.
 
 | ID | Requirement | Result | Evidence/reason |
 | --- | --- | --- | --- |
@@ -92,6 +93,7 @@ Each Result MUST be `YES` or `NO`. A risk-specific N/A reason may appear in Evid
 | TR-08 | Environment, data, fixtures, and external dependencies are available, or alternative verification is confirmed. |  |  |
 | TR-09 | A Bug has reproduction evidence and a regression scenario, or a confirmed evidence-based surrogate, alternative verification, and residual risk. |  |  |
 | TR-10 | No Critical Requirement is unverifiable, and no Critical Test Question is `OPEN` or `DEFERRED`. |  |  |
+| TR-11 | When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios or justified `N/A - no concurrent work items`. |  |  |
 
 ## `TEST DESIGN READY` Record
 

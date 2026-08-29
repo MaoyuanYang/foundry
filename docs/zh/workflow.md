@@ -9,7 +9,7 @@ Issue ──▶ Spec 精化 ──▶ SPEC READY
       ──▶ [UX/UI 精化 ──▶ UI READY]   （仅当有 UI）
       ──▶ 测试设计 ──▶ TEST DESIGN READY
       ──▶ Plan ──▶ Tasks ──▶ Coding ──▶ Testing
-      ──▶ Review ──▶ Documentation Sync ──▶ PR ──▶ DONE
+      ──▶ Review ──▶ Documentation Sync ──▶ PR ──▶ [PR 评审意见解决] ──▶ DONE
 ```
 
 ## 门禁
@@ -38,7 +38,7 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
             ──▶ 显式 TO-BE ──▶ SPEC READY
 ```
 
-只有选中的 Feature 被深化；其余 Spec 保持 `DRAFT`。
+只有被选中的 Feature 会被深化——每个认领成员深化自己的那一项；其余 Spec 保持 `DRAFT`。
 
 ## AS-IS 与 TO-BE
 
@@ -54,7 +54,7 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
 | 对象 | 负责 |
 |---|---|
 | **Spec** | 什么才算正确（事实来源） |
-| **远程 Issue / Stage-local 行** | 已绑定工作进行到哪里（进度、状态）；仅一个可写 |
+| **远程 Issue / Stage-local 行** | 已绑定工作进行到哪里（进度、状态）；每个工作项仅一个可写 |
 | **STAGE.md** | 整个项目与所有活跃成员当前处于哪里 |
 | **Implementation Plan** | 怎么实现（不得重新定义需求） |
 | **PR / 交付记录** | 代码发生了什么变化 |
@@ -66,6 +66,19 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
 ## 项目状态与权威
 
 三个 Skill 共同维护根 [`STAGE.md`](./guide/project-stage)。它负责当前项目阶段、活跃成员视图、阻塞、交接和恢复点。Feature 工作项绑定前，`specs/ROADMAP.md` 负责初始状态；绑定后 Stage 投影远程 Tracker，未绑定远程时才由标识为 `STAGE_LOCAL:<Activity ID>` 的行负责本地 Work Status。远程访问暂时失败绝不会转移权威，必须先通过显式且持久的迁移将其解绑。Roadmap 始终负责排序与依赖，Gate 产物始终负责 Gate 证据。
+
+## 并行协作
+
+多个 `NEXT` 工作项可以同时活跃——每个认领成员（人类或 Agent、各在自己的机器上）一项。协调平面就是标准远端流程：**Issue + 分支 + PR + 负责人合并**。
+
+- 每个被认领的项在自己的分支上开发，记录在 Stage 的 `Branch / Worktree` 列。
+- 多成员、多机器项目绑定远端 Tracker 作为 Work Status 权威。`STAGE.md` 是团队状态看板：每台机器持有从 Tracker 刷新的本地投影，不一致时以 Tracker 为准。
+- 合并前，认领成员与集成基线同步并重跑集成切片与回归范围；共享契约上的语义冲突升级为 L2。
+- PR 评审意见在 `IN PR REVIEW` 中消化：Critical 级外部发现阻断 `DONE`；合并由负责人单独授权执行。
+- 项目可在 `AGENTS.md` 采纳数值型 `WIP Limit`；默认约束只有"每项一认领"。
+- 根 `AGENTS.md` 记录 `foundry_contract_version`；Skill 合同版本不一致时先停止并同步。
+
+完整协议见[并行协作指南](./guide/parallel-work)。
 
 ## 设计变更策略
 
