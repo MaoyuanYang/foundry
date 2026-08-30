@@ -88,7 +88,7 @@ Before completion, check Current Spec, STAGE, ROADMAP, API, DATABASE, ARCHITECTU
 
 ## 5. Platform-Neutral Issue/PR Strategy
 
-First detect GitHub, GitLab, Jira, or local conventions, then bind one writable remote tracker as Work Status authority. When no remote is bound, use a user-confirmed `STAGE_LOCAL:<Activity ID>` row as the local authority; the Roadmap is only a synchronized mirror. A bound remote remains authoritative during temporary authorization, tool, authentication, availability, or write failures; preserve status and `STOP` unless an explicit durable migration unbinds it. If neither valid authority is writable and confirmed, `STOP`; MUST NOT claim a status transition. By default, one Feature binds to one work item; suggest a sub-issue only when part of the work can be delivered independently. A Bug/Change to a `DONE` Feature uses a new work item. A second unexplained Stage claim on the same work item is `CONFLICT` unless explicit collaboration boundaries exist.
+First detect GitHub, GitLab, Jira, or local conventions, then bind one writable remote tracker as Work Status authority. When no remote is bound, use a user-confirmed `STAGE_LOCAL:<Activity ID>` row as the local authority; the Roadmap is only a synchronized mirror. A bound remote remains authoritative during temporary authorization, tool, authentication, availability, or write failures; preserve status and `STOP` unless an explicit durable migration unbinds it. If neither valid authority is writable and confirmed, `STOP`; MUST NOT claim a status transition. By default, one Feature binds to one work item; suggest a sub-issue only when part of the work can be delivered independently. A Bug/Change to a `DONE` Feature uses a new work item. A second unexplained Stage claim on the same work item is `CONFLICT` unless explicit collaboration boundaries exist. In a multi-member repository, the claiming member files or binds exactly one Issue for their claimed `NEXT` item and develops it on the work-item branch recorded in Stage; see [Parallel work and integration](parallel-work-and-integration.md).
 
 These operations have side effects:
 
@@ -119,9 +119,19 @@ When implementation, verification, Review, and Docs are complete, but PR mode la
 - In PR mode, record `READY FOR PR`; in no-PR mode, record `READY FOR DELIVERY`.
 - Keep `Roadmap Status: REVIEW`, record `DONE Status: NOT_READY`, then `STOP`.
 
+### `IN PR REVIEW`
+
+When an authorized PR exists and external review feedback arrives, set the Stage activity to `PR_REVIEW` and process the feedback under [Parallel work and integration](parallel-work-and-integration.md):
+
+- Import every external finding into the Findings table with reviewer identity and severity mapping.
+- A Critical external finding blocks `DONE` exactly like a self-review Critical; a High finding may be waived only through the Decision Authority path.
+- Fixes return as a scoped `CODING_TESTING` slice under the same work item before `Roadmap Status: REVIEW` resumes; a fix that changes approved Scope, Acceptance, or an external contract first runs Design Change.
+- Before merge and `DELIVERED`, complete the integration protocol: sync with the integration base, rerun the Test Design integration slice and regression scope, and record the evidence in the Review record.
+- Merge itself remains a separately authorized action performed by or with the responsible maintainer.
+
 ### `DELIVERED`
 
-`DELIVERED` means the confirmed Definition of Done is met: the authorized PR is opened, approved, or merged, or the explicitly adopted no-PR delivery record exists. Record `DELIVERED` only together with `DONE Status: PASS` and `Roadmap Status: DONE`; it is the terminal delivery state in the Issue and Review templates.
+`DELIVERED` means the confirmed Definition of Done is met: the authorized PR is opened, its review feedback resolved, and it is approved and merged by or with the responsible maintainer, or the explicitly adopted no-PR delivery record exists. Record `DELIVERED` only together with `DONE Status: PASS` and `Roadmap Status: DONE`; it is the terminal delivery state in the Issue and Review templates.
 
 ### `DONE`
 

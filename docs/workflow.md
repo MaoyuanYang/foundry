@@ -9,7 +9,7 @@ Issue ──▶ Spec Refinement ──▶ SPEC READY
         ──▶ [UX/UI Refinement ──▶ UI READY]   (only if UI)
         ──▶ Test Design ──▶ TEST DESIGN READY
         ──▶ Plan ──▶ Tasks ──▶ Coding ──▶ Testing
-        ──▶ Review ──▶ Documentation Sync ──▶ PR ──▶ DONE
+        ──▶ Review ──▶ Documentation Sync ──▶ PR ──▶ [PR review feedback resolved] ──▶ DONE
 ```
 
 ## The gates
@@ -38,7 +38,7 @@ AS_IS_DRAFT ──▶ evidence collection ──▶ RECONSTRUCTED
             ──▶ explicit TO-BE ──▶ SPEC READY
 ```
 
-Only the selected feature is deepened; all other specs stay `DRAFT`.
+Only a selected feature is deepened — each claiming member deepens their own; all other specs stay `DRAFT`.
 
 ## AS-IS vs TO-BE
 
@@ -54,7 +54,7 @@ Existing code, tests, docs, and UI are **evidence**, not requirements.
 | Object | Owns |
 |---|---|
 | **Spec** | What is correct (source of truth) |
-| **Remote Issue / Stage-local row** | Where the bound work is (progress, status); exactly one is writable |
+| **Remote Issue / Stage-local row** | Where the bound work is (progress, status); exactly one is writable per work item |
 | **STAGE.md** | Where the project and all active members are now |
 | **Implementation Plan** | How to build it (must not redefine requirements) |
 | **PR / delivery record** | What changed in code |
@@ -66,6 +66,19 @@ A remote Issue or auxiliary checklist never duplicates the Spec. A local checkli
 ## Project status and authority
 
 All three Skills maintain root [`STAGE.md`](./guide/project-stage). It owns the current project phase, active-member view, blockers, handoffs, and resume points. Before a Feature work item is bound, `specs/ROADMAP.md` owns its initial status. After binding, Stage projects the remote tracker; when no remote is bound, the row identified by `STAGE_LOCAL:<Activity ID>` is the local Work Status authority. Temporary remote access failure never transfers authority; an explicit durable migration must unbind it first. Roadmap always owns ordering and dependencies, and Gate artifacts always own Gate evidence.
+
+## Parallel work
+
+Multiple `NEXT` work items can be active concurrently — one per claiming member (human or agent, each on their own machine). The coordination plane is the standard remote flow: **Issue + branch + PR + maintainer merge**.
+
+- Each claimed item develops on its own branch, recorded in the Stage `Branch / Worktree` column.
+- Multi-member and multi-machine projects bind a remote tracker as the Work Status authority. `STAGE.md` is the team status board: every machine keeps a local projection refreshed from the tracker, and the tracker wins any disagreement.
+- Before merge, the claiming member syncs with the integration base and reruns the integration slice and regression scope; a semantic conflict on a shared contract escalates to L2.
+- PR review feedback is consumed in `IN PR REVIEW`: Critical external findings block `DONE`, and merge is separately authorized by the responsible maintainer.
+- A project may adopt a numeric `WIP Limit` in `AGENTS.md`; by default, per-claim uniqueness is the only constraint.
+- Root `AGENTS.md` records `foundry_contract_version`; a Skill whose contract version differs stops until it is synchronized.
+
+See the [Parallel Work guide](./guide/parallel-work) for the full protocol.
 
 ## Design Change Policy
 

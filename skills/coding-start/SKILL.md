@@ -6,6 +6,7 @@ description: "Use ONLY when the user explicitly asks to start or initialize a Gr
 # Coding Start
 
 > Part of **Foundry**, an AI-native, spec-driven development suite. Role: Greenfield initialization (0 to 1). Siblings: `project-onboard`, `feature-dev`.
+> Foundry contract version: `2026-08-30`.
 
 Move an unimplemented project idea to a state that can be handed to Feature development. Clarify direction, boundaries, and durable rules before producing project-level documents and a shallow Feature map. By default, this Skill MUST NOT write business code or create full application scaffolding.
 
@@ -29,6 +30,8 @@ MUST NOT enter when:
 If Greenfield versus Brownfield is unclear, ask one entry-classification question; MUST NOT guess or overwrite existing content in the name of initialization.
 
 A credible macro baseline exists when the repository already documents product scope, system boundaries, the test method, the current Roadmap, trustworthy Brownfield AS-IS where applicable, and a valid persisted Language Policy.
+
+If an existing root `AGENTS.md` records `foundry_contract_version` and it differs from this Skill's contract version recorded above, report both values and `STOP` until the installed Skill copy is synchronized with the repository contract.
 
 Before the first file write, list every path to be created or updated, including root `STAGE.md`, and obtain explicit local-write authorization. Approval of the macro design is not file-write authorization. Without write authorization, report Discovery and Gate results, state that initialization is incomplete, and `STOP`.
 
@@ -198,7 +201,7 @@ Use [Roadmap and DRAFT Spec templates](assets/roadmap-and-draft-spec.template.md
 4. Analyze dependencies, risk, and learning value, and identify the smallest first Feature that validates end-to-end direction.
 5. Generate a shallow DRAFT Spec for every Feature, recording `Roadmap Status: DRAFT` in each Spec header.
 6. DRAFT Specs MAY include initial Acceptance Criteria and UI impact but MUST retain Open Questions, MUST NOT mature to `READY`, and MUST NOT freeze DTOs, fields, classes, components, or pixel design.
-7. In `NEXT_SELECTION`, obtain Roadmap Decision Authority confirmation for the recommended Feature, then mark exactly one authority-confirmed Feature `NEXT` in the Roadmap and update that Feature's Spec header. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
+7. In `NEXT_SELECTION`, obtain Roadmap Decision Authority confirmation for the recommended selection, then mark one or more authority-confirmed Features `NEXT` in the Roadmap and update each selected Feature's Spec header. By default recommend the smallest validating set, usually one Feature; confirm additional parallel selections only when distinct members will claim them. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker with an unblock condition. A `NEXT` Roadmap status does not change Spec maturity: every Spec remains `DRAFT`.
 8. If no Feature can safely become `NEXT`, return to the interview via `NEEDS_CLARIFICATION`. If only a currently unresolvable external blocker remains, enter `BLOCKED_HANDOFF`: allow zero `NEXT` entries; record blocker, Decision Authority/owner, unblock condition, and how to resume from `NEXT_SELECTION`; then enter `SELF_REVIEW` and `STOP` with initialization incomplete. `INITIALIZATION INCOMPLETE` is the controlled handoff token for this path. MUST NOT choose arbitrarily to finish the flow.
 9. Reconcile `STAGE.md` and the README handoff section from the confirmed Roadmap result: project phase, the current activity, Work Status authority, blockers, handoff target, and exact resume stage; replace the README's pending handoff line with the matching Confirmed NEXT or BLOCKED_HANDOFF branch. The Roadmap still owns ordering and dependencies; `STAGE.md` MUST NOT copy the Feature map.
 
@@ -221,12 +224,12 @@ Before finishing, use [Lifecycle and gates](references/lifecycle-and-gates.md) a
 - UI projects received macro UX/UI Discovery; no-UI projects have no UI documents.
 - Artifact responsibilities are distinct; Spec/Issue/PR/ADR relationships are clear.
 - Formal documents contain only `CONFIRMED`, explicit `RECOMMENDED`, and visible non-blocking `UNKNOWN` content.
-- A named, empowered Decision Authority confirmed high-impact decisions and the sole `NEXT`.
+- A named, empowered Decision Authority confirmed high-impact decisions and every selected `NEXT` (at least one).
 - Design confirmation, local writes, Git, and remote side effects each had independent authorization.
 - Discovery intensity matched risk; `DEEP` remained one question per round without repeated grilling.
 - Challenge Pass covered assumptions, counterexamples, MVP subtraction, Authority/Source of Truth, success criteria, and complexity.
 - No Big Design Up Front or frozen Feature-level detail was introduced.
-- The success path has exactly one confirmed `NEXT`; `BLOCKED_HANDOFF` has zero `NEXT` entries, plus a blocker, owner, unblock condition, and resume stage. Neither path marks a Feature `READY`.
+- The success path has at least one confirmed `NEXT` (each expected to be claimed by a distinct member activity); `BLOCKED_HANDOFF` has zero `NEXT` entries, plus a blocker, owner, unblock condition, and resume stage. Neither path marks a Feature `READY`.
 - Every Spec remains `DRAFT`, with dependencies and Open Questions visible.
 - AGENTS contains durable rules, the full Feature workflow, applicable UI rules, L1/L2/L3 Design Change Policy, and the durable Language Policy, including every effective language value and exact scope.
 - `STAGE.md` exists when writes were authorized, contains the current project and member snapshot, links rather than duplicates every authority, and preserves unrelated concurrent activity.
@@ -241,7 +244,7 @@ Fix every discovered issue before reporting. The final response MUST list:
 - Challenge assumptions retained, revised, or rejected.
 - Files created/updated and conditionally omitted files with reasons.
 - The `STAGE.md` snapshot revision, tracking mode, current activity, authority, and resume point.
-- On success, the sole `NEXT`, rationale, dependencies, and refinement questions; when blocked, zero `NEXT` entries and the unblock condition.
+- On success, every selected `NEXT` with rationale, dependencies, and refinement questions; when blocked, zero `NEXT` entries and the unblock condition.
 - `RECOMMENDED` and non-blocking `UNKNOWN` items.
 - Whether authorized minimal non-business scaffolding was created and its verification result.
 - The next step: use `feature-dev` to refine the Feature. MUST NOT invoke it or start implementation automatically.

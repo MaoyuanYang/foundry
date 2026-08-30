@@ -29,7 +29,7 @@ Roadmap 状态（`DRAFT…DONE`）追踪工作进行到哪里；门禁状态（`
 它是根目录中的项目/成员协作快照，记录当前阶段、活跃工作、阻塞、交接与恢复点。Feature 工作项绑定前由 Roadmap 负责初始状态；绑定后 Stage 投影远程 Tracker，未绑定远程时，显式标识的 `STAGE_LOCAL:<Activity ID>` 行可以负责本地 Work Status。远程访问暂时失败绝不会转移已绑定远程的权威。Spec、Gate 记录、`AGENTS.md` 与交付记录仍保留原有职责。见[项目状态面板](../guide/project-stage)。
 
 **可以让多个人或 Agent 同时工作吗？**
-可以，但 Stage 写入要串行化，而不是无锁并发。每个成员有稳定活动行，并通过仓库锁、指定的 canonical writer 或 revision/hash guard，只更改自己的工作及直接相关的阻塞/交接。分叉 worktree 中的副本在完成对账前不是实时 Stage。只有协作边界明确时，两个成员才能共享同一工作项；否则 Foundry 记录 `CONFLICT`，而不是静默覆盖归属。
+可以。多个 `NEXT` 工作项可以同时活跃——每项恰好被一个成员（人类或 Agent、任意机器）认领；对同一项的重复认领在未记录明确协作边界时是 `CONFLICT`。多成员团队通过标准远端流程协调：**成员为认领项提交/绑定一个 Issue → 在专属分支开发 → 提 PR → 负责人评审合并**。绑定远端 Tracker 作为 Work Status 权威：`STAGE.md` 是团队状态看板，每台机器持有从 Tracker 刷新的本地投影（不一致时以 Tracker 为准）。单机场景下 Stage 写入仍通过仓库锁、指定 canonical writer 或 revision/hash guard 串行化。项目可在 `AGENTS.md` 采纳数值型 `WIP Limit`；默认约束只有"每项一认领"。详见[并行协作](../guide/parallel-work)。
 
 **Foundry 强制 TDD 吗？**
 不。它采用 **Test Design First**——编码前先设计测试场景——但不机械要求 Red-Green-Refactor。状态机、核心业务规则、纯函数和 Bug 修复推荐用 TDD。

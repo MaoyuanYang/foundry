@@ -40,6 +40,14 @@ bound, a remote tracker URL is authoritative; when no remote is bound, use
 For a project workflow activity before a Feature authority exists, use Work
 Status `N/A` and `N/A - project workflow activity` as Status Authority.
 
+Multiple `NEXT` work items may be active concurrently; each MUST be claimed by
+exactly one active activity row carrying its own `Branch / Worktree` identity,
+and a duplicate claim on the same item is `CONFLICT`. In `REMOTE` tracking mode
+each machine keeps its own local projection of this file, refreshed from the
+authoritative tracker and Gate records; the tracker wins any disagreement, and
+a Git-level conflict on this file is resolved by regenerating the projection
+from those authoritative sources, never by hand-picking sides.
+
 | Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `A-001` | `<ID and short title>` | `<name/session>` | `HUMAN | AGENT` | `coding-start | project-onboard | feature-dev | external` | `<exact stage token>` | `ACTIVE | WAITING | BLOCKED | HANDOFF` | `<status>` | `<branch/worktree/N/A>` | `<ROADMAP link, tracker URL, STAGE_LOCAL:A-001, or N/A - project workflow activity>` | `<next observable checkpoint>` | `<ISO-8601>` |

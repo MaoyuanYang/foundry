@@ -4,16 +4,16 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0010` |
-| Parent Snapshot | `STAGE-0009 / sha256:26E8CB2CBDE9DEB1B2A3CCB2141D9F7AB98952F5327F8F3AA4535A22B10D56C3` |
-| Last Reconciled At | `2026-08-28T16:42:28+08:00` |
-| Reconciled By | `OpenCode` |
-| Repository Ref | `main@4329862 (uncommitted working tree)` |
-| Write Coordination | `SINGLE_WRITER:OpenCode/current repository root` |
+| Snapshot Revision | `STAGE-0012` |
+| Parent Snapshot | `STAGE-0011 / sha256:465633B34B7BE4C2E67569EB33997B27E707E28CF0DC6B4CDD4BDE5D7A10BAE1` |
+| Last Reconciled At | `2026-08-30T01:27:51+08:00` |
+| Reconciled By | `ZCode` |
+| Repository Ref | `feat/parallel-work-items@aee9fc3 (A-004 changes staged for commit)` |
+| Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
 | Overall State | `COMPLETE` |
-| Current Milestone | `Skill consistency and language-policy single-sourcing` |
+| Current Milestone | `Parallel work-item collaboration across Foundry Skills` |
 | Tracking Mode | `REMOTE` |
 
 ## Lifecycle Progress
@@ -22,6 +22,7 @@
 | --- | --- | --- | --- |
 | Foundry public baseline | `COMPLETE` | `README.md`, published Skill packages, and `main@d8254e9` | Preserve current behavior while extending the artifact contract |
 | Project-wide `STAGE.md` coordination | `COMPLETE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) and commit `d8254e9` | Delivered; future changes follow the new Stage contract |
+| Parallel work-item collaboration | `COMPLETE` | `adr/0001-parallel-work-items.md` (Accepted, revision 1) and this snapshot | Delivered on `feat/parallel-work-items`; verified by `npm run skills:verify` (47/47) and `npm run docs:build`; installed copies synchronized byte-identically |
 
 ## Active Work
 
@@ -45,6 +46,7 @@ None.
 
 | Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A-004` | `Parallel work-item collaboration across Foundry Skills (ADR-0001)` | `ZCode` | Multi-`NEXT` claim model with optional `WIP Limit`; tracker-first coordination with Stage as a projection board; branch-per-work-item integration protocol (L2 semantic-conflict escalation); `IN PR REVIEW` peer-review loop with `PR_REVIEW` stage token and DR-13; TR-11 parallel-integration test family; `foundry_contract_version` drift guard; verify script extended to 47 checks; bilingual docs and new Parallel Work guide synced | `DONE` | `STAGE_LOCAL:A-004` | `npm run skills:verify` (47/47 PASS), `npm run docs:build`, byte-identical installed copies at `~/.agents/skills/`, ADR `adr/0001-parallel-work-items.md` Accepted | `2026-08-30T01:27:51+08:00` |
 | `A-003` | `Skill consistency and language-policy single-sourcing` | `OpenCode` | Unified tokens and template conventions (NEEDS_CLARIFICATION, Fact Status, DR/DUC DONE tables, ADR casing, spec paths, Result domains); single-sourced the Language Policy per skill with a byte-identical anchored Core across all three Skills; added `npm run skills:verify` (37 checks) wired into CI; numbered the Stage write guard; synced bilingual docs and re-installed byte-identical skill copies | `DONE` | `STAGE_LOCAL:A-003` | `Uncommitted changes verified by npm run skills:verify (37/37 PASS), npm run docs:build, and SHA-256 comparison of installed copies` | `2026-08-28T16:42:28+08:00` |
 | `A-002` | `System health-check fixes for coding-start / project-onboard / feature-dev` | `OpenCode` | Fixed 1 HIGH + 10 MEDIUM + 30 LOW audit findings across all three Skills, the shared Stage template, and the bilingual docs website; installed copies re-verified byte-identical | `DONE` | `STAGE_LOCAL:A-002` | Uncommitted skill/docs changes verified by grep recheck and `npm run docs:build` | `2026-08-26T21:30:30+08:00` |
 | `A-001` | `#1 Add project-wide STAGE.md coordination across Foundry skills` | `OpenCode` | Root `STAGE.md` contract shipped to all three Skills with bilingual docs, write guards, and verified installed copies | `DONE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) (closed as completed) | Commit `d8254e9` on `main` | `2026-08-26T16:00:25+08:00` |

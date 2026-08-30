@@ -1,6 +1,6 @@
 # feature-dev —— 总览与状态机
 
-`feature-dev` 把**恰好一个**选定的 Feature / Change / Bug 从事实确认推进到可验证的交付。它遵循项目约定，绝不重新设计项目基线，也不吞并无关 Feature。
+`feature-dev` 每次运行把**恰好一个**选定的 Feature / Change / Bug 从事实确认推进到可验证的交付。它遵循项目约定，绝不重新设计项目基线，也不吞并无关 Feature。其他并行选定的 `NEXT` 项属于其他成员——本 Skill 绝不修改它们的状态、分支或 Gate 记录。
 
 ## 何时触发
 
@@ -21,6 +21,7 @@ flowchart TD
   P6 --> P7[7. Review → REVIEW]
   P7 --> P8[8. Documentation Sync]
   P8 --> P9[9. PR / 交付 → DONE]
+  P9 --> PR9[PR 已开：外部评审 → IN PR REVIEW → 修复 → DONE]
 ```
 
 Roadmap 状态流转 `DRAFT → NEXT → READY → IN_PROGRESS → REVIEW → DONE`，任何活跃状态都可转入 `BLOCKED`（记录 `Blocked From`）。`DONE` Feature 的 Bug/Change 使用**新的**工作项 ID，绝不抹除父 Feature 的完成状态。
@@ -46,7 +47,7 @@ Roadmap 状态流转 `DRAFT → NEXT → READY → IN_PROGRESS → REVIEW → DO
 
 ## 强制 STOP 条件
 
-1. 范围不是恰好一个选定的工作项。
+1. 范围不是本次运行恰好一个选定的工作项（其他成员并行认领的 `NEXT` 项不属于本次运行的范围）。
 2. Greenfield 缺项目级基线，或 Brownfield 缺可信 onboarding。
 3. Critical Open Question 处于 `OPEN`/`DEFERRED`、语言策略缺失/冲突/未持久化、重大 Docs/Code 冲突未解决、或核心需求不可验证。
 4. 本地写入必需但其精确路径或生成输出边界缺少明确授权。

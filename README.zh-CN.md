@@ -29,6 +29,7 @@ Foundry 由三个可复用的 **Agent Skill** 组成，把 AI 编码智能体变
 - **门禁式流转** —— `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`。
 - **证据优先于假设** —— 观察、文档、确认、推断，绝不静默猜测。
 - **受控的设计变更** —— L1/L2/L3 影响分级 + 明确的决策权限。
+- **并行团队开发** —— 多个人类与 Agent 通过 Issue + 分支 + PR + 负责人合并并行推进多个工作项；tracker 是权威，`STAGE.md` 是团队状态看板。
 - **项目级协作状态** —— 根 `STAGE.md` 展示生命周期、活跃人类/Agent、阻塞、交接与恢复点。
 
 ## 三个 Skill
@@ -67,7 +68,7 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 
 > "初始化一个全新的 greenfield 项目：社区本地生活平台。"
 
-`coding-start` 会逐轮访谈、运行 Macro Readiness 门禁，产出 `STAGE.md`、`README`、`AGENTS.md`、`docs/*`、`specs/ROADMAP.md` 和 DRAFT Specs，然后以唯一的 `NEXT` Feature 停止。
+`coding-start` 会逐轮访谈、运行 Macro Readiness 门禁，产出 `STAGE.md`、`README`、`AGENTS.md`、`docs/*`、`specs/ROADMAP.md` 和 DRAFT Specs，然后以确认的 `NEXT` Feature 停止（通常一个；并行多选仅在确有不同成员认领时确认）。
 
 **接管已有仓库：**
 
@@ -84,7 +85,7 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 ## 设计原则
 
 1. 宏观设计先于编码 —— 但避免 Big Design Up Front。
-2. 可以一次生成所有 DRAFT Spec，但只深化当前选中的那一个。
+2. 可以一次生成所有 DRAFT Spec，但只深化选中的那些——每个 `NEXT` 项一个认领成员。
 3. Spec 定义正确性；绑定的远程 Issue 管进度，没有远程绑定时由已确认的 Stage-local 行负责；PR 记录变化；ADR 记录为什么。
 4. 不可验证的关键需求，不进入编码。
 5. 测试外部行为，不测内部实现细节。

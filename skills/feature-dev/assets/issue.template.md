@@ -10,6 +10,7 @@
 
 - Spec:
 - Stage activity: `STAGE.md` (Active Work row `<Activity ID>`)
+- Branch / worktree: `N/A | <isolated work-item branch recorded in the Stage row>`
 - UX/UI: `N/A - <reason>`
 - Test Design:
 - Implementation Plan:
@@ -54,7 +55,7 @@
 
 - Project Definition of Done (DoD): `PR opened | approved | merged | explicitly adopted no-PR delivery record | TBD`
 - External actions authorized: `NO | <explicit actions>`
-- Delivery state: `REVIEW | READY FOR PR | READY FOR DELIVERY | DELIVERED`
+- Delivery state: `REVIEW | READY FOR PR | READY FOR DELIVERY | IN PR REVIEW | DELIVERED`
 - Delivery record/link: `N/A | <link>`
 
 ## Progress Notes

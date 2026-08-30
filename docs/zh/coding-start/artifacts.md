@@ -45,7 +45,7 @@
 ## NEXT 选择
 
 - 分析依赖、风险与学习价值，推荐能验证端到端方向的最小 Feature。
-- 由 `Roadmap Decision Authority` 确认；恰好一个被确认的 Feature 成为 `NEXT`。
+- 由 `Roadmap Decision Authority` 确认；一个或多个被确认的 Feature 成为 `NEXT`（默认为最小验证集，通常一个；并行多选仅在确有不同成员认领时确认）。
 - 若无 Feature 能安全成为 `NEXT`，回到访谈。若仅剩不可解的外部阻塞，进入 `BLOCKED_HANDOFF`：零 `NEXT`，记录 blocker、owner、解除条件与恢复阶段。
 - 根据 Roadmap 结果同步 `STAGE.md`，记录 `feature-dev` 交接或精确的阻塞恢复点，但不复制 Feature Map。
 

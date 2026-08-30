@@ -2,7 +2,7 @@
 
 Copy the first `FILE` section to `specs/ROADMAP.md`. Copy the second `FILE` section to `specs/<feature-id>-<slug>/spec.md` for every Feature. Replace all placeholders and delete inapplicable sections, but retain explicit Open Questions.
 
-On successful completion, the Roadmap has exactly one `NEXT` confirmed by a named Roadmap Decision Authority. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker. If every safe candidate has a currently unresolvable external blocker, use `BLOCKED_HANDOFF`: allow zero `NEXT` entries, remove the sole-`NEXT` statement, and record owner, unblock condition, and resume stage. In both branches, every Feature Spec remains `DRAFT` and MUST NOT be marked `READY`.
+On successful completion, the Roadmap has one or more `NEXT` entries confirmed by a named Roadmap Decision Authority; by default recommend the smallest validating set, usually one Feature, and confirm additional parallel selections only when distinct members will claim them. Other initial Features are `DRAFT`; use `BLOCKED` only for a concrete external blocker. If every safe candidate has a currently unresolvable external blocker, use `BLOCKED_HANDOFF`: allow zero `NEXT` entries, remove the selected-NEXT statement, and record owner, unblock condition, and resume stage. In both branches, every Feature Spec remains `DRAFT` and MUST NOT be marked `READY`.
 
 Roadmap and Spec prose follows Documentation Language. New engineering names inside them follow Engineering Language. Product Content Language permits localized resource/configuration values, clearly labeled exact product-copy quotations, and exact-copy assertions; surrounding formal prose remains under Documentation Language, while surrounding engineering text remains under Engineering Language. Any override requires both an explicit request and approval by a named `Maintainer Decision Authority` empowered for project language policy; the requester is not automatically that authority.
 
@@ -23,7 +23,7 @@ Every material Roadmap or Spec claim MUST carry `CONFIRMED`, `RECOMMENDED`, or `
 | Status | Meaning |
 | --- | --- |
 | `DRAFT` | Feature is mapped at macro level and remains intentionally shallow. |
-| `NEXT` | The sole Feature selected for refinement by `feature-dev`. |
+| `NEXT` | A Feature selected for active development; parallel selections are valid when distinct members claim them. |
 | `READY` | `SPEC READY`, `UI READY` or an explicit UI skip, `TEST DESIGN READY`, and a valid current Plan and Tasks; `coding-start` MUST NOT set it. |
 | `IN_PROGRESS` | Implementation is active. |
 | `REVIEW` | Implementation and evidence are under review. |
@@ -39,7 +39,7 @@ Every material Roadmap or Spec claim MUST carry `CONFIRMED`, `RECOMMENDED`, or `
 
 Use only `DRAFT/NEXT/READY/IN_PROGRESS/REVIEW/DONE/BLOCKED`.
 
-- Confirmed NEXT branch: use exactly one `NEXT`, `DRAFT` for other unblocked Features, and `BLOCKED` only with a concrete named blocker.
+- Confirmed NEXT branch: use one or more `NEXT` entries (default: the smallest validating set, usually one), `DRAFT` for other unblocked Features, and `BLOCKED` only with a concrete named blocker.
 - BLOCKED_HANDOFF branch: use zero `NEXT` entries; mark affected candidates `BLOCKED` with concrete named blockers and leave other Features `DRAFT`.
 
 ## Dependency View
@@ -54,7 +54,7 @@ Keep exactly one branch below.
 
 ### Branch A: Confirmed NEXT
 
-- Feature: `{{FEATURE_ID}} {{FEATURE_NAME}}`
+- Selected Features: `{{FEATURE_ID}} {{FEATURE_NAME}}` (one line per selected `NEXT`; default one)
 - Selection: `[CONFIRMED]` by {{NAMED_ROADMAP_DECISION_AUTHORITY_AND_ROLE}}
 - Why now: `[CONFIRMED/RECOMMENDED]` {{SMALLEST_END_TO_END_VALUE_AND_RISK_REDUCTION}}
 - Dependencies satisfied: `[CONFIRMED]` {{EVIDENCE}}

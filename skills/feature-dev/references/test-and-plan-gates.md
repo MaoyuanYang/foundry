@@ -18,6 +18,7 @@ Select according to risk:
 - Idempotency, Duplicate Request/Message, and Concurrency.
 - Transaction, Consistency, Retry, and Timeout.
 - Migration, Backward Compatibility, and Regression.
+- Parallel work-item integration: merge-order interaction, shared-contract regression, and post-merge combined regression.
 - Performance, capacity, caching, messaging, and observability.
 - UI Interaction, Form Validation, Loading/Empty/Error/Success, Navigation, Accessibility, E2E, and necessary Visual Regression.
 
@@ -83,7 +84,7 @@ Prefer the matching positive directions: clear single responsibility, dependency
 
 Open Test Question Status is `OPEN | RESOLVED | DEFERRED`. `OPEN` is unresolved, `RESOLVED` has a recorded resolution and evidence, and `DEFERRED` is postponed but unresolved for the current Gate. A Critical Test Question at `OPEN` or `DEFERRED` blocks this Gate.
 
-Every item MUST have an evidence row. Record `TEST DESIGN READY Status: PASS` only when all 10 rows are `YES` and the record includes the complete upstream manifest, Test Design revision, validation time, and Decision Authority approval source and scope. A risk-specific N/A reason may support `YES` only where the checklist item explicitly permits it; the row itself MUST NOT be bypassed as `N/A`:
+Every item MUST have an evidence row. Record `TEST DESIGN READY Status: PASS` only when all 11 rows are `YES` and the record includes the complete upstream manifest, Test Design revision, validation time, and Decision Authority approval source and scope. A risk-specific N/A reason may support `YES` only where the checklist item explicitly permits it; the row itself MUST NOT be bypassed as `N/A`:
 
 - [ ] Every core `AC-*` is verifiable and maps to at least one `TS-*`.
 - [ ] Happy Path, major Alternative Flows, and boundaries are covered.
@@ -95,6 +96,7 @@ Every item MUST have an evidence row. Record `TEST DESIGN READY Status: PASS` on
 - [ ] Environment, data, fixtures, and external dependencies are available, or alternative verification is confirmed.
 - [ ] A Bug has reproduction evidence and a regression scenario, or an explicitly confirmed evidence-based surrogate, alternative verification, and residual risk.
 - [ ] No Critical Requirement is unverifiable, and no Critical Test Question is `OPEN` or `DEFERRED`.
+- [ ] When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios or justified `N/A - no concurrent work items`.
 
 ## 5. Implementation Plan
 

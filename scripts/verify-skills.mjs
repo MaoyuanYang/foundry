@@ -87,6 +87,30 @@ check('evidence labels in feature-dev/SKILL.md', read('skills/feature-dev/SKILL.
 check('evidence labels in feature-dev spec template', read('skills/feature-dev/assets/spec.template.md').includes('NEEDS_CONFIRMATION'));
 check('no spaced NEEDS CLARIFICATION token', !read('skills/coding-start/SKILL.md').includes('`NEEDS CLARIFICATION`'));
 
+// 3b. parallel-work collaboration tokens
+for (const f of [
+  'skills/coding-start/assets/agents.template.md',
+  'skills/project-onboard/assets/agents-update.template.md',
+]) {
+  check(`parallel work policy section in ${f}`, read(f).includes('## Parallel Work Policy'));
+}
+check('WIP limit in feature-dev/SKILL.md', read('skills/feature-dev/SKILL.md').includes('`WIP Limit`'));
+for (const f of [
+  'skills/feature-dev/SKILL.md',
+  'skills/feature-dev/references/design-change-and-delivery.md',
+  'skills/feature-dev/assets/issue.template.md',
+]) {
+  check(`PR_REVIEW token in ${f}`, read(f).includes('PR_REVIEW') || read(f).includes('IN PR REVIEW'));
+}
+for (const s of skills) {
+  check(`contract version in ${s}/SKILL.md`, read(`skills/${s}/SKILL.md`).includes('Foundry contract version: `2026-08-30`'));
+}
+check(
+  'parallel-work reference exists and is linked',
+  existsSync(join(skillsDir, 'feature-dev', 'references', 'parallel-work-and-integration.md')) &&
+    read('skills/feature-dev/SKILL.md').includes('parallel-work-and-integration.md'),
+);
+
 // 4. every relative markdown link in instruction files (SKILL.md + references) resolves.
 //    Asset templates are excluded: their links resolve against generated file locations.
 {
@@ -131,8 +155,8 @@ check('no spaced NEEDS CLARIFICATION token', !read('skills/coding-start/SKILL.md
 const templateCounts = [
   ['skills/feature-dev/assets/spec.template.md', 'SR', 11],
   ['skills/feature-dev/assets/ux-ui.template.md', 'UR', 10],
-  ['skills/feature-dev/assets/test-design.template.md', 'TR', 10],
-  ['skills/feature-dev/assets/review-pr-done.template.md', 'DR', 12],
+  ['skills/feature-dev/assets/test-design.template.md', 'TR', 11],
+  ['skills/feature-dev/assets/review-pr-done.template.md', 'DR', 13],
   ['skills/feature-dev/assets/review-pr-done.template.md', 'DUC', 10],
 ];
 for (const [file, prefix, expected] of templateCounts) {
@@ -154,7 +178,7 @@ function sectionCount(file, startHeading, endHeading, needle = '- [ ]') {
 const refCounts = [
   ['skills/feature-dev/references/spec-and-ui-gates.md', '## 4. `SPEC READY` Checklist', '## 5.', 11],
   ['skills/feature-dev/references/spec-and-ui-gates.md', '## 7. `UI READY` Checklist', null, 10],
-  ['skills/feature-dev/references/test-and-plan-gates.md', '## 4. `TEST DESIGN READY` Checklist', '## 5.', 10],
+  ['skills/feature-dev/references/test-and-plan-gates.md', '## 4. `TEST DESIGN READY` Checklist', '## 5.', 11],
 ];
 for (const [file, start, end, expected] of refCounts) {
   const n = sectionCount(file, start, end);

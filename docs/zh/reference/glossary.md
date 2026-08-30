@@ -9,7 +9,7 @@ Foundry 中使用的全部状态、标签与门禁令牌，集中于此。
 | 状态 | 含义 |
 |---|---|
 | `DRAFT` | 已知但未选定，或仍粗糙 |
-| `NEXT` | 当前唯一选定的工作项 |
+| `NEXT` | 当前被选中进入活跃开发的工作项；并行多选有效，但每项须由不同活跃成员认领 |
 | `READY` | 必需门禁、Plan 与 Tasks 就绪 |
 | `IN_PROGRESS` | 实现与验证进行中 |
 | `REVIEW` | 实现完成；评审/文档/交付进行中 |
@@ -87,7 +87,7 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 
 ## 交付交接
 
-`READY FOR PR`（PR 模式）/ `READY FOR DELIVERY`（no-PR 模式）/ `DELIVERED`（已满足 Definition of Done；与 `DONE Status: PASS` 及 `Roadmap Status: DONE` 一同记录）/ `BLOCKED_HANDOFF`（coding-start，零 `NEXT`；交接令牌 `INITIALIZATION INCOMPLETE`）。
+`READY FOR PR`（PR 模式）/ `READY FOR DELIVERY`（no-PR 模式）/ `IN PR REVIEW`（PR 已开、正在处理外部评审意见）/ `DELIVERED`（已满足 Definition of Done；与 `DONE Status: PASS` 及 `Roadmap Status: DONE` 一同记录）/ `BLOCKED_HANDOFF`（coding-start，零 `NEXT`；交接令牌 `INITIALIZATION INCOMPLETE`）。
 
 ## 语言策略
 

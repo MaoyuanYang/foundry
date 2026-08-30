@@ -107,6 +107,18 @@ Do not make a one-time baseline `PASS/FAIL` a permanent rule. Record only stable
 - Delivery mode: `[PR/MR | explicitly adopted no-PR delivery | TBD]`
 - Remote Issue changes, commit, push, PR/MR, merge, close, and release each require explicit user authorization.
 
+## Parallel Work Policy
+
+Record these when the team adopts parallel work; every bullet needs `ADOPTED` status from the named `Maintainer Decision Authority`.
+
+- Foundry contract version: `[record when known; a Skill whose contract version differs must stop and be synchronized first]`.
+- Multiple `NEXT` work items may run concurrently; each is claimed by exactly one active member activity in `STAGE.md`, and a duplicate claim on the same item is `CONFLICT`.
+- WIP limit: `[NONE by default, or the adopted numeric concurrency bound]`.
+- Multi-member or multi-machine work binds a remote tracker as the Work Status authority; each machine keeps a local `STAGE.md` projection refreshed from the tracker, and the tracker wins any disagreement.
+- Each claimed work item develops on its own branch recorded in the Stage `Branch / Worktree` column.
+- Before merge and `DELIVERED`, the claiming member syncs with the integration base and reruns the Test Design integration slice and regression scope; a semantic conflict on a shared contract or Spec is an L2 Design Change.
+- PR review feedback is consumed in `IN PR REVIEW`; Critical external findings block `DONE`, and merge is separately authorized.
+
 ## Spec and Work Lifecycle
 
 - Spec defines what is correct; a remote tracker or identified Stage-local row records where work is; `STAGE.md` shows the project/member snapshot; PR/Delivery Record records what changed in code; ADR records why a significant decision was made.
@@ -132,6 +144,7 @@ AS_IS_DRAFT / RECONSTRUCTED or DRAFT
 -> Review
 -> Documentation Sync
 -> PR/MR or explicitly adopted no-PR delivery record
+-> PR review feedback resolved (PR mode: IN PR REVIEW)
 -> DONE
 ```
 

@@ -16,7 +16,7 @@ Every scenario records: stable `TS-*` ID/title/risk, the protected `AC-*` or inv
 
 ## Scenario selection (risk-driven)
 
-Happy Path, Alternative Flows, boundaries, errors, invalid input, authentication, authorization, idempotency, concurrency, transactions, consistency, retry/timeout, duplicate request/message, failure recovery, migration, backward compatibility, regression — and, with UI: user interaction, form validation, loading, error/empty states, accessibility, navigation, E2E, visual regression. Inapplicable items record a short reason instead of mechanical scenarios.
+Happy Path, Alternative Flows, boundaries, errors, invalid input, authentication, authorization, idempotency, concurrency, transactions, consistency, retry/timeout, duplicate request/message, failure recovery, migration, backward compatibility, regression, parallel work-item integration (merge-order interaction, shared-contract regression, post-merge combined regression) — and, with UI: user interaction, form validation, loading, error/empty states, accessibility, navigation, E2E, visual regression. Inapplicable items record a short reason instead of mechanical scenarios.
 
 ## Test behavior, not implementation
 
@@ -36,6 +36,7 @@ Verify externally observable behavior. Prefer "exactly one order is created" ove
 8. Environment, data, fixtures, and external dependencies are available, or alternative verification is confirmed.
 9. A Bug has reproduction and a regression scenario, or a confirmed evidence-based surrogate with residual risk.
 10. No unverifiable Critical Requirement or Critical Test Question remains.
+11. When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios or justified `N/A - no concurrent work items`.
 
 ## Bug branch
 

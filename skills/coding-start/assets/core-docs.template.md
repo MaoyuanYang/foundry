@@ -37,7 +37,7 @@ the two branches below during NEXT_SELECTION reconciliation (Feature Map step
 
 ### Confirmed NEXT
 
-- [CONFIRMED] Feature planning: DRAFT Specs generated; `{{CONFIRMED_NEXT_FEATURE_ID}}` is the sole `NEXT`
+- [CONFIRMED] Feature planning: DRAFT Specs generated; `{{CONFIRMED_NEXT_FEATURE_ID}}` and any parallel confirmed selections are `NEXT`
 - [CONFIRMED] Handoff: Ready for `feature-dev` refinement
 
 ### BLOCKED_HANDOFF

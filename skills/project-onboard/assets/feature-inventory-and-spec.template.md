@@ -69,7 +69,7 @@ Preserve existing Feature IDs and names. Every newly created Feature ID, slug, o
 - Work Status after onboarding: `[preserved status; NEXT only when SELECTED by the named Roadmap Decision Authority or authoritative tracker]`
 - Handoff: `feature-dev` first confirms current behavior and preserve/change/remove decisions, creates TO-BE, and passes `SPEC READY`; this recommendation does not authorize Coding.
 
-The final check requires one `Recommended Next`. If unconfirmed, preserve `UNTRACKED` or the prior status. If confirmed as `NEXT`, the authoritative status source must contain exactly one current selection. Record pre-existing multiple `NEXT` entries as `CONFLICT` and request confirmation; never rewrite them silently.
+The final check requires one `Recommended Next`. If unconfirmed, preserve `UNTRACKED` or the prior status. If confirmed as `NEXT`, record the selection through the named Roadmap Decision Authority or authoritative tracker. Pre-existing parallel `NEXT` entries are valid when each is claimed by a distinct active member; record unclaimed or duplicate-claimed entries as `NEEDS_CONFIRMATION` and request confirmation; never rewrite them silently.
 
 ## Inventory Conflicts and Unknowns
 

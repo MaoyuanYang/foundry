@@ -22,7 +22,7 @@ Foundry 把软件生命周期拆成三个职责单一的 Skill。每个 Skill �
 - 默认不写业务代码、不搭全量脚手架。
 - 分轮访谈（每轮 2–5 个相关问题；`DEEP` 模式每轮只问一个决策问题）。
 - 默认值标记为 `RECOMMENDED`，绝不冒充已确认事实。
-- 以唯一的 `NEXT` Feature 停止（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
+- 以至少一个经权限确认的 `NEXT` Feature 停止——通常恰好一个；并行多选仅在确有不同成员认领时确认（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
 
 ## project-onboard —— Brownfield，未知 → 理解
 
@@ -49,7 +49,7 @@ Repository Survey → 基线验证 → 架构重建
 
 ## feature-dev —— Feature，1 → N
 
-把恰好一个选定的 Feature / Change / Bug 从事实确认推进到可验证的交付。
+每次运行把恰好一个选定的 Feature / Change / Bug 从事实确认推进到可验证的交付。其他并行选定的 `NEXT` 项属于其他成员；并行交付通过 Issue + 分支 + PR + 负责人合并协调。
 
 **触发条件**：你明确要求实现、修复或交付一个选定的工作项。只读评审、仅诊断、普通问答均不触发。
 
@@ -62,7 +62,7 @@ Repository Survey → 基线验证 → 架构重建
 
 **边界**
 
-- 每次只处理一个工作项；不批量建 Issue。
+- 每次运行只处理一个工作项；不批量建 Issue。多个成员可并行运行，各自负责自己认领的项。
 - 编码前必须通过 `SPEC READY`、`UI READY`、`TEST DESIGN READY` 门禁。
 - 测试设计先于实现；测行为，不测内部实现。
 - 设计变更走 L1/L2/L3，需命名的决策权限。
@@ -75,6 +75,6 @@ Repository Survey → 基线验证 → 架构重建
 已有仓库 ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
 ```
 
-- `coding-start` 与 `project-onboard` 都以"把选中的 Feature 交给 `feature-dev`"收尾。
+- `coding-start` 与 `project-onboard` 都以"把选中的 Feature 交给 `feature-dev`"收尾，每个 `NEXT` 项一个认领成员。
 - Skill 保存**流程**；项目的 `AGENTS.md` 保存**规则**。
 - 根 [`STAGE.md`](./guide/project-stage) 贯穿三个 Skill，保存当前项目/成员快照；关联 Tracker 与产物仍保留各自权威。

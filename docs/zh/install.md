@@ -49,7 +49,7 @@ opencode debug skill
 |---|---|---|
 | `coding-start` | `skills/coding-start/` | Greenfield 项目初始化（0 → 1） |
 | `project-onboard` | `skills/project-onboard/` | Brownfield 接管与 AS-IS 基线 |
-| `feature-dev` | `skills/feature-dev/` | 单 Feature 生命周期（1 → N） |
+| `feature-dev` | `skills/feature-dev/` | 单 Feature 生命周期（1 → N）；多成员并行时各自运行自己认领的项 |
 
 每个 Skill 自包含：
 

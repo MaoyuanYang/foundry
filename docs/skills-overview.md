@@ -22,7 +22,7 @@ Discovery interviews → Macro Synthesis → Challenge Pass → Macro Readiness
 - No business code, no full scaffolding by default.
 - Interviews in focused rounds (2–5 related questions; one decision question in `DEEP` mode).
 - Defaults are marked `RECOMMENDED`, never presented as confirmed facts.
-- Stops with exactly one `NEXT` feature (or a `BLOCKED_HANDOFF` with zero).
+- Stops with at least one confirmed `NEXT` feature — usually one; parallel selections are confirmed only when distinct members will claim them (or a `BLOCKED_HANDOFF` with zero).
 
 ## project-onboard — Brownfield, unknown → understood
 
@@ -49,7 +49,7 @@ Survey → Baseline Verification → Architecture Reconstruction
 
 ## feature-dev — Feature, 1 → N
 
-Advances exactly one selected Feature, Change, or Bug from fact confirmation to verifiable delivery.
+Advances exactly one selected Feature, Change, or Bug per run from fact confirmation to verifiable delivery. Other concurrently selected `NEXT` items belong to other members; parallel delivery is coordinated through Issue + branch + PR + maintainer merge.
 
 **Triggers when** you explicitly ask to implement, fix, or deliver one selected work item. Read-only review, diagnosis-only, and Q&A are excluded.
 
@@ -62,7 +62,7 @@ Bind Issue → Spec Refinement → SPEC READY → [UI READY if UI]
 
 **Boundaries**
 
-- One work item per run; no bulk issue creation.
+- One work item per run; no bulk issue creation. Multiple members may run it in parallel, each on their own claimed item.
 - `SPEC READY`, `UI READY`, `TEST DESIGN READY` gates must pass before coding.
 - Test design before implementation; test behavior, not internals.
 - Design changes go through L1/L2/L3 with named decision authority.
@@ -75,6 +75,6 @@ New idea ──▶ coding-start ──▶ feature-dev ──▶ feature-dev ─�
 Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
 ```
 
-- `coding-start` and `project-onboard` both end by handing a selected feature to `feature-dev`.
+- `coding-start` and `project-onboard` both end by handing selected features to `feature-dev`, one claiming member per `NEXT` item.
 - Skills hold the **process**; the project's `AGENTS.md` holds the **rules**.
 - Root [`STAGE.md`](./guide/project-stage) holds the current project/member snapshot across all three Skills, while linked trackers and artifacts retain their own authority.
