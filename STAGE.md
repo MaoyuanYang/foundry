@@ -4,11 +4,11 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0018` |
-| Parent Snapshot | `STAGE-0017 / sha256:B96DA61FF24F626FC3D442449151F88F9E626BFE064A14F1E0E459D5C49853B4` |
-| Last Reconciled At | `2026-08-31T17:20:00+08:00` |
+| Snapshot Revision | `STAGE-0019` |
+| Parent Snapshot | `STAGE-0018 / sha256:B8B167D0D10F6FA53454FFB1242E4A74D7B20120D163C311E0E4935A966FE776` |
+| Last Reconciled At | `2026-08-31T15:29:33+08:00` |
 | Reconciled By | `ZCode` |
-| Repository Ref | `test/add-behavior-eval-suite@404a117 (A-006 staged for commit)` |
+| Repository Ref | `main@d042fc0` |
 | Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
@@ -34,7 +34,7 @@ None.
 
 | Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
 |---|---|---|---|---|---|---|---|
-| `A-006` | `Behavioral eval suite (evals/)` | `ZCode` | Pre-registered 19-scenario live-fire matrix (entry routing, coding-start, project-onboard, feature-dev incl. fix-slice/WIP/version/claims STOPs, combination chains); all 19 PASS with 3 low-severity findings (2 harness-operational, 1 doc clarification suggestion, declared coverage gaps); added `.gitattributes` LF normalization after a recurring CRLF drift broke the byte-identical core check locally | `DONE` | `STAGE_LOCAL:A-006` | Run report in workspace; `npm run skills:verify` 60/60 after normalization; PR on `test/add-behavior-eval-suite` | `2026-08-31T17:20:00+08:00` |
+| `A-006` | `Behavioral eval suite (evals/)` | `ZCode` | Pre-registered 19-scenario live-fire matrix (entry routing, coding-start, project-onboard, feature-dev incl. fix-slice/WIP/version/claims STOPs, combination chains); all 19 PASS with 3 low-severity findings (2 harness-operational, 1 doc clarification suggestion, declared coverage gaps); added `.gitattributes` LF normalization after a recurring CRLF drift broke the byte-identical core check locally | `DONE` | `STAGE_LOCAL:A-006` | `PR #4 merged to main@d042fc0 (squash, 4 files); CI run 33368539159 success (skills:verify 60/60, docs:build, Pages deploy); run report in workspace` | `2026-08-31T15:29:33+08:00` |
 
 ## Gate Snapshot
 
