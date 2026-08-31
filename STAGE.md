@@ -4,16 +4,16 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0016` |
-| Parent Snapshot | `STAGE-0015 / sha256:64CEB628167439056275C45CD1A8749FBD75E880567081CCF70CD5214C689686` |
-| Last Reconciled At | `2026-08-31T14:41:46+08:00` |
+| Snapshot Revision | `STAGE-0018` |
+| Parent Snapshot | `STAGE-0017 / sha256:B96DA61FF24F626FC3D442449151F88F9E626BFE064A14F1E0E459D5C49853B4` |
+| Last Reconciled At | `2026-08-31T17:20:00+08:00` |
 | Reconciled By | `ZCode` |
-| Repository Ref | `main@87514c5` |
+| Repository Ref | `test/add-behavior-eval-suite@404a117 (A-006 staged for commit)` |
 | Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
 | Overall State | `COMPLETE` |
-| Current Milestone | `Resolve deep-review findings across parallel-work contracts (ADR-0001 rev 2)` |
+| Current Milestone | `Behavioral eval suite for the three Skills (evals/)` |
 | Tracking Mode | `REMOTE` |
 
 ## Lifecycle Progress
@@ -23,11 +23,18 @@
 | Foundry public baseline | `COMPLETE` | `README.md`, published Skill packages, and `main@d8254e9` | Preserve current behavior while extending the artifact contract |
 | Project-wide `STAGE.md` coordination | `COMPLETE` | [GitHub Issue #1](https://github.com/MaoyuanYang/foundry/issues/1) and commit `d8254e9` | Delivered; future changes follow the new Stage contract |
 | Parallel work-item collaboration | `COMPLETE` | `adr/0001-parallel-work-items.md` (Accepted, revision 1) and this snapshot | Delivered on `feat/parallel-work-items`; verified by `npm run skills:verify` (47/47) and `npm run docs:build`; installed copies synchronized byte-identically |
-| Deep-review findings resolution | `COMPLETE` | Review report of 2026-08-30 (4 HIGH, 9 MEDIUM, LOW findings), ADR-0001 revision 2, and this snapshot | All findings fixed; verified by `npm run skills:verify` (60/60) and `npm run docs:build`; installed copies synchronized |
+| Deep-review findings resolution | `COMPLETE` | Review report of 2026-08-30 (4 HIGH, 9 MEDIUM, LOW findings), ADR-0001 revision 2, and this snapshot | Delivered via PR #3 merged to main@87514c5 |
+| Behavioral eval suite | `COMPLETE` | This snapshot, `evals/`, and the workspace run report | 19/19 scenarios PASS (0 FAIL); PR opened |
 
 ## Active Work
 
 None.
+
+## Recently Completed
+
+| Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
+|---|---|---|---|---|---|---|---|
+| `A-006` | `Behavioral eval suite (evals/)` | `ZCode` | Pre-registered 19-scenario live-fire matrix (entry routing, coding-start, project-onboard, feature-dev incl. fix-slice/WIP/version/claims STOPs, combination chains); all 19 PASS with 3 low-severity findings (2 harness-operational, 1 doc clarification suggestion, declared coverage gaps); added `.gitattributes` LF normalization after a recurring CRLF drift broke the byte-identical core check locally | `DONE` | `STAGE_LOCAL:A-006` | Run report in workspace; `npm run skills:verify` 60/60 after normalization; PR on `test/add-behavior-eval-suite` | `2026-08-31T17:20:00+08:00` |
 
 ## Gate Snapshot
 

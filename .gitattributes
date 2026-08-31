@@ -1,0 +1,11 @@
+# Normalize text files to LF in the working tree on every platform
+* text=auto
+*.md text eol=lf
+*.mjs text eol=lf
+*.mts text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.vue text eol=lf
+*.ts text eol=lf
