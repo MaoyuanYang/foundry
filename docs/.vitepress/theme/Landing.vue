@@ -67,7 +67,7 @@ const t = computed(() =>
         nodes: [
           { tag: '0 → 1', name: 'coding-start', desc: 'Greenfield 访谈、宏观设计、DRAFT Specs。' },
           { tag: '接管', name: 'project-onboard', desc: '基线验证、架构重建、AS-IS 文档。' },
-          { tag: '1 → N', name: 'feature-dev', desc: 'Spec、门禁、测试设计、编码、交付。' }
+          { tag: '1 → N', name: 'feature-dev', desc: 'Spec、门禁、测试设计、编码、PR 评审与合并。' }
         ],
         bento: {
           kicker: '为什么选择 Foundry',
@@ -106,6 +106,11 @@ const t = computed(() =>
             title: '先 AS-IS 后 TO-BE',
             desc: '接管先重建可验证的 AS-IS 基线。已有代码是证据，绝不自动升级为规范。',
             chips: ['AS-IS', 'TO-BE', 'RECONSTRUCTED']
+          },
+          {
+            title: '并行团队开发',
+            desc: '多个人类与 Agent 通过 Issue + 分支 + PR + 负责人合并并行推进。tracker 是权威，STAGE.md 是看板。',
+            chips: ['Issue', 'Branch', 'PR', 'Merge']
           }
         ],
         quick: {
@@ -143,7 +148,7 @@ const t = computed(() =>
         nodes: [
           { tag: '0 → 1', name: 'coding-start', desc: 'Greenfield discovery, macro design, DRAFT specs.' },
           { tag: 'Takeover', name: 'project-onboard', desc: 'Baseline, reconstruction, AS-IS documentation.' },
-          { tag: '1 → N', name: 'feature-dev', desc: 'Spec, gates, test design, coding, delivery.' }
+          { tag: '1 → N', name: 'feature-dev', desc: 'Spec, gates, test design, coding, PR review, merge.' }
         ],
         bento: {
           kicker: 'Why Foundry',
@@ -182,6 +187,11 @@ const t = computed(() =>
             title: 'AS-IS before TO-BE',
             desc: 'Takeovers reconstruct a verified AS-IS baseline first. Existing code is evidence — never auto-promoted to the standard.',
             chips: ['AS-IS', 'TO-BE', 'RECONSTRUCTED']
+          },
+          {
+            title: 'Parallel Team Development',
+            desc: 'Multiple humans and agents work concurrent items through Issue + branch + PR + maintainer merge. The tracker is the authority; STAGE.md is the board.',
+            chips: ['Issue', 'Branch', 'PR', 'Merge']
           }
         ],
         quick: {

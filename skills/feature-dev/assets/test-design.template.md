@@ -55,7 +55,7 @@
 - Concurrency/transaction/consistency: `N/A - <reason>`
 - Retry/timeout/recovery: `N/A - <reason>`
 - Migration/backward compatibility: `N/A - <reason>`
-- Parallel-feature integration/merge regression: `N/A - <reason>`
+- Parallel-feature integration/merge regression (record the covering `TS-*` IDs here; this list is the recorded integration slice rerun before merge): `N/A - no concurrent work items | TS-<ids>`
 - Performance/capacity: `N/A - <reason>`
 - Security/privacy: `N/A - <reason>`
 - Observability: `N/A - <reason>`
@@ -93,7 +93,7 @@ Each Result MUST be `YES` or `NO`. A risk-specific N/A reason may appear in Evid
 | TR-08 | Environment, data, fixtures, and external dependencies are available, or alternative verification is confirmed. |  |  |
 | TR-09 | A Bug has reproduction evidence and a regression scenario, or a confirmed evidence-based surrogate, alternative verification, and residual risk. |  |  |
 | TR-10 | No Critical Requirement is unverifiable, and no Critical Test Question is `OPEN` or `DEFERRED`. |  |  |
-| TR-11 | When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios or justified `N/A - no concurrent work items`. |  |  |
+| TR-11 | When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios whose IDs are recorded as the integration slice, or justified `N/A - no concurrent work items`. |  |  |
 
 ## `TEST DESIGN READY` Record
 

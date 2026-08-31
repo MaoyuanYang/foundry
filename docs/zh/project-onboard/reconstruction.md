@@ -84,4 +84,4 @@ flowchart LR
 
 - 记录理由、依赖、风险、替代项、证据标签与推荐-选择元数据（未选为 `RECOMMENDED`，选定后为 `SELECTED`）。
 - 仅在命名的 `Roadmap Decision Authority` 明确确认、或权威 tracker 有证据时才设为 `NEXT`；否则保留原状态（无历史则 `UNTRACKED`）。
-- 既有多个 `NEXT` 记为 `CONFLICT` 并请求确认——绝不静默改写。
+- 既有并行 `NEXT` 在各自被不同活跃成员认领时有效；无认领或重复认领的 `NEXT` 记为 `NEEDS_CONFIRMATION` 并请求确认——绝不静默改写。

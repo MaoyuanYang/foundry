@@ -28,9 +28,9 @@ Plan 不得新增业务规则或 Acceptance、扩大 Scope、静默更改 API/UI
 
 ## IN PR REVIEW
 
-当已授权的 PR 存在且收到外部评审意见时，Stage 活动转入 `PR_REVIEW`，交付状态转入 `IN PR REVIEW`。每条外部意见导入 Findings 表，附评审人身份与严重度映射——**Critical** 级外部发现与自审 Critical 同等阻断 `DONE`，**High** 级只能通过 Decision Authority 豁免路径处理。修复以同一工作项下的 `CODING_TESTING` 小切片返回，之后恢复 `Roadmap Status: REVIEW`；改变已批准 Scope、Acceptance 或外部契约的修复先走 Design Change。
+当已授权的 PR 存在且收到外部评审意见时，Stage 活动转入 `PR_REVIEW`，交付状态转入 `IN PR REVIEW`。每条外部意见导入 Findings 表，附评审人身份与严重度映射——**Critical** 级外部发现与自审 Critical 同等阻断 `DONE`，**High** 级只能通过 Decision Authority 豁免路径处理。修复以 scoped fix slice 经由记录在案的 `REVIEW -> IN_PROGRESS` 边执行：在 Work Status 权威记录触发 finding、范围与原因；在 `CODING_TESTING` 下实现；应用 fix-slice Gate 失效规则（改变可观察行为、错误文案或已批准契约的修复使受影响门禁 `STALE`）；对变更 diff 重跑 Review 清单；然后让工作项回到 `REVIEW`。改变已批准 Scope、Acceptance 或外部契约的修复先走 Design Change。
 
-合并与 `DELIVERED` 之前，认领成员完成集成协议：工作项分支与集成基线同步、重跑测试设计的集成切片与记录的回归范围、命令与结果记入 Review 记录。揭示共享契约或 Spec 语义冲突的合并冲突属于 **L2** Design Change。合并本身是独立授权的动作，由负责人或与其确认后执行。
+合并与 `DELIVERED` 之前，认领成员完成集成协议：工作项分支与集成基线同步、重跑已记录的测试设计集成切片与回归范围、命令与结果记入 Review 记录。揭示共享契约或 Spec 语义冲突的合并冲突属于 **L2** Design Change。合并本身是独立授权的动作，由负责人或与其确认后执行。
 
 当已确认的 Definition of Done 被满足（授权的 PR 已打开、评审意见已解决、并由负责人或与其确认后批准合并，或显式采纳的 no-PR 交付记录存在）时，将 `DELIVERED` 与 `DONE Status: PASS`、`Roadmap Status: DONE` 一同记录。
 

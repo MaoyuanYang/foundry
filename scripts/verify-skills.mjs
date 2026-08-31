@@ -102,9 +102,54 @@ for (const f of [
 ]) {
   check(`PR_REVIEW token in ${f}`, read(f).includes('PR_REVIEW') || read(f).includes('IN PR REVIEW'));
 }
-for (const s of skills) {
-  check(`contract version in ${s}/SKILL.md`, read(`skills/${s}/SKILL.md`).includes('Foundry contract version: `2026-08-30`'));
+const declaredVersion = read('skills/coding-start/SKILL.md').match(/Foundry contract version: `([^`]+)`/);
+check('coding-start/SKILL.md declares a contract version', declaredVersion !== null);
+if (declaredVersion) {
+  for (const s of skills) {
+    check(
+      `contract version in ${s}/SKILL.md matches ${declaredVersion[1]}`,
+      read(`skills/${s}/SKILL.md`).includes(`Foundry contract version: \`${declaredVersion[1]}\``),
+    );
+  }
 }
+for (const f of [
+  'skills/coding-start/assets/agents.template.md',
+  'skills/project-onboard/assets/agents-update.template.md',
+]) {
+  check(`foundry_contract_version key line in ${f}`, read(f).includes('foundry_contract_version = '));
+  check(`WIP Limit casing in ${f}`, read(f).includes('WIP Limit: '));
+}
+check(
+  'reconstruction.md treats parallel NEXT via NEEDS_CONFIRMATION',
+  !read('docs/project-onboard/reconstruction.md').includes('Multiple existing `NEXT` items are recorded as `CONFLICT`') &&
+    read('docs/project-onboard/reconstruction.md').includes('NEEDS_CONFIRMATION'),
+);
+check(
+  'zh reconstruction.md treats parallel NEXT via NEEDS_CONFIRMATION',
+  !read('docs/zh/project-onboard/reconstruction.md').includes('既有多个 `NEXT` 记为 `CONFLICT`') &&
+    read('docs/zh/project-onboard/reconstruction.md').includes('NEEDS_CONFIRMATION'),
+);
+check('fix-slice edge in feature-dev/SKILL.md', read('skills/feature-dev/SKILL.md').includes('REVIEW -> IN_PROGRESS'));
+check(
+  'concurrency staleness rule in feature-dev/SKILL.md',
+  read('skills/feature-dev/SKILL.md').includes('manifest input of `TEST DESIGN READY`'),
+);
+check(
+  'DR-13 covers concurrent integration evidence',
+  read('skills/feature-dev/assets/review-pr-done.template.md').includes('concurrently claimed during this item'),
+);
+check(
+  'integration slice addressable in test-design template',
+  read('skills/feature-dev/assets/test-design.template.md').includes('this list is the recorded integration slice'),
+);
+check(
+  'claim authority in parallel-work reference',
+  read('skills/feature-dev/references/parallel-work-and-integration.md').includes('tracker issue assignee'),
+);
+check(
+  'claim release in parallel-work reference',
+  read('skills/feature-dev/references/parallel-work-and-integration.md').includes('authority release'),
+);
 check(
   'parallel-work reference exists and is linked',
   existsSync(join(skillsDir, 'feature-dev', 'references', 'parallel-work-and-integration.md')) &&

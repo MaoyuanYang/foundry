@@ -89,6 +89,18 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 
 `READY FOR PR`（PR 模式）/ `READY FOR DELIVERY`（no-PR 模式）/ `IN PR REVIEW`（PR 已开、正在处理外部评审意见）/ `DELIVERED`（已满足 Definition of Done；与 `DONE Status: PASS` 及 `Roadmap Status: DONE` 一同记录）/ `BLOCKED_HANDOFF`（coding-start，零 `NEXT`；交接令牌 `INITIALIZATION INCOMPLETE`）。
 
+交付状态不是 Roadmap 词汇：`IN PR REVIEW` 等记录在 Issue 的 Delivery 字段或正文，绝不写入 Work Status。
+
+## Skill 阶段令牌
+
+每个 Skill 定义自己的精确阶段令牌，记录在 Stage 活动的 `Skill Stage` 列。
+
+| Skill | 阶段令牌 |
+|---|---|
+| `coding-start` | `ENTRY_CHECK`、`PROJECT_DISCOVERY`、`MACRO_SYNTHESIS`、`CHALLENGE_PASS`、`MACRO_READINESS`、`ARTIFACT_GENERATION`、`FEATURE_MAPPING`、`DRAFT_SPEC_GENERATION`、`NEXT_SELECTION`、`BLOCKED_HANDOFF`、`SELF_REVIEW`、`STOP` |
+| `project-onboard` | `PREFLIGHT`、`REPOSITORY_SURVEY`、`BASELINE_VERIFICATION`、`ARCHITECTURE_RECONSTRUCTION`、`FRONTEND_RECONSTRUCTION`、`DOCS_REALITY`、`KNOWLEDGE_GAPS`、`CANONICAL_DOCUMENTATION`、`AGENTS_UPDATE`、`FEATURE_INVENTORY`、`AS_IS_SPEC_RECONSTRUCTION`、`NEXT_RECOMMENDATION`、`COMPLETE` |
+| `feature-dev` | `PREFLIGHT`、`WORK_ITEM_BINDING`、`SPEC_REFINEMENT`、`UI_REFINEMENT`、`TEST_DESIGN`、`IMPLEMENTATION_PLAN`、`CODING_TESTING`、`REVIEW`、`DOCUMENTATION_SYNC`、`DELIVERY`、`PR_REVIEW`、`COMPLETE` |
+
 ## 语言策略
 
 `documentation_language = en`、`engineering_language = en`；`product_content_language` 为实际 BCP-47 值、`UNKNOWN - <resolution action>` 或 `N/A - no product-content surface`。

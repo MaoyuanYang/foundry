@@ -80,7 +80,7 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 
 > "Implement feature F001 according to the workflow."
 
-`feature-dev` drives the full lifecycle: `SPEC READY` → `UI READY` (if UI) → `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → delivery.
+`feature-dev` drives the full lifecycle: `SPEC READY` → `UI READY` (if UI) → `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → PR → review feedback (`IN PR REVIEW`) → maintainer merge.
 
 ## Design Principles
 

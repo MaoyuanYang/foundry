@@ -89,6 +89,18 @@ Gates: `SPEC READY`, `UI READY` (or `SKIPPED (N/A)` for no-UI), `TEST DESIGN REA
 
 `READY FOR PR` (PR mode) / `READY FOR DELIVERY` (no-PR mode) / `IN PR REVIEW` (PR open, external review feedback being resolved) / `DELIVERED` (Definition of Done met; recorded with `DONE Status: PASS` and `Roadmap Status: DONE`) / `BLOCKED_HANDOFF` (coding-start, zero `NEXT`; handoff token `INITIALIZATION INCOMPLETE`).
 
+Delivery states are not Roadmap vocabulary: record `IN PR REVIEW` and its siblings in the Issue's Delivery field or body, never in Work Status.
+
+## Skill stage tokens
+
+Each Skill defines its own exact stage tokens, recorded in the Stage activity's `Skill Stage` column.
+
+| Skill | Stage tokens |
+|---|---|
+| `coding-start` | `ENTRY_CHECK`, `PROJECT_DISCOVERY`, `MACRO_SYNTHESIS`, `CHALLENGE_PASS`, `MACRO_READINESS`, `ARTIFACT_GENERATION`, `FEATURE_MAPPING`, `DRAFT_SPEC_GENERATION`, `NEXT_SELECTION`, `BLOCKED_HANDOFF`, `SELF_REVIEW`, `STOP` |
+| `project-onboard` | `PREFLIGHT`, `REPOSITORY_SURVEY`, `BASELINE_VERIFICATION`, `ARCHITECTURE_RECONSTRUCTION`, `FRONTEND_RECONSTRUCTION`, `DOCS_REALITY`, `KNOWLEDGE_GAPS`, `CANONICAL_DOCUMENTATION`, `AGENTS_UPDATE`, `FEATURE_INVENTORY`, `AS_IS_SPEC_RECONSTRUCTION`, `NEXT_RECOMMENDATION`, `COMPLETE` |
+| `feature-dev` | `PREFLIGHT`, `WORK_ITEM_BINDING`, `SPEC_REFINEMENT`, `UI_REFINEMENT`, `TEST_DESIGN`, `IMPLEMENTATION_PLAN`, `CODING_TESTING`, `REVIEW`, `DOCUMENTATION_SYNC`, `DELIVERY`, `PR_REVIEW`, `COMPLETE` |
+
 ## Language policy
 
 `documentation_language = en`, `engineering_language = en`; `product_content_language` is an actual BCP-47 value, `UNKNOWN - <resolution action>`, or `N/A - no product-content surface`.

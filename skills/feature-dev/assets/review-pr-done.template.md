@@ -41,7 +41,7 @@ Record only when a PR/MR with external review exists; otherwise keep `N/A - no P
 - Imported findings: `<IDs/links; every external finding appears in Findings>`
 - Severity mapping applied: `Critical | High | Medium | Low`
 - Resolutions: `<per finding: RESOLVED | waived - authority, rationale, residual risk, follow-up>`
-- Integration rerun after feedback (when required by [Parallel work and integration](../references/parallel-work-and-integration.md)): `N/A - no concurrent items | <base synced, integration slice and regression scope rerun, evidence>`
+- Integration rerun after feedback (when required by [Parallel work and integration](../references/parallel-work-and-integration.md)): `N/A - no concurrent items | <recorded integration slice and regression scope rerun against the synced base, evidence>`
 - Merge authorization and performer: `N/A | <authorized action and responsible maintainer>`
 
 ## Verification Results
@@ -85,7 +85,7 @@ For Brownfield delivery, preserve `docs/onboarding/*` and the Spec's original AS
 
 ### Integration and Parallel Work
 
-`N/A - no concurrent work items | <integration base synced, Test Design integration slice and regression scope rerun, commands and results>`
+`N/A - no concurrent work items | <integration base synced; recorded integration slice (the TS ID list in the Test Design's Parallel-feature integration row) and regression scope rerun; commands and results>`
 
 ### UI Changes
 
@@ -152,7 +152,7 @@ Every item MUST have an evidence row. Record `DONE Status: PASS` only when all 1
 | DR-10 | Confirmed PR/MR standard or explicitly adopted no-PR delivery-record standard is met. | `YES/NO` |  |
 | DR-11 | The `DONE` input manifest is complete; if incomplete on first validation, record `DONE Status: NOT_READY`. | `YES/NO` |  |
 | DR-12 | No semantic manifest input changed after a prior `DONE Status: PASS`; if one changed, record `DONE Status: STALE` and revalidate. | `YES/NO` |  |
-| DR-13 | When a PR review occurred, every external finding is resolved or explicitly waived with Decision Authority record, no Critical external finding remains, and the required integration rerun evidence is recorded; `N/A - no PR review occurred` only when no PR exists. | `YES/NO` |  |
+| DR-13 | (a) When other work items were concurrently claimed during this item's development, the required integration rerun evidence (recorded integration slice and regression scope, rerun against the synced integration base) is recorded, with `N/A - no concurrent work items` as the only exception; (b) when PR review feedback occurred, every external finding is resolved or explicitly waived with Decision Authority record and no Critical external finding remains, with `N/A - no PR review feedback` only when no PR exists or none received feedback. | `YES/NO` |  |
 
 ### UI Completion (If Applicable)
 

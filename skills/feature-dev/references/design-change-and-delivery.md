@@ -125,13 +125,13 @@ When an authorized PR exists and external review feedback arrives, set the Stage
 
 - Import every external finding into the Findings table with reviewer identity and severity mapping.
 - A Critical external finding blocks `DONE` exactly like a self-review Critical; a High finding may be waived only through the Decision Authority path.
-- Fixes return as a scoped `CODING_TESTING` slice under the same work item before `Roadmap Status: REVIEW` resumes; a fix that changes approved Scope, Acceptance, or an external contract first runs Design Change.
-- Before merge and `DELIVERED`, complete the integration protocol: sync with the integration base, rerun the Test Design integration slice and regression scope, and record the evidence in the Review record.
-- Merge itself remains a separately authorized action performed by or with the responsible maintainer.
+- Fixes run as a scoped fix slice through the recorded `REVIEW -> IN_PROGRESS` edge: log the triggering finding, scope, and reason in the Work Status authority; implement under `CODING_TESTING`; apply the fix-slice Gate invalidation rules; rerun the Review checklist over the changed diff; then return the item to `REVIEW`. A fix that changes approved Scope, Acceptance, or an external contract first runs Design Change.
+- Before merge and `DELIVERED`, complete the integration protocol: sync with the integration base, rerun the recorded Test Design integration slice and regression scope, and record the evidence in the Review record.
+- Merge itself remains a separately authorized action performed by or with the responsible maintainer (the named Maintainer Decision Authority for the repository, or the maintainer they explicitly designate for that merge).
 
 ### `DELIVERED`
 
-`DELIVERED` means the confirmed Definition of Done is met: the authorized PR is opened, its review feedback resolved, and it is approved and merged by or with the responsible maintainer, or the explicitly adopted no-PR delivery record exists. Record `DELIVERED` only together with `DONE Status: PASS` and `Roadmap Status: DONE`; it is the terminal delivery state in the Issue and Review templates.
+`DELIVERED` means the confirmed Definition of Done is met: the authorized PR is opened, its review feedback resolved through the scoped fix-slice loop, and it is approved and merged by or with the responsible maintainer, or the explicitly adopted no-PR delivery record exists. Record `DELIVERED` only together with `DONE Status: PASS` and `Roadmap Status: DONE`; it is the terminal delivery state in the Issue and Review templates.
 
 ### `DONE`
 

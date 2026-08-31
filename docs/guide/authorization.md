@@ -39,6 +39,15 @@ Design confirmation, local writes, Git operations, and remote actions are **sepa
 - Commands that may generate artifacts are treated as write side effects and need approval before running.
 - Existing user changes in the working tree are never overwritten, reverted, or misread as baseline failures.
 
+## Merge and peer review
+
+In parallel work, two additional authority rules apply around the PR:
+
+- **Merge** is a separately authorized Remote-class action, performed by or with the **responsible maintainer** — the named Maintainer Decision Authority for the repository, or the maintainer they explicitly designate for that merge. "The PR is open and green" is never merge authorization.
+- **External review feedback** is imported into the Findings table with reviewer identity and severity mapping. A **Critical** external finding blocks `DONE` exactly like a self-review Critical (never waivable); a **High** external finding follows the waiver rule above. Fixes run as a scoped fix slice (`REVIEW -> IN_PROGRESS -> REVIEW`) under the work item, never as an untracked side change.
+
+See [Parallel Work & Integration](./parallel-work).
+
 ## Waivers
 
 A `High` review finding may be waived only when the project Definition of Done permits it **and** a named Decision Authority explicitly records the rationale, residual risk, and follow-up. `Critical` findings always block `DONE` and cannot be waived.

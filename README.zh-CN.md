@@ -80,7 +80,7 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 
 > "按工作流实现 Feature F001。"
 
-`feature-dev` 驱动完整生命周期：`SPEC READY` → `UI READY`（如有 UI）→ `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → 交付。
+`feature-dev` 驱动完整生命周期：`SPEC READY` → `UI READY`（如有 UI）→ `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → PR → 评审意见消化（`IN PR REVIEW`）→ 负责人合并。
 
 ## 设计原则
 

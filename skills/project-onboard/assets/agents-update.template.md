@@ -111,13 +111,14 @@ Do not make a one-time baseline `PASS/FAIL` a permanent rule. Record only stable
 
 Record these when the team adopts parallel work; every bullet needs `ADOPTED` status from the named `Maintainer Decision Authority`.
 
-- Foundry contract version: `[record when known; a Skill whose contract version differs must stop and be synchronized first]`.
-- Multiple `NEXT` work items may run concurrently; each is claimed by exactly one active member activity in `STAGE.md`, and a duplicate claim on the same item is `CONFLICT`.
-- WIP limit: `[NONE by default, or the adopted numeric concurrency bound]`.
-- Multi-member or multi-machine work binds a remote tracker as the Work Status authority; each machine keeps a local `STAGE.md` projection refreshed from the tracker, and the tracker wins any disagreement.
+- foundry_contract_version = `[record the actual version of the installed Foundry Skill contract, using this exact key line; a Skill whose contract version differs must stop and be synchronized first. Only the named Maintainer Decision Authority may advance the value when adopting a newer contract, recording source and date]`.
+- Multiple `NEXT` work items may run concurrently; each is claimed by exactly one active member. The authoritative claim record is the tracker issue assignee in `REMOTE` tracking mode (the Stage activity row is its projection) and the Stage activity row in `LOCAL` mode; an unexplained duplicate claim is `CONFLICT`.
+- A claim ends by completion, by the atomic Stage-local handoff, or by authority release: when the claiming member is unreachable, the named Maintainer Decision Authority may release the claim and return the item to its pre-claim state, recording the reason.
+- WIP Limit: `[NONE by default, or the adopted numeric concurrency bound]` — counts non-terminal claimed work items (the tracker's open items bound to Specs in `REMOTE` mode; non-terminal Stage Active Work rows in `LOCAL` mode).
+- Multi-member or multi-machine work MUST bind a remote tracker as the Work Status authority, or record an explicit Maintainer-adopted exception; `HYBRID` scopes the split (each bound subproject follows `REMOTE` rules; every unbound scope is single-member `LOCAL`). Each machine keeps a local `STAGE.md` projection refreshed from the tracker; the tracker wins any disagreement, and a Git-level conflict on `STAGE.md` is resolved by regenerating affected rows from authoritative sources.
 - Each claimed work item develops on its own branch recorded in the Stage `Branch / Worktree` column.
-- Before merge and `DELIVERED`, the claiming member syncs with the integration base and reruns the Test Design integration slice and regression scope; a semantic conflict on a shared contract or Spec is an L2 Design Change.
-- PR review feedback is consumed in `IN PR REVIEW`; Critical external findings block `DONE`, and merge is separately authorized.
+- Before merge and `DELIVERED`, the claiming member syncs with the integration base and reruns the recorded Test Design integration slice and regression scope; a semantic conflict on a shared contract or Spec is an L2 Design Change.
+- PR review feedback is consumed in `IN PR REVIEW` through a scoped fix slice (`REVIEW -> IN_PROGRESS`, then back to `REVIEW`); Critical external findings block `DONE`, and merge is separately authorized by or with the responsible maintainer.
 
 ## Spec and Work Lifecycle
 
