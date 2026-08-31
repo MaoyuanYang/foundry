@@ -29,7 +29,7 @@ flowchart TD
 | 级别 | 范围 | 触发示例 | 必须更新 |
 |---|---|---|---|
 | **L1** | 单 Feature | 一个 Feature 内的变更 | 当前 Spec、Test Design、必要的 API / Database / UI |
-| **L2** | 跨 Feature | 多个 Feature、共享契约、Roadmap、Design System | 相关 Specs、API、DATABASE、UX/UI、DESIGN_SYSTEM、ROADMAP、Tests、必要的 Architecture |
+| **L2** | 跨 Feature | 多个 Feature、共享契约、Roadmap、Design System；合并冲突揭示了共享契约或 Spec 上的语义冲突时同样适用（见[并行协作](./parallel-work)） | 相关 Specs、API、DATABASE、UX/UI、DESIGN_SYSTEM、ROADMAP、Tests、必要的 Architecture |
 | **L3** | 架构级 | 模块边界、重大技术选型、Source of Truth、消息、缓存、认证、数据库策略、前端架构、全局导航、Design System 核心、API 风格、一致性模型 | 每个真正受影响的文档 + **ADR**，以及相关 Specs、AGENTS、Tests |
 
 只更新真正受影响的文档——绝不为让变更显得全面而添加额外文件。

@@ -34,6 +34,10 @@
 | `assets/implementation-plan.template.md` | Implementation Plan + Tasks | 所有必需门禁通过后 |
 | `assets/review-pr-done.template.md` | Self Review、PR-ready 摘要、`DONE` 记录 | 评审与最终交付期间 |
 
+## 关键参考文件（非模板）
+
+各 Skill 还在 `references/` 下携带流程参考——按触发时机阅读，绝不复制进项目。并行协作合同位于 `skills/feature-dev/references/parallel-work-and-integration.md`（认领与释放、tracker 优先协调、WIP Limit 计数、branch-per-work-item、集成协议、PR 同行评审）；其网站对应页是[并行协作指南](../guide/parallel-work)。
+
 ## 共享约定
 
 - 模板**优先使用项目既有格式**；Foundry 模板是兜底，不是覆盖。

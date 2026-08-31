@@ -29,7 +29,7 @@ flowchart TD
 | Level | Scope | Trigger examples | Must update |
 |---|---|---|---|
 | **L1** | Feature-local | A change within one Feature | Current Spec, Test Design, necessary API / Database / UI |
-| **L2** | Cross-Feature | Multiple Features, a shared contract, Roadmap, Design System | Related Specs, API, DATABASE, UX/UI, DESIGN_SYSTEM, ROADMAP, Tests, necessary Architecture |
+| **L2** | Cross-Feature | Multiple Features, a shared contract, Roadmap, Design System; also a merge conflict that reveals a semantic conflict on a shared contract or Spec (see [Parallel Work](./parallel-work)) | Related Specs, API, DATABASE, UX/UI, DESIGN_SYSTEM, ROADMAP, Tests, necessary Architecture |
 | **L3** | Architectural | Module boundary, major tech choice, Source of Truth, messaging, cache, authentication, DB strategy, frontend architecture, global navigation, Design System core, API style, consistency model | Every truly affected document + **ADR**, plus related Specs, AGENTS, Tests |
 
 Only genuinely affected documents are updated — never extra files to make the change look comprehensive.

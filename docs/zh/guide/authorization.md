@@ -39,6 +39,15 @@ Foundry 把**决策**与**执行**分开。高影响决策需要命名的人类�
 - 可能产生产物的命令被视为写副作用，运行前需批准。
 - 工作区中已有的用户改动绝不被覆盖、回滚，也不会被误判为基线失败。
 
+## 合并与同行评审
+
+并行协作下，PR 前后额外适用两条权威规则：
+
+- **合并**是独立授权的远程类动作，由 **responsible maintainer**（负责维护者——仓库的具名 Maintainer Decision Authority，或其为该合并明确指定的维护者）执行或与其确认后执行。"PR 已开且全绿"绝不是合并授权。
+- **外部评审意见**导入 Findings 表，附评审人身份与严重度映射。**Critical** 级外部发现与自审 Critical 同等阻断 `DONE`（不可豁免）；**High** 级外部发现走上方豁免规则。修复以工作项下的 scoped fix slice（`REVIEW -> IN_PROGRESS -> REVIEW`）执行，绝不作为未记录的旁路变更。
+
+参见[并行协作与集成](./parallel-work)。
+
 ## 豁免（Waiver）
 
 `High` 级评审发现只有在项目 Definition of Done 允许、**且**命名 Decision Authority 明确记录理由、残余风险与后续计划时才可豁免。`Critical` 发现永远阻断 `DONE`，不可豁免。

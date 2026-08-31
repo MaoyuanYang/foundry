@@ -34,6 +34,10 @@ Each skill ships templates in its `assets/` folder. A template is read only at i
 | `assets/implementation-plan.template.md` | The Implementation Plan + Tasks | After all required gates pass |
 | `assets/review-pr-done.template.md` | Self Review, PR-ready summary, `DONE` record | During Review and final delivery |
 
+## Key references (not templates)
+
+Skills also ship process references under `references/` — read at their listed trigger, never copied into projects. The parallel-work contract lives in `skills/feature-dev/references/parallel-work-and-integration.md` (claims and claim release, tracker-first coordination, WIP Limit counting, branch-per-work-item, the integration protocol, and PR peer review); its website counterpart is the [Parallel Work guide](../guide/parallel-work).
+
 ## Shared conventions
 
 - Templates prefer the **project's existing format**; Foundry templates are fallbacks, not overrides.

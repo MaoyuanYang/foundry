@@ -20,6 +20,8 @@ Select according to risk:
 - Migration, Backward Compatibility, and Regression.
 - Parallel work-item integration: merge-order interaction, shared-contract regression, and post-merge combined regression.
 - Performance, capacity, caching, messaging, and observability.
+
+When the parallel-integration family applies, record the covering `TS-*` IDs in the Test Design's `Parallel-feature integration/merge regression` row: that ID list is the **recorded integration slice** that the integration protocol reruns before merge.
 - UI Interaction, Form Validation, Loading/Empty/Error/Success, Navigation, Accessibility, E2E, and necessary Visual Regression.
 
 Record a brief reason for inapplicable items. MUST NOT create scenarios mechanically.
@@ -96,7 +98,7 @@ Every item MUST have an evidence row. Record `TEST DESIGN READY Status: PASS` on
 - [ ] Environment, data, fixtures, and external dependencies are available, or alternative verification is confirmed.
 - [ ] A Bug has reproduction evidence and a regression scenario, or an explicitly confirmed evidence-based surrogate, alternative verification, and residual risk.
 - [ ] No Critical Requirement is unverifiable, and no Critical Test Question is `OPEN` or `DEFERRED`.
-- [ ] When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios or justified `N/A - no concurrent work items`.
+- [ ] When other `NEXT` work items are concurrently claimed, their integration interaction with this item is covered by scenarios whose IDs are recorded as the integration slice, or justified `N/A - no concurrent work items`.
 
 ## 5. Implementation Plan
 

@@ -41,12 +41,18 @@ For a project workflow activity before a Feature authority exists, use Work
 Status `N/A` and `N/A - project workflow activity` as Status Authority.
 
 Multiple `NEXT` work items may be active concurrently; each MUST be claimed by
-exactly one active activity row carrying its own `Branch / Worktree` identity,
-and a duplicate claim on the same item is `CONFLICT`. In `REMOTE` tracking mode
-each machine keeps its own local projection of this file, refreshed from the
-authoritative tracker and Gate records; the tracker wins any disagreement, and
-a Git-level conflict on this file is resolved by regenerating the projection
-from those authoritative sources, never by hand-picking sides.
+exactly one active member. The authoritative claim record is the tracker issue
+assignee in `REMOTE` tracking mode (this row is its projection) and this row in
+`LOCAL` mode; an unexplained duplicate claim on the same item is `CONFLICT`.
+Each active row carries its own `Branch / Worktree` identity. In `REMOTE`
+tracking mode each machine keeps its own local projection of this file,
+refreshed from the authoritative tracker and Gate records; the tracker wins
+any disagreement, and a Git-level conflict on this file is resolved by
+regenerating affected rows from those authoritative sources — scoped row-by-row
+like any other write, never a whole-file replacement or hand-picked merge.
+`HYBRID` tracking scopes the split: each bound subproject follows `REMOTE`
+rules with its tracker, and every unbound scope MUST be single-member and
+follow `LOCAL` rules.
 
 | Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

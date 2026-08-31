@@ -85,4 +85,4 @@ Recommend **one** next item using confirmed priority, broken core flows, securit
 
 - Record rationale, dependencies, risks, alternatives, evidence label, and recommendation-selection metadata (`RECOMMENDED` until selected, then `SELECTED`).
 - Set `NEXT` only after explicit confirmation by the named `Roadmap Decision Authority` or proof from the authoritative tracker; otherwise preserve status (`UNTRACKED` if no history).
-- Multiple existing `NEXT` items are recorded as `CONFLICT` and confirmed — never silently rewritten.
+- Pre-existing parallel `NEXT` entries are valid when each is claimed by a distinct active member; record unclaimed or duplicate-claimed `NEXT` entries as `NEEDS_CONFIRMATION` and request confirmation — never silently rewritten.
