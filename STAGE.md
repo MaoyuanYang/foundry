@@ -4,16 +4,16 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0019` |
-| Parent Snapshot | `STAGE-0018 / sha256:B8B167D0D10F6FA53454FFB1242E4A74D7B20120D163C311E0E4935A966FE776` |
-| Last Reconciled At | `2026-08-31T15:29:33+08:00` |
+| Snapshot Revision | `STAGE-0021` |
+| Parent Snapshot | `STAGE-0020 / sha256:D270236DDAFB860B966C97257AC3D3A3467FEBDD724F12B145FAE39C5BBA957C` |
+| Last Reconciled At | `2026-09-01T12:53:08+08:00` |
 | Reconciled By | `ZCode` |
-| Repository Ref | `main@d042fc0` |
+| Repository Ref | `feat/evolve-maintenance-skills (worktree clean after commit; PR/push awaits explicit user authorization)` |
 | Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
-| Overall State | `COMPLETE` |
-| Current Milestone | `Behavioral eval suite for the three Skills (evals/)` |
+| Overall State | `ACTIVE` |
+| Current Milestone | `Post-delivery evolution and maintenance Skills (evolve-dev, maintenance-dev)` |
 | Tracking Mode | `REMOTE` |
 
 ## Lifecycle Progress
@@ -25,10 +25,13 @@
 | Parallel work-item collaboration | `COMPLETE` | `adr/0001-parallel-work-items.md` (Accepted, revision 1) and this snapshot | Delivered on `feat/parallel-work-items`; verified by `npm run skills:verify` (47/47) and `npm run docs:build`; installed copies synchronized byte-identically |
 | Deep-review findings resolution | `COMPLETE` | Review report of 2026-08-30 (4 HIGH, 9 MEDIUM, LOW findings), ADR-0001 revision 2, and this snapshot | Delivered via PR #3 merged to main@87514c5 |
 | Behavioral eval suite | `COMPLETE` | This snapshot, `evals/`, and the workspace run report | 19/19 scenarios PASS (0 FAIL); PR opened |
+| Post-delivery evolution and maintenance Skills | `ACTIVE` | Branch `feat/evolve-maintenance-skills`: ADR-0002 Accepted, both skill packages, verify 111/111, docs:build PASS, evals S20–S26 pre-registered, installed copies byte-identical | PR opened and merged by the responsible maintainer after explicit user authorization |
 
 ## Active Work
 
-None.
+| Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A-007` | `Post-delivery evolution and maintenance Skills (evolve-dev, maintenance-dev)` | `ZCode` | `AGENT` | `external` | `DELIVERY` | `ACTIVE` | `N/A` | `feat/evolve-maintenance-skills` | `N/A - project workflow activity` | `Implementation complete on branch; PR/push awaits explicit user authorization` | `2026-09-01T12:53:08+08:00` |
 
 ## Recently Completed
 

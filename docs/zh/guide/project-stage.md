@@ -6,7 +6,7 @@
 2. 每个活跃的人类成员或 Agent 正在做什么？
 3. 哪里被阻塞、下一步由谁负责、应该从哪里恢复？
 
-三个 Skill 共同读取并维护同一个文件。`coding-start` 在 Greenfield 初始化时创建，`project-onboard` 在 Brownfield 接管时创建或增量接管，`feature-dev` 在交付过程中持续同步。
+五个 Skill 共同读取并维护同一个文件。`coding-start` 在 Greenfield 初始化时创建，`project-onboard` 在 Brownfield 接管时创建或增量接管，`feature-dev` 在交付过程中持续同步，`evolve-dev` 在交付后的波次规划中同步，`maintenance-dev` 在维护战役期间同步。
 
 ## 它负责什么
 
@@ -65,7 +65,9 @@ REMOTE | LOCAL | HYBRID | TBD
 
 `TBD` 只在初始化/接管早期有效，并且必须写明 owner 与解除条件。Feature 权威尚不存在时，非 Feature 工作流活动可以使用 Work Status `N/A` 与 `N/A - project workflow activity`。
 
-每条活动还记录所属 Skill 的精确阶段令牌，例如 `PROJECT_DISCOVERY`、`BASELINE_VERIFICATION`、`SPEC_REFINEMENT` 或 `CODING_TESTING`。活动阶段不替代 Roadmap 状态或 Gate 状态。
+交付后阶段有明确归属：选定 `NEXT` 项走向 `DONE` 期间项目处于 `DELIVERY`。`evolve-dev` 在交付循环之间规划新波次时运行于 `DELIVERY`/`MAINTENANCE`；`maintenance-dev` 在已交付基线上执行行为保持战役与退役时运行于 `MAINTENANCE`。
+
+每条活动还记录所属 Skill 的精确阶段令牌，例如 `PROJECT_DISCOVERY`、`BASELINE_VERIFICATION`、`SPEC_REFINEMENT`、`EVOLUTION_DISCOVERY`、`SAFETY_NET_DESIGN` 或 `CODING_TESTING`。活动阶段不替代 Roadmap 状态或 Gate 状态。
 
 ## 多成员协作
 
@@ -84,4 +86,4 @@ Stage 只在任务分配、关键 Skill 阶段切换、阻塞、恢复、交接�
 
 远程 Tracker 与 Stage 不一致时，以 Tracker 为准并重新同步 Stage。无法确认绑定、新鲜度、revision、活动身份或权威时，差异保留为 `CONFLICT`；Agent 必须停止受影响的流转、交接或完成，不能静默选择。无关的只读调查可以继续。
 
-`STAGE.md` 的说明文字遵循项目 Documentation Language；精确状态和阶段令牌保持 ASCII，确保三个独立安装的 Skill 能一致解析。
+`STAGE.md` 的说明文字遵循项目 Documentation Language；精确状态和阶段令牌保持 ASCII，确保五个独立安装的 Skill 能一致解析。

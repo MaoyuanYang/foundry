@@ -19,6 +19,9 @@ Issue ──▶ Spec Refinement ──▶ SPEC READY
 | `SPEC READY` | Is the Spec correct and complete? | No critical open question remains |
 | `UI READY` | Are user flows, states, and contracts defined? | Every UI checklist item passes |
 | `TEST DESIGN READY` | Can correctness be proven? | Every core acceptance maps to a scenario |
+| `ROADMAP EVOLUTION READY` | Is the next wave planned and authority-confirmed? | Every evolution checklist item passes |
+| `SAFETY NET READY` | Is behavior provably captured before changing it? | Baseline + characterization evidence + regression scope cover every touched surface |
+| `BEHAVIOR PRESERVED` | Did the slices change nothing observable? | Recorded evidence matches the baseline (or exactly the approved retirement delta) |
 | `DONE` | Is delivery verified? | All DONE checklist items pass |
 
 Each gate records a status (`PASS | NOT_READY | STALE`), an input manifest, and the approving decision authority. A semantic change to an input marks downstream gates `STALE` and forces re-validation.
@@ -39,6 +42,20 @@ AS_IS_DRAFT ──▶ evidence collection ──▶ RECONSTRUCTED
 ```
 
 Only a selected feature is deepened — each claiming member deepens their own; all other specs stay `DRAFT`.
+
+## After delivery: evolution and maintenance
+
+The Feature lifecycle is the delivery loop. Two siblings cover what happens **between** loops:
+
+```text
+delivered baseline ──▶ evolve-dev: plan the next wave ──▶ feature-dev (per selected NEXT)
+delivered baseline ──▶ maintenance-dev: refactor / debt / upgrade / retire (safety-net-first slices)
+```
+
+- `evolve-dev` plans: new Roadmap entries stay `DRAFT`, priority changes need the Roadmap Decision Authority, and the sole gate is `ROADMAP EVOLUTION READY`. Implementation is handed back to `feature-dev`.
+- `maintenance-dev` executes behavior-preserving engineering: `SAFETY NET READY` before any slice, `BEHAVIOR PRESERVED` per slice and for the campaign. `RETIRE` is the exception where behavior change is the point — it requires a named-authority-confirmed retirement plan.
+- A refactor that would change observable behavior, a debt row that encodes a defect, and an upgrade's behavioral breaking changes all route to `feature-dev` as Change/Bug work items instead of sneaking through a slice.
+
 
 ## AS-IS vs TO-BE
 
@@ -65,7 +82,7 @@ A remote Issue or auxiliary checklist never duplicates the Spec. A local checkli
 
 ## Project status and authority
 
-All three Skills maintain root [`STAGE.md`](./guide/project-stage). It owns the current project phase, active-member view, blockers, handoffs, and resume points. Before a Feature work item is bound, `specs/ROADMAP.md` owns its initial status. After binding, Stage projects the remote tracker; when no remote is bound, the row identified by `STAGE_LOCAL:<Activity ID>` is the local Work Status authority. Temporary remote access failure never transfers authority; an explicit durable migration must unbind it first. Roadmap always owns ordering and dependencies, and Gate artifacts always own Gate evidence.
+All five Skills maintain root [`STAGE.md`](./guide/project-stage). It owns the current project phase, active-member view, blockers, handoffs, and resume points. Before a Feature work item is bound, `specs/ROADMAP.md` owns its initial status. After binding, Stage projects the remote tracker; when no remote is bound, the row identified by `STAGE_LOCAL:<Activity ID>` is the local Work Status authority. Temporary remote access failure never transfers authority; an explicit durable migration must unbind it first. Roadmap always owns ordering and dependencies, and Gate artifacts always own Gate evidence.
 
 ## Parallel work
 

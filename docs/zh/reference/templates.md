@@ -34,6 +34,20 @@
 | `assets/implementation-plan.template.md` | Implementation Plan + Tasks | 所有必需门禁通过后 |
 | `assets/review-pr-done.template.md` | Self Review、PR-ready 摘要、`DONE` 记录 | 评审与最终交付期间 |
 
+## evolve-dev
+
+| 模板 | 生成 | 读取时机 |
+|---|---|---|
+| `assets/stage.template.md` | 根 `STAGE.md` | 有效进入后、创建或接管 Stage 前；改变追踪模式或状态权威前重读 |
+| `assets/roadmap-evolution.template.md` | Roadmap 演进记录（如 `specs/EVO-<n>-<slug>.md`） | 写入锚定新条目、优先级变更与基线差异的记录之前 |
+
+## maintenance-dev
+
+| 模板 | 生成 | 读取时机 |
+|---|---|---|
+| `assets/stage.template.md` | 根 `STAGE.md` | Preflight 期间、创建或接管 Stage 前；改变追踪模式或状态权威前重读 |
+| `assets/campaign.template.md` | 维护战役记录（如 `specs/MAINT-<n>-<slug>.md`） | 项目无格式时创建战役记录 |
+
 ## 关键参考文件（非模板）
 
 各 Skill 还在 `references/` 下携带流程参考——按触发时机阅读，绝不复制进项目。并行协作合同位于 `skills/feature-dev/references/parallel-work-and-integration.md`（认领与释放、tracker 优先协调、WIP Limit 计数、branch-per-work-item、集成协议、PR 同行评审）；其网站对应页是[并行协作指南](../guide/parallel-work)。
@@ -43,5 +57,5 @@
 - 模板**优先使用项目既有格式**；Foundry 模板是兜底，不是覆盖。
 - 每个生成的产物都遵循项目[语言策略](../guide/language-policy)。
 - 门禁记录携带 `Status`、输入清单、验证时间与 Decision Authority 批准来源和范围。
-- 三份 Stage 模板刻意保持一致，确保每个 Skill 可独立安装。Stage 通过锁/canonical writer 或 revision/hash guard 串行写入，每个 Gate 投影单独链接一份权威记录，并且不是语义 Gate 输入。
+- 五份 Stage 模板刻意保持一致，确保每个 Skill 可独立安装。Stage 通过锁/canonical writer 或 revision/hash guard 串行写入，每个 Gate 投影单独链接一份权威记录，并且不是语义 Gate 输入。
 - 缺失的命令一律写 `Not yet established`——绝不虚构。

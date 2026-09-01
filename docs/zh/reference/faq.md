@@ -3,7 +3,13 @@
 ## 通用
 
 **这些 Skill 会自动帮我写代码吗？**
-不会。`coding-start` 只产出文档，并在写任何业务代码前停止；`project-onboard` 只产出 AS-IS 基线，并在实现前停止。只有 `feature-dev` 会写代码，且必须先通过门禁并获得写盘授权。
+不会。`coding-start` 只产出文档，并在写任何业务代码前停止；`project-onboard` 只产出 AS-IS 基线，并在实现前停止；`evolve-dev` 只产出 Roadmap 条目和 DRAFT Spec，不写代码。只有 `feature-dev` 和 `maintenance-dev` 会写代码，且必须先通过门禁并获得写盘授权。
+
+**重构、升级、技术债清理该怎么建模？**
+运行 `maintenance-dev`，一次一个战役：`REFACTOR`（行为保持的结构变更）、`DEBT`（清理已记录的债务行）、`UPGRADE`（依赖/框架版本迁移）、`RETIRE`（弃用/移除某能力）。它在安全网下切片交付（`SAFETY NET READY` → 逐切片 `BEHAVIOR PRESERVED`）。会改变可观察行为的重构、编码缺陷的债务行、升级中的行为性破坏变更，都会路由到 `feature-dev` 作为 Change/Bug 处理。
+
+**MVP 交付完了，怎么规划下一波功能？**
+在有基线的仓库上运行 `evolve-dev`：增量访谈、挑战波次、通过 `ROADMAP EVOLUTION READY`——产出新 Roadmap 条目（DRAFT Spec）和经 Roadmap Decision Authority 确认的重排优先级。实现仍走 `feature-dev`，每个认领成员一项。会重定位产品的方向会停下来，交由用户显式决定是否重走宏观设计。
 
 **为什么打开一个新仓库不会触发 `project-onboard`？**
 这是有意设计。Onboarding 会写文档，需要明确意图和写盘授权。仅仅打开或浏览一个陌生仓库被视为只读问答，除非你明确要求接管。

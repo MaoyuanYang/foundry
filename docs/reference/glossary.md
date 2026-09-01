@@ -47,7 +47,7 @@ Handoff status is `PENDING | ACCEPTED | COMPLETE`. A Stage-local handoff atomica
 - `NOT_READY` — not yet passed.
 - `STALE` — a prior `PASS` was invalidated by a semantic input change.
 
-Gates: `SPEC READY`, `UI READY` (or `SKIPPED (N/A)` for no-UI), `TEST DESIGN READY`, `DONE`. A no-UI skip is a documented decision, not a passed gate. Stage adds a Gate projection only when that Gate's own authoritative record and revision exist; plain `N/A` is not a Gate status.
+Gates: `SPEC READY`, `UI READY` (or `SKIPPED (N/A)` for no-UI), `TEST DESIGN READY`, `ROADMAP EVOLUTION READY`, `SAFETY NET READY`, `BEHAVIOR PRESERVED`, `DONE`. A no-UI skip is a documented decision, not a passed gate. Stage adds a Gate projection only when that Gate's own authoritative record and revision exist; plain `N/A` is not a Gate status.
 
 ## Fact status
 
@@ -100,6 +100,18 @@ Each Skill defines its own exact stage tokens, recorded in the Stage activity's 
 | `coding-start` | `ENTRY_CHECK`, `PROJECT_DISCOVERY`, `MACRO_SYNTHESIS`, `CHALLENGE_PASS`, `MACRO_READINESS`, `ARTIFACT_GENERATION`, `FEATURE_MAPPING`, `DRAFT_SPEC_GENERATION`, `NEXT_SELECTION`, `BLOCKED_HANDOFF`, `SELF_REVIEW`, `STOP` |
 | `project-onboard` | `PREFLIGHT`, `REPOSITORY_SURVEY`, `BASELINE_VERIFICATION`, `ARCHITECTURE_RECONSTRUCTION`, `FRONTEND_RECONSTRUCTION`, `DOCS_REALITY`, `KNOWLEDGE_GAPS`, `CANONICAL_DOCUMENTATION`, `AGENTS_UPDATE`, `FEATURE_INVENTORY`, `AS_IS_SPEC_RECONSTRUCTION`, `NEXT_RECOMMENDATION`, `COMPLETE` |
 | `feature-dev` | `PREFLIGHT`, `WORK_ITEM_BINDING`, `SPEC_REFINEMENT`, `UI_REFINEMENT`, `TEST_DESIGN`, `IMPLEMENTATION_PLAN`, `CODING_TESTING`, `REVIEW`, `DOCUMENTATION_SYNC`, `DELIVERY`, `PR_REVIEW`, `COMPLETE` |
+| `evolve-dev` | `PREFLIGHT`, `EVOLUTION_DISCOVERY`, `SYNTHESIS_CHALLENGE`, `ROADMAP_UPDATE`, `DRAFT_SPEC_GENERATION`, `NEXT_SELECTION`, `BLOCKED_HANDOFF`, `SELF_REVIEW`, `STOP` |
+| `maintenance-dev` | `PREFLIGHT`, `WORK_ITEM_BINDING`, `SAFETY_NET_DESIGN`, `CAMPAIGN_PLAN`, `SLICE_EXECUTION`, `BEHAVIOR_VERIFICATION`, `REVIEW`, `DOCUMENTATION_SYNC`, `DELIVERY`, `PR_REVIEW`, `COMPLETE` |
+
+## Maintenance campaign vocabulary
+
+Campaign types: `REFACTOR | DEBT | UPGRADE | RETIRE` — exactly one per run.
+
+- `SAFETY NET READY` — baseline snapshot, characterization tests where coverage is missing, and a recorded regression scope cover every touched surface (plus the confirmed retirement plan for `RETIRE`). No implementation slice may run before it is `PASS`.
+- `BEHAVIOR PRESERVED` — recorded evidence shows observable behavior identical to the pre-campaign baseline (`REFACTOR`/`DEBT`/`UPGRADE`) or exactly the approved retirement delta (`RETIRE`); claimed per slice and for the whole campaign.
+- Breaking-change classes (`UPGRADE`): `no code impact | mechanical fix | behavioral | blocked`.
+- Deprecation stages (`RETIRE`): `DEPRECATE -> MIGRATE -> REMOVE -> SYNC`.
+- Handoff token `EVOLUTION INCOMPLETE` is `evolve-dev`'s `BLOCKED_HANDOFF` counterpart (zero `NEXT` entries).
 
 ## Language policy
 
@@ -107,4 +119,4 @@ Each Skill defines its own exact stage tokens, recorded in the Stage activity's 
 
 ## Stable IDs
 
-`AC-*` (Acceptance Criterion), `TS-*` (Test Scenario), `OQ-*` / `UIQ-*` / `TQ-*` (Open Questions), `BR-*` (Business Rule), `Fxxx` (Feature), `A-xxx` (Stage Activity).
+`AC-*` (Acceptance Criterion), `TS-*` (Test Scenario), `OQ-*` / `UIQ-*` / `TQ-*` (Open Questions), `BR-*` (Business Rule), `Fxxx` (Feature), `A-xxx` (Stage Activity), `EVO-<n>` (Roadmap evolution record), `MAINT-<n>` (Maintenance campaign record), `MN-*` (Maintenance DONE checklist row), `D-xxx` (Debt register row).

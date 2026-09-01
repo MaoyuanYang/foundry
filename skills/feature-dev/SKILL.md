@@ -5,14 +5,14 @@ description: "Use ONLY when the user explicitly asks to implement, fix, or deliv
 
 # Feature Development
 
-> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Feature delivery (1 to N). Siblings: `coding-start`, `project-onboard`.
-> Foundry contract version: `2026-08-30`.
+> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Feature delivery (1 to N). Siblings: `coding-start`, `project-onboard`, `evolve-dev`, `maintenance-dev`.
+> Foundry contract version: `2026-09-01`.
 
 ## Mission and Boundaries
 
 Advance exactly one selected Feature, Change, or Bug from fact confirmation to verifiable delivery. Follow project conventions. This Skill MUST NOT redesign the project baseline or absorb unrelated Features.
 
-Read-only code review, diagnosis/explanation only, ordinary code Q&A, and solution brainstorming are outside this Skill; use the matching read-only flow. `Review` denotes this lifecycle stage only after implementation of the selected work item.
+Read-only code review, diagnosis/explanation only, ordinary code Q&A, and solution brainstorming are outside this Skill; use the matching read-only flow. Maintenance engineering — behavior-preserving refactoring, a technical-debt paydown campaign, a dependency or framework upgrade, or deprecating/removing a capability — is `maintenance-dev`; project-level Roadmap evolution (planning a new Feature wave, re-prioritization) is `evolve-dev`. When the user's request is one of those, `STOP` and recommend the matching Skill. `Review` denotes this lifecycle stage only after implementation of the selected work item.
 
 `Decision Authority` MUST be a named human empowered for the specific decision, such as a Maintainer, Roadmap, or Architecture Decision Authority. The executing Agent, automation, and an implementation-only assignee MUST NOT approve their own requirement changes, risk waivers, alternative verification, L2/L3 impacts, or delivery standards. Record approver, source, time, and scope for every approval.
 
@@ -114,7 +114,7 @@ Invalidation rules:
 - A UX/UI behavior change marks `UI READY` and Test/Plan `STALE`; revalidate from the UI Gate.
 - A substantive Test Design change marks `TEST DESIGN READY` and Plan `STALE`; revalidate from the Test Gate.
 - Plan/Tasks changes do not automatically invalidate upstream Gates, but `Roadmap Status: READY` MUST NOT remain until current Plan/Tasks are valid again.
-- A pure implementation refinement that changes no requirement, contract, or observable behavior updates only the Plan.
+- A pure implementation refinement that changes no requirement, contract, or observable behavior updates only the Plan. A standalone behavior-preserving refactor initiative is a `maintenance-dev` campaign, not a work item of this Skill.
 - A review-feedback fix slice follows these same rules: a fix that changes observable behavior, user-visible error copy, or an approved contract marks the affected Gates `STALE` and revalidates them; a fix confined to non-semantic corrections (comments, formatting, internal names with no observable change) updates only the Plan/diff record. After every fix slice, rerun the Review checklist over the changed diff before `DONE`.
 - The set of concurrently claimed work items is a manifest input of `TEST DESIGN READY`: when a new work item is claimed on an overlapping surface while this item is active and its TR-11 row reads `N/A - no concurrent work items`, mark `TEST DESIGN READY` `STALE` and revalidate before merge.
 

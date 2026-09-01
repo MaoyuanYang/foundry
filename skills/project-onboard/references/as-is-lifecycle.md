@@ -159,7 +159,7 @@ After selection or recommendation, reconcile `STAGE.md` from the Roadmap and aut
 
 ## Technical Debt and Design Change
 
-Classify Technical Debt as architecture, data, testing, security, operations, frontend, UX, UI, accessibility, or docs. Record evidence, impact, scope, and recommended handling. Identify, classify, record, and recommend only; never batch-fix it during onboarding.
+Classify Technical Debt as architecture, data, testing, security, operations, frontend, UX, UI, accessibility, or docs. Record evidence, impact, scope, and recommended handling. Identify, classify, record, and recommend only; never batch-fix it during onboarding. The recorded Debt table is the downstream input of a `maintenance-dev` `DEBT` campaign: after onboarding, the user may run that Skill on selected rows; a debt row that encodes a defect is a `feature-dev` Bug instead.
 
 Classify future changes by impact:
 

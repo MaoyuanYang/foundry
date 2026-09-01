@@ -19,6 +19,9 @@ Issue ──▶ Spec 精化 ──▶ SPEC READY
 | `SPEC READY` | Spec 是否正确且完整？ | 存在未解决的关键问题 |
 | `UI READY` | 用户流程、状态、契约是否定义清楚？ | 任一 UI 检查项未通过 |
 | `TEST DESIGN READY` | 正确性是否可被证明？ | 核心验收未映射到测试场景 |
+| `ROADMAP EVOLUTION READY` | 下一波次是否规划完毕并经权限确认？ | 任一演进检查项未通过 |
+| `SAFETY NET READY` | 改动之前行为是否可证明地被捕获？ | 基线 + 特性化证据 + 回归范围覆盖每个触及表面 |
+| `BEHAVIOR PRESERVED` | 切片是否未改变任何可观察行为？ | 记录证据与基线一致（或恰好等于批准的退役差异） |
 | `DONE` | 交付是否已验证？ | 任一 DONE 检查项未通过 |
 
 每个门禁都记录状态（`PASS | NOT_READY | STALE`）、输入清单和批准的决策权限。输入发生语义变化会使下游门禁 `STALE` 并强制重新验证。
@@ -39,6 +42,20 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
 ```
 
 只有被选中的 Feature 会被深化——每个认领成员深化自己的那一项；其余 Spec 保持 `DRAFT`。
+
+## 交付之后：演进与维护
+
+Feature 生命周期是交付循环。两个兄弟 Skill 负责**循环之间**的事：
+
+```text
+已交付基线 ──▶ evolve-dev：规划下一波次 ──▶ feature-dev（逐个选定 NEXT）
+已交付基线 ──▶ maintenance-dev：重构 / 技术债 / 升级 / 退役（安全网先行切片）
+```
+
+- `evolve-dev` 只做规划：新 Roadmap 条目保持 `DRAFT`，优先级变更需 Roadmap Decision Authority 确认，唯一门禁是 `ROADMAP EVOLUTION READY`。实现交回 `feature-dev`。
+- `maintenance-dev` 执行行为保持的工程：任何切片之前 `SAFETY NET READY`，逐切片和战役级 `BEHAVIOR PRESERVED`。`RETIRE` 是行为变更成为目的的例外——需要具名权限确认的退役计划。
+- 会改变可观察行为的重构、编码缺陷的债务行、升级中的行为性破坏变更，都路由到 `feature-dev` 作为 Change/Bug 工作项，绝不从切片里溜过去。
+
 
 ## AS-IS 与 TO-BE
 
@@ -65,7 +82,7 @@ AS_IS_DRAFT ──▶ 证据收集 ──▶ RECONSTRUCTED
 
 ## 项目状态与权威
 
-三个 Skill 共同维护根 [`STAGE.md`](./guide/project-stage)。它负责当前项目阶段、活跃成员视图、阻塞、交接和恢复点。Feature 工作项绑定前，`specs/ROADMAP.md` 负责初始状态；绑定后 Stage 投影远程 Tracker，未绑定远程时才由标识为 `STAGE_LOCAL:<Activity ID>` 的行负责本地 Work Status。远程访问暂时失败绝不会转移权威，必须先通过显式且持久的迁移将其解绑。Roadmap 始终负责排序与依赖，Gate 产物始终负责 Gate 证据。
+五个 Skill 共同维护根 [`STAGE.md`](./guide/project-stage)。它负责当前项目阶段、活跃成员视图、阻塞、交接和恢复点。Feature 工作项绑定前，`specs/ROADMAP.md` 负责初始状态；绑定后 Stage 投影远程 Tracker，未绑定远程时才由标识为 `STAGE_LOCAL:<Activity ID>` 的行负责本地 Work Status。远程访问暂时失败绝不会转移权威，必须先通过显式且持久的迁移将其解绑。Roadmap 始终负责排序与依赖，Gate 产物始终负责 Gate 证据。
 
 ## 并行协作
 

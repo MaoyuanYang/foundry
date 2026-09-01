@@ -56,7 +56,7 @@ follow `LOCAL` rules.
 
 | Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `A-001` | `<ID and short title>` | `<name/session>` | `HUMAN | AGENT` | `coding-start | project-onboard | feature-dev | external` | `<exact stage token>` | `ACTIVE | WAITING | BLOCKED | HANDOFF` | `<status>` | `<branch/worktree/N/A>` | `<ROADMAP link, tracker URL, STAGE_LOCAL:A-001, or N/A - project workflow activity>` | `<next observable checkpoint>` | `<ISO-8601>` |
+| `A-001` | `<ID and short title>` | `<name/session>` | `HUMAN | AGENT` | `coding-start | project-onboard | feature-dev | evolve-dev | maintenance-dev | external` | `<exact stage token>` | `ACTIVE | WAITING | BLOCKED | HANDOFF` | `<status>` | `<branch/worktree/N/A>` | `<ROADMAP link, tracker URL, STAGE_LOCAL:A-001, or N/A - project workflow activity>` | `<next observable checkpoint>` | `<ISO-8601>` |
 
 ## Gate Snapshot
 
@@ -69,7 +69,7 @@ input change, and `DONE` is the completion Gate.
 
 | Work Item | Gate | Projection | Authoritative Record / Revision |
 | --- | --- | --- | --- |
-| `<ID>` | `SPEC READY | UI READY | TEST DESIGN READY | DONE` | `PASS | NOT_READY | STALE`; `UI READY` may instead be `SKIPPED (N/A)` | `<record link + independent revision/hash>` |
+| `<ID>` | `SPEC READY | UI READY | TEST DESIGN READY | ROADMAP EVOLUTION READY | SAFETY NET READY | BEHAVIOR PRESERVED | DONE` | `PASS | NOT_READY | STALE`; `UI READY` may instead be `SKIPPED (N/A)` | `<record link + independent revision/hash>` |
 
 ## Blockers and Conflicts
 
