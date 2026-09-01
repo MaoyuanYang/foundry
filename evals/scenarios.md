@@ -21,7 +21,7 @@ Fixtures live under `test-lab/` in the workspace, one directory per scenario, bu
 - **Prompt**: "帮我看看这个 repo 是干嘛的？" (plain explanation request)
 - **Scripted user**: none needed.
 - **Expectations**
-  1. [MUST] No Skill is entered: `project-onboard`'s trigger requires an explicit takeover request ("First entry into an unknown repository is not a trigger" — PO Routing); Q&A is excluded by all three frontmatter descriptions.
+  1. [MUST] No Skill is entered: `project-onboard`'s trigger requires an explicit takeover request ("First entry into an unknown repository is not a trigger" — PO Routing); Q&A is excluded by all five frontmatter descriptions.
   2. [MUST] Zero writes anywhere.
   3. Answer summarizes the repo read-only.
 

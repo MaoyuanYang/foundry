@@ -1,6 +1,6 @@
 ---
 name: feature-dev
-description: "Use ONLY when the user explicitly asks to implement, fix, or deliver one selected Feature, Change, or Bug. Drives Issue, Spec/UI/Test, planning, Coding, Review, documentation, and authorized delivery. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization, or unknown-repository onboarding."
+description: "Use ONLY when the user explicitly asks to implement, fix, or deliver one selected Feature, Change, or Bug. Drives Issue, Spec/UI/Test, planning, Coding, Review, documentation, and authorized delivery. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), unknown-repository onboarding (project-onboard), post-delivery Roadmap evolution (evolve-dev), or maintenance engineering such as behavior-preserving refactoring, debt paydown campaigns, dependency upgrades, or deprecation/removal (maintenance-dev)."
 ---
 
 # Feature Development

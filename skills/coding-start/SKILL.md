@@ -1,6 +1,6 @@
 ---
 name: coding-start
-description: "Use ONLY when the user explicitly asks to start or initialize a Greenfield project. Runs Discovery, macro design, project documentation, a Feature Map, and DRAFT Specs. Also use for a Greenfield single-Feature request that lacks a macro baseline. MUST NOT be used for Brownfield work, a single Feature with an existing baseline, ordinary ideation or evaluation, or as write authorization from design confirmation."
+description: "Use ONLY when the user explicitly asks to start or initialize a Greenfield project. Runs Discovery, macro design, project documentation, a Feature Map, and DRAFT Specs. Also use for a Greenfield single-Feature request that lacks a macro baseline. MUST NOT be used for Brownfield takeover (project-onboard), a single Feature with an existing baseline (feature-dev), post-delivery Roadmap evolution (evolve-dev), maintenance engineering such as refactoring, debt paydown, dependency upgrades, or deprecation (maintenance-dev), ordinary ideation or evaluation, or as write authorization from design confirmation."
 ---
 
 # Coding Start
