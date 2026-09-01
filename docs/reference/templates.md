@@ -34,6 +34,20 @@ Each skill ships templates in its `assets/` folder. A template is read only at i
 | `assets/implementation-plan.template.md` | The Implementation Plan + Tasks | After all required gates pass |
 | `assets/review-pr-done.template.md` | Self Review, PR-ready summary, `DONE` record | During Review and final delivery |
 
+## evolve-dev
+
+| Template | Generates | Read when |
+|---|---|---|
+| `assets/stage.template.md` | Root `STAGE.md` | After valid entry and before creating or adopting Stage; reread before changing tracking mode or status authority |
+| `assets/roadmap-evolution.template.md` | The Roadmap evolution record (for example `specs/EVO-<n>-<slug>.md`) | Before writing the record that anchors new entries, priority changes, and baseline deltas |
+
+## maintenance-dev
+
+| Template | Generates | Read when |
+|---|---|---|
+| `assets/stage.template.md` | Root `STAGE.md` | During Preflight before creating or adopting Stage; reread before changing tracking mode or status authority |
+| `assets/campaign.template.md` | The maintenance campaign record (for example `specs/MAINT-<n>-<slug>.md`) | Creating the campaign record when no project format exists |
+
 ## Key references (not templates)
 
 Skills also ship process references under `references/` — read at their listed trigger, never copied into projects. The parallel-work contract lives in `skills/feature-dev/references/parallel-work-and-integration.md` (claims and claim release, tracker-first coordination, WIP Limit counting, branch-per-work-item, the integration protocol, and PR peer review); its website counterpart is the [Parallel Work guide](../guide/parallel-work).
@@ -43,5 +57,5 @@ Skills also ship process references under `references/` — read at their listed
 - Templates prefer the **project's existing format**; Foundry templates are fallbacks, not overrides.
 - Every generated artifact follows the project [Language Policy](../guide/language-policy).
 - Gate records carry `Status`, an input manifest, validation time, and Decision Authority approval source and scope.
-- The three Stage templates are intentionally identical so every Skill can be installed independently. Stage serializes writes through a lock/canonical writer or revision/hash guard, links one authoritative record per Gate projection, and is not a semantic Gate input.
+- The five Stage templates are intentionally identical so every Skill can be installed independently. Stage serializes writes through a lock/canonical writer or revision/hash guard, links one authoritative record per Gate projection, and is not a semantic Gate input.
 - An unavailable command is written exactly as `Not yet established` — never invented.

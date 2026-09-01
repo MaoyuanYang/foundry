@@ -47,7 +47,7 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 - `NOT_READY` —— 尚未通过。
 - `STALE` —— 此前的 `PASS` 因输入语义变化而失效。
 
-门禁：`SPEC READY`、`UI READY`（无 UI 时为 `SKIPPED (N/A)`）、`TEST DESIGN READY`、`DONE`。无 UI 的跳过是一份被记录的决定，不是通过的门禁。Stage 只有在该 Gate 自己的权威记录与 revision 存在后才添加投影；普通 `N/A` 不是 Gate 状态。
+门禁：`SPEC READY`、`UI READY`（无 UI 时为 `SKIPPED (N/A)`）、`TEST DESIGN READY`、`ROADMAP EVOLUTION READY`、`SAFETY NET READY`、`BEHAVIOR PRESERVED`、`DONE`。无 UI 的跳过是一份被记录的决定，不是通过的门禁。Stage 只有在该 Gate 自己的权威记录与 revision 存在后才添加投影；普通 `N/A` 不是 Gate 状态。
 
 ## 事实状态
 
@@ -100,6 +100,18 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 | `coding-start` | `ENTRY_CHECK`、`PROJECT_DISCOVERY`、`MACRO_SYNTHESIS`、`CHALLENGE_PASS`、`MACRO_READINESS`、`ARTIFACT_GENERATION`、`FEATURE_MAPPING`、`DRAFT_SPEC_GENERATION`、`NEXT_SELECTION`、`BLOCKED_HANDOFF`、`SELF_REVIEW`、`STOP` |
 | `project-onboard` | `PREFLIGHT`、`REPOSITORY_SURVEY`、`BASELINE_VERIFICATION`、`ARCHITECTURE_RECONSTRUCTION`、`FRONTEND_RECONSTRUCTION`、`DOCS_REALITY`、`KNOWLEDGE_GAPS`、`CANONICAL_DOCUMENTATION`、`AGENTS_UPDATE`、`FEATURE_INVENTORY`、`AS_IS_SPEC_RECONSTRUCTION`、`NEXT_RECOMMENDATION`、`COMPLETE` |
 | `feature-dev` | `PREFLIGHT`、`WORK_ITEM_BINDING`、`SPEC_REFINEMENT`、`UI_REFINEMENT`、`TEST_DESIGN`、`IMPLEMENTATION_PLAN`、`CODING_TESTING`、`REVIEW`、`DOCUMENTATION_SYNC`、`DELIVERY`、`PR_REVIEW`、`COMPLETE` |
+| `evolve-dev` | `PREFLIGHT`、`EVOLUTION_DISCOVERY`、`SYNTHESIS_CHALLENGE`、`ROADMAP_UPDATE`、`DRAFT_SPEC_GENERATION`、`NEXT_SELECTION`、`BLOCKED_HANDOFF`、`SELF_REVIEW`、`STOP` |
+| `maintenance-dev` | `PREFLIGHT`、`WORK_ITEM_BINDING`、`SAFETY_NET_DESIGN`、`CAMPAIGN_PLAN`、`SLICE_EXECUTION`、`BEHAVIOR_VERIFICATION`、`REVIEW`、`DOCUMENTATION_SYNC`、`DELIVERY`、`PR_REVIEW`、`COMPLETE` |
+
+## 维护战役词汇
+
+战役类型：`REFACTOR | DEBT | UPGRADE | RETIRE` —— 每次运行恰好一个。
+
+- `SAFETY NET READY` —— 基线快照、覆盖不足处的特性化测试、记录的回归范围覆盖每个触及表面（`RETIRE` 另需经确认的退役计划）。本门禁 `PASS` 之前不得运行任何实现切片。
+- `BEHAVIOR PRESERVED` —— 记录的证据表明可观察行为与战役前基线一致（`REFACTOR`/`DEBT`/`UPGRADE`），或恰好等于批准的退役差异（`RETIRE`）；逐切片与战役级分别主张。
+- 破坏性变更分类（`UPGRADE`）：`no code impact | mechanical fix | behavioral | blocked`。
+- 弃用阶段（`RETIRE`）：`DEPRECATE -> MIGRATE -> REMOVE -> SYNC`。
+- 交接令牌 `EVOLUTION INCOMPLETE` 是 `evolve-dev` 的 `BLOCKED_HANDOFF` 对应物（零 `NEXT` 条目）。
 
 ## 语言策略
 
@@ -107,4 +119,4 @@ Lifecycle Progress 还可使用 `NOT_STARTED` 与 `N/A`。这些令牌描述根 
 
 ## 稳定 ID
 
-`AC-*`（Acceptance Criterion）、`TS-*`（Test Scenario）、`OQ-*` / `UIQ-*` / `TQ-*`（Open Questions）、`BR-*`（Business Rule）、`Fxxx`（Feature）、`A-xxx`（Stage Activity）。
+`AC-*`（Acceptance Criterion）、`TS-*`（Test Scenario）、`OQ-*` / `UIQ-*` / `TQ-*`（Open Questions）、`BR-*`（Business Rule）、`Fxxx`（Feature）、`A-xxx`（Stage Activity）、`EVO-<n>`（Roadmap 演进记录）、`MAINT-<n>`（维护战役记录）、`MN-*`（维护 DONE 清单行）、`D-xxx`（债务登记行）。

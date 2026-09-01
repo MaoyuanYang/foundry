@@ -6,12 +6,12 @@
 
 **从想法到交付，锻造软件。**
 
-面向编码智能体的 AI 原生、Spec 驱动开发套件 —— 覆盖完整生命周期：全新项目、存量接管、持续 Feature 交付。
+面向编码智能体的 AI 原生、Spec 驱动开发套件 —— 覆盖完整生命周期：全新项目、存量接管、持续 Feature 交付，以及交付后的演进与维护。
 
-[网站](https://maoyuanyang.github.io/foundry/) · [安装](#安装) · [三个 Skill](#三个-skill)
+[网站](https://maoyuanyang.github.io/foundry/) · [安装](#安装) · [五个 Skill](#五个-skill)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-3-ff6b1a.svg)](./skills)
+[![Skills](https://img.shields.io/badge/Skills-5-ff6b1a.svg)](./skills)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-ready-brightgreen.svg)](https://opencode.ai)
 
 </div>
@@ -20,36 +20,43 @@
 
 ## Foundry 是什么？
 
-Foundry 由三个可复用的 **Agent Skill** 组成，把 AI 编码智能体变成一套有纪律的工程工作流。它不允许直接跳进代码，而是强制贯彻：
+Foundry 由五个可复用的 **Agent Skill** 组成，把 AI 编码智能体变成一套有纪律的工程工作流。它不允许直接跳进代码，而是强制贯彻：
 
 - **宏观设计先于编码** —— 先定方向、边界、规则与约束。
 - **Spec 驱动开发** —— Spec 是"什么才算正确"的事实来源。
 - **测试设计先于实现** —— 先定义如何证明正确，再动手构建。
 - **先 UX 后 UI** —— 先用户目标与流程，再谈像素。
-- **门禁式流转** —— `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`。
+- **门禁式流转** —— `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`；演进与维护新增 `ROADMAP EVOLUTION READY`、`SAFETY NET READY`、`BEHAVIOR PRESERVED`。
 - **证据优先于假设** —— 观察、文档、确认、推断，绝不静默猜测。
 - **受控的设计变更** —— L1/L2/L3 影响分级 + 明确的决策权限。
 - **并行团队开发** —— 多个人类与 Agent 通过 Issue + 分支 + PR + 负责人合并并行推进多个工作项；tracker 是权威，`STAGE.md` 是团队状态看板。
 - **项目级协作状态** —— 根 `STAGE.md` 展示生命周期、活跃人类/Agent、阻塞、交接与恢复点。
+- **交付后演进工作项化** —— 下一波次规划、重构、还债、升级、退役各自作为带门禁的战役运行，绝不作为静默副作用发生。
 
-## 三个 Skill
+## 五个 Skill
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
 | [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | 项目访谈、宏观设计、项目文档、Feature Map、DRAFT Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 基线验证、架构重建、AS-IS 文档、Feature Inventory |
 | [`feature-dev`](skills/feature-dev/SKILL.md) | Feature · 1 → N | Spec 精化、UX/UI 门禁、测试设计、计划、编码、评审、交付 |
+| [`evolve-dev`](skills/evolve-dev/SKILL.md) | 演进 · N → N′ 规划 | 下一波次规划：Roadmap 条目、DRAFT Specs、优先级重排、基线增量更新 |
+| [`maintenance-dev`](skills/maintenance-dev/SKILL.md) | 维护 · 行为保持变更 | 安全网先行的战役：重构、技术债、升级、弃用/移除 |
 
 ```text
 新想法 ──▶ coding-start ──▶ feature-dev ──▶ feature-dev ──▶ ...
 已有仓库 ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+              ▲                                        │
+              └── evolve-dev（下一波次规划）◀───────────┤ 已交付基线
+                                                       ▼
+                  maintenance-dev（重构 / 技术债 / 升级 / 退役）
 ```
 
-每个 Skill 都有明确的 **STOP 条件**：不静默写业务代码、不越权写盘、不批量建 Issue、不大规模重构。
+每个 Skill 都有明确的 **STOP 条件**：不静默写业务代码、不越权写盘、不批量建 Issue、不在经确认的维护战役之外大规模重构。
 
 ## 安装
 
-Foundry 遵循标准 Agent Skills 格式（`SKILL.md` + `references/` + `assets/`）。把三个文件夹复制到你的智能体 skills 目录即可。
+Foundry 遵循标准 Agent Skills 格式（`SKILL.md` + `references/` + `assets/`）。把五个文件夹复制到你的智能体 skills 目录即可。
 
 **OpenCode / Claude 系智能体**（自动发现）：
 
@@ -58,9 +65,11 @@ git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/evolve-dev        ~/.agents/skills/
+cp -r foundry/skills/maintenance-dev   ~/.agents/skills/
 ```
 
-然后重启智能体。可用 `opencode debug skill` 验证发现结果（应能看到三个 Skill）。
+然后重启智能体。可用 `opencode debug skill` 验证发现结果（应能看到五个 Skill）。
 
 ## 快速开始
 
@@ -82,6 +91,18 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 
 `feature-dev` 驱动完整生命周期：`SPEC READY` → `UI READY`（如有 UI）→ `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → PR → 评审意见消化（`IN PR REVIEW`）→ 负责人合并。
 
+**规划下一波功能：**
+
+> "规划下一期：我们要给平台加一个协作波次。"
+
+`evolve-dev` 在已交付基线上增量访谈、挑战波次、通过 `ROADMAP EVOLUTION READY`：产出带 DRAFT Spec 的新 Roadmap 条目和经 Roadmap Decision Authority 确认的优先级重排——然后把实现交回 `feature-dev`。
+
+**重构、还债、升级或下线：**
+
+> "重构鉴权模块，不改变行为。"
+
+`maintenance-dev` 在安全网下运行一个战役：基线快照与特性化测试（`SAFETY NET READY`）→ 有序、逐片验证的切片（`BEHAVIOR PRESERVED`）→ 评审与交付。退役能力还需具名权限确认的退役计划。
+
 ## 设计原则
 
 1. 宏观设计先于编码 —— 但避免 Big Design Up Front。
@@ -93,6 +114,7 @@ cp -r foundry/skills/feature-dev       ~/.agents/skills/
 7. 代码不能长期领先于文档。
 8. Skill 保存流程；`AGENTS.md` 保存项目规则。
 9. `STAGE.md` 保存当前项目/成员快照；Tracker、Spec、Gate 与 Roadmap 各自保留权威职责。
+10. 交付后演进工作项化：下一波次规划、重构、还债、升级、退役各自作为带门禁的战役运行——记录在案的技术债不再悬空无消费者，任何重构都不在未验证的情况下改变行为。
 
 ## 语言策略
 

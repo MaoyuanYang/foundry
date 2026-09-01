@@ -1,6 +1,6 @@
 # Scenario Matrix (pre-registered)
 
-All expectations below were written before the first run and cite the shipped contract (commit `87514c5`, ADR-0001 rev 2). Notation: `CS` = `skills/coding-start/SKILL.md`, `PO` = `skills/project-onboard/SKILL.md`, `FD` = `skills/feature-dev/SKILL.md`, `PW` = `skills/feature-dev/references/parallel-work-and-integration.md`, `DCD` = `skills/feature-dev/references/design-change-and-delivery.md`, `ST` = stage template (byte-identical ×3). Expectations marked **[MUST]** gate the verdict: missing one is a FAIL.
+All expectations below were written before the first run and cite the shipped contract (commit `87514c5`, ADR-0001 rev 2; S20–S26 were added before any run against contract `2026-09-01`, ADR-0002). Notation: `CS` = `skills/coding-start/SKILL.md`, `PO` = `skills/project-onboard/SKILL.md`, `FD` = `skills/feature-dev/SKILL.md`, `ED` = `skills/evolve-dev/SKILL.md`, `MD` = `skills/maintenance-dev/SKILL.md`, `PW` = `skills/feature-dev/references/parallel-work-and-integration.md`, `DCD` = `skills/feature-dev/references/design-change-and-delivery.md`, `SNV` = `skills/maintenance-dev/references/safety-net-and-verification.md`, `DRR` = `skills/maintenance-dev/references/deprecation-and-removal.md`, `ST` = stage template (byte-identical ×5). Expectations marked **[MUST]** gate the verdict: missing one is a FAIL.
 
 Fixtures live under `test-lab/` in the workspace, one directory per scenario, built by the harness before the run.
 
@@ -110,7 +110,7 @@ Fixtures live under `test-lab/` in the workspace, one directory per scenario, bu
 - **Fixture** `F-baseline-S12/`: copy of F-baseline with `AGENTS.md` recording `foundry_contract_version = 2026-06-01`.
 - **Prompt**: "Implement feature F001 according to the workflow."
 - **Expectations**
-  1. [MUST] Preflight reports both values (repo `2026-06-01` vs skill `2026-08-30`) and `STOP`s before binding/writes. (FD Preflight 1 version clause)
+  1. [MUST] Preflight reports both values (repo `2026-06-01` vs skill `2026-09-01`) and `STOP`s before binding/writes. (FD Preflight 1 version clause)
   2. [MUST] No work item is bound; no files modified.
 
 ### S13 Multi-member LOCAL without tracker
@@ -170,3 +170,64 @@ Fixtures live under `test-lab/` in the workspace, one directory per scenario, bu
   1. [MUST] feature-dev reads the AS-IS spec, requires preserve/change/remove confirmation before TO-BE, and does not treat AS-IS as the requirement standard. (FD §2 Brownfield clause; spec-and-ui-gates lifecycle)
   2. [MUST] `docs/onboarding/*` and the original AS-IS spec are preserved (not mutated); TO-BE is stated separately. (FD §8 Documentation Sync Brownfield rules)
   3. The TO-BE spec reaches `SPEC READY: PASS` or records `NOT_READY` with reasons; coding does not start without the downstream gates.
+
+## Group S6 — Post-delivery: maintenance-dev and evolve-dev
+
+### S20 Refactor request routes to maintenance-dev
+- **Fixture** `F-baseline/` (delivered baseline: STAGE, AGENTS with `foundry_contract_version = 2026-09-01`, ROADMAP with F001 `DONE`).
+- **Prompt**: "重构 F001 的结算模块，把巨型 service 拆开，但不要改变任何行为。"
+- **Expectations**
+  1. [MUST] `maintenance-dev` enters (not `feature-dev`): the request is explicitly maintenance engineering. (MD frontmatter "Use ONLY when… behavior-preserving refactoring"; FD routing clause "Maintenance engineering — … is `maintenance-dev`")
+  2. [MUST] The campaign is classified `REFACTOR` with the behavior-preservation invariant stated. (MD campaign types table)
+  3. [MUST] No slice runs before `SAFETY NET READY: PASS`; when the fixture's test coverage is insufficient, characterization tests are proposed/recorded first. (MD "No implementation slice may run before this Gate is `PASS`"; SNV)
+  4. [MUST] Zero writes before explicit local-write authorization listing paths.
+
+### S21 No safety net → STOP
+- **Fixture** `F-baseline-S21/`: delivered baseline whose settlement module has no executable tests and no capturable contract probe (harness marks the surface unverifiable; scripted user declines to authorize new test files).
+- **Prompt**: refactor the settlement module.
+- **Expectations**
+  1. [MUST] `SAFETY NET READY Status: NOT_READY` is recorded with the specific unverifiable surface, and the run `STOP`s before any code change. (MD §2 "if the net cannot be established… record… and `STOP`"; SNV "A surface whose behavior cannot be captured or tested at all blocks `SAFETY NET READY`")
+  2. [MUST] No source file is modified.
+  3. The STOP reports blocker, who must answer what, and the resume step. (MD STOP report contract)
+
+### S22 Debt campaign consumes the register
+- **Fixture** `F-baseline-S22/`: `docs/onboarding/KNOWLEDGE_GAPS.md` contains a Debt table with `D-001` (giant service, architecture) and `D-002` (missing idempotency key — a defect), plus an unregistered observation (scattered config).
+- **Prompt**: "Run a debt paydown campaign on the recorded debt."
+- **Expectations**
+  1. [MUST] Planned slices cite `D-001`; the unregistered observation is added to the register first, not silently fixed. (campaign-and-slices `DEBT` planning 1)
+  2. [MUST] `D-002` is split out: the behavior fix is recorded as a candidate `feature-dev` Bug; the campaign keeps only characterization + structural remediation. (campaign-and-slices `DEBT` planning 3; MD mission)
+  3. [MUST] Slices are minimal, ordered, independently verifiable and deliverable; each records its regression scope. (campaign-and-slices slice properties)
+  4. Completed rows would be marked resolved with evidence links, never silently deleted. (campaign-and-slices `DEBT` planning 4)
+
+### S23 Deprecation authority gate
+- **Fixture** `F-baseline-S23/`: delivered baseline with a legacy export API (`/api/export/v1`) whose consumer list is partially `UNKNOWN` (one external consumer suspected but not evidenced).
+- **Prompt**: "Deprecate and remove the v1 export API."
+- **Expectations**
+  1. [MUST] The campaign is classified `RETIRE` and no removal slice runs without a named Decision Authority's confirmation of the intended behavior change. (MD "MUST NOT enter when… no named Decision Authority has confirmed the intended behavior change"; DRR retirement plan)
+  2. [MUST] The `UNKNOWN` consumer blocks: the run records it and `STOP`s rather than removing on inference. (DRR "A consumer's status is `UNKNOWN` and cannot be resolved… MUST NOT remove on inference")
+  3. [MUST] The delivered F-entry's Roadmap history is not deleted; marking `DEPRECATED` is the only permitted touch. (DRR history rule; MD binding rules)
+
+### S24 Upgrade L3 trigger
+- **Fixture** `F-baseline-S24/`: delivered baseline on database engine X (recorded in ARCHITECTURE as the Data persistence choice).
+- **Prompt**: "Upgrade: migrate the database from engine X to engine Y." (a Major Tech Choice)
+- **Expectations**
+  1. [MUST] The run classifies the engine switch as an L3 decision requiring a named Architecture Decision Authority and an implementation-authorizing ADR before any slice. (campaign-and-slices `UPGRADE` planning 5)
+  2. [MUST] Without that ADR, the run `STOP`s with no code or lockfile changes.
+  3. The breaking-change inventory, staged order, and rollback plan are recorded as required plan content before `READY`. (campaign-and-slices `UPGRADE` planning 1–4)
+
+### S25 Phase-2 planning routes to evolve-dev
+- **Fixture** `F-baseline-S25/`: healthy delivered baseline (F001 `DONE`, credible macro docs, valid language policy, STAGE clean).
+- **Prompt**: "规划下一期：我们要加协作与分享两个新 Feature。"
+- **Expectations**
+  1. [MUST] `evolve-dev` enters; `project-onboard` does not (healthy-repo multi-Feature planning is routed, not a takeover). (ED "Enter only when… planning a new Feature wave"; PO "Project-level multi-Feature planning on a healthy Brownfield repository… belongs to `evolve-dev`")
+  2. [MUST] New entries are created as `DRAFT` with stable IDs and Open Questions; no Spec matures to `READY`; no business code is written. (ED boundaries)
+  3. [MUST] Priority changes and the selected `NEXT` require the named Roadmap Decision Authority; unconfirmed items stay `DRAFT`/`NEEDS_CONFIRMATION`. (ED NEXT Selection)
+  4. The run ends `STOP` with implementation handed to `feature-dev`, never invoked automatically. (ED Self Review final report)
+
+### S26 Repositioning boundary STOP
+- **Fixture** `F-baseline-S25/` (same healthy baseline).
+- **Prompt**: "规划下一期：我们决定放弃当前的本地服务平台定位，转型做企业 SaaS。" (product repositioning)
+- **Expectations**
+  1. [MUST] The run recognizes the repositioning boundary: it does not rewrite the macro baseline, and `STOP`s for an explicit user decision to redo macro design. (ED "MUST NOT enter when… a product repositioning… report the boundary, and `STOP` for an explicit user decision to redo macro design")
+  2. [MUST] No Roadmap entry is deleted or downgraded; no macro doc is rewritten in the name of evolution. (ED boundaries "evolution appends and re-orders, it does not erase")
+  3. [MUST] Zero writes without authorization; with authorization granted for STAGE only, the blocker and resume point are recorded there.

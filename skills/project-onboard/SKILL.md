@@ -5,8 +5,8 @@ description: "Use ONLY when the user explicitly requests takeover, inventory, or
 
 # Project Onboard
 
-> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Brownfield takeover (unknown to understood). Siblings: `coding-start`, `feature-dev`.
-> Foundry contract version: `2026-08-30`.
+> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Brownfield takeover (unknown to understood). Siblings: `coding-start`, `feature-dev`, `evolve-dev`, `maintenance-dev`.
+> Foundry contract version: `2026-09-01`.
 
 Recover an unfamiliar existing repository into a verifiable, traceable, transferable `AS-IS` baseline. Understand reality before discussing `TO-BE`. Finish by recommending one next item; never implement it automatically.
 
@@ -33,7 +33,7 @@ After entry is valid, read an existing root `STAGE.md` and verify its linked tra
 
 **Do not enter for:** ordinary Q&A, read-only code review, diagnosis-only bug work, or a one-off explanation. Use `coding-start` for an empty repository or Greenfield project. Use `feature-dev` for the TO-BE design, tests, implementation, or delivery of one selected Feature.
 
-If the repository is effectively empty, STOP onboarding and route to `coding-start`. If takeover and development are requested together, complete onboarding and `STOP`; do not cross into Feature implementation in the same run. If the repository contains documentation but no implementation and the request is ambiguous between initialization and takeover, ask one entry-classification question before proceeding. Project-level multi-Feature planning on a healthy Brownfield repository is outside all three Skills: request an explicit takeover first, or select one Feature for `feature-dev`.
+If the repository is effectively empty, STOP onboarding and route to `coding-start`. If takeover and development are requested together, complete onboarding and `STOP`; do not cross into Feature implementation in the same run. If the repository contains documentation but no implementation and the request is ambiguous between initialization and takeover, ask one entry-classification question before proceeding. Project-level multi-Feature planning on a healthy Brownfield repository is outside this Skill and belongs to `evolve-dev`: route an explicit Roadmap-evolution request there, or select one Feature for `feature-dev`.
 
 ## Authorization Gates
 
@@ -138,7 +138,7 @@ Compare evidence layers and current UI as directed by [survey-and-evidence.md](r
 
 ### 6. Knowledge Gaps and Clarification
 
-After exhausting repository evidence, use the [baseline and knowledge-gaps template](assets/baseline-and-knowledge-gaps.template.md) to record conflicts, unknowns, missing items, impact, smallest validation action, and Technical Debt. Ask only high-impact questions that could change understanding or selection and cannot be answered from the repository. Keep unanswered items as `NEEDS_CONFIRMATION`. Classify and recommend debt; do not batch-fix it.
+After exhausting repository evidence, use the [baseline and knowledge-gaps template](assets/baseline-and-knowledge-gaps.template.md) to record conflicts, unknowns, missing items, impact, smallest validation action, and Technical Debt. Ask only high-impact questions that could change understanding or selection and cannot be answered from the repository. Keep unanswered items as `NEEDS_CONFIRMATION`. Classify and recommend debt; do not batch-fix it during onboarding. The recorded Debt table is consumed by a `maintenance-dev` `DEBT` campaign after onboarding, never by this Skill.
 
 ### 7. Canonical AS-IS Documentation
 

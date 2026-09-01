@@ -6,7 +6,7 @@
 2. What is each active human or Agent doing now?
 3. What is blocked, who owns the next action, and where should work resume?
 
-All three Skills read and maintain the same file. `coding-start` creates it for Greenfield initialization, `project-onboard` creates or adopts it during Brownfield takeover, and `feature-dev` keeps it synchronized during delivery.
+All five Skills read and maintain the same file. `coding-start` creates it for Greenfield initialization, `project-onboard` creates or adopts it during Brownfield takeover, `feature-dev` keeps it synchronized during delivery, `evolve-dev` during post-delivery wave planning, and `maintenance-dev` during maintenance campaigns.
 
 ## What it owns
 
@@ -65,7 +65,9 @@ REMOTE | LOCAL | HYBRID | TBD
 
 `TBD` is valid only during early initialization/onboarding and must name an owner and resolution condition. A non-Feature workflow activity may use Work Status `N/A` with `N/A - project workflow activity` until a Feature authority exists.
 
-Each activity also records the exact stage token from its Skill, such as `PROJECT_DISCOVERY`, `BASELINE_VERIFICATION`, `SPEC_REFINEMENT`, or `CODING_TESTING`. These activity stages do not replace Roadmap or Gate status.
+The post-delivery phases have defined owners: a project is in `DELIVERY` while selected `NEXT` items move toward `DONE`. `evolve-dev` runs in `DELIVERY`/`MAINTENANCE` when a new wave is being planned between delivery loops, and `maintenance-dev` runs in `MAINTENANCE` for behavior-preserving campaigns and retirements on the delivered baseline.
+
+Each activity also records the exact stage token from its Skill, such as `PROJECT_DISCOVERY`, `BASELINE_VERIFICATION`, `SPEC_REFINEMENT`, `EVOLUTION_DISCOVERY`, `SAFETY_NET_DESIGN`, or `CODING_TESTING`. These activity stages do not replace Roadmap or Gate status.
 
 ## Multi-member coordination
 

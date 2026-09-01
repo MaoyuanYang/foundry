@@ -59,7 +59,9 @@ export default withMermaid(
               items: [
                 { text: 'coding-start', link: '/coding-start/' },
                 { text: 'project-onboard', link: '/project-onboard/' },
-                { text: 'feature-dev', link: '/feature-dev/' }
+                { text: 'feature-dev', link: '/feature-dev/' },
+                { text: 'evolve-dev', link: '/evolve-dev/' },
+                { text: 'maintenance-dev', link: '/maintenance-dev/' }
               ]
             },
             {
@@ -118,6 +120,23 @@ export default withMermaid(
               ]
             },
             {
+              text: 'evolve-dev',
+              items: [
+                { text: 'Overview & State Machine', link: '/evolve-dev/' },
+                { text: 'Lifecycle & Gate', link: '/evolve-dev/lifecycle' },
+                { text: 'Artifacts', link: '/evolve-dev/artifacts' }
+              ]
+            },
+            {
+              text: 'maintenance-dev',
+              items: [
+                { text: 'Overview & State Machine', link: '/maintenance-dev/' },
+                { text: 'Safety Net & Verification', link: '/maintenance-dev/safety-net' },
+                { text: 'Campaigns & Slices', link: '/maintenance-dev/campaigns' },
+                { text: 'Deprecation & Removal', link: '/maintenance-dev/deprecation' }
+              ]
+            },
+            {
               text: 'Reference',
               items: [
                 { text: 'Status Glossary', link: '/reference/glossary' },
@@ -153,7 +172,9 @@ export default withMermaid(
               items: [
                 { text: 'coding-start', link: '/zh/coding-start/' },
                 { text: 'project-onboard', link: '/zh/project-onboard/' },
-                { text: 'feature-dev', link: '/zh/feature-dev/' }
+                { text: 'feature-dev', link: '/zh/feature-dev/' },
+                { text: 'evolve-dev', link: '/zh/evolve-dev/' },
+                { text: 'maintenance-dev', link: '/zh/maintenance-dev/' }
               ]
             },
             {
@@ -209,6 +230,23 @@ export default withMermaid(
                 { text: 'UX / UI — UI READY', link: '/zh/feature-dev/ui' },
                 { text: '测试设计 — TEST DESIGN READY', link: '/zh/feature-dev/testing' },
                 { text: '交付 — DONE', link: '/zh/feature-dev/delivery' }
+              ]
+            },
+            {
+              text: 'evolve-dev',
+              items: [
+                { text: '总览与状态机', link: '/zh/evolve-dev/' },
+                { text: '生命周期与门禁', link: '/zh/evolve-dev/lifecycle' },
+                { text: '产物体系', link: '/zh/evolve-dev/artifacts' }
+              ]
+            },
+            {
+              text: 'maintenance-dev',
+              items: [
+                { text: '总览与状态机', link: '/zh/maintenance-dev/' },
+                { text: '安全网与验证', link: '/zh/maintenance-dev/safety-net' },
+                { text: '战役与切片', link: '/zh/maintenance-dev/campaigns' },
+                { text: '弃用与移除', link: '/zh/maintenance-dev/deprecation' }
               ]
             },
             {

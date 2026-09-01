@@ -5,8 +5,8 @@ description: "Use ONLY when the user explicitly asks to start or initialize a Gr
 
 # Coding Start
 
-> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Greenfield initialization (0 to 1). Siblings: `project-onboard`, `feature-dev`.
-> Foundry contract version: `2026-08-30`.
+> Part of **Foundry**, an AI-native, spec-driven development suite. Role: Greenfield initialization (0 to 1). Siblings: `project-onboard`, `feature-dev`, `evolve-dev`, `maintenance-dev`.
+> Foundry contract version: `2026-09-01`.
 
 Move an unimplemented project idea to a state that can be handed to Feature development. Clarify direction, boundaries, and durable rules before producing project-level documents and a shallow Feature map. By default, this Skill MUST NOT write business code or create full application scaffolding.
 

@@ -3,7 +3,13 @@
 ## General
 
 **Will the skills write code for me automatically?**
-No. `coding-start` produces documentation and stops before any business code. `project-onboard` produces an AS-IS baseline and stops before implementation. Only `feature-dev` writes code, and only after the required gates pass and writes are authorized.
+No. `coding-start` produces documentation and stops before any business code. `project-onboard` produces an AS-IS baseline and stops before implementation. `evolve-dev` produces Roadmap entries and DRAFT Specs, never code. Only `feature-dev` and `maintenance-dev` write code, and only after their required gates pass and writes are authorized.
+
+**How do I model a refactoring, an upgrade, or a debt cleanup?**
+Run `maintenance-dev` with one campaign: `REFACTOR` (behavior-preserving structural change), `DEBT` (paydown of recorded debt rows), `UPGRADE` (dependency/framework version move), or `RETIRE` (deprecate/remove a capability). It slices the campaign under a safety net (`SAFETY NET READY` → `BEHAVIOR PRESERVED` per slice). A refactor that would change observable behavior, a debt row that encodes a defect, or a behavioral breaking change in an upgrade is routed to `feature-dev` as a Change/Bug instead.
+
+**We finished the MVP. How do we plan the next wave of features?**
+Run `evolve-dev` on the baselined repository: it interviews incrementally, challenges the wave, and passes `ROADMAP EVOLUTION READY` — new Roadmap entries with DRAFT Specs, re-prioritization confirmed by the Roadmap Decision Authority. Implementation still goes through `feature-dev`, one claimed item per member. A direction that would reposition the product stops for an explicit decision to redo macro design.
 
 **Why won't `project-onboard` trigger when I open a new repo?**
 By design. Onboarding writes documentation and needs explicit intent plus write authorization. Opening or browsing an unfamiliar repository is read-only Q&A unless you explicitly ask to take it over.

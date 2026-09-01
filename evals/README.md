@@ -1,6 +1,6 @@
 # Foundry Behavioral Eval Suite
 
-This directory holds the scenario-based behavioral evaluation for the three Skills (`coding-start`, `project-onboard`, `feature-dev`). It fills the gap left by `scripts/verify-skills.mjs`, which checks static contract consistency only: these scenarios test **behavior** — what an agent actually does when a Skill is loaded and driven to a decision point.
+This directory holds the scenario-based behavioral evaluation for the five Skills (`coding-start`, `project-onboard`, `feature-dev`, `evolve-dev`, `maintenance-dev`). It fills the gap left by `scripts/verify-skills.mjs`, which checks static contract consistency only: these scenarios test **behavior** — what an agent actually does when a Skill is loaded and driven to a decision point.
 
 ## Method
 
