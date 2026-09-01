@@ -1,6 +1,6 @@
 ---
 name: project-onboard
-description: "Use ONLY when the user explicitly requests takeover, inventory, or recovery of an existing Brownfield, legacy, or incomplete repository and expects durable baseline, AS-IS documentation, Feature Inventory, and Specs. First entry into an unfamiliar repository alone is not a trigger. Excludes ordinary Q&A, read-only review, diagnosis-only work, Greenfield initialization, and single Feature implementation."
+description: "Use ONLY when the user explicitly requests takeover, inventory, or recovery of an existing Brownfield, legacy, or incomplete repository and expects durable baseline, AS-IS documentation, Feature Inventory, and Specs. First entry into an unfamiliar repository alone is not a trigger. Excludes ordinary Q&A, read-only review, diagnosis-only work, Greenfield initialization (coding-start), single Feature implementation (feature-dev), Roadmap evolution on a healthy baselined repository (evolve-dev), and maintenance engineering such as refactoring, debt paydown, dependency upgrades, or deprecation (maintenance-dev)."
 ---
 
 # Project Onboard

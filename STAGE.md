@@ -4,11 +4,11 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0022` |
-| Parent Snapshot | `STAGE-0021 / sha256:190990D48A27F65A6B70741C32D4D87D547D47D5AC1B16EA0786AC91F6D8C4F9` |
-| Last Reconciled At | `2026-09-01T12:57:29+08:00` |
+| Snapshot Revision | `STAGE-0023` |
+| Parent Snapshot | `STAGE-0022 / sha256:78EE6E91224E27B4AD8DA90D13BCFC98878443DDBA0801A9416945FCDD49689A` |
+| Last Reconciled At | `2026-09-01T13:33:04+08:00` |
 | Reconciled By | `ZCode` |
-| Repository Ref | `main@65f0c38` |
+| Repository Ref | `fix/audit-low-findings (audit F-01..F-03 fix slice)` |
 | Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
@@ -26,10 +26,13 @@
 | Deep-review findings resolution | `COMPLETE` | Review report of 2026-08-30 (4 HIGH, 9 MEDIUM, LOW findings), ADR-0001 revision 2, and this snapshot | Delivered via PR #3 merged to main@87514c5 |
 | Behavioral eval suite | `COMPLETE` | This snapshot, `evals/`, and the workspace run report | 19/19 scenarios PASS (0 FAIL); PR opened |
 | Post-delivery evolution and maintenance Skills | `COMPLETE` | [PR #5](https://github.com/MaoyuanYang/foundry/pull/5) merged to `main@65f0c38` (squash, 55 files); CI run 33471699187 success (skills:verify 111/111, docs:build, Pages deploy); installed copies byte-identical ×5 | Preserve current behavior while extending the artifact contract |
+| A-008 audit findings resolution | `ACTIVE` | Branch `fix/audit-low-findings`: F-01 token enumeration, F-02 frontmatter sibling partition, F-03 S02 citation alignment; verify extended to 117 checks | PR merged after explicit user authorization |
 
 ## Active Work
 
-None.
+| Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A-008` | `Resolve five-skill audit findings F-01..F-03` | `ZCode` | `AGENT` | `external` | `DELIVERY` | `ACTIVE` | `N/A` | `fix/audit-low-findings` | `N/A - project workflow activity` | `PR/push under explicit user authorization` | `2026-09-01T13:33:04+08:00` |
 
 ## Recently Completed
 

@@ -109,6 +109,19 @@ for (const f of [
   check(`PR_REVIEW token in ${f}`, read(f).includes('PR_REVIEW') || read(f).includes('IN PR REVIEW'));
 }
 // 3c. fifth and sixth skill contracts (ADR-0002)
+for (const s of skills) {
+  const fm = read(`skills/${s}/SKILL.md`).split('---')[1] || '';
+  const missing = skills.filter((o) => o !== s && !fm.includes(o));
+  check(
+    `frontmatter of ${s} names every sibling`,
+    missing.length === 0,
+    missing.join(', '),
+  );
+}
+check(
+  'evolve-dev stage tokens include BLOCKED_HANDOFF',
+  read('skills/evolve-dev/SKILL.md').match(/Use these exact stage tokens[^\n]*/)[0].includes('`BLOCKED_HANDOFF`'),
+);
 check(
   'ROADMAP EVOLUTION READY gate in evolve-dev/SKILL.md',
   read('skills/evolve-dev/SKILL.md').includes('ROADMAP EVOLUTION READY'),
