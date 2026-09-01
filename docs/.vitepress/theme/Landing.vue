@@ -61,13 +61,15 @@ const t = computed(() =>
         terminal: { label: '安装', copied: '已复制！' },
         pipeline: {
           kicker: '生命周期',
-          title: '一套体系，三个阶段',
-          sub: '全新项目、存量接管、持续交付 —— 一条连续的工作流。'
+          title: '一套体系，五个 Skill。',
+          sub: '全新项目、存量接管、持续交付、演进与维护 —— 一条连续的工作流。'
         },
         nodes: [
           { tag: '0 → 1', name: 'coding-start', desc: 'Greenfield 访谈、宏观设计、DRAFT Specs。' },
           { tag: '接管', name: 'project-onboard', desc: '基线验证、架构重建、AS-IS 文档。' },
-          { tag: '1 → N', name: 'feature-dev', desc: 'Spec、门禁、测试设计、编码、PR 评审与合并。' }
+          { tag: '1 → N', name: 'feature-dev', desc: 'Spec、门禁、测试设计、编码、PR 评审与合并。' },
+          { tag: 'N → N′', name: 'evolve-dev', desc: '下一波次规划：Roadmap 条目、优先级重排。' },
+          { tag: '维护', name: 'maintenance-dev', desc: '安全网下的重构、还债、升级与退役。' }
         ],
         bento: {
           kicker: '为什么选择 Foundry',
@@ -83,8 +85,16 @@ const t = computed(() =>
           },
           {
             title: '门禁式工作流',
-            desc: 'SPEC READY → UI READY → TEST DESIGN READY → DONE。没有门禁，不写代码。',
-            chips: ['SPEC READY', 'UI READY', 'TEST DESIGN READY', 'DONE'],
+            desc: '没有门禁，不写代码 —— 交付、演进与维护各有专属门禁。',
+            chips: [
+              'SPEC READY',
+              'UI READY',
+              'TEST DESIGN READY',
+              'ROADMAP EVOLUTION READY',
+              'SAFETY NET READY',
+              'BEHAVIOR PRESERVED',
+              'DONE'
+            ],
             big: true
           },
           { title: '测试设计先行', desc: '先定义如何证明正确，再写第一行代码。' },
@@ -119,7 +129,9 @@ const t = computed(() =>
           items: [
             { label: '新项目', prompt: '"初始化一个 greenfield 项目：社区本地生活平台。"' },
             { label: '接管', prompt: '"接管这个仓库，建立 AS-IS 基线。"' },
-            { label: 'Feature', prompt: '"按工作流实现 Feature F001。"' }
+            { label: 'Feature', prompt: '"按工作流实现 Feature F001。"' },
+            { label: '演进', prompt: '"规划下一期：给平台加一个协作波次。"' },
+            { label: '维护', prompt: '"重构鉴权模块，不改变任何行为。"' }
           ]
         },
         cta: {
@@ -142,13 +154,15 @@ const t = computed(() =>
         terminal: { label: 'INSTALL', copied: 'Copied!' },
         pipeline: {
           kicker: 'The Lifecycle',
-          title: 'One suite. Three phases.',
-          sub: 'Greenfield, brownfield takeover, and continuous delivery — one continuous workflow.'
+          title: 'One suite. Five skills.',
+          sub: 'Greenfield, brownfield takeover, continuous delivery, evolution, and maintenance — one continuous workflow.'
         },
         nodes: [
           { tag: '0 → 1', name: 'coding-start', desc: 'Greenfield discovery, macro design, DRAFT specs.' },
           { tag: 'Takeover', name: 'project-onboard', desc: 'Baseline, reconstruction, AS-IS documentation.' },
-          { tag: '1 → N', name: 'feature-dev', desc: 'Spec, gates, test design, coding, PR review, merge.' }
+          { tag: '1 → N', name: 'feature-dev', desc: 'Spec, gates, test design, coding, PR review, merge.' },
+          { tag: 'N → N′', name: 'evolve-dev', desc: 'Next-wave planning: Roadmap entries, re-prioritization.' },
+          { tag: 'Maintain', name: 'maintenance-dev', desc: 'Refactor, debt, upgrades, retirement — behavior preserved.' }
         ],
         bento: {
           kicker: 'Why Foundry',
@@ -164,8 +178,16 @@ const t = computed(() =>
           },
           {
             title: 'Gated Workflow',
-            desc: 'SPEC READY → UI READY → TEST DESIGN READY → DONE. No gate, no code.',
-            chips: ['SPEC READY', 'UI READY', 'TEST DESIGN READY', 'DONE'],
+            desc: 'No gate, no code — delivery, evolution, and maintenance each run their own gates.',
+            chips: [
+              'SPEC READY',
+              'UI READY',
+              'TEST DESIGN READY',
+              'ROADMAP EVOLUTION READY',
+              'SAFETY NET READY',
+              'BEHAVIOR PRESERVED',
+              'DONE'
+            ],
             big: true
           },
           { title: 'Test Design First', desc: 'Define how correctness is proven before writing a single line.' },
@@ -200,7 +222,9 @@ const t = computed(() =>
           items: [
             { label: 'New project', prompt: '"Initialize a greenfield project: a community local-services platform."' },
             { label: 'Takeover', prompt: '"Take over this repo and build an AS-IS baseline."' },
-            { label: 'Feature', prompt: '"Implement feature F001 per the workflow."' }
+            { label: 'Feature', prompt: '"Implement feature F001 per the workflow."' },
+            { label: 'Evolution', prompt: '"Plan the next phase: we are adding a collaboration wave to the platform."' },
+            { label: 'Maintenance', prompt: '"Refactor the auth module without changing behavior."' }
           ]
         },
         cta: {
@@ -709,7 +733,7 @@ const langHref = computed(() => (isZh.value ? '/' : '/zh/'))
 .pipeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
   gap: 22px;
 }
 .pipe-line {
@@ -832,7 +856,7 @@ const langHref = computed(() => (isZh.value ? '/' : '/zh/'))
 /* ---- quick ---- */
 .quick {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 18px;
 }
 .quick-card {
@@ -939,9 +963,6 @@ const langHref = computed(() => (isZh.value ? '/' : '/zh/'))
   .card,
   .card:not(.card-big) {
     grid-column: span 2;
-  }
-  .quick {
-    grid-template-columns: 1fr;
   }
   .nav-links {
     display: none;
