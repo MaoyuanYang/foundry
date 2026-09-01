@@ -4,15 +4,15 @@
 
 | Field | Value |
 | --- | --- |
-| Snapshot Revision | `STAGE-0021` |
-| Parent Snapshot | `STAGE-0020 / sha256:D270236DDAFB860B966C97257AC3D3A3467FEBDD724F12B145FAE39C5BBA957C` |
-| Last Reconciled At | `2026-09-01T12:53:08+08:00` |
+| Snapshot Revision | `STAGE-0022` |
+| Parent Snapshot | `STAGE-0021 / sha256:190990D48A27F65A6B70741C32D4D87D547D47D5AC1B16EA0786AC91F6D8C4F9` |
+| Last Reconciled At | `2026-09-01T12:57:29+08:00` |
 | Reconciled By | `ZCode` |
-| Repository Ref | `feat/evolve-maintenance-skills (worktree clean after commit; PR/push awaits explicit user authorization)` |
+| Repository Ref | `main@65f0c38` |
 | Write Coordination | `SINGLE_WRITER:ZCode/current repository root` |
 | Lifecycle Path | `BROWNFIELD` |
 | Project Phase | `MAINTENANCE` |
-| Overall State | `ACTIVE` |
+| Overall State | `COMPLETE` |
 | Current Milestone | `Post-delivery evolution and maintenance Skills (evolve-dev, maintenance-dev)` |
 | Tracking Mode | `REMOTE` |
 
@@ -25,18 +25,17 @@
 | Parallel work-item collaboration | `COMPLETE` | `adr/0001-parallel-work-items.md` (Accepted, revision 1) and this snapshot | Delivered on `feat/parallel-work-items`; verified by `npm run skills:verify` (47/47) and `npm run docs:build`; installed copies synchronized byte-identically |
 | Deep-review findings resolution | `COMPLETE` | Review report of 2026-08-30 (4 HIGH, 9 MEDIUM, LOW findings), ADR-0001 revision 2, and this snapshot | Delivered via PR #3 merged to main@87514c5 |
 | Behavioral eval suite | `COMPLETE` | This snapshot, `evals/`, and the workspace run report | 19/19 scenarios PASS (0 FAIL); PR opened |
-| Post-delivery evolution and maintenance Skills | `ACTIVE` | Branch `feat/evolve-maintenance-skills`: ADR-0002 Accepted, both skill packages, verify 111/111, docs:build PASS, evals S20–S26 pre-registered, installed copies byte-identical | PR opened and merged by the responsible maintainer after explicit user authorization |
+| Post-delivery evolution and maintenance Skills | `COMPLETE` | [PR #5](https://github.com/MaoyuanYang/foundry/pull/5) merged to `main@65f0c38` (squash, 55 files); CI run 33471699187 success (skills:verify 111/111, docs:build, Pages deploy); installed copies byte-identical ×5 | Preserve current behavior while extending the artifact contract |
 
 ## Active Work
 
-| Activity ID | Work Item | Member | Type | Skill | Skill Stage | Activity State | Work Status | Branch / Worktree | Status Authority | Next Checkpoint | Updated At |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `A-007` | `Post-delivery evolution and maintenance Skills (evolve-dev, maintenance-dev)` | `ZCode` | `AGENT` | `external` | `DELIVERY` | `ACTIVE` | `N/A` | `feat/evolve-maintenance-skills` | `N/A - project workflow activity` | `Implementation complete on branch; PR/push awaits explicit user authorization` | `2026-09-01T12:53:08+08:00` |
+None.
 
 ## Recently Completed
 
 | Activity ID | Work Item | Member | Outcome | Final Work Status | Final Status Authority | Delivery Evidence | Completed At |
 |---|---|---|---|---|---|---|---|
+| `A-007` | `Post-delivery evolution and maintenance Skills (evolve-dev, maintenance-dev)` | `ZCode` | Two new Skills per ADR-0002: evolve-dev (Roadmap evolution planning, `ROADMAP EVOLUTION READY`, repositioning boundary) and maintenance-dev (`REFACTOR/DEBT/UPGRADE/RETIRE` campaigns under `SAFETY NET READY` → `BEHAVIOR PRESERVED`, retirement authority trail); contract version `2026-09-01` across five Skills; routing wired in all siblings (incl. project-onboard healthy-repo planning → evolve-dev, Debt table → maintenance-dev); stage template enums extended byte-identically ×5; verify extended to 111 checks; bilingual docs + READMEs + install guide updated to five Skills; evals S20–S26 pre-registered | `DONE` | `STAGE_LOCAL:A-007` | PR #5 merged to main@65f0c38 (squash, 55 files); CI run 33471699187 success; installed copies byte-identical at ~/.agents/skills/ ×5 | `2026-09-01T12:57:29+08:00` |
 | `A-006` | `Behavioral eval suite (evals/)` | `ZCode` | Pre-registered 19-scenario live-fire matrix (entry routing, coding-start, project-onboard, feature-dev incl. fix-slice/WIP/version/claims STOPs, combination chains); all 19 PASS with 3 low-severity findings (2 harness-operational, 1 doc clarification suggestion, declared coverage gaps); added `.gitattributes` LF normalization after a recurring CRLF drift broke the byte-identical core check locally | `DONE` | `STAGE_LOCAL:A-006` | `PR #4 merged to main@d042fc0 (squash, 4 files); CI run 33368539159 success (skills:verify 60/60, docs:build, Pages deploy); run report in workspace` | `2026-08-31T15:29:33+08:00` |
 
 ## Gate Snapshot
