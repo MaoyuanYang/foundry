@@ -8,6 +8,45 @@ During these branches, root `STAGE.md` records only the exact `TEST_DESIGN` or `
 
 Test Design models risk and establishes verifiability; it is not an early test-count exercise. First derive `TS-*` from every `AC-*`, business invariant, failure mode, and change risk.
 
+### Test Scope Confirmation
+
+Before deriving scenarios, assemble the candidate test families from the Coverage Taxonomy below that are applicable to this work item's surfaces, risks, and environment, and confirm the coverage scope with the user in a single single-select question (via the AskUserQuestion tool; conversation list when the tool is unavailable).
+
+Each option MUST state which tests it includes and why, so the user chooses from concrete evidence rather than abstract labels:
+
+- The concrete list of test families included under that option.
+- Why each included family is there, tied to the Risk Inventory, a relevant `AC-*`, or the work-item surface.
+- Which families are excluded and why (for example, `i18n skipped: no user-facing localized copy in this scope`).
+
+Offer exactly these three options plus the automatic free-text `Other`:
+
+1. `Recommended risk-based scope (Recommended)`: families derived from the Risk Inventory, with per-family INCLUDE/SKIP recommendation and reason.
+2. `All applicable optional families`: every taxonomy family applicable to the work-item surfaces, each with a reason; exclusions only for truly inapplicable families with a reason.
+3. `Minimal scope`: only the mandatory core families (functional, error, auth, regression, and Bug reproduction); all optional families excluded with reasons and recorded residual risk.
+
+A free-text `Other` answer (for example, `recommended + Fuzz + soak`) overrides the presets and is recorded verbatim as the decision source.
+
+Selection rules:
+
+- A family the user selects MUST be covered by at least one `TS-*`, or carry a recorded blocking constraint plus a non-Critical Open Test Question.
+- A family the user excludes is recorded as `N/A - user scope decision (<requester>, <date>)`; it MUST NOT silently disappear from the Test Design.
+- The user's selection may narrow scope below what risk suggests only for non-Critical risks. It MUST NOT waive coverage of a Critical risk, a core `AC-*`, or the Bug reproduction/regression requirement.
+- When the user is unavailable, propose the recommended scope, record it as `PROPOSED - pending user confirmation`, and add an Open Test Question. `TEST DESIGN READY` stays blocked while a confirmation covering a Critical risk is pending; otherwise the Gate may pass with the pending question recorded as non-Critical.
+
+### Coverage Taxonomy
+
+Select candidate families from this taxonomy by risk; it exists to prevent blind spots, not to mandate every family:
+
+- Functional: Happy Path, Alternative Flow, Boundary/Invalid Input, Error/Partial Failure/Recovery, Regression, Bug Reproduction, Smoke.
+- Access and data: Authentication, Authorization, Privacy, Data Integrity/backup-restore, Idempotency/Duplicate, Concurrency, Transaction, Consistency.
+- Resilience: Retry, Timeout, Recovery, Failover/Chaos, Soak/Endurance.
+- Compatibility: Migration, Backward Compatibility, API/Contract, Cross-platform/Browser/Device/OS, Version Interop, Localization/i18n.
+- Performance: Load, Stress, Spike, Capacity, Benchmark.
+- Security: Authentication/Authorization, Input Validation/Injection, Secret Handling, coordinated Penetration.
+- UI: Interaction, Form Validation, Loading/Empty/Error/Success, Navigation, Responsive, Accessibility, E2E, Visual Regression.
+- Technique: Property-based, Fuzz, Mutation (test-suite effectiveness), Exploratory (manual).
+- Operational: Observability, Deployment/Upgrade/Rollback, Canary, Parallel-feature integration.
+
 ### Scenario Selection
 
 Select according to risk:
@@ -33,7 +72,7 @@ Each scenario MUST record at least:
 - Stable `TS-*` ID, title, and risk.
 - Protected `AC-*` or invariant.
 - Given / When / Then, or equivalent precondition, action, and observable result.
-- Suggested level: Unit, Integration, API, Contract, Component, Interaction, Accessibility, E2E, Smoke, Concurrency, Performance, Regression, or Visual Regression.
+- Suggested level: Unit, Integration, API, Contract, Component, Interaction, Accessibility, E2E, Smoke, Concurrency, Performance, Regression, Visual Regression, Load, Stress, Spike, Soak/Endurance, Compatibility, Localization/i18n, Fuzz, Property-based, Mutation, Exploratory (manual), or Deployment/Upgrade/Rollback.
 - Automation target, test location/name when known, data/fixture, and environment dependency.
 - Current result and evidence.
 

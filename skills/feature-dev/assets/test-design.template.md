@@ -20,6 +20,14 @@
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
+## Test Scope Selection
+
+> Confirmed with the user before scenario derivation; see Test and Plan Gates. Every applicable family MUST appear as included or excluded with a reason. Mandatory core families (functional, error, auth, regression, Bug reproduction) cannot be waived by scope selection.
+
+| Family (taxonomy group) | Selected | Source/authority | N/A or deferral reason |
+| --- | --- | --- | --- |
+|  | `YES | NO - user scope decision` |  |  |
+
 ## Acceptance Traceability
 
 | Acceptance | Scenario IDs | Test level | Automated target/path | Status/evidence |
@@ -35,7 +43,7 @@
 - Given:
 - When:
 - Then:
-- Level: `Unit | Integration | API | Contract | Component | Interaction | Accessibility | E2E | Smoke | Concurrency | Performance | Regression | Visual Regression`
+- Level: `Unit | Integration | API | Contract | Component | Interaction | Accessibility | E2E | Smoke | Concurrency | Performance | Regression | Visual Regression | Load | Stress | Spike | Soak/Endurance | Compatibility | Localization/i18n | Fuzz | Property-based | Mutation | Exploratory (manual) | Deployment/Upgrade/Rollback`
 - Automation target/path:
 - Data/fixture/environment:
 - Result/evidence: `NOT RUN`
@@ -57,6 +65,13 @@
 - Migration/backward compatibility: `N/A - <reason>`
 - Parallel-feature integration/merge regression (record the covering `TS-*` IDs here; this list is the recorded integration slice rerun before merge): `N/A - no concurrent work items | TS-<ids>`
 - Performance/capacity: `N/A - <reason>`
+- Load/Stress/Spike: `N/A - <reason>`
+- Soak/Endurance: `N/A - <reason>`
+- Cross-platform/Browser/Device/OS compatibility: `N/A - <reason>`
+- Localization/i18n: `N/A - <reason>`
+- Fuzz/Property-based: `N/A - <reason>`
+- Data integrity/backup-restore: `N/A - <reason>`
+- Deployment/Upgrade/Rollback: `N/A - <reason>`
 - Security/privacy: `N/A - <reason>`
 - Observability: `N/A - <reason>`
 
