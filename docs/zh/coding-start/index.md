@@ -40,6 +40,8 @@ flowchart TD
 
 正式项目文档只在 `MACRO DESIGN READY` 之后生成。访谈摘要与候选建议不是正式产物。
 
+两个 **Confirmation Digest** 检查点让生成内容始终可审阅，而无需逐点访谈：Macro Synthesis 之后，Ledger 中全部 `RECOMMENDED`/`UNKNOWN` 条目按主题分组一次性呈现并逐项处置，之后才进入 Challenge Pass；文档与 DRAFT Spec 生成后，其中实际出现的条目再与该 digest 核对，通过后才选择 `NEXT`——任何默认值都不会未经你过目就进入文档。详见[访谈与 Challenge Pass](./discovery)。
+
 ## 不可违反的边界
 
 - 默认不创建业务实现、业务 API、数据库表、领域类、页面或组件。
@@ -57,7 +59,7 @@ flowchart TD
 
 成功路径仅当以下全部为真才停止：
 
-1. 项目访谈完成。
+1. 项目访谈完成，且两道 Confirmation Digest 均已核对。
 2. Challenge Pass 完成，且 Decision Authority 确认了修正后的综合。
 3. 正式文件写盘已获明确本地授权（未推导 Git/远程授权）。
 4. Gate 明确输出 `MACRO DESIGN READY`。

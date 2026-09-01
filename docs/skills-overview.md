@@ -11,7 +11,7 @@ Turns an unimplemented idea into a hand-off-ready project **without writing busi
 **Flow**
 
 ```text
-Discovery interviews → Macro Synthesis → Challenge Pass → Macro Readiness
+Discovery interviews → Macro Synthesis → Confirmation Digest → Challenge Pass → Macro Readiness
 → MACRO DESIGN READY → docs + AGENTS → Feature Map → DRAFT Specs → NEXT → STOP
 ```
 
@@ -21,7 +21,7 @@ Discovery interviews → Macro Synthesis → Challenge Pass → Macro Readiness
 
 - No business code, no full scaffolding by default.
 - Interviews in focused rounds (2–5 related questions; one decision question in `DEEP` mode).
-- Defaults are marked `RECOMMENDED`, never presented as confirmed facts.
+- Defaults are marked `RECOMMENDED`, never presented as confirmed facts; every `RECOMMENDED`/`UNKNOWN` entry passes a Confirmation Digest before reaching a document.
 - Stops with at least one confirmed `NEXT` feature — usually one; parallel selections are confirmed only when distinct members will claim them (or a `BLOCKED_HANDOFF` with zero).
 
 ## project-onboard — Brownfield, unknown → understood

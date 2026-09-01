@@ -99,7 +99,7 @@ ENTRY_CHECK
   -> STOP
 ```
 
-Formal project documents MUST NOT be generated before `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
+Formal project documents MUST NOT be generated before `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts. The primary Confirmation Digest runs after `MACRO_SYNTHESIS` and before `CHALLENGE_PASS`; the secondary digest runs between `DRAFT_SPEC_GENERATION` and `NEXT_SELECTION`; neither adds a new state.
 
 Root `STAGE.md` is the sole operational exception. After valid entry and explicit local-write authorization, create or incrementally adopt it from the [Project Stage template](assets/stage.template.md) so interrupted Discovery can resume. Before the Gate it may use `Tracking Mode: TBD`, Work Status `N/A`, and `N/A - project workflow activity`; besides the template's Snapshot Revision, Parent Snapshot, and Write Coordination fields required by the write guard, record only the current Skill stage, member/activity, explicit blockers, next checkpoint, repository ref, and known authority links. It MUST NOT persist unconfirmed product or architecture conclusions or imply that Macro Readiness passed. Update it only on assignment, meaningful stage transitions, block/resume, handoff, and completion. For every `STAGE.md` write, run this guard in order: (1) reread the latest `STAGE.md` and every linked authority; (2) compare the snapshot revision and SHA-256 against the previous read and abort/reconcile on any change; (3) update only the current activity and directly affected coordination rows, preserving every unrelated member row; (4) record the prior revision/hash as `Parent Snapshot` and increment the snapshot revision; (5) write; (6) reread after writing and stop on a duplicate ID or unexpected result. Serialize writes through a repository lock or designated canonical writer when one exists; if neither serialization nor hash comparison is available, `STOP` before writing. Allocate `A-xxx` under the same guard.
 
@@ -128,6 +128,8 @@ Also record `Discovery Intensity: STANDARD | DEEP`. This controls interaction de
 5. A low-risk unknown MAY become `RECOMMENDED` with a revisit trigger. A high-impact business rule or architecture choice MUST NOT be silently defaulted.
 6. MUST NOT repeat answered questions, add unrelated topics before the current question is resolved, or prematurely decide fields, DTOs, classes, components, SQL, CSS, or internal functions.
 7. If a Decision Authority cannot be reached for a high-impact item, MUST NOT loop indefinitely: report the blocker, state that initialization is incomplete, and `STOP`.
+8. After Macro Synthesis, run the mandatory Confirmation Digest from the Discovery interview guide: present every `RECOMMENDED`/`UNKNOWN` Ledger entry in one topic-grouped pass and obtain an explicit disposition for each before the Challenge Pass. Chapter-level digests apply to the Critical Business Rules, Data/Integration, NFR, and Technology branches before leaving each branch.
+9. After artifact and DRAFT Spec generation, run the secondary digest: reconcile every `RECOMMENDED`/`UNKNOWN` entry appearing in generated documents against the digested Ledger before `NEXT_SELECTION`; generated documents MUST NOT introduce unreviewed defaults.
 
 Use [Discovery interview guide](references/discovery.md) for topics, risk triggers, and examples. Select by risk rather than mechanically running a checklist, and MUST NOT choose complex architecture merely to appear professional.
 
@@ -151,13 +153,13 @@ This is blocking. Resolve it next; MUST NOT bypass the branch to enter the Gate.
 
 ## Challenge Pass
 
-After Macro Synthesis, run one mandatory `CHALLENGE_PASS` using [Discovery interview guide](references/discovery.md). Challenge, in order: whether the problem is real; what can still be removed from the MVP; counterexamples and failure paths in the core flow; Decision Authority and Source of Truth; success and failure criteria; and whether technical complexity has business evidence.
+After Macro Synthesis, run the primary Confirmation Digest from the Discovery interview guide, then run one mandatory `CHALLENGE_PASS` using [Discovery interview guide](references/discovery.md). Challenge, in order: whether the problem is real; what can still be removed from the MVP; counterexamples and failure paths in the core flow; Decision Authority and Source of Truth; success and failure criteria; and whether technical complexity has business evidence.
 
 Record each outcome as `RETAINED`, `REVISED`, or `REJECTED`, still using `CONFIRMED/RECOMMENDED/UNKNOWN`. New blocking unknowns or contradictions produce `NEEDS_CLARIFICATION` and return to Discovery. The Challenge MUST NOT introduce Feature-level implementation detail. Enter Macro Readiness only after the Challenge is complete and the Decision Authority explicitly confirms the revised macro synthesis; silence is not confirmation.
 
 ## Macro Readiness
 
-Present a macro synthesis, complete the Challenge Pass, then evaluate Readiness. Inputs MUST list `CONFIRMED`, `RECOMMENDED`, remaining `UNKNOWN`, challenged assumptions, and explicit exclusions.
+Present a macro synthesis, complete the primary Confirmation Digest, complete the Challenge Pass, then evaluate Readiness. Inputs MUST list `CONFIRMED`, `RECOMMENDED`, remaining `UNKNOWN`, challenged assumptions, and explicit exclusions; every `RECOMMENDED`/`UNKNOWN` input MUST carry a digest disposition.
 
 Required checks:
 
@@ -224,6 +226,7 @@ Before finishing, use [Lifecycle and gates](references/lifecycle-and-gates.md) a
 - UI projects received macro UX/UI Discovery; no-UI projects have no UI documents.
 - Artifact responsibilities are distinct; Spec/Issue/PR/ADR relationships are clear.
 - Formal documents contain only `CONFIRMED`, explicit `RECOMMENDED`, and visible non-blocking `UNKNOWN` content.
+- The primary and secondary Confirmation Digests completed with an explicit disposition per item, and every `RECOMMENDED`/`UNKNOWN` entry in generated documents appeared in a digest.
 - A named, empowered Decision Authority confirmed high-impact decisions and every selected `NEXT` (at least one).
 - Design confirmation, local writes, Git, and remote side effects each had independent authorization.
 - Discovery intensity matched risk; `DEEP` remained one question per round without repeated grilling.
@@ -245,7 +248,7 @@ Fix every discovered issue before reporting. The final response MUST list:
 - Files created/updated and conditionally omitted files with reasons.
 - The `STAGE.md` snapshot revision, tracking mode, current activity, authority, and resume point.
 - On success, every selected `NEXT` with rationale, dependencies, and refinement questions; when blocked, zero `NEXT` entries and the unblock condition.
-- `RECOMMENDED` and non-blocking `UNKNOWN` items.
+- `RECOMMENDED` and non-blocking `UNKNOWN` items, with their digest dispositions.
 - Whether authorized minimal non-business scaffolding was created and its verification result.
 - The next step: use `feature-dev` to refine the Feature. MUST NOT invoke it or start implementation automatically.
 

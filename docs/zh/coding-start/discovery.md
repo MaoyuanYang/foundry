@@ -1,6 +1,6 @@
 # coding-start —— 访谈与 Challenge Pass
 
-Discovery 是一场多轮访谈：它建立 **Decision Ledger**，按风险自适应强度，并在写任何文档之前强制执行一次反驳关。
+Discovery 是一场多轮访谈：它建立 **Decision Ledger**，按风险自适应强度，通过 **Confirmation Digest** 保证任何默认值不会未经你过目就进入文档，并在写任何文档之前强制执行一次反驳关。
 
 ## Decision Ledger
 
@@ -22,6 +22,8 @@ Discovery 是一场多轮访谈：它建立 **Decision Ledger**，按风险自�
 4. 先调查环境可得的事实；产品与高影响决策需 Decision Authority 确认。
 5. 低风险未知可给带 revisit trigger 的 `RECOMMENDED`；高影响规则或架构选择不得默默默认。
 6. 不重复已答问题、不在当前组未解决时插入无关主题、不提前决定字段/DTO/类/组件/SQL/CSS/内部函数。
+7. Macro Synthesis 之后执行 **Confirmation Digest**：把 Ledger 中全部 `RECOMMENDED`/`UNKNOWN` 条目按主题分组一次性呈现，逐项获得明确处置（确认/修改/带 revisit trigger 保留），之后才进入 Challenge Pass。Critical Business Rules、Data/Integration、NFR、Technology 四个分支在离开该分支前各跑一次分章 digest。
+8. 文档与 DRAFT Spec 生成之后执行**第二道 digest**：把文档中实际出现的所有 `RECOMMENDED`/`UNKNOWN` 与已处置的 Ledger 核对，通过后才选择 `NEXT`——文档中绝不出现你从未见过的默认值。
 
 ## Adaptive Grilling
 
@@ -52,6 +54,17 @@ Discovery 是一场多轮访谈：它建立 **Decision Ledger**，按风险自�
 - **Technology** —— 语言/版本、框架、数据库/ORM、缓存/MQ、移动端、构建、单体/微服务、CI/CD、部署、云、第三方；逐项标注 `Confirmed` 或 `Recommended`。
 - **UI / UX**（`UI: YES` 时）—— 平台、设备、流程、信息架构、UX 原则、视觉方向、可访问性、i18n、主题。
 
+## Confirmation Digest
+
+访谈按风险抽样，但生成的文档可能包含许多你从未见过的事实。Digest 用来补上这一环：
+
+- **主 digest**——Macro Synthesis 之后、Challenge Pass 之前：把全部 `RECOMMENDED`/`UNKNOWN` 条目按主题分组列成一份清单，逐项取得明确处置——`CONFIRMED`、修改、带 revisit trigger 保留 `RECOMMENDED`，或保留 `UNKNOWN` 并标注是否阻塞。所有访谈主题都要出现；没有条目的主题写一行"为何不适用"。沉默不等于确认。
+- **分章 digest**——完成 Critical Business Rules、Data/Integration、NFR 或 Technology 任一分支后，立即呈现该分支新增的 `RECOMMENDED`/`UNKNOWN` 并取得处置，再进入下一分支。
+- **轮内 mini-digest**——某轮回答会引入多个新的 `RECOMMENDED` 默认值时，在该轮结尾把这些默认值列出来征求处置。
+- **第二道 digest**——文档与 DRAFT Spec 生成后，把它们之中实际出现的 `RECOMMENDED`/`UNKNOWN` 与已处置 Ledger 核对，通过后才进行 `NEXT` 选择。
+
+Digest 属于会话上下文；正式文档只保留处置后的事实状态、理由与 revisit trigger。
+
 ## Challenge Pass
 
 Macro Synthesis 之后必跑一次反驳关。每个假设记录为 `RETAINED`、`REVISED` 或 `REJECTED`（仍用事实状态）：
@@ -67,7 +80,7 @@ Macro Synthesis 之后必跑一次反驳关。每个假设记录为 `RETAINED`�
 
 ## Macro Readiness 清单
 
-**基础项** —— Project Goal、User、MVP、Out of Scope、Main Flow、Core Entities、Module Boundaries、Dependencies、Business Rules、Important State Machines、Tech Stack、Data Source of Truth、Data Strategy、API Strategy、Testing Strategy、Non-functional Requirements、Phase-1 Scope、三个语言维度，以及经 Decision Authority 明确确认的 Challenge 结论。
+**基础项** —— Project Goal、User、MVP、Out of Scope、Main Flow、Core Entities、Module Boundaries、Dependencies、Business Rules、Important State Machines、Tech Stack、Data Source of Truth、Data Strategy、API Strategy、Testing Strategy、Non-functional Requirements、Phase-1 Scope、三个语言维度、逐项处置完成的 Confirmation Digest，以及经 Decision Authority 明确确认的 Challenge 结论。
 
 **`UI: YES` 追加项** —— Target Platform、Primary User Flow、Page/Screen Map、Navigation、UX Principles、Frontend Architecture、Design System Direction、Responsive Requirements、Accessibility Requirements。
 

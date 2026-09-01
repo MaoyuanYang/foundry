@@ -11,7 +11,7 @@ Foundry 把软件生命周期拆成五个职责单一的 Skill。每个 Skill �
 **流程**
 
 ```text
-项目访谈 → 宏观综合 → Challenge Pass → Macro Readiness
+项目访谈 → 宏观综合 → Confirmation Digest → Challenge Pass → Macro Readiness
 → MACRO DESIGN READY → 文档 + AGENTS → Feature Map → DRAFT Specs → NEXT → STOP
 ```
 
@@ -21,7 +21,7 @@ Foundry 把软件生命周期拆成五个职责单一的 Skill。每个 Skill �
 
 - 默认不写业务代码、不搭全量脚手架。
 - 分轮访谈（每轮 2–5 个相关问题；`DEEP` 模式每轮只问一个决策问题）。
-- 默认值标记为 `RECOMMENDED`，绝不冒充已确认事实。
+- 默认值标记为 `RECOMMENDED`，绝不冒充已确认事实；每个 `RECOMMENDED`/`UNKNOWN` 条目都先经过 Confirmation Digest 处置，才会进入文档。
 - 以至少一个经权限确认的 `NEXT` Feature 停止——通常恰好一个；并行多选仅在确有不同成员认领时确认（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
 
 ## project-onboard —— Brownfield，未知 → 理解

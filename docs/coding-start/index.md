@@ -40,6 +40,8 @@ After valid entry and explicit local-write authorization, root [`STAGE.md`](../g
 
 Formal project documents are generated only after `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
 
+Two **Confirmation Digest** checkpoints keep generated content reviewable without interviewing every point: after Macro Synthesis, every `RECOMMENDED`/`UNKNOWN` Ledger entry is presented in one topic-grouped pass for explicit disposition before the Challenge Pass; and after documents and DRAFT Specs are generated, the entries actually appearing in them are reconciled against that digest before `NEXT` selection, so no default reaches a document the user never saw. See [Discovery & Challenge Pass](./discovery).
+
 ## Non-negotiable boundaries
 
 - No business implementations, business APIs, database tables, domain classes, pages, or components by default.
@@ -57,7 +59,7 @@ Only when explicitly requested, and only after `MACRO DESIGN READY` plus a separ
 
 The success path stops only when all are true:
 
-1. Project Interview is complete.
+1. Project Interview is complete and both Confirmation Digests are reconciled.
 2. Challenge Pass is complete and the Decision Authority confirmed the revised synthesis.
 3. Formal file writes had explicit local authorization (Git/remote not inferred).
 4. The Gate explicitly output `MACRO DESIGN READY`.

@@ -1,6 +1,6 @@
 # coding-start — Discovery & Challenge Pass
 
-Discovery is a multi-round interview that builds a **Decision Ledger**, adapts its intensity to risk, and ends with a mandatory counterargument pass before any document is written.
+Discovery is a multi-round interview that builds a **Decision Ledger**, adapts its intensity to risk, runs a **Confirmation Digest** so no default enters a document unreviewed, and ends with a mandatory counterargument pass before any document is written.
 
 ## The Decision Ledger
 
@@ -22,6 +22,8 @@ The Ledger is updated after each answer before choosing the next questions. Conf
 4. Investigate environment-available facts first; product and high-impact decisions require Decision Authority confirmation.
 5. A low-risk unknown may become `RECOMMENDED` with a revisit trigger; a high-impact rule or architecture choice must not be silently defaulted.
 6. Never repeat answered questions, add unrelated topics mid-group, or prematurely decide fields/DTOs/classes/components/SQL/CSS/internal functions.
+7. After Macro Synthesis, run the **Confirmation Digest**: present every `RECOMMENDED`/`UNKNOWN` Ledger entry in one topic-grouped pass and obtain an explicit disposition (confirm / revise / keep with revisit trigger) before the Challenge Pass. Chapter-level digests run for the Critical Business Rules, Data/Integration, NFR, and Technology branches before leaving each branch.
+8. After artifact and DRAFT Spec generation, run a **secondary digest**: reconcile every `RECOMMENDED`/`UNKNOWN` entry in the generated documents against the digested Ledger before selecting `NEXT` — generated documents must never introduce defaults the user never saw.
 
 ## Adaptive Grilling
 
@@ -52,6 +54,17 @@ The Ledger is updated after each answer before choosing the next questions. Conf
 - **Technology** — languages/versions, frameworks, database/ORM, cache/MQ, mobile, build, monolith vs microservices, CI/CD, deployment, cloud, third parties; each marked `Confirmed` or `Recommended`.
 - **UI / UX** (when `UI: YES`) — platform, device, flows, information architecture, UX principles, visual direction, accessibility, i18n, theme.
 
+## Confirmation Digest
+
+Interviews sample by risk; documents can end up containing many facts the user never saw. The digest closes that gap:
+
+- **Primary digest** — after Macro Synthesis, before the Challenge Pass: one topic-grouped list of every `RECOMMENDED`/`UNKNOWN` entry, each requiring an explicit disposition — `CONFIRMED`, revised, kept `RECOMMENDED` with revisit trigger, or kept `UNKNOWN` marked blocking or not. Every Discovery topic appears; topics with no entries get a one-line not-applicable reason. Silence is not confirmation.
+- **Chapter-level digest** — finishing Critical Business Rules, Data/Integration, NFR, or Technology immediately presents that branch's new `RECOMMENDED`/`UNKNOWN` items for disposition before the interview moves on.
+- **Round-level mini-digest** — a round whose answers introduce multiple new `RECOMMENDED` defaults lists those defaults at the end of the same round.
+- **Secondary digest** — after documents and DRAFT Specs are generated, every `RECOMMENDED`/`UNKNOWN` entry actually appearing in them is reconciled against the digested Ledger before `NEXT` selection.
+
+The digest is conversation context; formal documents retain only the resulting statuses, rationale, and revisit triggers.
+
 ## Challenge Pass
 
 After Macro Synthesis, one mandatory counterargument pass runs. Each assumption is recorded as `RETAINED`, `REVISED`, or `REJECTED` (still using fact statuses):
@@ -67,7 +80,7 @@ A new blocking unknown returns to `NEEDS_CLARIFICATION` and Discovery. The Chall
 
 ## Macro Readiness checklist
 
-**Base items** — Project Goal, User, MVP, Out of Scope, Main Flow, Core Entities, Module Boundaries, Dependencies, Business Rules, Important State Machines, Tech Stack, Data Source of Truth, Data Strategy, API Strategy, Testing Strategy, Non-functional Requirements, Phase-1 Scope, the three Language dimensions, and Challenge conclusions with explicit Decision Authority confirmation.
+**Base items** — Project Goal, User, MVP, Out of Scope, Main Flow, Core Entities, Module Boundaries, Dependencies, Business Rules, Important State Machines, Tech Stack, Data Source of Truth, Data Strategy, API Strategy, Testing Strategy, Non-functional Requirements, Phase-1 Scope, the three Language dimensions, a completed Confirmation Digest with a disposition per item, and Challenge conclusions with explicit Decision Authority confirmation.
 
 **Additional when `UI: YES`** — Target Platform, Primary User Flow, Page/Screen Map, Navigation, UX Principles, Frontend Architecture, Design System Direction, Responsive Requirements, Accessibility Requirements.
 

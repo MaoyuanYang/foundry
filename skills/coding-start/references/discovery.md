@@ -29,6 +29,28 @@ Discovery MUST record all three dimensions before Macro Readiness:
 
 The canonical rules live in [Language policy](language-policy.md): exact defaults, the three governing scopes, override approval by a named `Maintainer Decision Authority`, the bidirectional mixed-document gate, and single-point persistence in root `AGENTS.md`. In this table, record every dimension, its override request (or none), the named authority and approval source, and the scope. If a potentially relevant Product Content Language is unresolved, retain `UNKNOWN - <resolution action>`; it is blocking when it can change current product correctness or UI direction. Discovery context alone MUST NOT be the durable source of an override.
 
+## Confirmation Digest
+
+Interviews sample by risk, but generated artifacts can end up containing many facts the user never saw. The Confirmation Digest closes that gap: nothing may enter a formal artifact as an unreviewed default.
+
+**Primary digest** — after Macro Synthesis and before the Challenge Pass, aggregate every `RECOMMENDED` and `UNKNOWN` entry from the Ledger into one topic-grouped list and present it in a single pass. For each item, obtain an explicit disposition:
+
+- `CONFIRMED` — the appropriate confirmer or Decision Authority accepts it.
+- Revised — the user corrects it; update the Ledger, then re-synthesize the affected parts before continuing.
+- Keep `RECOMMENDED` — with rationale and revisit trigger.
+- Keep `UNKNOWN` — marked `BLOCKING` or `NON_BLOCKING`.
+
+Digest rules:
+
+- Every Discovery topic (sections 1-12 below) must appear in the digest. A topic that produced no digest entries gets a one-line reason why it does not apply; never pad with quota questions.
+- The digest MUST be complete before Macro Readiness; silence is not confirmation.
+- Chapter-level digest — immediately after finishing section 5 (Critical Business Rules), 8 (Data/Integration), 9 (NFR), or 10 (Technology), present every new `RECOMMENDED`/`UNKNOWN` item from that branch and obtain a disposition before moving to the next branch.
+- Round-level mini-digest — when one round's answers would introduce multiple new `RECOMMENDED` defaults, list those proposed defaults at the end of the same round and obtain dispositions; they MUST NOT first surface later inside a generated document.
+
+**Secondary digest** — after artifact and DRAFT Spec generation and before `NEXT_SELECTION`, re-aggregate every `RECOMMENDED`/`UNKNOWN` entry that actually appears in the generated documents and reconcile it against the primary digest. Any document entry that never received a disposition MUST be presented for one before selection continues; generated documents MUST NOT introduce unreviewed defaults beyond the digested Ledger.
+
+The digest is working conversation context, like the Ledger; formal documents retain only the resulting fact statuses, rationale, and revisit triggers.
+
 ## Adaptive Grilling
 
 Record the current `Discovery Intensity`; it does not alter fact statuses:
@@ -63,9 +85,10 @@ Any signal below moves the current branch into `DEEP`; the rest of the interview
 3. Select `STANDARD` or `DEEP` from current-branch risk.
 4. In `STANDARD`, ask 2-5 related questions; in `DEEP`, ask exactly one decision question. Questions should be answerable in business language.
 5. For a safely defaultable low-risk item, offer a `RECOMMENDED` choice with rationale and a revisit trigger.
-6. Wait for the answer. MUST NOT introduce an unrelated topic while the current question group remains unresolved.
-7. Re-rank unknowns and risks after resolving the branch rather than mechanically moving to the next section.
-8. When no blocking unknown remains, stop interviewing, perform Macro Synthesis, then run the mandatory Challenge Pass.
+6. If this round's answers introduce multiple new `RECOMMENDED` defaults, run the round-level mini-digest from [Confirmation Digest](#confirmation-digest) before leaving the round.
+7. Wait for the answer. MUST NOT introduce an unrelated topic while the current question group is unresolved.
+8. Re-rank unknowns and risks after resolving the branch rather than mechanically moving to the next section.
+9. When no blocking unknown remains, stop interviewing, perform Macro Synthesis, run the primary Confirmation Digest, then run the mandatory Challenge Pass.
 
 MUST NOT repeat answered questions. If the user supplies information across many topics, absorb all of it, but keep the next round focused on one high-impact topic.
 
@@ -179,7 +202,7 @@ Choose domain-relevant questions:
 - Which system is the Source of Truth for each critical data class?
 - Which actions require permission, audit, notification, or human review?
 
-High-risk domains such as inventory, payments, quotas, approvals, and reservations MUST NOT use unmarked defaults instead of confirmation.
+High-risk domains such as inventory, payments, quotas, approvals, and reservations MUST NOT use unmarked defaults instead of confirmation. Before leaving this branch, run the chapter-level digest from [Confirmation Digest](#confirmation-digest).
 
 ## 6. UI Presence Decision
 
@@ -224,7 +247,7 @@ Optional questions:
 - Which third parties are mandatory, and how do their failures or rate limits affect the main flow?
 - Which idempotency, consistency, or transaction boundaries must hold?
 
-MUST NOT list all fields, endpoints, indexes, cache keys, or message topics at this stage.
+MUST NOT list all fields, endpoints, indexes, cache keys, or message topics at this stage. Before leaving this branch, run the chapter-level digest from [Confirmation Digest](#confirmation-digest).
 
 ## 9. Risk-driven Non-functional Requirements
 
@@ -238,7 +261,7 @@ Example triggers:
 - High-concurrency resource contention: consistency, concurrency, capacity, and performance evidence.
 - Multi-tenant or enterprise: isolation, permissions, audit, and deployment constraints.
 
-Without evidence, recommend a simple evolvable approach. MUST NOT default to microservices, multi-region, messaging, Redis, or Kubernetes.
+Without evidence, recommend a simple evolvable approach. MUST NOT default to microservices, multi-region, messaging, Redis, or Kubernetes. Before leaving this branch, run the chapter-level digest from [Confirmation Digest](#confirmation-digest).
 
 ## 10. Technology Constraints and Recommendations
 
@@ -249,7 +272,7 @@ Separate user constraints from Agent recommendations:
 - Is there a hard constraint for Monolith, Modular Monolith, or Microservices?
 - How much CI/CD, Docker/containerization, and environment management does Phase 1 need?
 
-A technology recommendation MUST state why it fits current scale, its principal cost, and when to reconsider. A low-risk choice MAY remain `RECOMMENDED`; a high-impact irreversible choice requires Architecture Decision Authority confirmation.
+A technology recommendation MUST state why it fits current scale, its principal cost, and when to reconsider. A low-risk choice MAY remain `RECOMMENDED`; a high-impact irreversible choice requires Architecture Decision Authority confirmation. Before leaving this branch, run the chapter-level digest from [Confirmation Digest](#confirmation-digest).
 
 ## 11. Testing Direction
 
@@ -307,7 +330,7 @@ Confirm project-level framework, routing, client state, server state, API client
 
 ## Synthesis Before Challenge Pass
 
-Replay in business language:
+Replay in business language, then run the primary Confirmation Digest before the Challenge Pass:
 
 - Why the project exists, whom it serves, and the MVP closed loop.
 - Explicit boundaries, core flow, critical rules, and Source of Truth assignments.

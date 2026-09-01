@@ -6,12 +6,12 @@
 | --- | --- | --- | --- |
 | `ENTRY_CHECK` | The user makes a project-level request | Classify Greenfield, existing project, or single Feature | Only Greenfield enters `PROJECT_DISCOVERY` |
 | `PROJECT_DISCOVERY` | Entry is valid | Run a dynamic interview, maintain fact statuses, record all language dimensions, and execute the UI branch | Enter `MACRO_SYNTHESIS` when high-impact information is sufficient |
-| `MACRO_SYNTHESIS` | The current round has no obvious blocker | Replay goals, scope, boundaries, rules, strategies, language policy, and recommendations | Return to Discovery after corrections; otherwise enter `CHALLENGE_PASS` |
+| `MACRO_SYNTHESIS` | The current round has no obvious blocker | Replay goals, scope, boundaries, rules, strategies, language policy, and recommendations; run the primary Confirmation Digest over every `RECOMMENDED`/`UNKNOWN` Ledger entry | Return to Discovery after corrections; otherwise enter `CHALLENGE_PASS` |
 | `CHALLENGE_PASS` | Macro synthesis is complete | Risk-test the problem, MVP, counterexamples, Authority/Source of Truth, success criteria, and complexity | New issues enter `NEEDS_CLARIFICATION`; otherwise explicit Decision Authority confirmation permits `MACRO_READINESS` |
 | `MACRO_READINESS` | Challenge Pass is complete and the revised synthesis is confirmed | Check every core item, language dimension, and conditional UI item | `NEEDS_CLARIFICATION` or `MACRO DESIGN READY` |
 | `ARTIFACT_GENERATION` | `MACRO DESIGN READY` and explicit local-write authorization exist | Generate only applicable project documents with distinct responsibilities and the recorded languages | Enter Feature Map when documents are consistent |
 | `FEATURE_MAPPING` | Macro documents are usable | Define vertical slices and analyze value, priority, and dependencies | Generate Specs when the Feature Map is complete |
-| `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature | Every Feature has a DRAFT Spec; enter `NEXT_SELECTION` |
+| `DRAFT_SPEC_GENERATION` | Feature Map is stable | Generate a shallow DRAFT Spec for every Feature; then run the secondary digest, reconciling every `RECOMMENDED`/`UNKNOWN` entry in generated documents against the digested Ledger | Every Feature has a DRAFT Spec and the secondary digest is reconciled; enter `NEXT_SELECTION` |
 | `NEXT_SELECTION` | Every Feature has a DRAFT Spec | Select one or more `NEXT` (default: the smallest validating set, usually one) | Each selected `NEXT` can be handed to `feature-dev` by its claiming member; when no safe candidate exists for reasons other than an external blocker, return to `PROJECT_DISCOVERY` via `NEEDS_CLARIFICATION`; then enter `SELF_REVIEW` |
 | `BLOCKED_HANDOFF` | No safe candidate exists and a currently unresolvable external blocker remains | Allow zero `NEXT` entries; record blocker, owner, unblock condition, and resume stage | Enter `SELF_REVIEW`, then `STOP` as incomplete; MUST NOT claim readiness |
 | `SELF_REVIEW` | Artifacts exist | Fix boundary, status, language, link, duplication, and overdesign problems | `STOP` only after all checks pass |
@@ -73,6 +73,7 @@ Use `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN` for every item, with one sentence o
 
 ### Required Challenge Pass Items
 
+- The primary Confirmation Digest ran over every `RECOMMENDED`/`UNKNOWN` Ledger entry, every item has an explicit disposition, and every Discovery topic without entries has a recorded not-applicable reason.
 - The Problem is verified as real for a specific user, including the cost of doing nothing.
 - The MVP passed a subtraction test; removed content is explicitly Out of Scope.
 - Major failures or counterexamples in the core flow were checked, or a concrete not-applicable reason exists.
@@ -86,6 +87,7 @@ Use `CONFIRMED`, `RECOMMENDED`, or `UNKNOWN` for every item, with one sentence o
 
 Any of these unknowns MUST block:
 
+- The primary Confirmation Digest has not completed with an explicit disposition per item.
 - Target user, core problem, MVP, or Phase 1 boundary is unclear.
 - The core flow or a business rule that changes correctness is unclear.
 - Authorization, security, privacy, compliance, money, or contested-resource risk is unresolved.
@@ -192,7 +194,7 @@ Update only genuinely affected files. Implementation MUST NOT remain ahead of do
 
 The success path can stop only when all are true:
 
-- Project Interview is complete.
+- Project Interview is complete and both Confirmation Digests are reconciled.
 - Challenge Pass is complete and the Decision Authority explicitly confirmed the revised macro synthesis.
 - Formal file writes had explicit local authorization; Git and remote authorization were not inferred from it.
 - The Gate explicitly output `MACRO DESIGN READY`.
@@ -222,6 +224,7 @@ On success, explicitly recommend handing each selected `NEXT` to `feature-dev`. 
 - Were `CONFIRMED/RECOMMENDED/UNKNOWN` kept distinct?
 - Did high-impact unknowns block instead of becoming silent defaults?
 - Did Challenge Pass cover relevant Problem, MVP subtraction, Counterexample, Authority/Source of Truth, Success Falsifiability, and Complexity?
+- Did the primary and secondary Confirmation Digests complete with an explicit disposition per item, with chapter-level digests run for Critical Business Rules, Data/Integration, NFR, and Technology, and no generated-document default outside the digested Ledger?
 - Did the Decision Authority explicitly confirm the revised synthesis rather than confirm by silence?
 - Did formal writes, Git, and remote actions each have the right independent authorization?
 - Did UI work proceed from UX to UI, and was no-UI work explicitly skipped?
