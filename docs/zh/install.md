@@ -74,6 +74,13 @@ cd foundry && git pull
 cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
 ```
 
+如果你安装过旧版 Foundry(包含 `evolve-dev` 或 `maintenance-dev`),请删除这两个
+文件夹 —— 残留的 Skill 会继续被触发,并与现已覆盖这类工作的 `feature-dev` 冲突:
+
+```bash
+rm -rf ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
+```
+
 你的**项目**文件(`README.md`、`docs/`、`specs/`)不会被更新触碰 —— Foundry 只改变
 智能体的工作方式,不改变它已经产出的内容。
 

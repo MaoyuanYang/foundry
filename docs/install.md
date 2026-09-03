@@ -77,6 +77,14 @@ cd foundry && git pull
 cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
 ```
 
+If you installed an older Foundry that shipped `evolve-dev` or `maintenance-dev`, remove
+those folders — leftover skills keep triggering and conflict with `feature-dev`, which now
+covers that work:
+
+```bash
+rm -rf ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
+```
+
 Your **project** files (`README.md`, `docs/`, `specs/`) are never touched by an update —
 Foundry only changes how the agent works, not what it already produced.
 
