@@ -154,54 +154,6 @@ body {
   border-bottom: 1px solid var(--fy-border);
 }
 
-/* Reveal-on-scroll utility (used by landing) */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Mermaid diagram containers — Molten Forge framing
-   -------------------------------------------------------------------------- */
-
-.vp-doc .mermaid-wrap,
-.vp-doc div[class*='mermaid'] {
-  margin: 22px 0;
-}
-
-.vp-doc svg.mermaid {
-  display: block;
-  margin: 0 auto;
-}
-
-.vp-doc .mermaid {
-  background: #0c0c13;
-  border: 1px solid var(--fy-border);
-  border-radius: 14px;
-  padding: 22px 18px;
-  overflow-x: auto;
-}
-
-/* Keep node/edge labels readable on dark */
-.vp-doc .mermaid .nodeLabel,
-.vp-doc .mermaid .edgeLabel {
-  color: #e8e8ee;
-}
-
 /* Callout polish for tips/notes in docs */
 .dark .vp-doc .custom-block {
   border-radius: 12px;

@@ -1,74 +1,91 @@
-# coding-start — Overview & State Machine
+---
+title: coding-start
+---
 
-`coding-start` moves an unimplemented project idea to a state that can be handed to Feature development. It clarifies direction, boundaries, and durable rules **before** producing project-level documents and a shallow Feature map. By default it writes no business code and creates no full scaffolding.
+# coding-start
+
+Turn a rough project idea into the project-level documents a coding agent needs before
+feature work: product and architecture documents, a Feature Roadmap, and draft Feature
+Specs. The output is documents, not code — implementation belongs to
+[`feature-dev`](../feature-dev/).
+
+For an existing project that already has trustworthy documents, the same workflow handles
+"plan the next wave": skip what exists, interview only about the new direction, update
+the Roadmap and draft Specs.
 
 ## When it triggers
 
-**Enter only when** the user explicitly asks to start or initialize a Greenfield project — including a single-Feature phrasing for a project that has no macro baseline yet.
+- "Initialize a new greenfield project: …"
+- "Start building this idea: …" on an empty or notes-only directory.
+- "Plan the next phase / add features to the Roadmap" on a documented project.
 
-**Do not enter** when:
+It does **not** trigger for taking over an undocumented repository
+([`project-onboard`](../project-onboard/)) or implementing a feature
+([`feature-dev`](../feature-dev/)).
 
-- The directory has material business code, a runnable system, migrations, or historical behavior → route to [`project-onboard`](../project-onboard/).
-- The user wants to build/fix one Feature and a credible macro baseline exists → route to [`feature-dev`](../feature-dev/).
-- The user only wants discussion or evaluation, or has not authorized writes → interview or answer, but stop before formal artifacts.
+## Workflow
 
-If Greenfield vs Brownfield is unclear, ask one entry-classification question; never guess or overwrite existing content.
-
-## The state machine
-
-```mermaid
-flowchart TD
-  ENTRY[ENTRY_CHECK] --> DISC[PROJECT_DISCOVERY]
-  DISC --> SYN[MACRO_SYNTHESIS]
-  SYN --> CHAL[CHALLENGE_PASS]
-  CHAL -->|new blocking unknown| DISC
-  CHAL --> READY[MACRO_READINESS]
-  READY -->|NEEDS_CLARIFICATION| DISC
-  READY --> GATE[MACRO DESIGN READY]
-  GATE --> ART[ARTIFACT_GENERATION]
-  ART --> MAP[FEATURE_MAPPING]
-  MAP --> DRAFT[DRAFT_SPEC_GENERATION]
-  DRAFT --> NEXT[NEXT_SELECTION]
-  NEXT -->|no safe NEXT, non-external blocker| DISC
-  NEXT --> BLOCK[BLOCKED_HANDOFF]
-  NEXT --> REV[SELF_REVIEW]
-  BLOCK --> REV
-  REV --> STOP[STOP]
+```text
+Project Idea
+    ↓
+1. Understand context      read what the user and directory already answer
+    ↓
+2. Interview the user      fill only the gaps that materially change the documents
+    ↓
+3. Write project documents README, PRODUCT, ARCHITECTURE, TESTING (+ applicable extras)
+    ↓
+4. Create the Roadmap      specs/ROADMAP.md, one feature marked Next
+    ↓
+5. Write draft Specs       specs/F001-<slug>.md with open questions, not invented answers
+    ↓
+6. Stop                    hand off to feature-dev
 ```
 
-After valid entry and explicit local-write authorization, root [`STAGE.md`](../guide/project-stage) is the sole pre-Gate operational artifact. It checkpoints the current member, Skill stage, blocker, next question, ref, and authority links so Discovery can resume. It contains no unconfirmed product/architecture decisions and never implies `MACRO DESIGN READY`.
+## Understand first, then interview
 
-Formal project documents are generated only after `MACRO DESIGN READY`. Interview summaries and candidate recommendations are not formal artifacts.
+The agent collects everything already determinable — the user's description, existing
+notes and configs, stated constraints — before asking anything. Questions are reserved
+for gaps that materially change the documents:
 
-Two **Confirmation Digest** checkpoints keep generated content reviewable without interviewing every point: after Macro Synthesis, every `RECOMMENDED`/`UNKNOWN` Ledger entry is presented in one topic-grouped pass for explicit disposition before the Challenge Pass; and after documents and DRAFT Specs are generated, the entries actually appearing in them are reconciled against that digest before `NEXT` selection, so no default reaches a document the user never saw. See [Discovery & Challenge Pass](./discovery).
+- **Product direction** — who is this for, what problem, what does "useful" mean?
+- **Scope** — what is explicitly out of the first version?
+- **Architecture-shaping constraints** — required integrations, platforms, scale.
+- **Testing** — what must not break, what counts as adequate verification?
 
-## Non-negotiable boundaries
+Low-risk technical details get a recommendation instead of a question ("I'd use SQLite
+for the first version — fine unless you expect concurrent writers"). Before writing
+documents, the agent summarizes the key decisions back to the user for correction — one
+cheap checkpoint that catches most misunderstandings.
 
-- No business implementations, business APIs, database tables, domain classes, pages, or components by default.
-- No full application scaffolding by default.
-- Macro design fixes **direction, boundaries, rules, and constraints** — it must not freeze DTOs, fields, classes, components, internal functions, message topics, cache keys, or pixel details.
-- Must not mature a `DRAFT` Spec or run `SPEC READY` / `UI READY` / `TEST DESIGN READY`.
-- Must not create Feature implementation Issues or PRs (those belong to `feature-dev`).
-- Local-write authorization does not authorize `git commit/push`, remote Issues/PRs, merge, or release. See [Authorization](../guide/authorization).
+## Documents produced
 
-## Minimal non-business scaffolding (exception)
+Templates define the sections to think about; repository context, interview answers, and
+engineering judgment fill them in. Only applicable documents are created:
 
-Only when explicitly requested, and only after `MACRO DESIGN READY` plus a separate scaffold-write authorization, may `coding-start` create minimal non-business scaffolding (package management, formatting, a test entry point, an empty app entry). It must contain **no** business logic, sample entities, placeholder endpoints, complete schema, or UI pages — and its real commands are synced into README/TESTING/AGENTS.
+| Document | When |
+|---|---|
+| `README.md` | always — what the project is, how to run it |
+| `docs/PRODUCT.md` | always — goal, users, use cases, scope |
+| `docs/ARCHITECTURE.md` | always — modules, data flow, key decisions |
+| `docs/TESTING.md` | always — strategy, levels, commands |
+| `docs/DATABASE.md` | when the product persists data |
+| `docs/API.md` | when the product exposes an API |
+| `docs/FRONTEND.md` | when the product has a UI |
+| `specs/ROADMAP.md` | always — the feature list, one feature `Next` |
+| `specs/F001-*.md …` | draft spec per feature |
 
-## STOP conditions
+The Roadmap shows the shortest credible path to a usable product, not an exhaustive wish
+list. Draft Specs fill in what is decidable and record the rest as **Open Questions** for
+`feature-dev` to resolve — product-defining questions are never guessed at this stage.
 
-The success path stops only when all are true:
+## Boundaries
 
-1. Project Interview is complete and both Confirmation Digests are reconciled.
-2. Challenge Pass is complete and the Decision Authority confirmed the revised synthesis.
-3. Formal file writes had explicit local authorization (Git/remote not inferred).
-4. The Gate explicitly output `MACRO DESIGN READY`.
-5. Applicable macro documents exist, are consistent, and follow the language policy.
-6. Macro UX/UI documents exist for `UI: YES`; the skip decision is recorded for `UI: NO`.
-7. `AGENTS.md` contains durable rules and the language policy.
-8. Feature Map, dependency analysis, and Roadmap exist.
-9. Every Feature has a shallow DRAFT Spec.
-10. At least one authority-confirmed `NEXT` — usually exactly one; parallel selections are confirmed only when distinct members will claim them (or a `BLOCKED_HANDOFF` with zero).
-11. No business code exists; any authorized minimal scaffold is verified. Self Review is complete and every finding is fixed.
+- No business code. (Minimal non-business scaffolding is allowed when needed to make
+  document commands honest — initializing a package, setting up an empty test runner.)
+- No empty files for symmetry.
+- No destructive or remote actions without explicit user authorization.
 
-On success, `coding-start` recommends handing each selected `NEXT` to `feature-dev` — one claiming member per item; it does not invoke it automatically.
+## Next
+
+- [`feature-dev`](../feature-dev/) — pick up the `Next` feature and implement it.
+- [`project-onboard`](../project-onboard/) — the brownfield counterpart.

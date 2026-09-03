@@ -1,72 +1,80 @@
-# project-onboard —— 总览与证据模型
+---
+title: project-onboard
+---
 
-`project-onboard` 把陌生的已有仓库恢复为可验证、可追溯、可交接的 `AS-IS` 基线。**先理解现实，再讨论 `TO-BE`。**它绝不向理想架构重构，也绝不实现任何功能。
+# project-onboard
+
+把一个文档缺失、过时或不可信的仓库,恢复成编码智能体可以安全开发的基线:验证过的
+命令、诚实的 AS-IS 文档、恢复的 Roadmap 和 Feature Spec。产出是理解和文档 ——
+onboarding 期间不改变业务行为。
 
 ## 何时触发
 
-**仅当**用户明确要求接管、盘点或恢复一个已有的 Brownfield / legacy / 半成品仓库时进入。仅仅第一次进入陌生仓库**不会**触发。普通问答、只读评审、仅诊断、Greenfield 初始化（用 [`coding-start`](../coding-start/)）、单 Feature 实现（用 [`feature-dev`](../feature-dev/)）均不进入。
+- "接管这个仓库,恢复可信的基线。"
+- "这个代码库没有有用的文档 —— 搞清楚它是干什么的。"
+- 第一次进入陌生仓库,**且用户明确要求持久恢复**时。
 
-## 流程
+它**不会**为普通问答或只读浏览触发,也不会为启动新项目([`coding-start`](../coding-start/))
+或实现功能([`feature-dev`](../feature-dev/))触发。
 
-```mermaid
-flowchart TD
-  PRE[Preflight + 语言策略] --> SUR[Repository Survey]
-  SUR --> BASE[基线验证]
-  BASE --> ARCH[架构重建]
-  ARCH --> FE[前端/UI 重建 如有]
-  FE --> DR[Docs-vs-Reality]
-  DR --> KG[Knowledge Gap 分析]
-  KG --> DOC[AS-IS 文档]
-  DOC --> AGT[AGENTS 更新]
-  AGT --> INV[Feature Inventory]
-  INV --> SPEC[AS-IS Spec 重建]
-  SPEC --> NEXT[Recommended Next]
-  NEXT --> STOP[STOP]
+## 工作流
+
+```text
+现有仓库
+    ↓
+1. 检查仓库          结构、语言、入口、配置、测试、CI
+    ↓
+2. 运行已有验证      构建 + 测试;把既有失败记录为事实
+    ↓
+3. 理解系统          追踪真实流程;相信 运行时 > 测试 > 代码 > 文档
+    ↓
+4. 对比代码与文档    用 Observed / Inferred / Unknown 标注发现
+    ↓
+5. 询问用户          只问仓库无法回答的问题
+    ↓
+6. 创建 / 修复文档   修文档以匹配现实,而不是修现实以匹配文档
+    ↓
+7. 恢复 Roadmap 和 Spec   哪些已完成、部分完成、自然接下来
+    ↓
+8. 停止              为 feature-dev 推荐一个下一步功能
 ```
 
-根 [`STAGE.md`](../guide/project-stage) 为每个活跃人类或 Agent 记录关键流转检查点。它只记录 onboarding 阶段、ref、阻塞、交接、恢复点和权威链接；AS-IS 事实仍属于 Baseline、规范文档、Roadmap 与 Specs。
+## 证据优先于过时文档
 
-## 证据优先级
+已有文档只是线索,不是事实来源。智能体按以下顺序采信证据:
 
-调查与冲突加权遵循以下顺序（是指引，不是盲信）：
-
-```mermaid
-flowchart LR
-  R[Runtime] --> T[Tests] --> C[Code] --> D[DB / Migrations]
-  D --> CF[Config] --> CI[CI/CD] --> DO[Docs] --> CM[Comments] --> I[AI Inference]
+```text
+运行时行为 > 测试 > 代码 > 迁移/配置 > 文档 > 推断
 ```
 
-环境不匹配的 Runtime、过时测试、死代码都可能误导——而且**已有代码不等于正确设计**。
+当文档与现实冲突时,现实获胜,并记录冲突。为了让基线诚实而不引入官僚机制,发现
+只带三个标签之一:
 
-## 八种证据标签
+- **Observed** —— 从代码、测试或成功运行中验证过。
+- **Inferred** —— 对代码的最佳解读,尚未验证。
+- **Unknown** —— 无法从仓库确定。
 
-每个论断恰好携带一个标签；`INFERRED` 绝不被改写为无标签事实。
+## 产出物
 
-| 标签 | 含义 |
+| 产物 | 内容 |
 |---|---|
-| `OBSERVED` | 在 runtime/UI/行为中直接观察到 |
-| `DOCUMENTED` | 由既有文档所述 |
-| `CONFIRMED` | 交叉验证或经维护者确认 |
-| `INFERRED` | 由推理得出；需谨慎 |
-| `NEEDS_CONFIRMATION` | 需要人类回答 |
-| `CONFLICT` | 来源相互矛盾；并列记录 |
-| `UNKNOWN` | 当前证据尚不可知 |
-| `MISSING` | 预期的产物/保护缺失 |
+| `README.md` | 修复到安装和命令真实可用 |
+| `docs/PRODUCT.md` | 系统显然在做什么、为谁做 |
+| `docs/ARCHITECTURE.md` | 代码所呈现的模块与数据流 |
+| `docs/TESTING.md` | 系统实际如何测试、什么在失败 |
+| `docs/DATABASE.md` / `API.md` / `FRONTEND.md` | 适用时 |
+| `docs/ONBOARDING.md` | 验证结果、既有失败、知识缺口 |
+| `specs/ROADMAP.md` | 恢复的功能:Done、部分完成(Draft)、自然的下一步 |
+| `specs/F001-*.md …` | 需要真正开发的功能的草稿 Spec |
 
-## Docs-vs-Reality
+## 边界
 
-对比 Docs vs Code vs Tests vs Runtime vs UI，并列记录每一处冲突——例如 `README: Java 17` vs `pom.xml: Java 21`，或 UX 文档描述提交后弹 Modal 而当前 UI 直接跳转。冲突绝不按优先级静默裁决。
+- onboarding 期间不改变业务行为。为验证基线所必需的构建/测试工具修复是允许的,
+  且触碰过的内容会被记录。
+- 既有的测试失败被记录,而不是被修复 —— 修复它们是 `feature-dev` 的工作。
+- 未经用户明确授权,不做破坏性或远程操作。
 
-## Knowledge Gaps
+## 下一步
 
-穷尽仓库证据后，记录冲突、未知、缺失项、影响、最小验证动作与疑似技术债。只向用户提出仓库无法回答的高影响问题；未回答项保持 `NEEDS_CONFIRMATION`。
-
-## 护栏
-
-- 基线验证前不改源码；onboarding 期间不做大规模重构、依赖升级、全库格式化、数据迁移或批量还债。
-- 只修改理解项目所需的文档；源码缺陷只记录与分类，不在此修复。
-- 保留有效的仓库内容与历史；增量合并，绝不为套模板而替换。
-- 保留 `STAGE.md` 中其他成员的活动行。过期投影或无法解释的重复认领属于 `CONFLICT`，绝不能据此覆盖他人状态。
-- 本地产物授权与 Git/远程授权相互独立。见[授权](../guide/authorization)。
-
-Skill 以推荐**一项**后续工作（`Recommended Next`）收尾并 `STOP`——不实现它。
+- [`feature-dev`](../feature-dev/) —— 实现被推荐的下一个功能。
+- [`coding-start`](../coding-start/) —— Greenfield 对应技能。

@@ -4,14 +4,11 @@
 
 # Foundry
 
-**Forge software from idea to delivery.**
+**A document-first, interview-driven, test-driven workflow for coding agents.**
 
-An AI-native, spec-driven development suite for coding agents — covering the full lifecycle: greenfield projects, brownfield takeovers, continuous feature delivery, and post-delivery evolution and maintenance.
-
-[Website](https://maoyuanyang.github.io/foundry/) · [Installation](#installation) · [The Five Skills](#the-five-skills)
+[Website](https://maoyuanyang.github.io/foundry/) · [Installation](#installation) · [The Three Skills](#the-three-skills)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-5-ff6b1a.svg)](./skills)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-ready-brightgreen.svg)](https://opencode.ai)
 
 </div>
@@ -20,43 +17,46 @@ An AI-native, spec-driven development suite for coding agents — covering the f
 
 ## What is Foundry?
 
-Foundry is a set of five reusable **Agent Skills** that turn an AI coding agent into a disciplined engineering workflow. Instead of jumping straight into code, Foundry enforces:
+A plain coding agent tends to run like this:
 
-- **Macro design before coding** — direction, boundaries, rules, and constraints first.
-- **Spec-driven development** — the Spec is the source of truth for what is correct.
-- **Test design before implementation** — define how correctness is proven, then build.
-- **UX before UI** — user goals and flows before pixels.
-- **Gated transitions** — `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`; evolution and maintenance add `ROADMAP EVOLUTION READY`, `SAFETY NET READY`, and `BEHAVIOR PRESERVED`.
-- **Evidence over assumptions** — observed, documented, confirmed, inferred — never silently guessed.
-- **Controlled design change** — L1/L2/L3 impact levels with explicit decision authority.
-- **Parallel team development** — multiple humans and agents work concurrent items through Issue + branch + PR + maintainer merge; the tracker is the authority, `STAGE.md` is the team status board.
-- **Project-wide coordination** — root `STAGE.md` shows the lifecycle, active humans/agents, blockers, handoffs, and resume points.
-- **Post-delivery evolution as work items** — planning the next wave, refactoring, debt paydown, upgrades, and retirements each run as their own gated campaign, never as silent side effects.
+```text
+User Request → Guess Requirements → Start Coding → Implementation Drifts
+```
 
-## The Five Skills
+Foundry is a set of three **Agent Skills** that install a different habit:
+
+```text
+Idea → Understand → Interview → Documents / Spec → Plan → Tests → Code → Verify
+```
+
+- **Document first** — project documents and Feature Specs are written before code.
+- **Interview driven** — the agent asks about what materially matters instead of guessing.
+- **Test driven** — tests are derived from acceptance criteria, and code runs against them.
+- **Incremental** — features are built in small, verifiable steps.
+- **Kept in sync** — documents are updated when implementation changes reality.
+
+## The Three Skills
 
 | Skill | Phase | Role |
 |---|---|---|
-| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | Discovery interviews, macro design, project docs, Feature Map, DRAFT Specs |
-| [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Baseline verification, architecture reconstruction, AS-IS docs, Feature Inventory |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | Feature · 1 → N | Spec refinement, UX/UI gates, test design, plan, coding, review, delivery |
-| [`evolve-dev`](skills/evolve-dev/SKILL.md) | Evolution · N → N′ planning | Next-wave planning: Roadmap entries, DRAFT Specs, re-prioritization, baseline deltas |
-| [`maintenance-dev`](skills/maintenance-dev/SKILL.md) | Maintenance · behavior-preserving change | Safety-net-first campaigns: refactor, technical debt, upgrades, deprecation/removal |
+| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
+| [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
+| [`feature-dev`](skills/feature-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → incremental plan → tests from acceptance criteria → code → verify → sync docs |
 
 ```text
-New idea ──▶ coding-start ──▶ feature-dev ──▶ feature-dev ──▶ ...
+New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                    (plan next wave via coding-start)
 Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
-                   ▲                                        │
-                   └── evolve-dev (next wave planning) ◀────┤ delivered baseline
-                                                            ▼
-                        maintenance-dev (refactor / debt / upgrade / retire)
 ```
 
-Each skill has explicit **STOP conditions**: no silent business code, no unauthorized writes, no batch Issue creation, no mass refactoring outside a confirmed maintenance campaign.
+`feature-dev` covers the whole family of development work — new features, changes, bug
+fixes, refactors, technical-debt paydown, and dependency upgrades — with the same loop:
+a bug fix starts from a failing test, a refactor starts from confirmed coverage.
 
 ## Installation
 
-Foundry follows the standard Agent Skills format (`SKILL.md` + `references/` + `assets/`). Copy the five folders into your agent's skills directory.
+Foundry follows the standard Agent Skills format (`SKILL.md` + `references/` + `assets/`).
+Copy the three folders into your agent's skills directory.
 
 **OpenCode / Claude-style agents** (auto-discovered):
 
@@ -65,11 +65,10 @@ git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
-cp -r foundry/skills/evolve-dev        ~/.agents/skills/
-cp -r foundry/skills/maintenance-dev   ~/.agents/skills/
 ```
 
-Then restart your agent. Verify discovery with `opencode debug skill` (you should see all five skills listed).
+Then restart your agent. Verify discovery with `opencode debug skill` (you should see
+all three skills listed).
 
 ## Quick Start
 
@@ -77,48 +76,39 @@ Then restart your agent. Verify discovery with `opencode debug skill` (you shoul
 
 > "Initialize a new greenfield project: a community local-services platform."
 
-`coding-start` interviews you round by round, runs the Macro Readiness Gate, and produces `STAGE.md`, `README`, `AGENTS.md`, `docs/*`, `specs/ROADMAP.md`, and DRAFT Specs — then stops with confirmed `NEXT` feature(s) (usually one; parallel selections only when distinct members will claim them).
+`coding-start` reads what you already provided, interviews you about the gaps that
+matter, writes the project documents and `specs/ROADMAP.md` with draft Feature Specs —
+then stops. No business code.
 
 **Take over an existing repo:**
 
-> "Take over this repository and build a durable AS-IS baseline."
+> "Take over this repository and recover a trustworthy baseline."
 
-`project-onboard` surveys the repo, verifies the baseline, reconstructs architecture and features, creates or adopts root `STAGE.md`, and produces AS-IS documentation — then stops with a recommended next item.
+`project-onboard` runs the build and tests first, understands the system from the code
+(labeling what is Observed, Inferred, or Unknown), repairs the documents to match
+reality, and recovers a Roadmap — without changing business behavior.
 
 **Develop a feature:**
 
 > "Implement feature F001 according to the workflow."
 
-`feature-dev` drives the full lifecycle: `SPEC READY` → `UI READY` (if UI) → `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → PR → review feedback (`IN PR REVIEW`) → maintainer merge.
+`feature-dev` reads the project documents and the relevant code, interviews you until
+the Spec's open questions are resolved, plans small vertical slices, derives tests from
+the acceptance criteria, implements step by step until the tests pass, and updates the
+documents it made untrue.
 
-**Plan the next wave:**
+## Principles
 
-> "Plan the next phase: we're adding a collaboration wave to the platform."
+1. Document before code.
+2. Interview before assumption.
+3. Spec before implementation.
+4. Derive tests from acceptance criteria.
+5. Implement incrementally.
+6. Code until tests pass.
+7. Keep documentation synchronized with implementation.
 
-`evolve-dev` interviews incrementally against the delivered baseline, challenges the wave, and passes `ROADMAP EVOLUTION READY`: new Roadmap entries with DRAFT Specs, re-prioritization confirmed by the Roadmap Decision Authority — then hands implementation back to `feature-dev`.
-
-**Refactor, pay down debt, upgrade, or retire:**
-
-> "Refactor the auth module without changing behavior."
-
-`maintenance-dev` runs one campaign under a safety net: baseline snapshot and characterization tests (`SAFETY NET READY`) → ordered, individually verified slices (`BEHAVIOR PRESERVED`) → review and delivery. Retiring a capability additionally requires a named-authority-confirmed retirement plan.
-
-## Design Principles
-
-1. Macro design before coding — but no Big Design Up Front.
-2. All Specs can be drafted at once; only the selected ones are deepened — one claiming member per `NEXT` item.
-3. The Spec defines correctness; a bound remote Issue tracks progress, or the confirmed Stage-local row does when no remote is bound; the PR records changes; the ADR records why.
-4. Critical requirements must be verifiable before coding starts.
-5. Test behavior, not implementation details.
-6. Existing code is evidence, not the standard. Existing UI is evidence, not the design system.
-7. Code must not stay ahead of docs.
-8. Skills hold the process; `AGENTS.md` holds the project rules.
-9. `STAGE.md` holds the current project/member snapshot; trackers, Specs, Gates, and the Roadmap keep their own authority.
-10. Post-delivery evolution is work-itemized: next-wave planning, refactoring, debt paydown, upgrades, and retirements run as their own gated campaigns — recorded debt never dangles without a consumer, and no refactor changes behavior unverified.
-
-## Language Policy
-
-Foundry defaults to English for all engineering artifacts (`documentation_language = en`, `engineering_language = en`). User-facing product copy follows product requirements. Existing repositories preserve their established language; overrides require explicit decision-authority approval.
+Skills hold the process; documents hold the project. Templates define the structure —
+repository context, interviews, and engineering judgment fill in the answers.
 
 ## Documentation
 

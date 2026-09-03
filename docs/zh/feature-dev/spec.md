@@ -1,62 +1,79 @@
-# feature-dev —— Issue 与 Spec（SPEC READY）
+---
+title: Spec 与访谈
+---
 
-## 绑定一个 Issue / 工作项
+# Spec 与访谈
 
-1. 检测既有的 GitHub、GitLab、Jira 或本地约定（仓库配置、模板、链接、Roadmap 记录与 Stage 活动认领）。
-2. 有匹配的工作项就绑定；否则**只准备当前这一个**——绝不批量创建。Bug/Change 使用独立工作项，绝不隐式重开或降级 `DONE` 的父 Feature。多成员仓库中，认领成员在开发开始前为自己认领的 `NEXT` 项提交或绑定恰好一个 Issue。
-3. 未绑定远程 Tracker 时，先询问当前 `STAGE.md` 活动能否成为本地权威；只有确认后才设置 `STAGE_LOCAL:<Activity ID>`。已绑定远程即使暂时缺授权、不可用、未认证或不可写，仍保持权威，除非一次显式且持久的迁移将其解绑。
-4. 需要辅助本地清单时使用项目格式或 Issue 模板；它必须链接 Stage，不能维护第二份可写状态。
-
-绑定的远程 Tracker 或标识为 `STAGE_LOCAL:<Activity ID>` 的行是**该工作项唯一可写的 Work Status 权威**；`STAGE.md` 投影远程状态，`specs/ROADMAP.md` 镜像任一来源。其他成员并行认领的 `NEXT` 项对本次运行只读。远程状态流转需要明确授权、可用工具与有效认证；缺少任一条件时保持状态并 `STOP`，绝不能只因远程暂时不可写就回退到 Stage-local。
-
-Stage-local 交接必须在 Stage write guard 下原子转移权威：创建或确认接收方活动、保留 Work Status、把权威改为 `STAGE_LOCAL:<接收方 Activity ID>`、标记发送方已转移并在同一次更新中接受交接。转移成功前发送方保持活跃。
-
-### Issue 内容（绝不复制 Spec）
-
-Goal、Spec 链接、Status、Priority、Assignee、Acceptance checklist、Implementation checklist、Dependencies、Blockers、Delivery links。
-
-新选定的 `DRAFT/UNTRACKED` 项，仅在命名的 Roadmap Decision Authority 确认后才转为 `NEXT`。被阻塞时记录 `Blocked From`、原因、owner 与解除条件，然后转入 `BLOCKED` 并 `STOP`。
-
-## Spec 精化
-
-**Greenfield**
+Feature Spec(`specs/F<nnn>-<slug>.md`)是用户与智能体之间的约定:要构建什么、它如何
+行为、如何验证完成。它来自四个来源 —— 绝不只来自请求文本:
 
 ```text
-DRAFT → clarification → refinement → SPEC READY
+项目文档 + 已有代码 + 用户请求 + 用户访谈 → Feature Spec
 ```
 
-从 `coding-start` 继承的 DRAFT Spec 可能带有 `RECOMMENDED` 建议与 `UNKNOWN` 项；精化必须在 `SPEC READY` 前，通过证据或 Decision Authority 的显式确认逐一解决。
+## 填写 Spec
 
-**Brownfield**
+读完项目文档和相关代码后,智能体先填入一切已经可以确定的内容,再找出仍然重大不明确
+的部分。判断什么还需要问用户的标准:
+
+> 如果一个未知问题可能显著改变外部行为、核心实现方案或测试方式,先问用户。
+
+其余都是低风险的实现细节 —— 智能体用合理的工程判断决定,并随手把决策记进 Spec。
+
+## 好的访谈
+
+- 每轮只问少量相关问题;答案会让后面的问题失效。
+- 具体优于抽象:"过期的会话应该返回 401 还是静默刷新?" —— 而不是"错误应该怎么
+  处理?"
+- 给出最佳猜测作为默认:"我会返回 401 并让刷新可选 —— 可以吗?"
+- 绝不为定义行为的问题编造答案;Spec 里的错误假设会变成代码里的错误功能。
+
+当 Spec 剩余的未知全部是低风险时,访谈即告完成。每个开放问题通过询问解决,回答后
+即删除。
+
+## Spec 模板
 
 ```text
-AS_IS_DRAFT → 证据收集 → RECONSTRUCTED → 显式 TO-BE → SPEC READY
+# Feature: <名称>
+
+## Goal                          这个功能解决什么问题
+## Background                    背景:已有行为、相关文档
+## User Flow                     用户或调用方如何使用
+## Requirements                  要实现的行为,以可观察的方式陈述
+## Business Rules                约束行为的重要规则
+## Edge Cases                    失败与边界情况
+## UI / UX                       仅适用于有 UI 影响的功能
+## API / Data Changes            仅当接口或数据变化时
+## Acceptance Criteria           清晰、可验证的完成标准
+## Incremental Development Roadmap   小步计划,每步可测试
+## Test Plan                     验收标准如何被验证
+## Open Questions                尚未解决的、重要的问题
 ```
 
-Brownfield 必须保留有证据的 AS-IS，把每个被触及的 AS-IS 表面提升到 `RECONSTRUCTED`，并单独陈述 TO-BE。`INFERRED` 绝不冒充已确认事实。Bug 优先稳定复现；不可复现时记录尝试、替代证据与残余风险，获得 Decision Authority 对预期行为的确认，并先把缺失需求补进 Spec。
+不适用的章节直接删除。仍然含有模板引导文字的 Spec 不算完成。
 
-## Spec 必须覆盖
+## 增量开发路线图
 
-Goal、Scope、Out of Scope、Actors、Preconditions、Main Flow、Alternative Flows、Business Rules、State Transitions、Data Changes、API Behavior、Error Cases、Idempotency、Concurrency、Security、Acceptance Criteria、Dependencies、Open Questions——按需补充 Performance、Caching、Messaging、Transaction、Consistency、Retry、Timeout、Observability、Migration、Backward Compatibility。有 UI 时，还要覆盖 User Flow、Affected Pages、Entry/Exit Points、UI States、Interaction、Form Behavior、Validation、Loading/Empty/Error/Success、Permission、Responsive、Accessibility。
+编码之前,Spec 会获得一个分步计划,回答一个问题:*这件事应该以什么顺序被构建和
+验证?* 每一步有目标、范围、测试和验证方式。优先**垂直切片** —— 每一步以可工作、
+可测试的行为结束:
 
-## Open Questions
+```text
+Step 1  最小可工作的 happy path
+Step 2  第一条核心业务规则
+Step 3  错误路径和边界情况
+Step 4  集成与文档同步
+```
 
-状态为 `OPEN | RESOLVED | DEFERRED`。**Critical** 问题处于 `OPEN` 或 `DEFERRED` 会阻断 `SPEC READY`。Critical 问题可能改变 Scope、Acceptance、业务规则、安全、数据/API 契约、核心 UX、迁移或测试可行性；非关键问题允许在当前约束内做可逆选择，并记录 owner。
+避免按技术层拆分(先写所有 Entity、再所有 Repository、再所有 Service)—— 那样的步骤
+直到最后才能验证。路线图是计划,不是合同:当实现揭示更好的拆分或错误的假设时,更新
+路线图和 Spec,然后继续。
 
-## SPEC READY 清单
+## Roadmap 状态
 
-`PASS` 要求每项为 `YES`（仅当条目明确允许时，需求级的 N/A 理由可支撑 `YES`；条目本身绝不跳过），并附完整清单、验证时间与 Decision Authority 批准来源和范围：
+功能进行中时,`specs/ROADMAP.md` 将其标记为 `In Progress`;工作验证完成、文档同步后,
+标记为 `Done`。
 
-1. Goal、Scope、Out of Scope 清晰，且只覆盖当前工作项。
-2. Actors、Preconditions、Main/Alternative Flows 足以确定行为。
-3. Business Rules、Invariants、State Transitions 明确。
-4. 已评估外部可观察的 Data 与 API 行为及兼容性影响。
-5. 已评估 Error、安全、权限与隐私需求。
-6. Idempotency、Concurrency、Transaction、Consistency 已定义或有正当 N/A。
-7. 已评估依赖、迁移、可观测性与非功能风险。
-8. 每个核心 Acceptance 都有唯一、可验证的 `AC-*`。
-9. Brownfield 保留有证据的 AS-IS、有显式 TO-BE、重建了每个被触及表面，并证明其他未知不影响正确性。
-10. 重大 Code/Docs/Tests/UI 冲突已解决或已纳入 TO-BE。
-11. 没有 Critical Open Question 处于 `OPEN` 或 `DEFERRED`。
+## 下一步
 
-未达成时记 `SPEC READY Status: NOT_READY`；旧 revision 已通过但当前输入变化时记 `STALE`。Roadmap `READY` 绝不替代此门禁。
+- [测试与工作类型](./testing) —— 把验收标准变成测试。

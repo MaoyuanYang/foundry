@@ -4,14 +4,11 @@
 
 # Foundry
 
-**从想法到交付，锻造软件。**
+**面向编码智能体的、文档先行、访谈驱动、测试驱动的工作流。**
 
-面向编码智能体的 AI 原生、Spec 驱动开发套件 —— 覆盖完整生命周期：全新项目、存量接管、持续 Feature 交付，以及交付后的演进与维护。
-
-[网站](https://maoyuanyang.github.io/foundry/) · [安装](#安装) · [五个 Skill](#五个-skill)
+[网站](https://maoyuanyang.github.io/foundry/) · [安装](#安装) · [三个 Skill](#三个-skill)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-5-ff6b1a.svg)](./skills)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-ready-brightgreen.svg)](https://opencode.ai)
 
 </div>
@@ -20,109 +17,95 @@
 
 ## Foundry 是什么？
 
-Foundry 由五个可复用的 **Agent Skill** 组成，把 AI 编码智能体变成一套有纪律的工程工作流。它不允许直接跳进代码，而是强制贯彻：
+一个普通的编码智能体容易这样工作：
 
-- **宏观设计先于编码** —— 先定方向、边界、规则与约束。
-- **Spec 驱动开发** —— Spec 是"什么才算正确"的事实来源。
-- **测试设计先于实现** —— 先定义如何证明正确，再动手构建。
-- **先 UX 后 UI** —— 先用户目标与流程，再谈像素。
-- **门禁式流转** —— `SPEC READY` → `UI READY` → `TEST DESIGN READY` → `DONE`；演进与维护新增 `ROADMAP EVOLUTION READY`、`SAFETY NET READY`、`BEHAVIOR PRESERVED`。
-- **证据优先于假设** —— 观察、文档、确认、推断，绝不静默猜测。
-- **受控的设计变更** —— L1/L2/L3 影响分级 + 明确的决策权限。
-- **并行团队开发** —— 多个人类与 Agent 通过 Issue + 分支 + PR + 负责人合并并行推进多个工作项；tracker 是权威，`STAGE.md` 是团队状态看板。
-- **项目级协作状态** —— 根 `STAGE.md` 展示生命周期、活跃人类/Agent、阻塞、交接与恢复点。
-- **交付后演进工作项化** —— 下一波次规划、重构、还债、升级、退役各自作为带门禁的战役运行，绝不作为静默副作用发生。
+```text
+用户请求 → 猜测需求 → 直接开写 → 实现逐渐偏航
+```
 
-## 五个 Skill
+Foundry 是一套包含三个 **Agent Skill** 的技能包，帮助智能体养成另一种习惯：
+
+```text
+想法 → 理解 → 访谈 → 文档 / Spec → 计划 → 测试 → 编码 → 验证
+```
+
+- **文档先行** —— 先写项目文档和 Feature Spec,再写代码。
+- **访谈驱动** —— 智能体就真正重要的问题提问，而不是自行脑补。
+- **测试驱动** —— 测试从验收标准推导而来，代码在测试下通过。
+- **增量实现** —— Feature 以小的、可验证的步骤交付。
+- **保持同步** —— 实现改变现实时，文档随之更新。
+
+## 三个 Skill
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
-| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | 项目访谈、宏观设计、项目文档、Feature Map、DRAFT Specs |
-| [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 基线验证、架构重建、AS-IS 文档、Feature Inventory |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | Feature · 1 → N | Spec 精化、UX/UI 门禁、测试设计、计划、编码、评审、交付 |
-| [`evolve-dev`](skills/evolve-dev/SKILL.md) | 演进 · N → N′ 规划 | 下一波次规划：Roadmap 条目、DRAFT Specs、优先级重排、基线增量更新 |
-| [`maintenance-dev`](skills/maintenance-dev/SKILL.md) | 维护 · 行为保持变更 | 安全网先行的战役：重构、技术债、升级、弃用/移除 |
+| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | 访谈 → 项目文档(`README`、`docs/PRODUCT`、`ARCHITECTURE`、`TESTING` 等)→ Roadmap → 草稿 Feature Spec |
+| [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 先验证仓库可运行 → 相信代码而非过时文档 → 恢复 AS-IS 文档、Roadmap 与 Spec |
+| [`feature-dev`](skills/feature-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 增量计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
 
 ```text
-新想法 ──▶ coding-start ──▶ feature-dev ──▶ feature-dev ──▶ ...
-已有仓库 ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
-              ▲                                        │
-              └── evolve-dev（下一波次规划）◀───────────┤ 已交付基线
-                                                       ▼
-                  maintenance-dev（重构 / 技术债 / 升级 / 退役）
+新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                  (规划下一波功能回到 coding-start)
+存量仓库 ──────▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
 ```
 
-每个 Skill 都有明确的 **STOP 条件**：不静默写业务代码、不越权写盘、不批量建 Issue、不在经确认的维护战役之外大规模重构。
+`feature-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖升级 ——
+使用同一个循环:Bug 修复从失败测试开始,重构从确认覆盖率开始。
 
 ## 安装
 
-Foundry 遵循标准 Agent Skills 格式（`SKILL.md` + `references/` + `assets/`）。把五个文件夹复制到你的智能体 skills 目录即可。
+Foundry 遵循标准 Agent Skills 格式(`SKILL.md` + `references/` + `assets/`)。
+把三个文件夹复制进你的智能体技能目录即可。
 
-**OpenCode / Claude 系智能体**（自动发现）：
+**OpenCode / Claude 类智能体**(自动发现):
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
-cp -r foundry/skills/evolve-dev        ~/.agents/skills/
-cp -r foundry/skills/maintenance-dev   ~/.agents/skills/
 ```
 
-然后重启智能体。可用 `opencode debug skill` 验证发现结果（应能看到五个 Skill）。
+然后重启你的智能体。用 `opencode debug skill` 验证发现(应能看到全部三个 Skill)。
 
 ## 快速开始
 
-**启动新项目：**
+**启动一个新项目:**
 
-> "初始化一个全新的 greenfield 项目：社区本地生活平台。"
+> "初始化一个新的 greenfield 项目:一个社区本地服务平台。"
 
-`coding-start` 会逐轮访谈、运行 Macro Readiness 门禁，产出 `STAGE.md`、`README`、`AGENTS.md`、`docs/*`、`specs/ROADMAP.md` 和 DRAFT Specs，然后以确认的 `NEXT` Feature 停止（通常一个；并行多选仅在确有不同成员认领时确认）。
+`coding-start` 先读取你已提供的信息,再就真正重要的缺口向你访谈,写出项目文档、
+`specs/ROADMAP.md` 和草稿 Feature Spec —— 然后停止,不写业务代码。
 
-**接管已有仓库：**
+**接管一个已有仓库:**
 
-> "接管这个仓库，建立可持续的 AS-IS 基线。"
+> "接管这个仓库,恢复可信的基线。"
 
-`project-onboard` 会勘察仓库、验证基线、重建架构与 Feature，创建或增量接管根 `STAGE.md`，产出 AS-IS 文档，然后以推荐的下一项工作停止。
+`project-onboard` 先运行构建和测试,从代码理解系统(标注哪些是 Observed、Inferred
+或 Unknown),把文档修复到与现状一致,并恢复 Roadmap —— 全程不改变业务行为。
 
-**开发一个 Feature：**
+**开发一个功能:**
 
-> "按工作流实现 Feature F001。"
+> "按照工作流实现 F001。"
 
-`feature-dev` 驱动完整生命周期：`SPEC READY` → `UI READY`（如有 UI）→ `TEST DESIGN READY` → Plan → Coding → Review → Documentation Sync → PR → 评审意见消化（`IN PR REVIEW`）→ 负责人合并。
+`feature-dev` 读取项目文档和相关代码,通过访谈解决 Spec 中的开放问题,规划小的
+垂直切片,从验收标准推导测试,小步实现直到测试通过,并更新因此失真的文档。
 
-**规划下一波功能：**
+## 原则
 
-> "规划下一期：我们要给平台加一个协作波次。"
+1. 先文档,后代码。
+2. 先访谈,后假设。
+3. 先 Spec,后实现。
+4. 测试从验收标准推导。
+5. 增量实现。
+6. 编码直到测试通过。
+7. 文档与实现保持同步。
 
-`evolve-dev` 在已交付基线上增量访谈、挑战波次、通过 `ROADMAP EVOLUTION READY`：产出带 DRAFT Spec 的新 Roadmap 条目和经 Roadmap Decision Authority 确认的优先级重排——然后把实现交回 `feature-dev`。
-
-**重构、还债、升级或下线：**
-
-> "重构鉴权模块，不改变行为。"
-
-`maintenance-dev` 在安全网下运行一个战役：基线快照与特性化测试（`SAFETY NET READY`）→ 有序、逐片验证的切片（`BEHAVIOR PRESERVED`）→ 评审与交付。退役能力还需具名权限确认的退役计划。
-
-## 设计原则
-
-1. 宏观设计先于编码 —— 但避免 Big Design Up Front。
-2. 可以一次生成所有 DRAFT Spec，但只深化选中的那些——每个 `NEXT` 项一个认领成员。
-3. Spec 定义正确性；绑定的远程 Issue 管进度，没有远程绑定时由已确认的 Stage-local 行负责；PR 记录变化；ADR 记录为什么。
-4. 不可验证的关键需求，不进入编码。
-5. 测试外部行为，不测内部实现细节。
-6. 已有代码是证据，不是规范；已有 UI 是证据，不是设计系统。
-7. 代码不能长期领先于文档。
-8. Skill 保存流程；`AGENTS.md` 保存项目规则。
-9. `STAGE.md` 保存当前项目/成员快照；Tracker、Spec、Gate 与 Roadmap 各自保留权威职责。
-10. 交付后演进工作项化：下一波次规划、重构、还债、升级、退役各自作为带门禁的战役运行——记录在案的技术债不再悬空无消费者，任何重构都不在未验证的情况下改变行为。
-
-## 语言策略
-
-Foundry 默认所有工程产物使用英文（`documentation_language = en`、`engineering_language = en`）。面向用户的产品文案遵循产品需求。已有仓库保留其既有语言；任何覆盖都需决策权限明确批准。
+Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓库上下文、访谈和工程判断。
 
 ## 文档
 
-完整文档（English & 中文）：**<https://maoyuanyang.github.io/foundry/>**
+完整文档(English & 中文):**<https://maoyuanyang.github.io/foundry/>**
 
 ## 许可证
 

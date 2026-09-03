@@ -1,121 +1,132 @@
-# Workflow & Gates
+---
+title: Workflow
+---
 
-Foundry's core discipline: **define what is correct → define how to prove it → then implement.** Every transition is gated.
+# The Foundry Workflow
 
-## The Feature lifecycle
+Foundry is a document-first, interview-driven, test-driven workflow for coding agents.
+It exists because a plain coding agent tends to run like this:
 
 ```text
-Issue ──▶ Spec Refinement ──▶ SPEC READY
-        ──▶ [UX/UI Refinement ──▶ UI READY]   (only if UI)
-        ──▶ Test Design ──▶ TEST DESIGN READY
-        ──▶ Plan ──▶ Tasks ──▶ Coding ──▶ Testing
-        ──▶ Review ──▶ Documentation Sync ──▶ PR ──▶ [PR review feedback resolved] ──▶ DONE
+User Request → Guess Requirements → Start Coding → Implementation Drifts
 ```
 
-## The gates
+Foundry replaces that habit with:
 
-| Gate | Question it answers | Blocks until |
+```text
+Idea
+ ↓
+Understand          read the repo and docs before anything else
+ ↓
+Interview          ask about what materially matters; recommend for the rest
+ ↓
+Documents / Spec   write down the agreed outcome
+ ↓
+Incremental Plan   small vertical slices, each independently verifiable
+ ↓
+Tests              derived from acceptance criteria
+ ↓
+Code               implement step by step
+ ↓
+Verify             run the tests; fix until they pass
+ ↓
+Sync Docs          update whatever the implementation made untrue
+```
+
+## Principles
+
+1. **Document before code.**
+2. **Interview before assumption.**
+3. **Spec before implementation.**
+4. **Derive tests from acceptance criteria.**
+5. **Implement incrementally.**
+6. **Code until tests pass.**
+7. **Keep documentation synchronized with implementation.**
+
+Skills hold the process; documents hold the project. Templates define the structure —
+repository context, interviews, and engineering judgment fill in the answers.
+
+## Three skills, one habit
+
+| Skill | Phase | Role |
 |---|---|---|
-| `SPEC READY` | Is the Spec correct and complete? | No critical open question remains |
-| `UI READY` | Are user flows, states, and contracts defined? | Every UI checklist item passes |
-| `TEST DESIGN READY` | Can correctness be proven? | Every core acceptance maps to a scenario |
-| `ROADMAP EVOLUTION READY` | Is the next wave planned and authority-confirmed? | Every evolution checklist item passes |
-| `SAFETY NET READY` | Is behavior provably captured before changing it? | Baseline + characterization evidence + regression scope cover every touched surface |
-| `BEHAVIOR PRESERVED` | Did the slices change nothing observable? | Recorded evidence matches the baseline (or exactly the approved retirement delta) |
-| `DONE` | Is delivery verified? | All DONE checklist items pass |
-
-Each gate records a status (`PASS | NOT_READY | STALE`), an input manifest, and the approving decision authority. A semantic change to an input marks downstream gates `STALE` and forces re-validation.
-
-## Spec lifecycle
-
-**Greenfield**
+| [`coding-start`](/coding-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
+| [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
+| [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → incremental plan → tests → code → verify → sync docs |
 
 ```text
-DRAFT ──▶ clarification ──▶ refinement ──▶ SPEC READY
+New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                    (plan next wave via coding-start)
+Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
 ```
 
-**Brownfield**
+`feature-dev` covers the whole family of development work — new features, changes, bug
+fixes, refactors, technical-debt paydown, dependency upgrades — with the same loop. The
+entry point adapts, not the process:
+
+- **Bug fix** — reproduce with a failing test first, then fix until it passes.
+- **Refactor / debt** — confirm behavioral coverage first, add regression tests where
+  missing, refactor in small steps, verify behavior is unchanged.
+- **Dependency upgrade** — inventory breakage, upgrade, run the full suite, record
+  behavioral changes.
+
+## The document set
+
+A Foundry-managed project has a predictable shape:
 
 ```text
-AS_IS_DRAFT ──▶ evidence collection ──▶ RECONSTRUCTED
-            ──▶ explicit TO-BE ──▶ SPEC READY
+README.md            what the project is, how to run it
+docs/
+  PRODUCT.md         goal, users, use cases, scope
+  ARCHITECTURE.md    system shape, modules, data flow, key decisions
+  TESTING.md         strategy, levels, key commands
+  DATABASE.md        only when the product persists data
+  API.md             only when the product exposes an API
+  FRONTEND.md        only when the product has a UI
+specs/
+  ROADMAP.md         the feature list and what is next
+  F001-<slug>.md     one spec per feature
 ```
 
-Only a selected feature is deepened — each claiming member deepens their own; all other specs stay `DRAFT`.
+Only applicable documents are created — a CLI tool gets no `FRONTEND.md`. Documents are
+kept short and true; a precise one-page document beats a speculative ten-page one.
 
-## After delivery: evolution and maintenance
+### Roadmap lifecycle
 
-The Feature lifecycle is the delivery loop. Two siblings cover what happens **between** loops:
+`specs/ROADMAP.md` tracks each feature with a simple status:
+
+- **Draft** — described in a spec, not yet scheduled.
+- **Next** — selected as the next feature to build (exactly one at a time).
+- **In Progress** — currently being implemented.
+- **Done** — implemented and verified.
+
+Planning the next wave of features on a documented project is a `coding-start` re-entry:
+interview about the new direction, then add Roadmap entries and draft Specs — no separate
+process.
+
+## Documents stay synchronized
+
+Foundry does not treat documents as one-time upfront artifacts. The final state is:
 
 ```text
-delivered baseline ──▶ evolve-dev: plan the next wave ──▶ feature-dev (per selected NEXT)
-delivered baseline ──▶ maintenance-dev: refactor / debt / upgrade / retire (safety-net-first slices)
+Documents ↔ Spec ↔ Tests ↔ Code
 ```
 
-- `evolve-dev` plans: new Roadmap entries stay `DRAFT`, priority changes need the Roadmap Decision Authority, and the sole gate is `ROADMAP EVOLUTION READY`. Implementation is handed back to `feature-dev`.
-- `maintenance-dev` executes behavior-preserving engineering: `SAFETY NET READY` before any slice, `BEHAVIOR PRESERVED` per slice and for the campaign. `RETIRE` is the exception where behavior change is the point — it requires a named-authority-confirmed retirement plan.
-- A refactor that would change observable behavior, a debt row that encodes a defect, and an upgrade's behavioral breaking changes all route to `feature-dev` as Change/Bug work items instead of sneaking through a slice.
+When implementation discovers a wrong assumption, changes an interface, alters persisted
+data, or shifts the architecture, the affected documents and the spec are updated **in
+the same piece of work** — never left to rot.
 
+## What Foundry does not do
 
-## AS-IS vs TO-BE
+- It does not impose a governance system: no coordination files, no status tokens to
+  maintain, no approval roles. The documents and the Roadmap are the whole state.
+- It does not decide your architecture for you. Templates define sections to think
+  about; your repository, your interviews, and engineering judgment fill them.
+- It does not replace your tracker, CI, or review process — teams that need issue
+  tracking and pull-request review layer their own tooling on top.
 
-For existing projects, Foundry strictly separates:
+## Next
 
-- **AS-IS** — currently verifiable behavior. Never auto-promoted to a standard.
-- **TO-BE** — desired future behavior. Confirmed separately through `feature-dev`.
-
-Existing code, tests, docs, and UI are **evidence**, not requirements.
-
-## Object responsibilities
-
-| Object | Owns |
-|---|---|
-| **Spec** | What is correct (source of truth) |
-| **Remote Issue / Stage-local row** | Where the bound work is (progress, status); exactly one is writable per work item |
-| **STAGE.md** | Where the project and all active members are now |
-| **Implementation Plan** | How to build it (must not redefine requirements) |
-| **PR / delivery record** | What changed in code |
-| **ADR** | Why a significant decision was made |
-| **AGENTS.md** | Durable project rules |
-
-A remote Issue or auxiliary checklist never duplicates the Spec. A local checklist never becomes a second writable status source. A Plan never rewrites requirements.
-
-## Project status and authority
-
-All five Skills maintain root [`STAGE.md`](./guide/project-stage). It owns the current project phase, active-member view, blockers, handoffs, and resume points. Before a Feature work item is bound, `specs/ROADMAP.md` owns its initial status. After binding, Stage projects the remote tracker; when no remote is bound, the row identified by `STAGE_LOCAL:<Activity ID>` is the local Work Status authority. Temporary remote access failure never transfers authority; an explicit durable migration must unbind it first. Roadmap always owns ordering and dependencies, and Gate artifacts always own Gate evidence.
-
-## Parallel work
-
-Multiple `NEXT` work items can be active concurrently — one per claiming member (human or agent, each on their own machine). The coordination plane is the standard remote flow: **Issue + branch + PR + maintainer merge**.
-
-- Each claimed item develops on its own branch, recorded in the Stage `Branch / Worktree` column.
-- Multi-member and multi-machine projects bind a remote tracker as the Work Status authority. `STAGE.md` is the team status board: every machine keeps a local projection refreshed from the tracker, and the tracker wins any disagreement.
-- Before merge, the claiming member syncs with the integration base and reruns the integration slice and regression scope; a semantic conflict on a shared contract escalates to L2.
-- PR review feedback is consumed in `IN PR REVIEW`: Critical external findings block `DONE`, and merge is separately authorized by the responsible maintainer.
-- A project may adopt a numeric `WIP Limit` in `AGENTS.md`; by default, per-claim uniqueness is the only constraint.
-- Root `AGENTS.md` records `foundry_contract_version`; a Skill whose contract version differs stops until it is synchronized.
-
-See the [Parallel Work guide](./guide/parallel-work) for the full protocol.
-
-## Design Change Policy
-
-Design may change, but only through a controlled flow — never "change code, leave docs stale."
-
-| Level | Scope | Updates |
-|---|---|---|
-| **L1** | Feature-local | Current Spec, Test Design, necessary API/DB/UI |
-| **L2** | Cross-feature | Related Specs, API, DATABASE, UX/UI, ROADMAP, tests |
-| **L3** | Architectural | All affected docs + ADR, approved by a named authority |
-
-L3 decisions require an ADR in the project's implementation-authorizing state before coding resumes.
-
-## Language Policy
-
-Foundry defaults to:
-
-```text
-documentation_language = en
-engineering_language = en
-```
-
-Engineering artifacts (docs, specs, identifiers, APIs, commits, tests) are English by default. **Product Content Language** follows product requirements — a Chinese consumer app still ships Chinese UI copy. Overrides require explicit decision-authority approval and are persisted in `AGENTS.md`.
+- [Install](./install) the three skills.
+- Read the skill pages: [coding-start](./coding-start/), [project-onboard](./project-onboard/),
+  [feature-dev](./feature-dev/).

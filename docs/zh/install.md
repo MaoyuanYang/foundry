@@ -1,17 +1,23 @@
+---
+title: 安装
+---
+
 # 安装
 
-Foundry 遵循标准 **Agent Skills** 格式：每个 Skill 是一个文件夹，包含 `SKILL.md`、`references/` 和 `assets/`。安装就是把五个 Skill 文件夹复制到你的智能体 skills 目录。
+Foundry 遵循标准 **Agent Skills** 格式:每个 Skill 是一个包含 `SKILL.md`、`references/`
+和 `assets/` 的文件夹。安装意味着把三个 Skill 文件夹复制进你的智能体技能目录。
 
-## 前置要求
+## 前置条件
 
-- 支持 Agent Skills 格式的智能体（OpenCode、Claude Code 或兼容实现）。
-- 本机已安装 `git`。
+- 支持 Agent Skills 格式的智能体(OpenCode、Claude Code 或兼容者)。
+- 机器上装有 `git`。
 
 ## 安装
 
-克隆仓库，然后把五个 Skill 文件夹复制到 skills 目录。
+克隆仓库,然后把三个 Skill 文件夹复制进你的技能目录。
 
-**OpenCode / Claude 系智能体**会自动发现 `~/.agents/skills/` 和 `~/.claude/skills/` 中的 Skill。
+**OpenCode / Claude 类智能体**会自动发现 `~/.agents/skills/` 和 `~/.claude/skills/`
+中的技能。
 
 ### macOS / Linux
 
@@ -20,73 +26,67 @@ git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
-cp -r foundry/skills/evolve-dev        ~/.agents/skills/
-cp -r foundry/skills/maintenance-dev   ~/.agents/skills/
 ```
 
-### Windows（PowerShell）
+### Windows (PowerShell)
 
 ```powershell
 git clone https://github.com/MaoyuanYang/foundry.git
 Copy-Item -Recurse foundry\skills\coding-start    $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-onboard $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\feature-dev     $HOME\.agents\skills\
-Copy-Item -Recurse foundry\skills\evolve-dev      $HOME\.agents\skills\
-Copy-Item -Recurse foundry\skills\maintenance-dev $HOME\.agents\skills\
 ```
 
-然后**重启智能体**，让它重新扫描 skills 目录。
+然后**重启你的智能体**,让它重新扫描技能目录。
 
 ## 验证
 
-OpenCode 可运行：
+对 OpenCode 运行:
 
 ```bash
 opencode debug skill
 ```
 
-应能看到 `coding-start`、`project-onboard`、`feature-dev`、`evolve-dev`、`maintenance-dev` 及其路径。每个 Skill 也都符合 Agent Skills 规范（`name` + `description` frontmatter、小写连字符文件夹名）。
+你应该能看到 `coding-start`、`project-onboard` 和 `feature-dev` 及其位置。每个
+Skill 也符合 Agent Skills 模式(`name` + `description` frontmatter、小写连字符文件夹名)。
 
-## 你将获得
+## 你会得到什么
 
 | Skill | 文件夹 | 用途 |
 |---|---|---|
-| `coding-start` | `skills/coding-start/` | Greenfield 项目初始化（0 → 1） |
-| `project-onboard` | `skills/project-onboard/` | Brownfield 接管与 AS-IS 基线 |
-| `feature-dev` | `skills/feature-dev/` | 单 Feature 生命周期（1 → N）；多成员并行时各自运行自己认领的项 |
-| `evolve-dev` | `skills/evolve-dev/` | 交付后演进规划：新 Feature 波次、Roadmap 重排 |
-| `maintenance-dev` | `skills/maintenance-dev/` | 维护战役：重构、技术债、升级、弃用/移除 |
+| `coding-start` | `skills/coding-start/` | Greenfield 项目文档、Roadmap、草稿 Spec |
+| `project-onboard` | `skills/project-onboard/` | Brownfield 恢复:验证基线、AS-IS 文档 |
+| `feature-dev` | `skills/feature-dev/` | 单项开发工作:Spec → 测试 → 代码 → 文档 |
 
-每个 Skill 自包含：
+每个 Skill 都是自包含的:
 
-- `SKILL.md` —— 入口、触发条件与状态机。
-- `references/` —— 在特定阶段按需加载的详细规则。
-- `assets/` —— 该 Skill 生成文档所用的模板。
-- `agents/openai.yaml` —— 宿主展示元数据。
+- `SKILL.md` —— 入口:何时使用以及运行的工作流。
+- `references/` —— 按需加载的方法说明(访谈、测试)。
+- `assets/` —— Skill 生成文档所用的模板。
+- `agents/openai.yaml` —— 宿主显示元数据。
 
 ## 更新
 
-拉取最新并重新复制五个文件夹（它们自包含，整目录替换是安全的）：
+拉取最新代码并重新复制三个文件夹(它们是自包含的,直接替换文件夹是安全的):
 
 ```bash
 cd foundry && git pull
-cp -r skills/coding-start skills/project-onboard skills/feature-dev skills/evolve-dev skills/maintenance-dev ~/.agents/skills/
+cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
 ```
 
-更新**不会**触碰你的**项目**文件（`STAGE.md`、`AGENTS.md`、`docs/`、`specs/`）——Foundry 只改变智能体的工作方式，不改变它已经产出的内容。
-
-采用较早契约版本的仓库会在根 `AGENTS.md` 记录 `foundry_contract_version`；版本推进后，每个 Skill 会在入口 `STOP`，直到 Maintainer Decision Authority 批准记录值推进且安装副本完成同步。
+你的**项目**文件(`README.md`、`docs/`、`specs/`)不会被更新触碰 —— Foundry 只改变
+智能体的工作方式,不改变它已经产出的内容。
 
 ## 卸载
 
-从 skills 目录移除五个文件夹并重启智能体：
+从技能目录移除三个文件夹并重启智能体:
 
 ```bash
-rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
+rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev
 ```
 
 ## 下一步
 
-- [五个 Skill](./skills-overview) —— 各自的职责与触发条件。
-- [工作流与门禁](./workflow) —— 一个 Feature 如何从想法走到 `DONE`。
-- [参考](./reference/glossary) —— 状态词汇表与模板对照表。
+- [工作流](../workflow) —— 工作如何从想法走向已验证的代码。
+- Skill 页面:[coding-start](./coding-start/)、[project-onboard](./project-onboard/)、
+  [feature-dev](./feature-dev/)。

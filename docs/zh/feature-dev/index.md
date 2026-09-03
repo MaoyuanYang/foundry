@@ -1,62 +1,74 @@
-# feature-dev —— 总览与状态机
+---
+title: feature-dev
+---
 
-`feature-dev` 每次运行把**恰好一个**选定的 Feature / Change / Bug 从事实确认推进到可验证的交付。它遵循项目约定，绝不重新设计项目基线，也不吞并无关 Feature。其他并行选定的 `NEXT` 项属于其他成员——本 Skill 绝不修改它们的状态、分支或 Gate 记录。
+# feature-dev
+
+交付一项开发工作 —— 功能、变更、Bug 修复、重构、技术债或依赖升级 —— 把达成一致的
+Spec 变成经过验证的代码,并与项目文档保持同步。Foundry 的核心循环在这里完整运行:
+
+```text
+访谈 → Spec → 增量计划 → 测试 → 编码 → 验证 → 同步文档
+```
 
 ## 何时触发
 
-**仅当**用户明确要求实现、修复或交付一个选定的工作项时进入。既支持 Greenfield 的 `DRAFT` Spec，也支持 Brownfield 的 `AS_IS_DRAFT` / `RECONSTRUCTED` Spec。
+- "按照工作流实现 F001。"
+- "修复这个 Bug:……"、"重构 auth 模块且不改变行为。"、"升级 React 到 19。"、
+  "偿还导出模块的技术债。"
 
-**不进入**：只读评审、仅诊断/解释、普通问答、Greenfield 初始化（→ `coding-start`）、未知仓库接管（→ `project-onboard`）。
+它**不会**为只读评审或诊断触发,也不会为启动新项目([`coding-start`](../coding-start/))
+或恢复缺少文档的仓库([`project-onboard`](../project-onboard/))触发。
 
-## 可执行状态机
+## 工作流
 
-```mermaid
-flowchart TD
-  P0[0. Preflight / 证据 / 范围] --> P1[1. 绑定一个 Issue / 工作项]
-  P1 --> P2[2. Spec 精化 → SPEC READY]
-  P2 --> P3[3. UI 检测 → 如有 UI 则 UI READY]
-  P3 --> P4[4. 测试设计 → TEST DESIGN READY]
-  P4 --> P5[5. Implementation Plan + Tasks → READY]
-  P5 --> P6[6. Coding + Testing → IN_PROGRESS]
-  P6 --> P7[7. Review → REVIEW]
-  P7 --> P8[8. Documentation Sync]
-  P8 --> P9[9. PR / 交付 → DONE]
-  P9 --> PR9[PR 已开：外部评审 → IN PR REVIEW → 修复 → DONE]
+```text
+功能请求
+    ↓
+1. 读项目文档             README、docs/*、specs/ROADMAP.md
+    ↓
+2. 读相关代码             这次请求触及的模块和测试
+    ↓
+3. 访谈用户               解决真正重要的 Spec 缺口
+    ↓
+4. 填写 / 完善 Feature Spec   目标、需求、验收标准
+    ↓
+5. 写增量开发路线图          小的垂直切片
+    ↓
+6. 推导测试               来自验收标准
+    ↓
+7. 逐步实现               运行每步的测试,修复直到通过
+    ↓
+8. 评审变更               对照 Spec 通读完整 diff;跑全量测试
+    ↓
+9. 同步文档               更新因此失真的一切
 ```
 
-Roadmap 状态流转 `DRAFT → NEXT → READY → IN_PROGRESS → REVIEW → DONE`，任何活跃状态都可转入 `BLOCKED`（记录 `Blocked From`）。`DONE` Feature 的 Bug/Change 使用**新的**工作项 ID，绝不抹除父 Feature 的完成状态。
+值得深入的两个部分有单独页面:
 
-每次关键流转都会更新根 [`STAGE.md`](../guide/project-stage) 中当前成员的 Skill 阶段、下一检查点、阻塞/交接与 Gate 投影链接。它绝不是语义 Gate 输入。
+- [Spec 与访谈](./spec) —— Spec 如何填写、什么值得问。
+- [测试与工作类型](./testing) —— 推导测试,以及 Bug / 重构 / 升级的入口差异。
 
-## Preflight 上下文
+## 工作类型,同一个循环
 
-首先读取适用的 `AGENTS.md` 链与语言策略，然后发现并读取：根 `STAGE.md`、`README`、`PRODUCT`、`ARCHITECTURE`、`DATABASE`、`API`、`TESTING`、`ROADMAP`、当前 Spec、依赖 Specs、相关 ADR、相关代码与测试、既有 Issue/工作项，并把每个 Stage 投影与其权威来源核对。若可能有 UI 影响，还要读 `FRONTEND`、`UX`、`UI`、`DESIGN_SYSTEM`、受影响页面与既有组件。
+`feature-dev` 刻意不按工作类型分裂成独立流程。变化的只是入口:
 
-若 Code / Spec / Docs / UI 不一致，先解决分歧、修复基线或进入 Design Change，**再**谈门禁。若项目基线缺失，路由到 `coding-start`（Greenfield）或 `project-onboard`（Brownfield）并 `STOP`。
+- **Bug 修复** —— 先用失败测试复现,再修复直到通过。
+- **重构 / 技术债** —— 确认行为覆盖率,缺测试就补回归测试,小步重构,逐步验证
+  行为不变。
+- **依赖升级** —— 盘点破坏点,升级,跑全量测试,记录行为变化。
 
-## 门禁速览
+## 硬性规则
 
-| 门禁 | 页面 |
-|---|---|
-| `SPEC READY` | [Issue 与 Spec](./spec) |
-| `UI READY` | [UX / UI](./ui) |
-| `TEST DESIGN READY` | [测试设计](./testing) |
-| `DONE` | [交付](./delivery) |
+强制项很少;留下的这些定义了 Foundry:
 
-每个门禁记录 `Status: PASS | NOT_READY | STALE`、完整输入清单、验证时间与 Decision Authority 批准来源和范围。输入的语义变化会使下游门禁 `STALE`。
+- 仍然存在**重大影响**的 Spec 问题(显著影响行为、实现或测试)时,**禁止开始实现**。
+- 验证**必须**从 Spec 推导 —— 测试来自验收标准。
+- 实现**必须**运行相关测试;失败意味着工作尚未完成。
+- **必须**保留工作区中与本次无关的用户改动。
+- 未经明确授权,**禁止**执行破坏性或远程操作。
 
-## 强制 STOP 条件
+## 下一步
 
-1. 范围不是本次运行恰好一个选定的工作项（其他成员并行认领的 `NEXT` 项不属于本次运行的范围）。
-2. Greenfield 缺项目级基线，或 Brownfield 缺可信 onboarding。
-3. Critical Open Question 处于 `OPEN`/`DEFERRED`、语言策略缺失/冲突/未持久化、重大 Docs/Code 冲突未解决、或核心需求不可验证。
-4. 本地写入必需但其精确路径或生成输出边界缺少明确授权。
-5. 穷尽自主澄清后，某必需门禁仍因外部决策、证据或环境不可得而无法达成（初次正常的 `NOT_READY` 进入精化而非停止）。
-6. 影响已批准行为的 Design Change 缺 Decision Authority 确认，或 L2/L3 确认不完整。
-7. 需要用户决策：Tracker/Stage 本地权威、重大依赖、破坏性迁移、交付标准。
-8. 必需的 Git/远程副作用缺授权、缺工具或认证。
-9. Stage 绑定、新鲜度、revision/hash、活动身份、重复认领或权威转移未解决；停止受影响的流转、交接或完成，无关的只读调查可继续。
-
-每次 `STOP` 都报告当前 Roadmap 状态、已通过/跳过的门禁、阻塞证据、谁需要回答什么、以及恢复步骤。
-
-已授权本地写入时，同一 blocker 与恢复阶段会同步到当前 Stage 活动，且不触碰其他成员的活动行。
+- [Spec 与访谈](./spec) 和 [测试与工作类型](./testing)。
+- Roadmap 用完时,用 [`coding-start`](../coding-start/) 规划下一波。

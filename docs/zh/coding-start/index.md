@@ -1,74 +1,85 @@
-# coding-start —— 总览与状态机
+---
+title: coding-start
+---
 
-`coding-start` 把一个尚未实现的项目想法推进到可交给 Feature 开发的状态。它先澄清方向、边界与长期规则，**再**产出项目级文档与浅层 Feature 地图。默认不写业务代码、不搭全量脚手架。
+# coding-start
+
+把一个模糊的项目想法,转化为编码智能体在功能开发前所需的项目级文档:产品与架构
+文档、Feature Roadmap、草稿 Feature Spec。产出是文档,不是代码 —— 实现属于
+[`feature-dev`](../feature-dev/)。
+
+对已有可信文档的项目,同一套工作流也处理"规划下一波":跳过已有的部分,只就新方向
+访谈,更新 Roadmap 和草稿 Spec。
 
 ## 何时触发
 
-**仅当**用户明确要求启动/初始化一个 Greenfield 项目时进入——包括"为一个尚无宏观基线的项目描述单个 Feature"的情形。
+- "初始化一个新的 greenfield 项目:……"
+- 在空目录或只有笔记的目录上说"开始构建这个想法:……"。
+- 在已有文档的项目上说"规划下一阶段 / 给 Roadmap 加功能"。
 
-**不进入**的情形：
+它**不会**为接管缺少文档的仓库触发([`project-onboard`](../project-onboard/)),也不会
+为实现某个功能触发([`feature-dev`](../feature-dev/))。
 
-- 目录已有实质业务代码、可运行系统、迁移或历史行为 → 转 [`project-onboard`](../project-onboard/)。
-- 用户想开发/修复单个 Feature 且已有可信宏观基线 → 转 [`feature-dev`](../feature-dev/)。
-- 用户只想讨论/评估，或未授权写盘 → 可访谈或回答，但停在正式产物之前。
+## 工作流
 
-Greenfield 与 Brownfield 不明时，只问一个入口判定问题；绝不猜测或覆盖已有内容。
-
-## 状态机
-
-```mermaid
-flowchart TD
-  ENTRY[ENTRY_CHECK] --> DISC[PROJECT_DISCOVERY]
-  DISC --> SYN[MACRO_SYNTHESIS]
-  SYN --> CHAL[CHALLENGE_PASS]
-  CHAL -->|新的阻塞未知| DISC
-  CHAL --> READY[MACRO_READINESS]
-  READY -->|NEEDS_CLARIFICATION| DISC
-  READY --> GATE[MACRO DESIGN READY]
-  GATE --> ART[ARTIFACT_GENERATION]
-  ART --> MAP[FEATURE_MAPPING]
-  MAP --> DRAFT[DRAFT_SPEC_GENERATION]
-  DRAFT --> NEXT[NEXT_SELECTION]
-  NEXT -->|无安全 NEXT 且非外部阻塞| DISC
-  NEXT --> BLOCK[BLOCKED_HANDOFF]
-  NEXT --> REV[SELF_REVIEW]
-  BLOCK --> REV
-  REV --> STOP[STOP]
+```text
+项目想法
+    ↓
+1. 理解上下文      先读用户和目录已经能回答的问题
+    ↓
+2. 访谈用户        只补真正影响文档的缺口
+    ↓
+3. 写项目文档      README、PRODUCT、ARCHITECTURE、TESTING(+ 适用的补充文档)
+    ↓
+4. 创建 Roadmap    specs/ROADMAP.md,标记一个功能为 Next
+    ↓
+5. 写草稿 Spec     specs/F001-<slug>.md,记录开放问题,而不是编造答案
+    ↓
+6. 停止            移交 feature-dev
 ```
 
-有效进入并获得明确本地写盘授权后，根 [`STAGE.md`](../guide/project-stage) 是唯一可在 Gate 前创建的运营产物。它记录当前成员、Skill 阶段、阻塞、下一问题、ref 与权威链接，让 Discovery 可恢复；不包含未确认的产品/架构决策，也绝不暗示已通过 `MACRO DESIGN READY`。
+## 先理解,再访谈
 
-正式项目文档只在 `MACRO DESIGN READY` 之后生成。访谈摘要与候选建议不是正式产物。
+智能体先收集一切已经可以确定的信息 —— 用户的描述、已有的笔记和配置、明确的约束
+—— 然后才提问。问题留给真正影响文档的缺口:
 
-两个 **Confirmation Digest** 检查点让生成内容始终可审阅，而无需逐点访谈：Macro Synthesis 之后，Ledger 中全部 `RECOMMENDED`/`UNKNOWN` 条目按主题分组一次性呈现并逐项处置，之后才进入 Challenge Pass；文档与 DRAFT Spec 生成后，其中实际出现的条目再与该 digest 核对，通过后才选择 `NEXT`——任何默认值都不会未经你过目就进入文档。详见[访谈与 Challenge Pass](./discovery)。
+- **产品方向** —— 给谁用、解决什么问题、"可用"意味着什么?
+- **范围** —— 第一版明确不做什么?
+- **影响架构的约束** —— 必须有的集成、平台、规模。
+- **测试** —— 什么不能坏、什么算足够的验证?
 
-## 不可违反的边界
+低风险技术细节用建议代替提问("第一版我会用 SQLite —— 除非你预期并发写入,否则
+可以吧")。写文档之前,智能体把关键决策摘要复述给用户确认 —— 这个低成本的检查点
+能捕获大多数误解。
 
-- 默认不创建业务实现、业务 API、数据库表、领域类、页面或组件。
-- 默认不生成全量应用脚手架。
-- 宏观设计只固定**方向、边界、规则、约束**——不得冻结 DTO、字段、类、组件、内部函数、消息主题、缓存键或像素细节。
-- 不得深化 `DRAFT` Spec，不得运行 `SPEC READY` / `UI READY` / `TEST DESIGN READY`。
-- 不得创建 Feature 实现 Issue 或 PR（属于 `feature-dev`）。
-- 本地写盘授权不包含 `git commit/push`、远程 Issue/PR、merge 或 release。见[授权](../guide/authorization)。
+## 产出文档
 
-## 最小非业务脚手架（例外）
+模板定义需要思考的章节;仓库上下文、访谈答案和工程判断来填充。只创建适用的文档:
 
-仅当用户明确要求，且在 `MACRO DESIGN READY` 之后、另有独立的脚手架写盘授权时，才可创建最小非业务脚手架（包管理、格式化、测试入口、空应用入口）。其中**不得**包含业务逻辑、示例实体、占位接口、完整 Schema 或 UI 页面——且真实命令须同步进 README/TESTING/AGENTS。
+| 文档 | 何时 |
+|---|---|
+| `README.md` | 总是 —— 项目是什么,如何运行 |
+| `docs/PRODUCT.md` | 总是 —— 目标、用户、用例、范围 |
+| `docs/ARCHITECTURE.md` | 总是 —— 模块、数据流、关键决策 |
+| `docs/TESTING.md` | 总是 —— 策略、层级、命令 |
+| `docs/DATABASE.md` | 当产品持久化数据 |
+| `docs/API.md` | 当产品暴露 API |
+| `docs/FRONTEND.md` | 当产品有 UI |
+| `specs/ROADMAP.md` | 总是 —— 功能列表,一个功能标记 `Next` |
+| `specs/F001-*.md …` | 每个功能一份草稿 Spec |
 
-## STOP 条件
+Roadmap 展示通往可用产品的最短可信路径,而不是无所不包的愿望清单。草稿 Spec 填入
+已可决定的内容,其余记录为**开放问题(Open Questions)** 留给 `feature-dev` 与用户
+解决 —— 定义产品的问题在这一阶段绝不允许猜测。
 
-成功路径仅当以下全部为真才停止：
+## 边界
 
-1. 项目访谈完成，且两道 Confirmation Digest 均已核对。
-2. Challenge Pass 完成，且 Decision Authority 确认了修正后的综合。
-3. 正式文件写盘已获明确本地授权（未推导 Git/远程授权）。
-4. Gate 明确输出 `MACRO DESIGN READY`。
-5. 适用的宏观文档存在、一致，且遵循语言策略。
-6. `UI: YES` 有宏观 UX/UI 文档；`UI: NO` 记录了跳过决定。
-7. `AGENTS.md` 包含长期规则与语言策略。
-8. Feature Map、依赖分析与 Roadmap 存在。
-9. 每个 Feature 都有浅层 DRAFT Spec。
-10. 至少一个经权限确认的 `NEXT`——通常恰好一个；并行多选仅在确有不同成员认领时确认（或零 `NEXT` 的 `BLOCKED_HANDOFF`）。
-11. 无业务代码；已授权的最小脚手架通过验证。Self Review 完成且所有发现已修复。
+- 不写业务代码。(为了让文档中的命令真实而做的最小非业务脚手架是允许的 —— 初始化
+  包、搭空的测试运行器。)
+- 不为对称性创建空文件。
+- 未经用户明确授权,不做破坏性或远程操作。
 
-成功时，`coding-start` 建议把每个选定的 `NEXT` 交给 `feature-dev`——每项一个认领成员；但不会自动调用它。
+## 下一步
+
+- [`feature-dev`](../feature-dev/) —— 接手 `Next` 功能并实现它。
+- [`project-onboard`](../project-onboard/) —— Brownfield 对应技能。
