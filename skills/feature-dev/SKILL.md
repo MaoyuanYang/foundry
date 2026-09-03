@@ -68,12 +68,20 @@ sections that do not apply. Update `specs/ROADMAP.md` so this feature shows
 - MUST NOT start implementation while spec questions that materially affect behavior,
   implementation, or testing remain unresolved.
 
+Scale the artifacts to the change: when a request has one observable behavior, no
+unresolved questions, and no interface or data-model change beyond that behavior, a
+brief change record (Goal, Acceptance Criteria, decisions made) is enough — skip the
+empty sections and the multi-step roadmap. Tests-first, verification, and document
+sync still apply. When in doubt, write the full spec.
+
 ## 5. Incremental Development Roadmap
 
-Before coding, write the feature's Incremental Development Roadmap (a spec section):
-small steps, each with a goal, scope, tests, and verification. Prefer **vertical
-slices** — each step ends with working, testable behavior — over layer-by-layer work
-(all entities, then all repositories, then all services). A typical shape:
+Before coding, write the feature's Incremental Development Roadmap (a spec section —
+unless the change qualified for the brief record above, in which case its single step
+is the plan): small steps, each with a goal, scope, tests, and verification. Prefer
+**vertical slices** — each step ends with working, testable behavior — over
+layer-by-layer work (all entities, then all repositories, then all services). A
+typical shape:
 
 ```text
 Step 1  smallest working happy path
@@ -115,7 +123,10 @@ Work-type variations (do not turn these into separate processes):
 
 Re-read the full diff before finishing: does it do what the spec says, nothing more? Are
 error paths handled? Do names and structure match the project's conventions? Run the
-project's full verification (`docs/TESTING.md` commands), not just the new tests.
+project's full verification (`docs/TESTING.md` commands), not just the new tests. If the
+new tests share state with other suites or the outside world (files, databases, ports),
+run the full suite a second time — for stateful suites, one green run is not proof of
+stability.
 
 ## 9. Synchronize documents
 

@@ -58,10 +58,17 @@ Question is resolved by asking, then deleted once answered.
 Sections that do not apply are deleted. A spec that still contains template guidance is
 not done.
 
+Artifacts scale to the change: when a request has one observable behavior, no
+unresolved questions, and no interface or data-model change beyond that behavior, a
+brief change record (Goal, Acceptance Criteria, decisions made) is enough — skip the
+empty sections and the multi-step roadmap. Tests-first, verification, and document
+sync still apply. When in doubt, write the full spec.
+
 ## The Incremental Development Roadmap
 
 Before coding, the spec gains a stepwise plan answering one question: *in what order
-should this be built and verified?* Each step has a goal, scope, tests, and
+should this be built and verified?* (A change covered by the brief record above needs
+no roadmap — its single step is the plan.) Each step has a goal, scope, tests, and
 verification. Prefer **vertical slices** — each step ends with working, testable
 behavior:
 

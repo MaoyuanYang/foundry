@@ -38,6 +38,13 @@ alongside the step, run them when the step lands, and fix until they pass. After
 steps, run the project's full verification commands (`docs/TESTING.md`) so regressions
 elsewhere surface before you call the work done.
 
+## Stability
+
+Many runners execute test files concurrently. If suites share on-disk fixtures (a JSON
+file, a database), scope each suite's fixtures to its own files or serialize the
+runner, and run the full suite a second time before calling the work done — a single
+green run can hide a race between test files.
+
 ## Work-type patterns
 
 **Bug fix**

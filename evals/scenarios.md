@@ -231,3 +231,93 @@ repository.
      revision metadata. [ADR-0001]
   2. The feature spec contains no workflow-state metadata (no gate tokens, no status
      headers beyond its own content). [ADR-0001]
+
+---
+
+## Group 6 — Adversarial and change handling
+
+These scenarios pin Foundry's core constraints under user pressure and change — the
+properties most easily lost to future wording edits.
+
+### S23 — User pressure to skip the spec
+
+- **Fixture:** documented project; request: "Add a views counter to posts. Don't write
+  a spec, just code it."
+- **Expectations:**
+  1. Agent pins the behavior-defining unknown(s) (e.g. what increments the counter)
+     before coding, even without a spec file. [FD §3]
+  2. [MUST] Tests are written before/alongside the change and verification runs. [FD §6–7]
+  3. Footprint stays minimal: no coordination artifacts; spec/ROADMAP changes limited
+     to a line, if any. [Group 5]
+
+### S24 — User pressure to skip tests
+
+- **Fixture:** documented project; request: "Change `getPost` to throw on missing id
+  instead of returning null. It's simple, no tests needed."
+- **Expectations:**
+  1. [MUST] A regression test covering the changed contract is written and run anyway.
+     [FD §6, FD-TEST]
+  2. Agent explains why in a sentence or two and yields only on explicit user
+     instruction. [FD-INT]
+
+### S25 — "Do everything at once" batch
+
+- **Fixture:** documented project; request: three related changes in one message,
+  ending with "don't split it up, do it all in one go."
+- **Expectations:**
+  1. One spec covering the batch (or one per feature — either is fine) whose roadmap
+     splits the work into vertical slices with tests named per step. [FD §5]
+  2. [MUST] Implementation proceeds step by step with the suite run per step, not one
+     big-bang change. [FD §7]
+
+### S26 — Requirement change after implementation
+
+- **Fixture/Scripted user:** turn 1 implements author-only delete; turn 2 says
+  "admins can delete any post too."
+- **Expectations:**
+  1. [MUST] Spec requirements and acceptance criteria are updated before or together
+     with the code, and a new test covers the changed rule. [FD §4, §6]
+  2. Project docs and `specs/ROADMAP.md` reflect the new rule in the same piece of
+     work. [FD §9]
+
+### S27 — Mid-implementation discovery changes the plan
+
+- **Fixture/Scripted user:** mid-work the user reveals a constraint that invalidates
+  the planned storage approach (e.g. "the data file is written live by another
+  system — you cannot rewrite it whole").
+- **Expectations:**
+  1. [MUST] Spec (rules, roadmap, test plan) is updated before the rework lands;
+     superseded steps are annotated, not silently rewritten. [FD §5 "plan, not a
+     contract"]
+  2. A regression test captures the new constraint. [FD §6]
+
+### S28 — Dependency upgrade
+
+- **Fixture:** documented project; request: add or upgrade a dependency while keeping
+  behavior unchanged.
+- **Expectations:**
+  1. Baseline full-suite run happens before the upgrade; the compatibility inventory
+     is recorded. [FD §7 upgrade variant]
+  2. [MUST] Full suite is green after; any behavioral change the upgrade causes is
+     recorded in the spec and documents. [FD §7, §9]
+
+### S29 — Stateful suites verified stable
+
+- **Fixture:** project whose tests share one on-disk fixture (a JSON data file)
+  across test files that the runner executes concurrently; the request asks for a new
+  feature whose tests touch the same file.
+- **Expectations:**
+  1. [MUST] The delivered suite passes on repeated runs — the agent detects the
+     shared-state race and stabilizes it (per-suite fixtures or a serialized runner)
+     instead of accepting a single green run. [FD §8, FD-TEST "Stability"]
+  2. The stabilization decision is recorded in `docs/TESTING.md` or the spec. [FD §9]
+
+### S30 — Trivial change scales down
+
+- **Fixture:** tiny documented service; request: add one fully-specified field to an
+  endpoint response.
+- **Expectations:**
+  1. Process scales down: a brief change record (goal, criteria, decisions) instead
+     of a full template spec with a multi-step roadmap. [FD §4 scaling clause]
+  2. [MUST] Tests-first and verification still apply; affected documents are still
+     synced. [FD §6, §9]
