@@ -16,8 +16,8 @@ documents — business behavior does not change during onboarding.
 - First entry into an unfamiliar repository **when the user asks for durable recovery**.
 
 It does **not** trigger for ordinary Q&A or read-only review, for starting a new project
-([`coding-start`](../coding-start/)), for implementing a feature
-([`feature-dev`](../feature-dev/)), or for independently verifying a documented project
+([`project-start`](../project-start/)), for implementing a feature
+([`project-dev`](../project-dev/)), or for independently verifying a documented project
 against its documents ([`project-verify`](../project-verify/)).
 
 ## Workflow
@@ -39,7 +39,7 @@ Existing Repository
     ↓
 7. Recover Roadmap and Specs   what is Done, partial, or naturally next
     ↓
-8. Stop                        recommend one next feature for feature-dev
+8. Stop                        recommend one next feature for project-dev
 ```
 
 ## Evidence over stale docs
@@ -76,11 +76,11 @@ labels:
 
 - No business-behavior changes during onboarding. Build/test tooling fixes are allowed
   when needed to verify the baseline, and anything touched is recorded.
-- Pre-existing test failures are recorded, not fixed — fixing them is `feature-dev` work.
+- Pre-existing test failures are recorded, not fixed — fixing them is `project-dev` work.
 - No destructive or remote actions without explicit user authorization.
 
 ## Next
 
-- [`feature-dev`](../feature-dev/) — implement the recommended next feature.
-- [`coding-start`](../coding-start/) — the greenfield counterpart.
+- [`project-dev`](../project-dev/) — implement the recommended next feature.
+- [`project-start`](../project-start/) — the greenfield counterpart.
 - [`project-verify`](../project-verify/) — independently audit the restored baseline.

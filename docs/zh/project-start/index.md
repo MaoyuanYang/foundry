@@ -1,12 +1,12 @@
 ---
-title: coding-start
+title: project-start
 ---
 
-# coding-start
+# project-start
 
 把一个模糊的项目想法,转化为编码智能体在功能开发前所需的项目级文档:产品与架构
 文档、Feature Roadmap、草稿 Feature Spec。产出是文档,不是代码 —— 实现属于
-[`feature-dev`](../feature-dev/)。
+[`project-dev`](../project-dev/)。
 
 对已有可信文档的项目,同一套工作流也处理"规划下一波":跳过已有的部分,只就新方向
 访谈,更新 Roadmap 和草稿 Spec。
@@ -18,7 +18,7 @@ title: coding-start
 - 在已有文档的项目上说"规划下一阶段 / 给 Roadmap 加功能"。
 
 它**不会**为接管缺少文档的仓库触发([`project-onboard`](../project-onboard/)),不会
-为实现某个功能触发([`feature-dev`](../feature-dev/)),也不会为独立核查项目现状与
+为实现某个功能触发([`project-dev`](../project-dev/)),也不会为独立核查项目现状与
 文档是否一致触发([`project-verify`](../project-verify/))。
 
 ## 工作流
@@ -36,7 +36,7 @@ title: coding-start
     ↓
 5. 写草稿 Spec     specs/F001-<slug>.md,记录开放问题,而不是编造答案
     ↓
-6. 停止            移交 feature-dev
+6. 停止            移交 project-dev
 ```
 
 ## 先扫描文档,再访谈
@@ -77,7 +77,7 @@ title: coding-start
 | `specs/F001-*.md …` | 每个功能一份草稿 Spec |
 
 Roadmap 展示通往可用产品的最短可信路径,而不是无所不包的愿望清单。草稿 Spec 填入
-已可决定的内容,其余记录为**开放问题(Open Questions)** 留给 `feature-dev` 与用户
+已可决定的内容,其余记录为**开放问题(Open Questions)** 留给 `project-dev` 与用户
 解决 —— 由用户决定的问题在这一阶段绝不允许猜测。
 
 ## 边界
@@ -89,6 +89,6 @@ Roadmap 展示通往可用产品的最短可信路径,而不是无所不包的�
 
 ## 下一步
 
-- [`feature-dev`](../feature-dev/) —— 接手 `Next` 功能并实现它。
+- [`project-dev`](../project-dev/) —— 接手 `Next` 功能并实现它。
 - [`project-onboard`](../project-onboard/) —— Brownfield 对应技能。
 - [`project-verify`](../project-verify/) —— 功能交付后,对照文档审计现状。

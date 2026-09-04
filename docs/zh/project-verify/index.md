@@ -6,7 +6,7 @@ title: project-verify
 
 文档定义了应当为真的事情;`project-verify` 检查它是否确实为真。面向一个已有文档和
 Roadmap 的项目,对照文档的承诺验证其现状,然后给出有证据支撑的发现报告。产出是发现
-报告,而不是修复:修复和实现属于 [`feature-dev`](../feature-dev/)。
+报告,而不是修复:修复和实现属于 [`project-dev`](../project-dev/)。
 
 ## 何时触发
 
@@ -14,8 +14,8 @@ Roadmap 的项目,对照文档的承诺验证其现状,然后给出有证据支�
 - "审计 Roadmap 里标记 `Done` 的功能是否真的完成了。"
 - "发布前检查文档是否仍然符合现实。"
 
-它**不会**为实现或修复任何东西而触发([`feature-dev`](../feature-dev/)),不会为创建或
-修复项目文档而触发([`coding-start`](../coding-start/) /
+它**不会**为实现或修复任何东西而触发([`project-dev`](../project-dev/)),不会为创建或
+修复项目文档而触发([`project-start`](../project-start/) /
 [`project-onboard`](../project-onboard/)),也不会为普通问答和只读的代码讲解而触发。
 
 ## 工作流
@@ -38,7 +38,7 @@ Roadmap 的项目,对照文档的承诺验证其现状,然后给出有证据支�
     ↓
 7. 补充仅用于验证的检查  证据缺失处;不改任何行为
     ↓
-8. 报告发现并停止        发现报告;修复交给 feature-dev
+8. 报告发现并停止        发现报告;修复交给 project-dev
 ```
 
 ## 范围来自文档
@@ -63,7 +63,7 @@ Roadmap 的项目,对照文档的承诺验证其现状,然后给出有证据支�
 | `specs/ROADMAP.md` | 应用户要求,把需要处理的发现记为 `Draft` 条目 |
 
 每条发现写明问题是什么、观察到的证据、哪份文档或 Spec 做出了承诺、严重程度和建议的
-后续工作 —— 但修复是 `feature-dev` 的工作,不是验证的工作。
+后续工作 —— 但修复是 `project-dev` 的工作,不是验证的工作。
 
 ## 边界
 
@@ -73,5 +73,5 @@ Roadmap 的项目,对照文档的承诺验证其现状,然后给出有证据支�
 
 ## 下一步
 
-- [`feature-dev`](../feature-dev/) —— 把发现变成修复。
+- [`project-dev`](../project-dev/) —— 把发现变成修复。
 - [`project-onboard`](../project-onboard/) —— 当还没有可信基线可供验证时。

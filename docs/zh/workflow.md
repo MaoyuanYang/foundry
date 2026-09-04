@@ -51,19 +51,19 @@ Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓�
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
-| [`coding-start`](./coding-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
+| [`project-start`](./project-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](./project-onboard/) | Brownfield · 未知 → 理解 | 验证仓库可运行 → 恢复 AS-IS 文档、Roadmap、Spec |
-| [`feature-dev`](./feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
+| [`project-dev`](./project-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
 | [`project-verify`](./project-verify/) | 保障 · 声称 → 查证 | 文档驱动的验证 → 带证据的发现报告 |
 
 ```text
-新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
-                                                  (规划下一波功能回到 coding-start)
-存量仓库 ──────▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+新想法 ────────▶ project-start ─────▶ project-dev ──▶ project-dev ──▶ ...
+                                                  (规划下一波功能回到 project-start)
+存量仓库 ──────▶ project-onboard ──▶ project-dev ──▶ project-dev ──▶ ...
                                                   (用 project-verify 对照文档核查现状)
 ```
 
-`feature-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖
+`project-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖
 升级 —— 使用同一个循环。变化的只是入口,不是流程:
 
 - **Bug 修复** —— 先用失败测试复现,再修复直到通过。
@@ -105,7 +105,7 @@ specs/
 - **In Progress** —— 正在实现。
 - **Done** —— 已实现并验证。
 
-在已有文档的项目上规划下一波功能,是 `coding-start` 的再进入:就新方向访谈,然后
+在已有文档的项目上规划下一波功能,是 `project-start` 的再进入:就新方向访谈,然后
 添加 Roadmap 条目和草稿 Spec —— 不需要独立流程。
 
 ## 文档保持同步
@@ -130,5 +130,5 @@ Foundry 不把文档当作一次性的前置产物。最终状态是:
 ## 下一步
 
 - [安装](./install)四个 Skill。
-- 阅读 Skill 页面:[coding-start](./coding-start/)、[project-onboard](./project-onboard/)、
-  [feature-dev](./feature-dev/)、[project-verify](./project-verify/)。
+- 阅读 Skill 页面:[project-start](./project-start/)、[project-onboard](./project-onboard/)、
+  [project-dev](./project-dev/)、[project-verify](./project-verify/)。

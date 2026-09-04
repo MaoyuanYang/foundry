@@ -52,7 +52,7 @@ checkpoint instead of running extra rounds for low-value detail.
 
 The interview is complete when every important document section has a reliable source —
 the user, the repository, or a recorded engineering decision — and no user-owned gap
-remains unresolved. A user-owned gap that `feature-dev` can resolve later with better
+remains unresolved. A user-owned gap that `project-dev` can resolve later with better
 context belongs in the draft spec's `Open Questions`, not in another interview round.
 
 ## Summary checkpoint

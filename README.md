@@ -39,26 +39,26 @@ Idea → Understand → Interview → Documents / Spec → Plan → Tests → Co
 
 | Skill | Phase | Role |
 |---|---|---|
-| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
+| [`project-start`](skills/project-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → implementation plan → tests from acceptance criteria → code → verify → sync docs |
+| [`project-dev`](skills/project-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → implementation plan → tests from acceptance criteria → code → verify → sync docs |
 | [`project-verify`](skills/project-verify/SKILL.md) | Assurance · claimed → checked | Derive the verification scope from the documents → run declared verification → exercise documented flows → evidence-backed findings report |
 
 ```text
-New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
-                                                    (plan next wave via coding-start)
-Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+New idea ──────▶ project-start ─────▶ project-dev ──▶ project-dev ──▶ ...
+                                                    (plan next wave via project-start)
+Existing repo ──▶ project-onboard ──▶ project-dev ──▶ project-dev ──▶ ...
                                                     (check state vs documents via project-verify)
 ```
 
-`feature-dev` covers the whole family of development work — new features, changes, bug
+`project-dev` covers the whole family of development work — new features, changes, bug
 fixes, refactors, technical-debt paydown, and dependency upgrades — with the same loop:
 a bug fix starts from a failing test, a refactor starts from confirmed coverage.
 
 `project-verify` checks the current state against the documents: whether `Done` features
 are actually delivered, whether acceptance criteria have executable evidence, and whether
 documented commands and flows still work. It records findings with evidence; fixes return
-to `feature-dev`.
+to `project-dev`.
 
 ## Installation
 
@@ -69,9 +69,9 @@ Copy the four folders into your agent's skills directory.
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
-cp -r foundry/skills/coding-start      ~/.agents/skills/
+cp -r foundry/skills/project-start     ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
-cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-dev       ~/.agents/skills/
 cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
@@ -84,7 +84,7 @@ all four skills listed).
 
 > "Initialize a new greenfield project: a community local-services platform."
 
-`coding-start` reads what you already provided, scans the document templates,
+`project-start` reads what you already provided, scans the document templates,
 interviews you only about the user-owned gaps, writes the project documents and
 `specs/ROADMAP.md` with draft Feature Specs — then stops. No business code.
 
@@ -100,7 +100,7 @@ reality, and recovers a Roadmap — without changing business behavior.
 
 > "Implement feature F001 according to the workflow."
 
-`feature-dev` reads the project documents and the relevant code, interviews you until
+`project-dev` reads the project documents and the relevant code, interviews you until
 the Spec's user-owned questions are resolved, plans small vertical slices, derives tests
 from the acceptance criteria, implements step by step until the tests pass, and updates
 the documents it made untrue.
@@ -113,7 +113,7 @@ the documents it made untrue.
 commands `README` and `TESTING` declare, the core use cases `PRODUCT` documents, the
 features `ROADMAP` marks `Done` — runs them, exercises the flows, and writes a findings
 report with evidence, affected documents, severity, and recommended next work. Nothing
-is fixed; fixes go back to `feature-dev`.
+is fixed; fixes go back to `project-dev`.
 
 ## Principles
 

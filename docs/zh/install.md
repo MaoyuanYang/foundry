@@ -23,9 +23,9 @@ Foundry 遵循标准 **Agent Skills** 格式:每个 Skill 是一个包含 `SKILL
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
-cp -r foundry/skills/coding-start      ~/.agents/skills/
+cp -r foundry/skills/project-start     ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
-cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-dev       ~/.agents/skills/
 cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
@@ -33,9 +33,9 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 
 ```powershell
 git clone https://github.com/MaoyuanYang/foundry.git
-Copy-Item -Recurse foundry\skills\coding-start    $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-start   $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-onboard $HOME\.agents\skills\
-Copy-Item -Recurse foundry\skills\feature-dev     $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-dev     $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-verify  $HOME\.agents\skills\
 ```
 
@@ -49,7 +49,7 @@ Copy-Item -Recurse foundry\skills\project-verify  $HOME\.agents\skills\
 opencode debug skill
 ```
 
-你应该能看到 `coding-start`、`project-onboard`、`feature-dev` 和 `project-verify` 及其
+你应该能看到 `project-start`、`project-onboard`、`project-dev` 和 `project-verify` 及其
 位置。每个 Skill 也符合 Agent Skills 模式(`name` + `description` frontmatter、小写连字符
 文件夹名)。
 
@@ -57,9 +57,9 @@ opencode debug skill
 
 | Skill | 文件夹 | 用途 |
 |---|---|---|
-| `coding-start` | `skills/coding-start/` | Greenfield 项目文档、Roadmap、草稿 Spec |
+| `project-start` | `skills/project-start/` | Greenfield 项目文档、Roadmap、草稿 Spec |
 | `project-onboard` | `skills/project-onboard/` | Brownfield 恢复:验证基线、AS-IS 文档 |
-| `feature-dev` | `skills/feature-dev/` | 单项开发工作:Spec → 测试 → 代码 → 文档 |
+| `project-dev` | `skills/project-dev/` | 单项开发工作:Spec → 测试 → 代码 → 文档 |
 | `project-verify` | `skills/project-verify/` | 文档驱动的验证:发现报告 |
 
 每个 Skill 都是自包含的:
@@ -75,14 +75,22 @@ opencode debug skill
 
 ```bash
 cd foundry && git pull
-cp -r skills/coding-start skills/project-onboard skills/feature-dev skills/project-verify ~/.agents/skills/
+cp -r skills/project-start skills/project-onboard skills/project-dev skills/project-verify ~/.agents/skills/
 ```
 
 如果你安装过旧版 Foundry(包含 `evolve-dev` 或 `maintenance-dev`),请删除这两个
-文件夹 —— 残留的 Skill 会继续被触发,并与现已覆盖这类工作的 `feature-dev` 冲突:
+文件夹 —— 残留的 Skill 会继续被触发,并与现已覆盖这类工作的 `project-dev` 冲突:
 
 ```bash
 rm -rf ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
+```
+
+如果你安装过旧版 Foundry(包含 `coding-start` 或 `feature-dev`),也请删除这两个
+文件夹 —— 它们是 `project-start` 和 `project-dev` 的旧名,残留的 Skill 会继续被
+触发并与改名后的 Skill 冲突:
+
+```bash
+rm -rf ~/.agents/skills/coding-start ~/.agents/skills/feature-dev
 ```
 
 你的**项目**文件(`README.md`、`docs/`、`specs/`)不会被更新触碰 —— Foundry 只改变
@@ -93,11 +101,11 @@ rm -rf ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
 从技能目录移除四个文件夹并重启智能体:
 
 ```bash
-rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev ~/.agents/skills/project-verify
+rm -rf ~/.agents/skills/project-start ~/.agents/skills/project-onboard ~/.agents/skills/project-dev ~/.agents/skills/project-verify
 ```
 
 ## 下一步
 
 - [工作流](../workflow) —— 工作如何从想法走向已验证的代码。
-- Skill 页面:[coding-start](./coding-start/)、[project-onboard](./project-onboard/)、
-  [feature-dev](./feature-dev/)、[project-verify](./project-verify/)。
+- Skill 页面:[project-start](./project-start/)、[project-onboard](./project-onboard/)、
+  [project-dev](./project-dev/)、[project-verify](./project-verify/)。

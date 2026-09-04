@@ -15,7 +15,7 @@ This file governs the entire Foundry repository.
 ## Repository Structure
 
 - `skills/` contains the four independently installable Agent Skills:
-  `coding-start`, `project-onboard`, `feature-dev`, `project-verify`.
+  `project-start`, `project-onboard`, `project-dev`, `project-verify`.
 - `docs/` contains the English documentation website; `docs/zh/` contains its Chinese
   localization.
 - `adr/` records architecture decisions for Foundry itself.
@@ -24,8 +24,8 @@ This file governs the entire Foundry repository.
 
 - Run `npm run docs:build` after documentation or VitePress changes.
 - Run `npm run skills:verify` after any Skill change.
-- The `feature-spec.template.md` file is intentionally duplicated in `coding-start` and
-  `feature-dev`; keep the two copies byte-identical.
+- The `feature-spec.template.md` file is intentionally duplicated in `project-start` and
+  `project-dev`; keep the two copies byte-identical.
 
 ## Safety and Delivery
 

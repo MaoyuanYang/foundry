@@ -30,12 +30,12 @@ could be produced in this pass.>
 
 | # | Finding | Evidence | Affected document / spec | Severity | Recommended next work |
 | --- | --- | --- | --- | --- | --- |
-| 1 | <what is wrong> | <the observed evidence> | <which document or spec makes the promise> | <High / Medium / Low> | <the concrete next work, for feature-dev> |
+| 1 | <what is wrong> | <the observed evidence> | <which document or spec makes the promise> | <High / Medium / Low> | <the concrete next work, for project-dev> |
 
 <Severity: **High** — a documented promise is false, or the build or test suite fails.
 **Medium** — a promise lacks executable evidence, an integration gap, or a document
 section has drifted from reality. **Low** — minor inconsistency with little practical
-impact. Findings are recorded, not fixed — fixing them is feature-dev work.>
+impact. Findings are recorded, not fixed — fixing them is project-dev work.>
 
 ## Not Exercised
 

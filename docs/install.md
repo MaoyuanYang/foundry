@@ -24,9 +24,9 @@ Clone the repository, then copy the four skill folders into your skills director
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
-cp -r foundry/skills/coding-start      ~/.agents/skills/
+cp -r foundry/skills/project-start     ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
-cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-dev       ~/.agents/skills/
 cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
@@ -34,9 +34,9 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 
 ```powershell
 git clone https://github.com/MaoyuanYang/foundry.git
-Copy-Item -Recurse foundry\skills\coding-start    $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-start   $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-onboard $HOME\.agents\skills\
-Copy-Item -Recurse foundry\skills\feature-dev     $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-dev     $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-verify  $HOME\.agents\skills\
 ```
 
@@ -50,7 +50,7 @@ For OpenCode, run:
 opencode debug skill
 ```
 
-You should see `coding-start`, `project-onboard`, `feature-dev`, and `project-verify`
+You should see `project-start`, `project-onboard`, `project-dev`, and `project-verify`
 listed with their locations. Each skill also validates against the Agent Skills schema
 (`name` + `description` frontmatter, lowercase-hyphen folder names).
 
@@ -58,9 +58,9 @@ listed with their locations. Each skill also validates against the Agent Skills 
 
 | Skill | Folder | Purpose |
 |---|---|---|
-| `coding-start` | `skills/coding-start/` | Greenfield project documents, Roadmap, draft Specs |
+| `project-start` | `skills/project-start/` | Greenfield project documents, Roadmap, draft Specs |
 | `project-onboard` | `skills/project-onboard/` | Brownfield recovery: verified baseline, AS-IS docs |
-| `feature-dev` | `skills/feature-dev/` | One piece of development work: spec → tests → code → docs |
+| `project-dev` | `skills/project-dev/` | One piece of development work: spec → tests → code → docs |
 | `project-verify` | `skills/project-verify/` | Document-driven verification pass: findings report |
 
 Each skill is self-contained:
@@ -77,15 +77,23 @@ folder is safe):
 
 ```bash
 cd foundry && git pull
-cp -r skills/coding-start skills/project-onboard skills/feature-dev skills/project-verify ~/.agents/skills/
+cp -r skills/project-start skills/project-onboard skills/project-dev skills/project-verify ~/.agents/skills/
 ```
 
 If you installed an older Foundry that shipped `evolve-dev` or `maintenance-dev`, remove
-those folders — leftover skills keep triggering and conflict with `feature-dev`, which now
+those folders — leftover skills keep triggering and conflict with `project-dev`, which now
 covers that work:
 
 ```bash
 rm -rf ~/.agents/skills/evolve-dev ~/.agents/skills/maintenance-dev
+```
+
+If you installed an older Foundry that shipped `coding-start` or `feature-dev`, remove
+those folders too — they are `project-start` and `project-dev` under their old names, and
+leftover skills keep triggering and conflict with the renamed ones:
+
+```bash
+rm -rf ~/.agents/skills/coding-start ~/.agents/skills/feature-dev
 ```
 
 Your **project** files (`README.md`, `docs/`, `specs/`) are never touched by an update —
@@ -96,11 +104,11 @@ Foundry only changes how the agent works, not what it already produced.
 Remove the four folders from your skills directory and restart your agent:
 
 ```bash
-rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev ~/.agents/skills/project-verify
+rm -rf ~/.agents/skills/project-start ~/.agents/skills/project-onboard ~/.agents/skills/project-dev ~/.agents/skills/project-verify
 ```
 
 ## Next
 
 - [Workflow](./workflow) — how work moves from idea to verified code.
-- The skill pages: [coding-start](./coding-start/), [project-onboard](./project-onboard/),
-  [feature-dev](./feature-dev/), [project-verify](./project-verify/).
+- The skill pages: [project-start](./project-start/), [project-onboard](./project-onboard/),
+  [project-dev](./project-dev/), [project-verify](./project-verify/).

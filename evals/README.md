@@ -1,7 +1,7 @@
 # Foundry Behavioral Eval Suite
 
 This directory holds the scenario-based behavioral evaluation for the four Skills
-(`coding-start`, `project-onboard`, `feature-dev`, `project-verify`). It complements
+(`project-start`, `project-onboard`, `project-dev`, `project-verify`). It complements
 `scripts/verify-skills.mjs` (static consistency) by testing **behavior**: what an agent
 actually does when a Skill is loaded and driven to a decision point.
 

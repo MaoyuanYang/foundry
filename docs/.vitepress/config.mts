@@ -44,9 +44,9 @@ export default defineConfig({
           {
             text: 'Skills',
             items: [
-              { text: 'coding-start', link: '/coding-start/' },
+              { text: 'project-start', link: '/project-start/' },
               { text: 'project-onboard', link: '/project-onboard/' },
-              { text: 'feature-dev', link: '/feature-dev/' },
+              { text: 'project-dev', link: '/project-dev/' },
               { text: 'project-verify', link: '/project-verify/' }
             ]
           },
@@ -62,19 +62,19 @@ export default defineConfig({
             ]
           },
           {
-            text: 'coding-start',
-            items: [{ text: 'Overview', link: '/coding-start/' }]
+            text: 'project-start',
+            items: [{ text: 'Overview', link: '/project-start/' }]
           },
           {
             text: 'project-onboard',
             items: [{ text: 'Overview', link: '/project-onboard/' }]
           },
           {
-            text: 'feature-dev',
+            text: 'project-dev',
             items: [
-              { text: 'Overview', link: '/feature-dev/' },
-              { text: 'Spec & Interview', link: '/feature-dev/spec' },
-              { text: 'Testing & Work Types', link: '/feature-dev/testing' }
+              { text: 'Overview', link: '/project-dev/' },
+              { text: 'Spec & Interview', link: '/project-dev/spec' },
+              { text: 'Testing & Work Types', link: '/project-dev/testing' }
             ]
           },
           {
@@ -100,9 +100,9 @@ export default defineConfig({
           {
             text: 'Skills',
             items: [
-              { text: 'coding-start', link: '/zh/coding-start/' },
+              { text: 'project-start', link: '/zh/project-start/' },
               { text: 'project-onboard', link: '/zh/project-onboard/' },
-              { text: 'feature-dev', link: '/zh/feature-dev/' },
+              { text: 'project-dev', link: '/zh/project-dev/' },
               { text: 'project-verify', link: '/zh/project-verify/' }
             ]
           },
@@ -118,19 +118,19 @@ export default defineConfig({
             ]
           },
           {
-            text: 'coding-start',
-            items: [{ text: '总览', link: '/zh/coding-start/' }]
+            text: 'project-start',
+            items: [{ text: '总览', link: '/zh/project-start/' }]
           },
           {
             text: 'project-onboard',
             items: [{ text: '总览', link: '/zh/project-onboard/' }]
           },
           {
-            text: 'feature-dev',
+            text: 'project-dev',
             items: [
-              { text: '总览', link: '/zh/feature-dev/' },
-              { text: 'Spec 与访谈', link: '/zh/feature-dev/spec' },
-              { text: '测试与工作类型', link: '/zh/feature-dev/testing' }
+              { text: '总览', link: '/zh/project-dev/' },
+              { text: 'Spec 与访谈', link: '/zh/project-dev/spec' },
+              { text: '测试与工作类型', link: '/zh/project-dev/testing' }
             ]
           },
           {

@@ -9,7 +9,7 @@
 ADR-0001 collapsed Foundry to three skills and made documents the single source of
 truth: they define scope, requirements, and acceptance criteria. But nothing in the
 suite independently checks that the documents' promises hold. Each existing skill
-verifies only its own slice: `feature-dev` verifies the change it just made, and
+verifies only its own slice: `project-dev` verifies the change it just made, and
 `project-onboard` runs verification only to establish a baseline before repairing
 documents. Whether a Roadmap full of `Done` features is actually delivered, whether
 acceptance criteria have executable evidence, and whether documented commands and flows
@@ -39,11 +39,11 @@ Add a fourth skill, `project-verify`, guided by one sentence:
    audit rather than a party to the drift.
 5. Findings are recorded in `docs/VERIFICATION.md` with the finding, evidence, affected
    document or spec, severity, and recommended next work. Fixes continue with
-   `feature-dev`; no stages, gates, or approval machinery are introduced.
+   `project-dev`; no stages, gates, or approval machinery are introduced.
 
 ## Alternatives Considered
 
-- **A "verify mode" inside `feature-dev`.** Rejected: verification must be independent of
+- **A "verify mode" inside `project-dev`.** Rejected: verification must be independent of
   the change claiming completion — the skill that wrote the code cannot audit it.
 - **Extend `project-onboard` with a verification pass.** Rejected: onboarding repairs
   documents; verification must not touch them. Different outputs, different boundaries.
@@ -52,8 +52,8 @@ Add a fourth skill, `project-verify`, guided by one sentence:
 
 ## Consequences
 
-- Foundry is four skills: `coding-start` (documents), `project-onboard` (recovery),
-  `feature-dev` (implementation), `project-verify` (independent verification).
+- Foundry is four skills: `project-start` (documents), `project-onboard` (recovery),
+  `project-dev` (implementation), `project-verify` (independent verification).
 - ADR-0002's ownership vocabulary extends to `project-verify`: user-owned intent
   questions are asked; everything else is answered from evidence.
 - `scripts/verify-skills.mjs` enrolls the new skill; every SKILL.md routes to all

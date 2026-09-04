@@ -1,6 +1,6 @@
 # AS-IS Project Document Templates
 
-Same document set as `coding-start`, written to describe the system as it actually is.
+Same document set as `project-start`, written to describe the system as it actually is.
 Mark statements whose reliability matters with **Observed** (verified from code, tests,
 or a successful run), **Inferred** (best reading of the code, not verified), or
 **Unknown** (cannot be determined from the repository). Delete sections or files that do

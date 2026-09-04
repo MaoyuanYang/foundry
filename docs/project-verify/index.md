@@ -8,7 +8,7 @@ Documents define what should be true; `project-verify` checks whether it is actu
 true. Take a project that already has documents and a Roadmap, and verify its current
 state against what those documents promise — then report evidence-backed findings. The
 output is a findings report, not fixes: repairs and implementation belong to
-[`feature-dev`](../feature-dev/).
+[`project-dev`](../project-dev/).
 
 ## When it triggers
 
@@ -16,8 +16,8 @@ output is a findings report, not fixes: repairs and implementation belong to
 - "Audit whether the Roadmap's `Done` features are actually done."
 - "Check the docs still match reality before the release."
 
-It does **not** trigger to implement or fix anything ([`feature-dev`](../feature-dev/)),
-to create or repair project documents ([`coding-start`](../coding-start/) /
+It does **not** trigger to implement or fix anything ([`project-dev`](../project-dev/)),
+to create or repair project documents ([`project-start`](../project-start/) /
 [`project-onboard`](../project-onboard/)), or for ordinary Q&A and read-only code
 explanation.
 
@@ -41,7 +41,7 @@ Documented Project
     ↓
 7. Add verification-only checks         where a promise lacks evidence; no behavior changes
     ↓
-8. Report findings and stop             findings report; fixes continue with feature-dev
+8. Report findings and stop             findings report; fixes continue with project-dev
 ```
 
 ## Scope comes from the documents
@@ -67,7 +67,7 @@ check script, that is allowed — verification-only, never a business-behavior c
 | `specs/ROADMAP.md` | on request, findings that need work recorded as `Draft` entries |
 
 Each finding states what is wrong, the evidence observed, which document or spec makes
-the promise, the severity, and the recommended next work — but fixing is `feature-dev`
+the promise, the severity, and the recommended next work — but fixing is `project-dev`
 work, not verification work.
 
 ## Boundaries
@@ -80,6 +80,6 @@ work, not verification work.
 
 ## Next
 
-- [`feature-dev`](../feature-dev/) — turn the findings into fixes.
+- [`project-dev`](../project-dev/) — turn the findings into fixes.
 - [`project-onboard`](../project-onboard/) — when there is no trustworthy baseline to
   verify against yet.

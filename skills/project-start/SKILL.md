@@ -1,14 +1,14 @@
 ---
-name: coding-start
-description: "Use ONLY when the user explicitly asks to start or initialize a new Greenfield project, or to plan the next wave of features (update the Roadmap, add draft Feature Specs) for an existing project that already has trustworthy documents. Runs understand-first context reading, a focused interview, project documents (README, PRODUCT, ARCHITECTURE, TESTING, and applicable extras), a Feature Roadmap, and draft Feature Specs. MUST NOT be used to implement a feature (feature-dev), to take over an undocumented Brownfield repository (project-onboard), or to independently verify the current project state against its documents (project-verify)."
+name: project-start
+description: "Use ONLY when the user explicitly asks to start or initialize a new Greenfield project, or to plan the next wave of features (update the Roadmap, add draft Feature Specs) for an existing project that already has trustworthy documents. Runs understand-first context reading, a focused interview, project documents (README, PRODUCT, ARCHITECTURE, TESTING, and applicable extras), a Feature Roadmap, and draft Feature Specs. MUST NOT be used to implement a feature (project-dev), to take over an undocumented Brownfield repository (project-onboard), or to independently verify the current project state against its documents (project-verify)."
 ---
 
-# coding-start
+# project-start
 
 Turn a rough project idea into the project-level documents a coding agent needs before
 feature work: product and architecture documents, a Feature Roadmap, and draft Feature
 Specs. The output of this skill is documents, not code. Feature implementation belongs to
-`feature-dev`.
+`project-dev`.
 
 For an existing project that already has trustworthy documents, the same workflow applies
 when the user asks to plan the next wave of features: skip what already exists, interview
@@ -89,15 +89,15 @@ credible path to a usable product, not an exhaustive wish list. Mark one feature
 ## 5. Draft Feature Specs
 
 Write a draft spec for each roadmap feature using `assets/feature-spec.template.md`
-(the same template `feature-dev` later refines). Drafts fill in what is already decidable
+(the same template `project-dev` later refines). Drafts fill in what is already decidable
 — goal, background, rough requirements — and record the rest as open questions for
-`feature-dev` to resolve with the user. Do not invent answers to user-owned questions
+`project-dev` to resolve with the user. Do not invent answers to user-owned questions
 here; leave them in `Open Questions`.
 
 ## 6. Stop
 
 When the documents, Roadmap, and draft Specs exist, stop. Tell the user what was created,
-which feature is marked `Next`, and that implementation continues with `feature-dev`.
+which feature is marked `Next`, and that implementation continues with `project-dev`.
 
 ## Boundaries
 

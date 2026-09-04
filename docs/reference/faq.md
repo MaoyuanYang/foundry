@@ -7,21 +7,21 @@ title: FAQ
 ## General
 
 **Will the skills write code for me automatically?**
-`coding-start` and `project-onboard` produce documents and stop before business code.
-Only `feature-dev` writes code, and only after the spec's user-owned questions are
+`project-start` and `project-onboard` produce documents and stop before business code.
+Only `project-dev` writes code, and only after the spec's user-owned questions are
 resolved and its tests are derived from the acceptance criteria. `project-verify` may
 add verification-only tests or check scripts to make a documented promise checkable —
 never business code.
 
 **How do I do a refactoring, an upgrade, or a debt cleanup?**
-Ask `feature-dev` for it directly — "Refactor the auth module without changing
+Ask `project-dev` for it directly — "Refactor the auth module without changing
 behavior." The loop is the same as any feature; only the entry point adapts: a refactor
 starts by confirming behavioral coverage (adding regression tests where missing), and an
 upgrade starts by inventorying breakage. A refactor that would change observable
 behavior is a change, not a refactor — split it out as its own feature.
 
 **We finished the MVP. How do we plan the next wave of features?**
-Re-enter `coding-start` on the documented project: it interviews about the new
+Re-enter `project-start` on the documented project: it interviews about the new
 direction, then adds Roadmap entries and draft Specs. No separate process is needed —
 planning and implementation are already separated by skill.
 
@@ -40,7 +40,7 @@ adding verification-only checks. Recover first, verify later.
 Whenever trust in the documents matters: before a release, after a batch of features,
 after onboarding, or when the Roadmap claims work is `Done` and you want evidence rather
 than the claim. It reports findings with severity and recommended next work; fixes go to
-`feature-dev`.
+`project-dev`.
 
 **Does Foundry create any coordination files in my project?**
 No. The whole project state is the document set (`README.md`, `docs/`, `specs/`) —

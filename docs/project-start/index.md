@@ -1,13 +1,13 @@
 ---
-title: coding-start
+title: project-start
 ---
 
-# coding-start
+# project-start
 
 Turn a rough project idea into the project-level documents a coding agent needs before
 feature work: product and architecture documents, a Feature Roadmap, and draft Feature
 Specs. The output is documents, not code — implementation belongs to
-[`feature-dev`](../feature-dev/).
+[`project-dev`](../project-dev/).
 
 For an existing project that already has trustworthy documents, the same workflow handles
 "plan the next wave": skip what exists, interview only about the new direction, update
@@ -21,7 +21,7 @@ the Roadmap and draft Specs.
 
 It does **not** trigger for taking over an undocumented repository
 ([`project-onboard`](../project-onboard/)), implementing a feature
-([`feature-dev`](../feature-dev/)), or independently verifying the current project state
+([`project-dev`](../project-dev/)), or independently verifying the current project state
 ([`project-verify`](../project-verify/)).
 
 ## Workflow
@@ -39,7 +39,7 @@ Project Idea
     ↓
 5. Write draft Specs       specs/F001-<slug>.md with open questions, not invented answers
     ↓
-6. Stop                    hand off to feature-dev
+6. Stop                    hand off to project-dev
 ```
 
 ## Scan the documents, then interview
@@ -86,7 +86,7 @@ engineering judgment fill them in. Only applicable documents are created:
 
 The Roadmap shows the shortest credible path to a usable product, not an exhaustive wish
 list. Draft Specs fill in what is decidable and record the rest as **Open Questions** for
-`feature-dev` to resolve — user-owned questions are never guessed at this stage.
+`project-dev` to resolve — user-owned questions are never guessed at this stage.
 
 ## Boundaries
 
@@ -97,7 +97,7 @@ list. Draft Specs fill in what is decidable and record the rest as **Open Questi
 
 ## Next
 
-- [`feature-dev`](../feature-dev/) — pick up the `Next` feature and implement it.
+- [`project-dev`](../project-dev/) — pick up the `Next` feature and implement it.
 - [`project-onboard`](../project-onboard/) — the brownfield counterpart.
 - [`project-verify`](../project-verify/) — audit the documents against reality once
   features ship.

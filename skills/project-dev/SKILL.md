@@ -1,9 +1,9 @@
 ---
-name: feature-dev
-description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), recovery of an undocumented repository (project-onboard), or independent whole-project verification against the documents (project-verify)."
+name: project-dev
+description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (project-start), recovery of an undocumented repository (project-onboard), or independent whole-project verification against the documents (project-verify)."
 ---
 
-# feature-dev
+# project-dev
 
 Deliver one piece of development work — a feature, change, bug fix, refactor, debt
 paydown, or dependency upgrade — by turning an agreed spec into verified code, kept in
@@ -43,7 +43,7 @@ Read the project documents (`README`, `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`,
 `docs/TESTING.md`, and any applicable `DATABASE` / `API` / `FRONTEND`) and
 `specs/ROADMAP.md`, then the code and tests the request touches. Do not plan from the
 request text alone — the repository is the primary source. If the project has no
-trustworthy documents at all, stop and recommend `coding-start` or `project-onboard`
+trustworthy documents at all, stop and recommend `project-start` or `project-onboard`
 first.
 
 ## 3. Interview the user

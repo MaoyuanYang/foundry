@@ -14,8 +14,8 @@ onboarding 期间不改变业务行为。
 - "这个代码库没有有用的文档 —— 搞清楚它是干什么的。"
 - 第一次进入陌生仓库,**且用户明确要求持久恢复**时。
 
-它**不会**为普通问答或只读浏览触发,不会为启动新项目([`coding-start`](../coding-start/))
-或实现功能([`feature-dev`](../feature-dev/))触发,也不会为独立验证有文档的项目与其
+它**不会**为普通问答或只读浏览触发,不会为启动新项目([`project-start`](../project-start/))
+或实现功能([`project-dev`](../project-dev/))触发,也不会为独立验证有文档的项目与其
 文档的一致性触发([`project-verify`](../project-verify/))。
 
 ## 工作流
@@ -37,7 +37,7 @@ onboarding 期间不改变业务行为。
     ↓
 7. 恢复 Roadmap 和 Spec   哪些已完成、部分完成、自然接下来
     ↓
-8. 停止              为 feature-dev 推荐一个下一步功能
+8. 停止              为 project-dev 推荐一个下一步功能
 ```
 
 ## 证据优先于过时文档
@@ -72,11 +72,11 @@ onboarding 期间不改变业务行为。
 
 - onboarding 期间不改变业务行为。为验证基线所必需的构建/测试工具修复是允许的,
   且触碰过的内容会被记录。
-- 既有的测试失败被记录,而不是被修复 —— 修复它们是 `feature-dev` 的工作。
+- 既有的测试失败被记录,而不是被修复 —— 修复它们是 `project-dev` 的工作。
 - 未经用户明确授权,不做破坏性或远程操作。
 
 ## 下一步
 
-- [`feature-dev`](../feature-dev/) —— 实现被推荐的下一个功能。
-- [`coding-start`](../coding-start/) —— Greenfield 对应技能。
+- [`project-dev`](../project-dev/) —— 实现被推荐的下一个功能。
+- [`project-start`](../project-start/) —— Greenfield 对应技能。
 - [`project-verify`](../project-verify/) —— 独立审计恢复出的基线。

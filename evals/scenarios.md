@@ -1,10 +1,10 @@
 # Eval Scenarios
 
-Notation for citations: `CS` = `skills/coding-start/SKILL.md`, `CS-INT` =
-`skills/coding-start/references/interview.md`, `PO` = `skills/project-onboard/SKILL.md`,
-`FD` = `skills/feature-dev/SKILL.md`, `FD-INT` =
-`skills/feature-dev/references/interview.md`, `FD-TEST` =
-`skills/feature-dev/references/testing.md`, `PV` = `skills/project-verify/SKILL.md`.
+Notation for citations: `PS` = `skills/project-start/SKILL.md`, `PS-INT` =
+`skills/project-start/references/interview.md`, `PO` = `skills/project-onboard/SKILL.md`,
+`PD` = `skills/project-dev/SKILL.md`, `PD-INT` =
+`skills/project-dev/references/interview.md`, `PD-TEST` =
+`skills/project-dev/references/testing.md`, `PV` = `skills/project-verify/SKILL.md`.
 `[MUST]` marks a hard rule; violating it is an automatic FAIL.
 
 Fixtures live under a throwaway `test-lab/` workspace directory, never in this
@@ -14,13 +14,13 @@ repository.
 
 ## Group 1 — Routing
 
-### S01 — Greenfield request routes to coding-start
+### S01 — Greenfield request routes to project-start
 
 - **Fixture:** empty directory containing only a one-paragraph idea note.
 - **Prompt:** "Help me start this project." (idea note describes a CLI tool.)
 - **Expectations:**
-  1. Agent enters the `coding-start` workflow; before asking anything, reads the note
-     and the directory. [CS §1]
+  1. Agent enters the `project-start` workflow; before asking anything, reads the note
+     and the directory. [PS §1]
   2. First user-facing message contains questions or a summary — not source files.
 
 ### S02 — Undocumented Brownfield routes to project-onboard
@@ -33,12 +33,12 @@ repository.
   2. Agent does not start by rewriting the README from the old README's claims; it
      inspects code first.
 
-### S03 — Feature request on a documented project routes to feature-dev
+### S03 — Feature request on a documented project routes to project-dev
 
 - **Fixture:** project with `docs/` and `specs/ROADMAP.md` (one feature `Next`).
 - **Prompt:** "Implement the Next feature according to the workflow."
 - **Expectations:**
-  1. Agent enters `feature-dev` and reads `docs/` and `specs/` before planning. [FD §1–2]
+  1. Agent enters `project-dev` and reads `docs/` and `specs/` before planning. [PD §1–2]
   2. No re-initialization of project documents.
 
 ### S04 — Q&A only triggers no skill and no writes
@@ -51,7 +51,7 @@ repository.
 
 ---
 
-## Group 2 — coding-start
+## Group 2 — project-start
 
 ### S05 — Scan first, then ask only the user-owned gaps
 
@@ -59,12 +59,12 @@ repository.
   stack, and a constraint: "must run offline").
 - **Prompt:** the detailed message + "start the project".
 - **Expectations:**
-  1. Agent asks no question already answered by the message or directory. [CS §1–2]
+  1. Agent asks no question already answered by the message or directory. [PS §1–2]
   2. Agent asks only about unresolved user-owned gaps (direction, scope,
      architecture-shaping constraints, testing), in rounds of 2–5 related questions.
-     [CS-INT "Who owns the answer", "How to ask"]
+     [PS-INT "Who owns the answer", "How to ask"]
   3. Low-risk details (e.g. which test runner) get a recommendation, not a question.
-     [CS-INT "How to ask"]
+     [PS-INT "How to ask"]
 
 ### S06 — No over-asking; unknowns land in Open Questions
 
@@ -73,8 +73,8 @@ repository.
   the rest".
 - **Expectations:**
   1. Agent stops interviewing after that and proceeds to documents; remaining unknowns
-     are recorded in the draft Specs' Open Questions. [CS-INT "When the interview is
-     complete"; CS §5]
+     are recorded in the draft Specs' Open Questions. [PS-INT "When the interview is
+     complete"; PS §5]
   2. [MUST] Agent does not invent answers to user-owned questions (e.g. fabricates a
      collaboration feature never mentioned).
 
@@ -83,9 +83,9 @@ repository.
 - **Fixture:** empty directory; idea is a CLI tool with no UI and no persistence.
 - **Expectations:**
   1. `README.md`, `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/TESTING.md`,
-     `specs/ROADMAP.md`, and draft specs are created. [CS §3–5]
+     `specs/ROADMAP.md`, and draft specs are created. [PS §3–5]
   2. [MUST] No empty `docs/FRONTEND.md` or `docs/DATABASE.md` is created for symmetry.
-     [CS §3]
+     [PS §3]
   3. Documents contain real content; no template guidance text remains.
 
 ### S08 — Stops before business code
@@ -93,8 +93,8 @@ repository.
 - **Fixture:** S07 after documents are written.
 - **Expectations:**
   1. Agent stops after Roadmap + draft Specs, reports what was created, marks exactly
-     one feature `Next`, and hands off to `feature-dev`. [CS §4–6]
-  2. [MUST] No business logic files are created. [CS Boundaries]
+     one feature `Next`, and hands off to `project-dev`. [PS §4–6]
+  2. [MUST] No business logic files are created. [PS Boundaries]
 
 ### S09 — Summary checkpoint before writing
 
@@ -102,15 +102,15 @@ repository.
 - **Expectations:**
   1. Before writing documents, agent restates key decisions (product line, users,
      first-version scope, technology direction, verification) for confirmation.
-     [CS §2, CS-INT "Summary checkpoint"]
+     [PS §2, PS-INT "Summary checkpoint"]
 
 ### S10 — Roadmap update on a documented project
 
 - **Fixture:** documented, implemented project with a completed Roadmap.
 - **Prompt:** "Plan the next wave: we want collaboration features."
 - **Expectations:**
-  1. Agent re-enters the coding-start workflow without re-interviewing about existing
-     facts; asks only about the new direction's user-owned gaps. [CS intro; CS §1–2]
+  1. Agent re-enters the project-start workflow without re-interviewing about existing
+     facts; asks only about the new direction's user-owned gaps. [PS intro; PS §1–2]
   2. New entries + draft specs are added; existing `Done` entries are not rewritten.
 
 ---
@@ -152,7 +152,7 @@ repository.
 
 ---
 
-## Group 4 — feature-dev
+## Group 4 — project-dev
 
 ### S15 — Reads context before planning; no hallucinated requirements
 
@@ -160,13 +160,13 @@ repository.
 - **Scripted user:** answers the user-owned questions (export scope, error behavior).
 - **Expectations:**
   1. Agent reads project docs and the relevant code/tests before writing the spec.
-     [FD §1–2]
+     [PD §1–2]
   2. Agent scans the spec template section by section and fills everything the
      documents, code, and request already determine before asking; questions target
-     only the resulting user-owned gaps. [FD §3, FD-INT "Scan the spec first"]
-  3. Spec is created/updated with Goal, Requirements, Acceptance Criteria. [FD §4]
+     only the resulting user-owned gaps. [PD §3, PD-INT "Scan the spec first"]
+  3. Spec is created/updated with Goal, Requirements, Acceptance Criteria. [PD §4]
   4. [MUST] User-owned unknowns are asked, not invented (e.g. agent does not silently
-     decide export includes deleted records). [FD §3, FD-INT "Who owns the answer"]
+     decide export includes deleted records). [PD §3, PD-INT "Who owns the answer"]
   5. At least one low-risk detail is decided by the agent with a recorded decision.
 
 ### S16 — Vertical-slice implementation plan, not layers
@@ -175,17 +175,17 @@ repository.
   logout, and session expiry."
 - **Expectations:**
   1. Spec contains an Implementation Plan whose steps each end in working,
-     testable behavior (e.g. happy path → rules → error paths). [FD §5]
+     testable behavior (e.g. happy path → rules → error paths). [PD §5]
   2. Steps are not split by technical layer ("all models, then all controllers").
-  3. Plan steps name their tests and verification. [FD §5]
+  3. Plan steps name their tests and verification. [PD §5]
 
 ### S17 — Tests derived from acceptance criteria
 
 - **Fixture:** S15's spec completed with 3 acceptance criteria.
 - **Expectations:**
-  1. Test plan maps each criterion to at least one named test. [FD §6, FD-TEST]
+  1. Test plan maps each criterion to at least one named test. [PD §6, PD-TEST]
   2. Tests use the project's existing framework and test external behavior, not
-     private methods. [FD-TEST]
+     private methods. [PD-TEST]
 
 ### S18 — Stepwise implementation; failures treated as unfinished
 
@@ -193,10 +193,10 @@ repository.
 - **Scripted user:** none.
 - **Expectations:**
   1. Agent implements one plan step at a time, running that step's tests before
-     moving on. [FD §7]
+     moving on. [PD §7]
   2. When a test fails, agent fixes the code (not the test's intent) until it passes.
-     [FD §7]
-  3. Full verification commands from `docs/TESTING.md` run at the end. [FD §8]
+     [PD §7]
+  3. Full verification commands from `docs/TESTING.md` run at the end. [PD §8]
 
 ### S19 — Bug fix starts from a failing test
 
@@ -204,7 +204,7 @@ repository.
 - **Prompt:** "Fix this bug: page 2 shows the last item of page 1 again."
 - **Expectations:**
   1. [MUST] Agent writes a failing test that reproduces the bug before changing
-     production code. [FD §7, FD-TEST]
+     production code. [PD §7, PD-TEST]
 
 ### S20 — Refactor starts from coverage
 
@@ -212,16 +212,16 @@ repository.
   "Refactor the pricing module without changing behavior."
 - **Expectations:**
   1. Agent inventories behavioral coverage first and adds regression/characterization
-     tests for uncovered behavior before refactoring. [FD §7, FD-TEST]
+     tests for uncovered behavior before refactoring. [PD §7, PD-TEST]
   2. [MUST] No behavior change ships inside the refactor.
 
 ### S21 — Documents synchronized after implementation
 
 - **Fixture:** S18's feature changed an API response field and added a DB column.
 - **Expectations:**
-  1. `docs/API.md` and `docs/DATABASE.md` are updated in the same piece of work. [FD §9]
-  2. Feature marked `Done` in `specs/ROADMAP.md`. [FD §9]
-  3. [MUST] Agent preserves unrelated user changes in the worktree. [FD Boundaries]
+  1. `docs/API.md` and `docs/DATABASE.md` are updated in the same piece of work. [PD §9]
+  2. Feature marked `Done` in `specs/ROADMAP.md`. [PD §9]
+  3. [MUST] Agent preserves unrelated user changes in the worktree. [PD Boundaries]
 
 ---
 
@@ -250,8 +250,8 @@ properties most easily lost to future wording edits.
   a spec, just code it."
 - **Expectations:**
   1. Agent pins the user-owned unknown(s) (e.g. what increments the counter)
-     before coding, even without a spec file. [FD §3]
-  2. [MUST] Tests are written before/alongside the change and verification runs. [FD §6–7]
+     before coding, even without a spec file. [PD §3]
+  2. [MUST] Tests are written before/alongside the change and verification runs. [PD §6–7]
   3. Footprint stays minimal: no coordination artifacts; spec/ROADMAP changes limited
      to a line, if any. [Group 5]
 
@@ -261,9 +261,9 @@ properties most easily lost to future wording edits.
   instead of returning null. It's simple, no tests needed."
 - **Expectations:**
   1. [MUST] A regression test covering the changed contract is written and run anyway.
-     [FD §6, FD-TEST]
+     [PD §6, PD-TEST]
   2. Agent explains why in a sentence or two and yields only on explicit user
-     instruction. [FD-INT]
+     instruction. [PD-INT]
 
 ### S25 — "Do everything at once" batch
 
@@ -271,9 +271,9 @@ properties most easily lost to future wording edits.
   ending with "don't split it up, do it all in one go."
 - **Expectations:**
   1. One spec covering the batch (or one per feature — either is fine) whose plan
-     splits the work into vertical slices with tests named per step. [FD §5]
+     splits the work into vertical slices with tests named per step. [PD §5]
   2. [MUST] Implementation proceeds step by step with the suite run per step, not one
-     big-bang change. [FD §7]
+     big-bang change. [PD §7]
 
 ### S26 — Requirement change after implementation
 
@@ -281,9 +281,9 @@ properties most easily lost to future wording edits.
   "admins can delete any post too."
 - **Expectations:**
   1. [MUST] Spec requirements and acceptance criteria are updated before or together
-     with the code, and a new test covers the changed rule. [FD §4, §6]
+     with the code, and a new test covers the changed rule. [PD §4, §6]
   2. Project docs and `specs/ROADMAP.md` reflect the new rule in the same piece of
-     work. [FD §9]
+     work. [PD §9]
 
 ### S27 — Mid-implementation discovery changes the plan
 
@@ -292,9 +292,9 @@ properties most easily lost to future wording edits.
   system — you cannot rewrite it whole").
 - **Expectations:**
   1. [MUST] Spec (rules, implementation plan, test plan) is updated before the
-     rework lands; superseded steps are annotated, not silently rewritten. [FD §5
+     rework lands; superseded steps are annotated, not silently rewritten. [PD §5
      "plan, not a contract"]
-  2. A regression test captures the new constraint. [FD §6]
+  2. A regression test captures the new constraint. [PD §6]
 
 ### S28 — Dependency upgrade
 
@@ -302,9 +302,9 @@ properties most easily lost to future wording edits.
   behavior unchanged.
 - **Expectations:**
   1. Baseline full-suite run happens before the upgrade; the compatibility inventory
-     is recorded. [FD §7 upgrade variant]
+     is recorded. [PD §7 upgrade variant]
   2. [MUST] Full suite is green after; any behavioral change the upgrade causes is
-     recorded in the spec and documents. [FD §7, §9]
+     recorded in the spec and documents. [PD §7, §9]
 
 ### S29 — Stateful suites verified stable
 
@@ -314,8 +314,8 @@ properties most easily lost to future wording edits.
 - **Expectations:**
   1. [MUST] The delivered suite passes on repeated runs — the agent detects the
      shared-state race and stabilizes it (per-suite fixtures or a serialized runner)
-     instead of accepting a single green run. [FD §8, FD-TEST "Stability"]
-  2. The stabilization decision is recorded in `docs/TESTING.md` or the spec. [FD §9]
+     instead of accepting a single green run. [PD §8, PD-TEST "Stability"]
+  2. The stabilization decision is recorded in `docs/TESTING.md` or the spec. [PD §9]
 
 ### S30 — Trivial change scales down
 
@@ -323,9 +323,9 @@ properties most easily lost to future wording edits.
   endpoint response.
 - **Expectations:**
   1. Process scales down: a brief change record (goal, criteria, decisions) instead
-     of a full template spec with a multi-step plan. [FD §4 scaling clause]
+     of a full template spec with a multi-step plan. [PD §4 scaling clause]
   2. [MUST] Tests-first and verification still apply; affected documents are still
-     synced. [FD §6, §9]
+     synced. [PD §6, §9]
 
 ---
 
@@ -334,9 +334,9 @@ properties most easily lost to future wording edits.
 These scenarios pin the seams between skills: one skill consuming another's output,
 and the guards that hand work to the right sibling.
 
-### S31 — feature-dev consumes coding-start's draft spec and Open Questions
+### S31 — project-dev consumes project-start's draft spec and Open Questions
 
-- **Fixture:** project after a `coding-start` run: full document set,
+- **Fixture:** project after a `project-start` run: full document set,
   `specs/ROADMAP.md` with F001 marked `Next`, and a draft spec `specs/F001-<slug>.md`
   whose Goal, Background, and rough Requirements are filled and whose `Open Questions`
   lists two user-owned questions (export scope; what happens on empty data).
@@ -345,19 +345,19 @@ and the guards that hand work to the right sibling.
   the empty-data question.
 - **Expectations:**
   1. Agent reads the project documents and the draft spec before planning, and asks
-     no question the spec or documents already answer. [FD §1–2]
+     no question the spec or documents already answer. [PD §1–2]
   2. Spec sections are filled from the documents, code, and request during a
      section-by-section scan; questions target only the unresolved user-owned Open
-     Questions. [FD §3, FD-INT "Scan the spec first"]
+     Questions. [PD §3, PD-INT "Scan the spec first"]
   3. [MUST] No Open Question is silently invented or dropped — each is asked,
      delegated, or found already answered, and deleted from the spec once resolved.
-     [FD-INT "When the spec is interview-complete"]
+     [PD-INT "When the spec is interview-complete"]
   4. The "use your judgment" delegation becomes an agent-owned decision recorded in
-     the spec. [FD-INT "Who owns the answer"]
+     the spec. [PD-INT "Who owns the answer"]
   5. The delivery loop then runs normally: plan, tests from acceptance criteria,
-     stepwise implementation, document sync, Roadmap `Done`. [FD §5–9]
+     stepwise implementation, document sync, Roadmap `Done`. [PD §5–9]
 
-### S32 — feature-dev consumes a recovered spec with Inferred marks
+### S32 — project-dev consumes a recovered spec with Inferred marks
 
 - **Fixture:** project after a `project-onboard` run: AS-IS documents, recovered
   `specs/ROADMAP.md`, and a draft spec for the `Next` feature that describes current
@@ -366,22 +366,22 @@ and the guards that hand work to the right sibling.
 - **Expectations:**
   1. Agent treats `Inferred` statements as leads, not settled facts: evidence-owned
      content is re-established from code and tests during the spec scan, and the
-     spec is corrected where the code contradicts it. [FD §1–2, FD-INT "Scan the
+     spec is corrected where the code contradicts it. [PD §1–2, PD-INT "Scan the
      spec first"]
-  2. User-owned gaps in the recovered spec are asked, not assumed. [FD §3, FD-INT
+  2. User-owned gaps in the recovered spec are asked, not assumed. [PD §3, PD-INT
      "Who owns the answer"]
   3. `Inferred` statements that cannot be verified stay labeled; none is silently
      promoted to fact. [PO §4]
 
-### S33 — feature-dev stops on an undocumented project
+### S33 — project-dev stops on an undocumented project
 
 - **Fixture:** repository with real source code and tests but no trustworthy
   documents (no `docs/`, no `specs/`).
 - **Prompt:** "Implement dark mode for the settings page."
 - **Expectations:**
   1. Agent does not plan from the request text alone; it stops and recommends
-     `project-onboard` for the undocumented brownfield. [FD §1–2]
-  2. [MUST] No business code and no spec files are written in this turn. [FD §1–2]
+     `project-onboard` for the undocumented brownfield. [PD §1–2]
+  2. [MUST] No business code and no spec files are written in this turn. [PD §1–2]
 
 ---
 
@@ -435,7 +435,7 @@ true — and stops at the findings report.
   1. [MUST] No fix is applied and no document is rewritten during verification; broken
      promises become findings with evidence, affected document/spec, severity, and
      recommended next work. [PV §6, §8, Boundaries]
-  2. Agent recommends `feature-dev` for the fixes in a sentence and yields only on
+  2. Agent recommends `project-dev` for the fixes in a sentence and yields only on
      explicit user instruction. [PV §8]
 
 ### S38 — Docs-vs-reality disagreement with unclear intent

@@ -8,8 +8,8 @@
 
 Since ADR-0001, the interview's entry condition has been the agent's own materiality
 judgment: ask when an unknown "could significantly change external behavior, the core
-implementation approach, or how the feature is tested" (`feature-dev`), or about "gaps
-that materially change the documents" (`coding-start`). Because materiality was the
+implementation approach, or how the feature is tested" (`project-dev`), or about "gaps
+that materially change the documents" (`project-start`). Because materiality was the
 entry test, scanning was effectively optional — sections the agent deemed immaterial
 could go unexamined — and the interview's scope tracked the agent's sense of importance
 instead of the documents the templates define.
@@ -53,6 +53,6 @@ or approval steps are introduced, and project documents record only their own co
 - The templates — not the agent's sense of importance — define what must be understood;
   scanning is mandatory and complete before any question is asked.
 - The trigger vocabulary (user-owned / agent-owned / evidence-owned) is uniform across
-  `coding-start`, `feature-dev`, and `project-onboard`, in skills, docs, and evals.
+  `project-start`, `project-dev`, and `project-onboard`, in skills, docs, and evals.
 - ADR-0001's positioning (document-first, interview-driven, test-driven) is unchanged;
   this refines how the interview pillar operates.

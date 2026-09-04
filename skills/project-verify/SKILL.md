@@ -1,6 +1,6 @@
 ---
 name: project-verify
-description: "Use ONLY when the user explicitly asks to verify, audit, or check the current state of a documented project against its own documents: whether features marked Done in the Roadmap are actually delivered, whether acceptance criteria have executable evidence, whether documented commands, key user flows, and cross-feature behavior work, and whether documents still match reality. Derives the verification scope from the project's documents, runs the declared verification, exercises documented behavior, and reports findings with evidence and recommended next work — without fixing anything. MUST NOT be used to implement or fix anything (feature-dev), to create or repair project documents (coding-start / project-onboard), or for ordinary Q&A or read-only code explanation."
+description: "Use ONLY when the user explicitly asks to verify, audit, or check the current state of a documented project against its own documents: whether features marked Done in the Roadmap are actually delivered, whether acceptance criteria have executable evidence, whether documented commands, key user flows, and cross-feature behavior work, and whether documents still match reality. Derives the verification scope from the project's documents, runs the declared verification, exercises documented behavior, and reports findings with evidence and recommended next work — without fixing anything. MUST NOT be used to implement or fix anything (project-dev), to create or repair project documents (project-start / project-onboard), or for ordinary Q&A or read-only code explanation."
 ---
 
 # project-verify
@@ -8,7 +8,7 @@ description: "Use ONLY when the user explicitly asks to verify, audit, or check 
 Documents define what should be true; this skill checks whether it is actually true. Take
 a project that already has documents and a Roadmap, and verify its current state against
 what those documents promise — then report evidence-backed findings. The output is a
-findings report, not fixes: repairs and implementation belong to `feature-dev`.
+findings report, not fixes: repairs and implementation belong to `project-dev`.
 
 ## Workflow
 
@@ -40,7 +40,7 @@ and any other document the project keeps (e.g. `docs/OPERATIONS.md`) — plus
 `specs/ROADMAP.md` and the specs of features marked `Done` or `In Progress`. Every
 testable statement in them is a promise: a documented command that should work, a core
 use case, an endpoint, a schema, a feature status. If the project has no trustworthy
-documents at all, stop and recommend `coding-start` (greenfield) or `project-onboard`
+documents at all, stop and recommend `project-start` (greenfield) or `project-onboard`
 (brownfield) first.
 
 ## 2. Derive the verification scope
@@ -108,7 +108,7 @@ spec, the severity, and the recommended next work. On request, record findings t
 work as `Draft` entries in `specs/ROADMAP.md`.
 
 Do not start fixing — repairs, missing tests for real behavior changes, and document
-repairs continue with `feature-dev`. Report what was checked, what held, what did not,
+repairs continue with `project-dev`. Report what was checked, what held, what did not,
 and what you recommend next.
 
 ## Boundaries

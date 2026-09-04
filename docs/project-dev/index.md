@@ -1,8 +1,8 @@
 ---
-title: feature-dev
+title: project-dev
 ---
 
-# feature-dev
+# project-dev
 
 Deliver one piece of development work — a feature, change, bug fix, refactor, debt
 paydown, or dependency upgrade — by turning an agreed spec into verified code, kept in
@@ -19,7 +19,7 @@ Interview → Spec → Implementation Plan → Tests → Code → Verify → Syn
   "Upgrade React to 19.", "Pay down the debt in the export module."
 
 It does **not** trigger for read-only review or diagnosis, for starting a new project
-([`coding-start`](../coding-start/)), for recovering an undocumented repository
+([`project-start`](../project-start/)), for recovering an undocumented repository
 ([`project-onboard`](../project-onboard/)), or for independent whole-project verification
 against the documents ([`project-verify`](../project-verify/)).
 
@@ -55,7 +55,7 @@ Read the two companion pages for the parts that reward depth:
 
 ## Work types, one loop
 
-`feature-dev` deliberately does not fork into separate processes per work type. The
+`project-dev` deliberately does not fork into separate processes per work type. The
 entry point adapts:
 
 - **Bug fix** — reproduce with a failing test first, then fix until it passes.
@@ -80,6 +80,6 @@ Very little is mandatory; what is, defines Foundry:
 ## Next
 
 - [Spec & interview](./spec) and [Testing & work types](./testing).
-- [`coding-start`](../coding-start/) to plan the next wave when the Roadmap runs dry.
+- [`project-start`](../project-start/) to plan the next wave when the Roadmap runs dry.
 - [`project-verify`](../project-verify/) to independently audit the project against its
   documents — including this feature's `Done` claim.

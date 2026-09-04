@@ -52,19 +52,19 @@ repository context, interviews, and engineering judgment fill in the answers.
 
 | Skill | Phase | Role |
 |---|---|---|
-| [`coding-start`](/coding-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
+| [`project-start`](/project-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
 | [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
-| [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
+| [`project-dev`](/project-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
 | [`project-verify`](/project-verify/) | Assurance · claimed → checked | Document-driven verification pass → evidence-backed findings report |
 
 ```text
-New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
-                                                    (plan next wave via coding-start)
-Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+New idea ──────▶ project-start ─────▶ project-dev ──▶ project-dev ──▶ ...
+                                                    (plan next wave via project-start)
+Existing repo ──▶ project-onboard ──▶ project-dev ──▶ project-dev ──▶ ...
                                                     (check state vs documents via project-verify)
 ```
 
-`feature-dev` covers the whole family of development work — new features, changes, bug
+`project-dev` covers the whole family of development work — new features, changes, bug
 fixes, refactors, technical-debt paydown, dependency upgrades — with the same loop. The
 entry point adapts, not the process:
 
@@ -109,7 +109,7 @@ kept short and true; a precise one-page document beats a speculative ten-page on
 - **In Progress** — currently being implemented.
 - **Done** — implemented and verified.
 
-Planning the next wave of features on a documented project is a `coding-start` re-entry:
+Planning the next wave of features on a documented project is a `project-start` re-entry:
 interview about the new direction, then add Roadmap entries and draft Specs — no separate
 process.
 
@@ -137,5 +137,5 @@ the same piece of work** — never left to rot.
 ## Next
 
 - [Install](./install) the four skills.
-- Read the skill pages: [coding-start](./coding-start/), [project-onboard](./project-onboard/),
-  [feature-dev](./feature-dev/), [project-verify](./project-verify/).
+- Read the skill pages: [project-start](./project-start/), [project-onboard](./project-onboard/),
+  [project-dev](./project-dev/), [project-verify](./project-verify/).

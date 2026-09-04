@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const skillsDir = join(root, 'skills');
-const skills = ['coding-start', 'project-onboard', 'feature-dev', 'project-verify'];
+const skills = ['project-start', 'project-onboard', 'project-dev', 'project-verify'];
 
 let failures = 0;
 const results = [];

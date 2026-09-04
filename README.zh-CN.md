@@ -39,23 +39,23 @@ Foundry 是一套包含四个 **Agent Skill** 的技能包，帮助智能体养�
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
-| [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | 访谈 → 项目文档(`README`、`docs/PRODUCT`、`ARCHITECTURE`、`TESTING` 等)→ Roadmap → 草稿 Feature Spec |
+| [`project-start`](skills/project-start/SKILL.md) | Greenfield · 0 → 1 | 访谈 → 项目文档(`README`、`docs/PRODUCT`、`ARCHITECTURE`、`TESTING` 等)→ Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 先验证仓库可运行 → 相信代码而非过时文档 → 恢复 AS-IS 文档、Roadmap 与 Spec |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 实施计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
+| [`project-dev`](skills/project-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 实施计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
 | [`project-verify`](skills/project-verify/SKILL.md) | 保障 · 声称 → 查证 | 从文档推导验证范围 → 运行文档声明的验证 → 实测文档记录的流程 → 带证据的发现报告 |
 
 ```text
-新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
-                                                  (规划下一波功能回到 coding-start)
-存量仓库 ──────▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+新想法 ────────▶ project-start ─────▶ project-dev ──▶ project-dev ──▶ ...
+                                                  (规划下一波功能回到 project-start)
+存量仓库 ──────▶ project-onboard ──▶ project-dev ──▶ project-dev ──▶ ...
                                                   (用 project-verify 对照文档核查现状)
 ```
 
-`feature-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖升级 ——
+`project-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖升级 ——
 使用同一个循环:Bug 修复从失败测试开始,重构从确认覆盖率开始。
 
 `project-verify` 对照文档核查项目现状:`Done` 的功能是否真的交付、验收标准是否有可执行
-证据、文档声明的命令和流程是否仍然有效。它记录带证据的发现;修复回到 `feature-dev`。
+证据、文档声明的命令和流程是否仍然有效。它记录带证据的发现;修复回到 `project-dev`。
 
 ## 安装
 
@@ -66,9 +66,9 @@ Foundry 遵循标准 Agent Skills 格式(`SKILL.md` + `references/` + `assets/`)
 
 ```bash
 git clone https://github.com/MaoyuanYang/foundry.git
-cp -r foundry/skills/coding-start      ~/.agents/skills/
+cp -r foundry/skills/project-start     ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
-cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-dev       ~/.agents/skills/
 cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
@@ -80,7 +80,7 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 
 > "初始化一个新的 greenfield 项目:一个社区本地服务平台。"
 
-`coding-start` 先读取你已提供的信息,扫描文档模板,只就由用户决定的缺口向你访谈,
+`project-start` 先读取你已提供的信息,扫描文档模板,只就由用户决定的缺口向你访谈,
 写出项目文档、`specs/ROADMAP.md` 和草稿 Feature Spec —— 然后停止,不写业务代码。
 
 **接管一个已有仓库:**
@@ -94,7 +94,7 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 
 > "按照工作流实现 F001。"
 
-`feature-dev` 读取项目文档和相关代码,通过访谈解决 Spec 中由用户决定的问题,规划
+`project-dev` 读取项目文档和相关代码,通过访谈解决 Spec 中由用户决定的问题,规划
 小的垂直切片,从验收标准推导测试,小步实现直到测试通过,并更新因此失真的文档。
 
 **验证项目状态:**
@@ -104,7 +104,7 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 `project-verify` 从文档本身推导验证范围 —— `README` 和 `TESTING` 声明的命令、
 `PRODUCT` 记录的核心用例、`ROADMAP` 标记为 `Done` 的功能 —— 逐项运行、实测流程,
 写出带证据、受影响文档、严重程度和建议后续工作的发现报告。它不修复任何东西;
-修复回到 `feature-dev`。
+修复回到 `project-dev`。
 
 ## 原则
 

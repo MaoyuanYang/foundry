@@ -19,9 +19,9 @@ product.>
 Status values:
 
 - **Draft** — described in a spec, not yet scheduled.
-- **Next** — selected as the next feature to build (`feature-dev` picks this up; keep
+- **Next** — selected as the next feature to build (`project-dev` picks this up; keep
   exactly one Next at a time).
-- **In Progress** — currently being implemented by `feature-dev`.
+- **In Progress** — currently being implemented by `project-dev`.
 - **Done** — implemented and verified.
 
 ## Notes
