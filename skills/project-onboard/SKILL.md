@@ -1,6 +1,6 @@
 ---
 name: project-onboard
-description: "Use ONLY when the user explicitly requests takeover, inventory, or recovery of an existing Brownfield, legacy, or undocumented repository: understanding the system, verifying it runs, repairing or creating project documents, and recovering a Roadmap and Feature Specs from what actually exists. First entry into an unfamiliar repository alone is not a trigger. MUST NOT be used for ordinary Q&A or read-only review, for starting a new Greenfield project (coding-start), or for implementing or fixing a feature (feature-dev)."
+description: "Use ONLY when the user explicitly requests takeover, inventory, or recovery of an existing Brownfield, legacy, or undocumented repository: understanding the system, verifying it runs, repairing or creating project documents, and recovering a Roadmap and Feature Specs from what actually exists. First entry into an unfamiliar repository alone is not a trigger. MUST NOT be used for ordinary Q&A or read-only review, for starting a new Greenfield project (coding-start), for implementing or fixing a feature (feature-dev), or for independently verifying a documented project against its documents (project-verify)."
 ---
 
 # project-onboard
@@ -106,7 +106,8 @@ reconstructions as `Inferred`. Recommend one feature as `Next` and say why.
 
 Stop when the baseline is trustworthy: commands verified, documents honest, Roadmap
 recovered. Report what was repaired, what remains `Unknown` or `Inferred`, which tests
-fail, and which feature you recommend next. Implementation continues with `feature-dev`.
+fail, and which feature you recommend next. Implementation continues with `feature-dev`;
+independent verification of the restored baseline continues with `project-verify`.
 
 ## Boundaries
 

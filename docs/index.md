@@ -41,6 +41,9 @@ features:
   - icon: 🔄
     title: Greenfield and Brownfield
     details: Start a new project with coding-start, or recover an undocumented repository with project-onboard — then develop feature after feature with feature-dev.
+  - icon: 🔎
+    title: Verified Against the Documents
+    details: project-verify independently checks the current state against the documents — Done features, acceptance criteria, documented commands and flows — and reports findings with evidence, without fixing anything.
 ---
 
 ## The habit Foundry installs
@@ -51,7 +54,7 @@ A plain coding agent tends to run like this:
 User Request → Guess Requirements → Start Coding → Implementation Drifts
 ```
 
-Foundry — three Agent Skills for OpenCode, Claude Code, and compatible agents — runs like
+Foundry — four Agent Skills for OpenCode, Claude Code, and compatible agents — runs like
 this:
 
 ```text
@@ -63,6 +66,7 @@ Idea → Understand → Interview → Documents / Spec → Implementation Plan �
 | [`coding-start`](/coding-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
 | [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
 | [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
+| [`project-verify`](/project-verify/) | Assurance · claimed → checked | Document-driven verification pass → evidence-backed findings report |
 
 Skills hold the process; documents hold the project. Templates define the structure —
 repository context, interviews, and engineering judgment fill in the answers.

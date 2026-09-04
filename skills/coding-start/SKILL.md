@@ -1,6 +1,6 @@
 ---
 name: coding-start
-description: "Use ONLY when the user explicitly asks to start or initialize a new Greenfield project, or to plan the next wave of features (update the Roadmap, add draft Feature Specs) for an existing project that already has trustworthy documents. Runs understand-first context reading, a focused interview, project documents (README, PRODUCT, ARCHITECTURE, TESTING, and applicable extras), a Feature Roadmap, and draft Feature Specs. MUST NOT be used to implement a feature (feature-dev) or to take over an undocumented Brownfield repository (project-onboard)."
+description: "Use ONLY when the user explicitly asks to start or initialize a new Greenfield project, or to plan the next wave of features (update the Roadmap, add draft Feature Specs) for an existing project that already has trustworthy documents. Runs understand-first context reading, a focused interview, project documents (README, PRODUCT, ARCHITECTURE, TESTING, and applicable extras), a Feature Roadmap, and draft Feature Specs. MUST NOT be used to implement a feature (feature-dev), to take over an undocumented Brownfield repository (project-onboard), or to independently verify the current project state against its documents (project-verify)."
 ---
 
 # coding-start

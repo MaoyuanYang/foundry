@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project Verify"
+  short_description: "Document-driven verification pass with an evidence-backed findings report"

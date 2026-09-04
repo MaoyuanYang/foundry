@@ -9,7 +9,9 @@ title: FAQ
 **Will the skills write code for me automatically?**
 `coding-start` and `project-onboard` produce documents and stop before business code.
 Only `feature-dev` writes code, and only after the spec's user-owned questions are
-resolved and its tests are derived from the acceptance criteria.
+resolved and its tests are derived from the acceptance criteria. `project-verify` may
+add verification-only tests or check scripts to make a documented promise checkable —
+never business code.
 
 **How do I do a refactoring, an upgrade, or a debt cleanup?**
 Ask `feature-dev` for it directly — "Refactor the auth module without changing
@@ -27,6 +29,18 @@ planning and implementation are already separated by skill.
 By design. Onboarding writes documentation and changes no behavior, so it needs explicit
 intent. Opening or browsing an unfamiliar repository is read-only Q&A unless you
 explicitly ask to take it over and recover a baseline.
+
+**How is `project-verify` different from `project-onboard`?**
+`project-onboard` repairs an *undocumented or untrustworthy* repository into a baseline:
+it writes and fixes documents. `project-verify` audits a *documented* project: it checks
+the documents' promises against reality and records findings — it changes nothing except
+adding verification-only checks. Recover first, verify later.
+
+**When should I run `project-verify`?**
+Whenever trust in the documents matters: before a release, after a batch of features,
+after onboarding, or when the Roadmap claims work is `Done` and you want evidence rather
+than the claim. It reports findings with severity and recommended next work; fixes go to
+`feature-dev`.
 
 **Does Foundry create any coordination files in my project?**
 No. The whole project state is the document set (`README.md`, `docs/`, `specs/`) —

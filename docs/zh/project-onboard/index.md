@@ -14,8 +14,9 @@ onboarding 期间不改变业务行为。
 - "这个代码库没有有用的文档 —— 搞清楚它是干什么的。"
 - 第一次进入陌生仓库,**且用户明确要求持久恢复**时。
 
-它**不会**为普通问答或只读浏览触发,也不会为启动新项目([`coding-start`](../coding-start/))
-或实现功能([`feature-dev`](../feature-dev/))触发。
+它**不会**为普通问答或只读浏览触发,不会为启动新项目([`coding-start`](../coding-start/))
+或实现功能([`feature-dev`](../feature-dev/))触发,也不会为独立验证有文档的项目与其
+文档的一致性触发([`project-verify`](../project-verify/))。
 
 ## 工作流
 
@@ -78,3 +79,4 @@ onboarding 期间不改变业务行为。
 
 - [`feature-dev`](../feature-dev/) —— 实现被推荐的下一个功能。
 - [`coding-start`](../coding-start/) —— Greenfield 对应技能。
+- [`project-verify`](../project-verify/) —— 独立审计恢复出的基线。

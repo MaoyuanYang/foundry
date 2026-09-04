@@ -48,18 +48,20 @@ Documents define what must be understood; interviews fill the user-owned gaps.
 Skills hold the process; documents hold the project. Templates define the structure —
 repository context, interviews, and engineering judgment fill in the answers.
 
-## Three skills, one habit
+## Four skills, one habit
 
 | Skill | Phase | Role |
 |---|---|---|
 | [`coding-start`](/coding-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
 | [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
 | [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
+| [`project-verify`](/project-verify/) | Assurance · claimed → checked | Document-driven verification pass → evidence-backed findings report |
 
 ```text
 New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
                                                     (plan next wave via coding-start)
 Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                    (check state vs documents via project-verify)
 ```
 
 `feature-dev` covers the whole family of development work — new features, changes, bug
@@ -71,6 +73,11 @@ entry point adapts, not the process:
   missing, refactor in small steps, verify behavior is unchanged.
 - **Dependency upgrade** — inventory breakage, upgrade, run the full suite, record
   behavioral changes.
+
+At any point after the documents exist, [`project-verify`](/project-verify/) can
+independently check the current state against them — whether `Done` features are
+delivered, acceptance criteria have evidence, and documented commands and flows work —
+and report findings without fixing anything.
 
 ## The document set
 
@@ -129,6 +136,6 @@ the same piece of work** — never left to rot.
 
 ## Next
 
-- [Install](./install) the three skills.
+- [Install](./install) the four skills.
 - Read the skill pages: [coding-start](./coding-start/), [project-onboard](./project-onboard/),
-  [feature-dev](./feature-dev/).
+  [feature-dev](./feature-dev/), [project-verify](./project-verify/).

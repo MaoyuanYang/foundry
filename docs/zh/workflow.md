@@ -47,18 +47,20 @@ Foundry 用下面这个习惯取而代之:
 
 Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓库上下文、访谈和工程判断。
 
-## 三个 Skill,一个习惯
+## 四个 Skill,一个习惯
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
 | [`coding-start`](./coding-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](./project-onboard/) | Brownfield · 未知 → 理解 | 验证仓库可运行 → 恢复 AS-IS 文档、Roadmap、Spec |
 | [`feature-dev`](./feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
+| [`project-verify`](./project-verify/) | 保障 · 声称 → 查证 | 文档驱动的验证 → 带证据的发现报告 |
 
 ```text
 新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
                                                   (规划下一波功能回到 coding-start)
 存量仓库 ──────▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                  (用 project-verify 对照文档核查现状)
 ```
 
 `feature-dev` 统一处理各类开发工作 —— 新功能、变更、Bug 修复、重构、技术债、依赖
@@ -68,6 +70,10 @@ Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓�
 - **重构 / 技术债** —— 先确认行为覆盖率,缺测试就补回归测试,小步重构,逐步验证
   行为不变。
 - **依赖升级** —— 盘点破坏点,升级,跑全量测试,记录行为变化。
+
+文档存在之后的任何时刻,都可以用 [`project-verify`](./project-verify/) 独立核查项目现状
+与文档是否一致 —— `Done` 的功能是否交付、验收标准是否有证据、文档声明的命令和流程是否
+有效 —— 并只报告发现,不做任何修复。
 
 ## 文档集
 
@@ -123,6 +129,6 @@ Foundry 不把文档当作一次性的前置产物。最终状态是:
 
 ## 下一步
 
-- [安装](./install)三个 Skill。
+- [安装](./install)四个 Skill。
 - 阅读 Skill 页面:[coding-start](./coding-start/)、[project-onboard](./project-onboard/)、
-  [feature-dev](./feature-dev/)。
+  [feature-dev](./feature-dev/)、[project-verify](./project-verify/)。

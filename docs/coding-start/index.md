@@ -20,8 +20,9 @@ the Roadmap and draft Specs.
 - "Plan the next phase / add features to the Roadmap" on a documented project.
 
 It does **not** trigger for taking over an undocumented repository
-([`project-onboard`](../project-onboard/)) or implementing a feature
-([`feature-dev`](../feature-dev/)).
+([`project-onboard`](../project-onboard/)), implementing a feature
+([`feature-dev`](../feature-dev/)), or independently verifying the current project state
+([`project-verify`](../project-verify/)).
 
 ## Workflow
 
@@ -98,3 +99,5 @@ list. Draft Specs fill in what is decidable and record the rest as **Open Questi
 
 - [`feature-dev`](../feature-dev/) — pick up the `Next` feature and implement it.
 - [`project-onboard`](../project-onboard/) — the brownfield counterpart.
+- [`project-verify`](../project-verify/) — audit the documents against reality once
+  features ship.

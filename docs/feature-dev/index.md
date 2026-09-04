@@ -19,8 +19,9 @@ Interview → Spec → Implementation Plan → Tests → Code → Verify → Syn
   "Upgrade React to 19.", "Pay down the debt in the export module."
 
 It does **not** trigger for read-only review or diagnosis, for starting a new project
-([`coding-start`](../coding-start/)), or for recovering an undocumented repository
-([`project-onboard`](../project-onboard/)).
+([`coding-start`](../coding-start/)), for recovering an undocumented repository
+([`project-onboard`](../project-onboard/)), or for independent whole-project verification
+against the documents ([`project-verify`](../project-verify/)).
 
 ## Workflow
 
@@ -80,3 +81,5 @@ Very little is mandatory; what is, defines Foundry:
 
 - [Spec & interview](./spec) and [Testing & work types](./testing).
 - [`coding-start`](../coding-start/) to plan the next wave when the Roadmap runs dry.
+- [`project-verify`](../project-verify/) to independently audit the project against its
+  documents — including this feature's `Done` claim.

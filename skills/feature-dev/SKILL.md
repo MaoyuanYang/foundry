@@ -1,6 +1,6 @@
 ---
 name: feature-dev
-description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), or recovery of an undocumented repository (project-onboard)."
+description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), recovery of an undocumented repository (project-onboard), or independent whole-project verification against the documents (project-verify)."
 ---
 
 # feature-dev
@@ -136,7 +136,9 @@ Documents stay true, or they become worse than none. When implementation changed
 behavior, interfaces, data, or architecture, update the affected documents —
 `docs/API.md`, `docs/DATABASE.md`, `docs/ARCHITECTURE.md`, and the spec — in the same
 piece of work. Then mark the feature `Done` in `specs/ROADMAP.md` and report: what was
-built, which tests verify it, and which documents changed.
+built, which tests verify it, and which documents changed. This verifies this change;
+an independent check of the whole project against its documents is `project-verify`
+work.
 
 ## Boundaries
 

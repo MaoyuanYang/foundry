@@ -5,7 +5,7 @@ title: Installation
 # Installation
 
 Foundry follows the standard **Agent Skills** format: each skill is a folder containing
-`SKILL.md`, `references/`, and `assets/`. Installation means copying the three skill
+`SKILL.md`, `references/`, and `assets/`. Installation means copying the four skill
 folders into your agent's skills directory.
 
 ## Requirements
@@ -15,7 +15,7 @@ folders into your agent's skills directory.
 
 ## Install
 
-Clone the repository, then copy the three skill folders into your skills directory.
+Clone the repository, then copy the four skill folders into your skills directory.
 
 **OpenCode / Claude-style agents** auto-discover skills in `~/.agents/skills/` and
 `~/.claude/skills/`.
@@ -27,6 +27,7 @@ git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
 ### Windows (PowerShell)
@@ -36,6 +37,7 @@ git clone https://github.com/MaoyuanYang/foundry.git
 Copy-Item -Recurse foundry\skills\coding-start    $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\project-onboard $HOME\.agents\skills\
 Copy-Item -Recurse foundry\skills\feature-dev     $HOME\.agents\skills\
+Copy-Item -Recurse foundry\skills\project-verify  $HOME\.agents\skills\
 ```
 
 Then **restart your agent** so it re-scans the skills directory.
@@ -48,9 +50,9 @@ For OpenCode, run:
 opencode debug skill
 ```
 
-You should see `coding-start`, `project-onboard`, and `feature-dev` listed with their
-locations. Each skill also validates against the Agent Skills schema (`name` +
-`description` frontmatter, lowercase-hyphen folder names).
+You should see `coding-start`, `project-onboard`, `feature-dev`, and `project-verify`
+listed with their locations. Each skill also validates against the Agent Skills schema
+(`name` + `description` frontmatter, lowercase-hyphen folder names).
 
 ## What you get
 
@@ -59,6 +61,7 @@ locations. Each skill also validates against the Agent Skills schema (`name` +
 | `coding-start` | `skills/coding-start/` | Greenfield project documents, Roadmap, draft Specs |
 | `project-onboard` | `skills/project-onboard/` | Brownfield recovery: verified baseline, AS-IS docs |
 | `feature-dev` | `skills/feature-dev/` | One piece of development work: spec → tests → code → docs |
+| `project-verify` | `skills/project-verify/` | Document-driven verification pass: findings report |
 
 Each skill is self-contained:
 
@@ -69,12 +72,12 @@ Each skill is self-contained:
 
 ## Updating
 
-Pull the latest and re-copy the three folders (they are self-contained, so replacing the
+Pull the latest and re-copy the four folders (they are self-contained, so replacing the
 folder is safe):
 
 ```bash
 cd foundry && git pull
-cp -r skills/coding-start skills/project-onboard skills/feature-dev ~/.agents/skills/
+cp -r skills/coding-start skills/project-onboard skills/feature-dev skills/project-verify ~/.agents/skills/
 ```
 
 If you installed an older Foundry that shipped `evolve-dev` or `maintenance-dev`, remove
@@ -90,14 +93,14 @@ Foundry only changes how the agent works, not what it already produced.
 
 ## Uninstall
 
-Remove the three folders from your skills directory and restart your agent:
+Remove the four folders from your skills directory and restart your agent:
 
 ```bash
-rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev
+rm -rf ~/.agents/skills/coding-start ~/.agents/skills/project-onboard ~/.agents/skills/feature-dev ~/.agents/skills/project-verify
 ```
 
 ## Next
 
 - [Workflow](./workflow) — how work moves from idea to verified code.
 - The skill pages: [coding-start](./coding-start/), [project-onboard](./project-onboard/),
-  [feature-dev](./feature-dev/).
+  [feature-dev](./feature-dev/), [project-verify](./project-verify/).

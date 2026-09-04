@@ -6,7 +6,7 @@
 
 **A document-first, interview-driven, test-driven workflow for coding agents.**
 
-[Website](https://maoyuanyang.github.io/foundry/) · [Installation](#installation) · [The Three Skills](#the-three-skills)
+[Website](https://maoyuanyang.github.io/foundry/) · [Installation](#installation) · [The Four Skills](#the-four-skills)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-f59e0b.svg)](./LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-ready-brightgreen.svg)](https://opencode.ai)
@@ -23,7 +23,7 @@ A plain coding agent tends to run like this:
 User Request → Guess Requirements → Start Coding → Implementation Drifts
 ```
 
-Foundry is a set of three **Agent Skills** that install a different habit:
+Foundry is a set of four **Agent Skills** that install a different habit:
 
 ```text
 Idea → Understand → Interview → Documents / Spec → Plan → Tests → Code → Verify
@@ -35,28 +35,35 @@ Idea → Understand → Interview → Documents / Spec → Plan → Tests → Co
 - **Incremental** — features are built in small, verifiable steps.
 - **Kept in sync** — documents are updated when implementation changes reality.
 
-## The Three Skills
+## The Four Skills
 
 | Skill | Phase | Role |
 |---|---|---|
 | [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
 | [`feature-dev`](skills/feature-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → implementation plan → tests from acceptance criteria → code → verify → sync docs |
+| [`project-verify`](skills/project-verify/SKILL.md) | Assurance · claimed → checked | Derive the verification scope from the documents → run declared verification → exercise documented flows → evidence-backed findings report |
 
 ```text
 New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...
                                                     (plan next wave via coding-start)
 Existing repo ──▶ project-onboard ──▶ feature-dev ──▶ feature-dev ──▶ ...
+                                                    (check state vs documents via project-verify)
 ```
 
 `feature-dev` covers the whole family of development work — new features, changes, bug
 fixes, refactors, technical-debt paydown, and dependency upgrades — with the same loop:
 a bug fix starts from a failing test, a refactor starts from confirmed coverage.
 
+`project-verify` checks the current state against the documents: whether `Done` features
+are actually delivered, whether acceptance criteria have executable evidence, and whether
+documented commands and flows still work. It records findings with evidence; fixes return
+to `feature-dev`.
+
 ## Installation
 
 Foundry follows the standard Agent Skills format (`SKILL.md` + `references/` + `assets/`).
-Copy the three folders into your agent's skills directory.
+Copy the four folders into your agent's skills directory.
 
 **OpenCode / Claude-style agents** (auto-discovered):
 
@@ -65,10 +72,11 @@ git clone https://github.com/MaoyuanYang/foundry.git
 cp -r foundry/skills/coding-start      ~/.agents/skills/
 cp -r foundry/skills/project-onboard   ~/.agents/skills/
 cp -r foundry/skills/feature-dev       ~/.agents/skills/
+cp -r foundry/skills/project-verify    ~/.agents/skills/
 ```
 
 Then restart your agent. Verify discovery with `opencode debug skill` (you should see
-all three skills listed).
+all four skills listed).
 
 ## Quick Start
 
@@ -96,6 +104,16 @@ reality, and recovers a Roadmap — without changing business behavior.
 the Spec's user-owned questions are resolved, plans small vertical slices, derives tests
 from the acceptance criteria, implements step by step until the tests pass, and updates
 the documents it made untrue.
+
+**Verify the project state:**
+
+> "Verify the current project against its documents."
+
+`project-verify` derives its verification scope from the documents themselves — the
+commands `README` and `TESTING` declare, the core use cases `PRODUCT` documents, the
+features `ROADMAP` marks `Done` — runs them, exercises the flows, and writes a findings
+report with evidence, affected documents, severity, and recommended next work. Nothing
+is fixed; fixes go back to `feature-dev`.
 
 ## Principles
 

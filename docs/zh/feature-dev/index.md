@@ -17,8 +17,9 @@ Spec 变成经过验证的代码,并与项目文档保持同步。Foundry 的核
 - "修复这个 Bug:……"、"重构 auth 模块且不改变行为。"、"升级 React 到 19。"、
   "偿还导出模块的技术债。"
 
-它**不会**为只读评审或诊断触发,也不会为启动新项目([`coding-start`](../coding-start/))
-或恢复缺少文档的仓库([`project-onboard`](../project-onboard/))触发。
+它**不会**为只读评审或诊断触发,不会为启动新项目([`coding-start`](../coding-start/))
+或恢复缺少文档的仓库([`project-onboard`](../project-onboard/))触发,也不会为独立验证
+整个项目与文档的一致性触发([`project-verify`](../project-verify/))。
 
 ## 工作流
 
@@ -73,3 +74,5 @@ Spec 变成经过验证的代码,并与项目文档保持同步。Foundry 的核
 
 - [Spec 与访谈](./spec) 和 [测试与工作类型](./testing)。
 - Roadmap 用完时,用 [`coding-start`](../coding-start/) 规划下一波。
+- 用 [`project-verify`](../project-verify/) 独立审计项目与其文档 —— 包括本功能的
+  `Done` 声明。

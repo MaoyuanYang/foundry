@@ -17,8 +17,9 @@ title: coding-start
 - 在空目录或只有笔记的目录上说"开始构建这个想法:……"。
 - 在已有文档的项目上说"规划下一阶段 / 给 Roadmap 加功能"。
 
-它**不会**为接管缺少文档的仓库触发([`project-onboard`](../project-onboard/)),也不会
-为实现某个功能触发([`feature-dev`](../feature-dev/))。
+它**不会**为接管缺少文档的仓库触发([`project-onboard`](../project-onboard/)),不会
+为实现某个功能触发([`feature-dev`](../feature-dev/)),也不会为独立核查项目现状与
+文档是否一致触发([`project-verify`](../project-verify/))。
 
 ## 工作流
 
@@ -90,3 +91,4 @@ Roadmap 展示通往可用产品的最短可信路径,而不是无所不包的�
 
 - [`feature-dev`](../feature-dev/) —— 接手 `Next` 功能并实现它。
 - [`project-onboard`](../project-onboard/) —— Brownfield 对应技能。
+- [`project-verify`](../project-verify/) —— 功能交付后,对照文档审计现状。

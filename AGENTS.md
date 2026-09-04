@@ -14,8 +14,8 @@ This file governs the entire Foundry repository.
 
 ## Repository Structure
 
-- `skills/` contains the three independently installable Agent Skills:
-  `coding-start`, `project-onboard`, `feature-dev`.
+- `skills/` contains the four independently installable Agent Skills:
+  `coding-start`, `project-onboard`, `feature-dev`, `project-verify`.
 - `docs/` contains the English documentation website; `docs/zh/` contains its Chinese
   localization.
 - `adr/` records architecture decisions for Foundry itself.

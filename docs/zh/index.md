@@ -41,6 +41,9 @@ features:
   - icon: 🔄
     title: Greenfield 与 Brownfield
     details: 用 coding-start 启动新项目,或用 project-onboard 恢复缺少文档的存量仓库 —— 然后用 feature-dev 一个接一个地开发。
+  - icon: 🔎
+    title: 对照文档做验证
+    details: project-verify 独立核查项目现状与文档是否一致 —— Done 的功能、验收标准、文档声明的命令和流程 —— 给出带证据的发现报告,而不做任何修复。
 ---
 
 ## Foundry 养成的习惯
@@ -51,7 +54,7 @@ features:
 用户请求 → 猜测需求 → 直接开写 → 实现逐渐偏航
 ```
 
-Foundry —— 面向 OpenCode、Claude Code 及兼容智能体的三个 Agent Skill —— 这样工作:
+Foundry —— 面向 OpenCode、Claude Code 及兼容智能体的四个 Agent Skill —— 这样工作:
 
 ```text
 想法 → 理解 → 访谈 → 文档 / Spec → 实施计划 → 测试 → 编码 → 验证
@@ -62,5 +65,6 @@ Foundry —— 面向 OpenCode、Claude Code 及兼容智能体的三个 Agent S
 | [`coding-start`](/zh/coding-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](/zh/project-onboard/) | Brownfield · 未知 → 理解 | 验证仓库可运行 → 恢复 AS-IS 文档、Roadmap、Spec |
 | [`feature-dev`](/zh/feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
+| [`project-verify`](/zh/project-verify/) | 保障 · 声称 → 查证 | 文档驱动的验证 → 带证据的发现报告 |
 
 Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓库上下文、访谈和工程判断。

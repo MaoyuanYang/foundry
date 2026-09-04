@@ -46,7 +46,8 @@ export default defineConfig({
             items: [
               { text: 'coding-start', link: '/coding-start/' },
               { text: 'project-onboard', link: '/project-onboard/' },
-              { text: 'feature-dev', link: '/feature-dev/' }
+              { text: 'feature-dev', link: '/feature-dev/' },
+              { text: 'project-verify', link: '/project-verify/' }
             ]
           },
           { text: 'FAQ', link: '/reference/faq' },
@@ -77,6 +78,10 @@ export default defineConfig({
             ]
           },
           {
+            text: 'project-verify',
+            items: [{ text: 'Overview', link: '/project-verify/' }]
+          },
+          {
             text: 'Reference',
             items: [{ text: 'FAQ', link: '/reference/faq' }]
           }
@@ -97,7 +102,8 @@ export default defineConfig({
             items: [
               { text: 'coding-start', link: '/zh/coding-start/' },
               { text: 'project-onboard', link: '/zh/project-onboard/' },
-              { text: 'feature-dev', link: '/zh/feature-dev/' }
+              { text: 'feature-dev', link: '/zh/feature-dev/' },
+              { text: 'project-verify', link: '/zh/project-verify/' }
             ]
           },
           { text: '常见问题', link: '/zh/reference/faq' },
@@ -126,6 +132,10 @@ export default defineConfig({
               { text: 'Spec 与访谈', link: '/zh/feature-dev/spec' },
               { text: '测试与工作类型', link: '/zh/feature-dev/testing' }
             ]
+          },
+          {
+            text: 'project-verify',
+            items: [{ text: '总览', link: '/zh/project-verify/' }]
           },
           {
             text: '参考',

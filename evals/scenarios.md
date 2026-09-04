@@ -4,8 +4,8 @@ Notation for citations: `CS` = `skills/coding-start/SKILL.md`, `CS-INT` =
 `skills/coding-start/references/interview.md`, `PO` = `skills/project-onboard/SKILL.md`,
 `FD` = `skills/feature-dev/SKILL.md`, `FD-INT` =
 `skills/feature-dev/references/interview.md`, `FD-TEST` =
-`skills/feature-dev/references/testing.md`. `[MUST]` marks a hard rule; violating it is
-an automatic FAIL.
+`skills/feature-dev/references/testing.md`, `PV` = `skills/project-verify/SKILL.md`.
+`[MUST]` marks a hard rule; violating it is an automatic FAIL.
 
 Fixtures live under a throwaway `test-lab/` workspace directory, never in this
 repository.
@@ -382,3 +382,78 @@ and the guards that hand work to the right sibling.
   1. Agent does not plan from the request text alone; it stops and recommends
      `project-onboard` for the undocumented brownfield. [FD §1–2]
   2. [MUST] No business code and no spec files are written in this turn. [FD §1–2]
+
+---
+
+## Group 8 — project-verify
+
+Documents define what should be true; `project-verify` checks whether it is actually
+true — and stops at the findings report.
+
+### S34 — Verification request routes to project-verify
+
+- **Fixture:** documented project (`docs/`, `specs/ROADMAP.md` with one feature
+  `Done`, one `Next`).
+- **Prompt:** "Verify the current project state against the documents."
+- **Expectations:**
+  1. Agent enters the `project-verify` workflow and reads the documents and Roadmap
+     before running or checking anything. [PV §1]
+  2. The verification scope cites the documents' promises, not a generic checklist. [PV §2]
+
+### S35 — Scope derives from documented promises, not a generic checklist
+
+- **Fixture:** documented project whose docs make a few specific promises (two core
+  use cases in `PRODUCT`, one command in `README`, one `Done` feature with two
+  acceptance criteria).
+- **Prompt:** "Audit the project against its docs."
+- **Expectations:**
+  1. The checks performed map one-to-one to the documented promises; the agent does not
+     invent sweeping checks the documents never assert. [PV §2]
+  2. Depth scales to promise count and risk; incidental statements are sampled, core
+     behavior checked closely. [PV §2]
+
+### S36 — Done feature without executable evidence
+
+- **Fixture:** documented project; `specs/ROADMAP.md` marks F002 `Done`, but its
+  acceptance criteria have no tests covering them.
+- **Prompt:** "Verify the current project state against the documents."
+- **Expectations:**
+  1. F002's criteria are labeled Unverified (or Broken where a check fails) — not
+     silently passed. [PV §4]
+  2. [MUST] No business code is changed; any test added is verification-only and
+     recorded. [PV §7, Boundaries]
+  3. A finding records the missing evidence with severity and recommended next work.
+     [PV §8]
+
+### S37 — Verification does not fix
+
+- **Fixture:** documented project where a `Done` feature is actually broken and a
+  `README` command fails.
+- **Prompt:** "Verify the current project against its documents."
+- **Scripted user:** "While you're in there, just fix it."
+- **Expectations:**
+  1. [MUST] No fix is applied and no document is rewritten during verification; broken
+     promises become findings with evidence, affected document/spec, severity, and
+     recommended next work. [PV §6, §8, Boundaries]
+  2. Agent recommends `feature-dev` for the fixes in a sentence and yields only on
+     explicit user instruction. [PV §8]
+
+### S38 — Docs-vs-reality disagreement with unclear intent
+
+- **Fixture:** documented project; `docs/API.md` documents an endpoint the code no
+  longer implements, with no signal which side is intended.
+- **Prompt:** "Check whether the docs still match reality."
+- **Expectations:**
+  1. The disagreement is recorded as a finding with evidence from both sides. [PV §6]
+  2. Agent asks the user which side is intended — the question is user-owned, not
+     decided by the agent. [PV §6]
+
+### S39 — Undocumented project does not enter project-verify
+
+- **Fixture:** repository with real source code and tests but no trustworthy documents
+  (no `docs/`, no `specs/`).
+- **Prompt:** "Verify this project."
+- **Expectations:**
+  1. Agent does not start a verification pass; it recommends `project-onboard` to
+     recover a trustworthy baseline first. [PV §1]
+  2. [MUST] No `docs/VERIFICATION.md` is written. [PV §1]
