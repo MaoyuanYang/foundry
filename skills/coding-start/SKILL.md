@@ -41,17 +41,19 @@ Before asking the user anything, collect what is already determinable:
 - Stated technical or business constraints.
 
 Do not ask about anything you can answer from these sources. If the directory already
-contains material business code, stop and recommend `project-onboard` instead. If the idea
-is already clear enough to write honest documents, skip the interview or keep it to one
-short round.
+contains material business code, stop and recommend `project-onboard` instead. If
+scanning the templates leaves no user-owned gap — the idea plus this context is enough
+to write honest documents — skip the interview or keep it to one short confirmation
+round.
 
 ## 2. Interview the user
 
-The goal is to fill the gaps that materially change the documents — product direction,
-scope, architecture, and testability — not to complete a checklist. Ask a few related
-questions per round, recommend sensible defaults for low-risk technical details, and stop
-when the remaining unknowns would no longer change what you write. See
-[references/interview.md](references/interview.md).
+The templates define what must be understood; the interview fills the user-owned gaps.
+Scan the templates section by section and fill in everything already determinable —
+what the user said, what the directory shows, and low-risk engineering judgment. Then
+ask only about the unresolved user-owned gaps (product goals, users, core scenarios,
+scope, business rules, behavior preferences, success criteria, hard constraints);
+never guess their answers. See [references/interview.md](references/interview.md).
 
 Before writing documents, briefly summarize the key decisions back to the user and let
 them correct you. This one checkpoint catches most misunderstandings cheaply.
@@ -89,8 +91,8 @@ credible path to a usable product, not an exhaustive wish list. Mark one feature
 Write a draft spec for each roadmap feature using `assets/feature-spec.template.md`
 (the same template `feature-dev` later refines). Drafts fill in what is already decidable
 — goal, background, rough requirements — and record the rest as open questions for
-`feature-dev` to resolve with the user. Do not invent answers to product-defining
-questions here; leave them in `Open Questions`.
+`feature-dev` to resolve with the user. Do not invent answers to user-owned questions
+here; leave them in `Open Questions`.
 
 ## 6. Stop
 

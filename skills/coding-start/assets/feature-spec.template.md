@@ -3,7 +3,8 @@
 <!-- ==================================================================== -->
 <!-- File: specs/F<nnn>-<slug>.md                                         -->
 <!--                                                                      -->
-<!-- Fill what is already known; record the rest as Open Questions.       -->
+<!-- Fill each section from the request, the repository, and sound        -->
+<!-- judgment; record unresolved user-owned questions as Open Questions.  -->
 <!-- Delete sections that do not apply to this feature.                   -->
 <!-- ==================================================================== -->
 
@@ -77,7 +78,8 @@ scenarios from the criteria above.>
 
 ## Open Questions
 
-<Unresolved questions that materially affect behavior, implementation, or testing.
-Resolve them with the user before or during implementation; delete each once answered.>
+<Unresolved user-owned questions — behavior, business rules, success criteria,
+constraints — that the request and repository could not answer. Resolve them with the
+user before or during implementation; delete each once answered.>
 
 - <question 1>

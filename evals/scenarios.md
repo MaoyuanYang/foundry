@@ -53,15 +53,16 @@ repository.
 
 ## Group 2 — coding-start
 
-### S05 — Understand first, then ask only what matters
+### S05 — Scan first, then ask only the user-owned gaps
 
 - **Fixture:** empty directory; user provides a detailed first message (product, users,
   stack, and a constraint: "must run offline").
 - **Prompt:** the detailed message + "start the project".
 - **Expectations:**
-  1. Agent asks no question already answered by the message or directory. [CS §1]
-  2. Interview rounds ask 2–5 related questions each, focused on direction, scope,
-     architecture-shaping constraints, or testing. [CS-INT "What to ask about"]
+  1. Agent asks no question already answered by the message or directory. [CS §1–2]
+  2. Agent asks only about unresolved user-owned gaps (direction, scope,
+     architecture-shaping constraints, testing), in rounds of 2–5 related questions.
+     [CS-INT "Who owns the answer", "How to ask"]
   3. Low-risk details (e.g. which test runner) get a recommendation, not a question.
      [CS-INT "How to ask"]
 
@@ -72,8 +73,9 @@ repository.
   the rest".
 - **Expectations:**
   1. Agent stops interviewing after that and proceeds to documents; remaining unknowns
-     are recorded in the draft Specs' Open Questions. [CS-INT "When to stop"; CS §5]
-  2. [MUST] Agent does not invent product-defining answers (e.g. fabricates a
+     are recorded in the draft Specs' Open Questions. [CS-INT "When the interview is
+     complete"; CS §5]
+  2. [MUST] Agent does not invent answers to user-owned questions (e.g. fabricates a
      collaboration feature never mentioned).
 
 ### S07 — Applicable documents only
@@ -108,7 +110,7 @@ repository.
 - **Prompt:** "Plan the next wave: we want collaboration features."
 - **Expectations:**
   1. Agent re-enters the coding-start workflow without re-interviewing about existing
-     facts; interviews only about the new direction. [CS intro; CS §1]
+     facts; asks only about the new direction's user-owned gaps. [CS intro; CS §1–2]
   2. New entries + draft specs are added; existing `Done` entries are not rewritten.
 
 ---
@@ -155,14 +157,17 @@ repository.
 ### S15 — Reads context before planning; no hallucinated requirements
 
 - **Fixture:** documented project; request: "Add CSV export to the report page."
-- **Scripted user:** answers the material questions (export scope, error behavior).
+- **Scripted user:** answers the user-owned questions (export scope, error behavior).
 - **Expectations:**
   1. Agent reads project docs and the relevant code/tests before writing the spec.
      [FD §1–2]
-  2. Spec is created/updated with Goal, Requirements, Acceptance Criteria. [FD §4]
-  3. [MUST] Material unknowns are asked, not invented (e.g. agent does not silently
-     decide export includes deleted records). [FD §3, FD-INT]
-  4. At least one low-risk detail is decided by the agent with a recorded decision.
+  2. Agent scans the spec template section by section and fills everything the
+     documents, code, and request already determine before asking; questions target
+     only the resulting user-owned gaps. [FD §3, FD-INT "Scan the spec first"]
+  3. Spec is created/updated with Goal, Requirements, Acceptance Criteria. [FD §4]
+  4. [MUST] User-owned unknowns are asked, not invented (e.g. agent does not silently
+     decide export includes deleted records). [FD §3, FD-INT "Who owns the answer"]
+  5. At least one low-risk detail is decided by the agent with a recorded decision.
 
 ### S16 — Vertical-slice implementation plan, not layers
 
@@ -244,7 +249,7 @@ properties most easily lost to future wording edits.
 - **Fixture:** documented project; request: "Add a views counter to posts. Don't write
   a spec, just code it."
 - **Expectations:**
-  1. Agent pins the behavior-defining unknown(s) (e.g. what increments the counter)
+  1. Agent pins the user-owned unknown(s) (e.g. what increments the counter)
      before coding, even without a spec file. [FD §3]
   2. [MUST] Tests are written before/alongside the change and verification runs. [FD §6–7]
   3. Footprint stays minimal: no coordination artifacts; spec/ROADMAP changes limited
@@ -321,3 +326,59 @@ properties most easily lost to future wording edits.
      of a full template spec with a multi-step plan. [FD §4 scaling clause]
   2. [MUST] Tests-first and verification still apply; affected documents are still
      synced. [FD §6, §9]
+
+---
+
+## Group 7 — Cross-skill handoffs
+
+These scenarios pin the seams between skills: one skill consuming another's output,
+and the guards that hand work to the right sibling.
+
+### S31 — feature-dev consumes coding-start's draft spec and Open Questions
+
+- **Fixture:** project after a `coding-start` run: full document set,
+  `specs/ROADMAP.md` with F001 marked `Next`, and a draft spec `specs/F001-<slug>.md`
+  whose Goal, Background, and rough Requirements are filled and whose `Open Questions`
+  lists two user-owned questions (export scope; what happens on empty data).
+- **Prompt:** "Implement F001 according to the workflow."
+- **Scripted user:** answers the export-scope question; says "use your judgment" for
+  the empty-data question.
+- **Expectations:**
+  1. Agent reads the project documents and the draft spec before planning, and asks
+     no question the spec or documents already answer. [FD §1–2]
+  2. Spec sections are filled from the documents, code, and request during a
+     section-by-section scan; questions target only the unresolved user-owned Open
+     Questions. [FD §3, FD-INT "Scan the spec first"]
+  3. [MUST] No Open Question is silently invented or dropped — each is asked,
+     delegated, or found already answered, and deleted from the spec once resolved.
+     [FD-INT "When the spec is interview-complete"]
+  4. The "use your judgment" delegation becomes an agent-owned decision recorded in
+     the spec. [FD-INT "Who owns the answer"]
+  5. The delivery loop then runs normally: plan, tests from acceptance criteria,
+     stepwise implementation, document sync, Roadmap `Done`. [FD §5–9]
+
+### S32 — feature-dev consumes a recovered spec with Inferred marks
+
+- **Fixture:** project after a `project-onboard` run: AS-IS documents, recovered
+  `specs/ROADMAP.md`, and a draft spec for the `Next` feature that describes current
+  behavior and gaps with some statements marked `Inferred`.
+- **Prompt:** "Implement the Next feature according to the workflow."
+- **Expectations:**
+  1. Agent treats `Inferred` statements as leads, not settled facts: evidence-owned
+     content is re-established from code and tests during the spec scan, and the
+     spec is corrected where the code contradicts it. [FD §1–2, FD-INT "Scan the
+     spec first"]
+  2. User-owned gaps in the recovered spec are asked, not assumed. [FD §3, FD-INT
+     "Who owns the answer"]
+  3. `Inferred` statements that cannot be verified stay labeled; none is silently
+     promoted to fact. [PO §4]
+
+### S33 — feature-dev stops on an undocumented project
+
+- **Fixture:** repository with real source code and tests but no trustworthy
+  documents (no `docs/`, no `specs/`).
+- **Prompt:** "Implement dark mode for the settings page."
+- **Expectations:**
+  1. Agent does not plan from the request text alone; it stops and recommends
+     `project-onboard` for the undocumented brownfield. [FD §1–2]
+  2. [MUST] No business code and no spec files are written in this turn. [FD §1–2]

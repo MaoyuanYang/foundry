@@ -28,7 +28,7 @@ features:
     details: Project documents and Feature Specs are written before code — and updated in the same change that makes them untrue.
   - icon: 🙋
     title: Interview Driven
-    details: The agent asks about what materially changes behavior, scope, or testing instead of guessing requirements. Low-risk details get a recommendation, not a question.
+    details: "Documents are scanned and filled from what you said, the repository, and engineering judgment — then the agent interviews you only about the user-owned gaps: goals, users, scope, rules, success criteria."
   - icon: 📋
     title: Spec Before Implementation
     details: Every piece of work has an agreed spec with observable requirements and acceptance criteria — the source for both the plan and the tests.

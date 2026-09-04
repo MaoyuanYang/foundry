@@ -8,7 +8,7 @@ title: FAQ
 
 **Will the skills write code for me automatically?**
 `coding-start` and `project-onboard` produce documents and stop before business code.
-Only `feature-dev` writes code, and only after the spec's material questions are
+Only `feature-dev` writes code, and only after the spec's user-owned questions are
 resolved and its tests are derived from the acceptance criteria.
 
 **How do I do a refactoring, an upgrade, or a debt cleanup?**
@@ -36,9 +36,11 @@ leaves a normal repository behind.
 ## Workflow
 
 **The agent keeps asking me questions. How do I make it stop?**
-The interview guideline is "ask only what materially changes behavior, scope, or
-testing; recommend for the rest." If it is asking about trivia, say so — or answer with
-"use your judgment" and the agent will record its decision in the spec and move on.
+The interview is document-driven: templates are scanned and filled from what you said,
+the repository, and engineering judgment first, and the agent asks only about
+user-owned gaps — goals, users, scope, rules, success criteria, constraints. If it is
+asking about trivia, say so — or answer with "use your judgment" and the agent will
+record its decision in the spec and move on.
 
 **What if the spec turns out wrong during implementation?**
 Update the spec, then continue. The Implementation Plan and spec are plans, not

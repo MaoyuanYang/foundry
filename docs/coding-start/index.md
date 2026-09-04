@@ -30,7 +30,7 @@ Project Idea
     ↓
 1. Understand context      read what the user and directory already answer
     ↓
-2. Interview the user      fill only the gaps that materially change the documents
+2. Interview the user      ask only about the user-owned gaps the scan leaves open
     ↓
 3. Write project documents README, PRODUCT, ARCHITECTURE, TESTING (+ applicable extras)
     ↓
@@ -41,21 +41,30 @@ Project Idea
 6. Stop                    hand off to feature-dev
 ```
 
-## Understand first, then interview
+## Scan the documents, then interview
 
-The agent collects everything already determinable — the user's description, existing
-notes and configs, stated constraints — before asking anything. Questions are reserved
-for gaps that materially change the documents:
+The agent walks the document templates section by section and fills in everything
+already determinable — the user's description, existing notes and configs, stated
+constraints, and low-risk engineering judgment. What remains is a set of gaps, and each
+gap has an owner:
 
-- **Product direction** — who is this for, what problem, what does "useful" mean?
-- **Scope** — what is explicitly out of the first version?
-- **Architecture-shaping constraints** — required integrations, platforms, scale.
-- **Testing** — what must not break, what counts as adequate verification?
+- **User-owned** — product goals, users, core scenarios, scope, business rules, behavior
+  preferences, success criteria, hard constraints. The interview asks about these;
+  answers are never guessed.
+- **Agent-owned** — internal implementation, module structure, library choice, code
+  organization. The agent decides these with sound judgment and records the decision.
+- **Evidence-owned** — existing behavior, interfaces, data structures, test results.
+  Read from the repository, not asked.
 
-Low-risk technical details get a recommendation instead of a question ("I'd use SQLite
-for the first version — fine unless you expect concurrent writers"). Before writing
-documents, the agent summarizes the key decisions back to the user for correction — one
-cheap checkpoint that catches most misunderstandings.
+Typical user-owned territory: product direction, what is explicitly out of the first
+version, architecture-shaping constraints (required integrations, platforms, scale),
+and what must not break.
+
+Low-risk details get a recommendation instead of a question ("I'd use SQLite for the
+first version — fine unless you expect concurrent writers"). The interview is complete
+when every important section has a reliable source and no user-owned gap remains.
+Before writing documents, the agent summarizes the key decisions back to the user for
+correction — one cheap checkpoint that catches most misunderstandings.
 
 ## Documents produced
 
@@ -76,7 +85,7 @@ engineering judgment fill them in. Only applicable documents are created:
 
 The Roadmap shows the shortest credible path to a usable product, not an exhaustive wish
 list. Draft Specs fill in what is decidable and record the rest as **Open Questions** for
-`feature-dev` to resolve — product-defining questions are never guessed at this stage.
+`feature-dev` to resolve — user-owned questions are never guessed at this stage.
 
 ## Boundaries
 

@@ -31,7 +31,7 @@ Feature Request
     ↓
 2. Read the relevant code        the modules and tests this request touches
     ↓
-3. Interview the user            resolve spec gaps that materially matter
+3. Interview the user            resolve the spec's user-owned gaps
     ↓
 4. Fill / refine the Feature Spec   goal, requirements, acceptance criteria
     ↓
@@ -67,8 +67,8 @@ entry point adapts:
 
 Very little is mandatory; what is, defines Foundry:
 
-- **MUST NOT start implementation** while spec questions that materially affect
-  behavior, implementation, or testing remain unresolved.
+- **MUST NOT start implementation** while user-owned spec questions (behavior, business
+  rules, success criteria, constraints) remain unresolved.
 - **MUST derive verification from the spec** — tests come from acceptance criteria.
 - **MUST run the relevant tests after implementation**; failures mean work is not
   finished.

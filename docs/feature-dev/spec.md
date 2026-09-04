@@ -14,15 +14,16 @@ Project Documents + Existing Code + User Request + User Interview → Feature Sp
 
 ## Filling the spec
 
-After reading the project documents and the relevant code, the agent fills in everything
-already determinable, then identifies what remains materially unclear. The test for what
-still needs the user:
+After reading the project documents and the relevant code, the agent walks the spec
+template section by section, filling in everything already determinable — from the
+request, from the repository, and from low-risk engineering judgment — and then lists
+the gaps that remain. The test for each gap:
 
-> If an unknown could significantly change external behavior, the core implementation
-> approach, or how the feature is tested, ask the user first.
+> If the answer belongs to the user — product behavior, business rules, success
+> criteria, hard constraints — ask; if it belongs to the repository, read; if it is a
+> low-risk implementation detail, decide and record it.
 
-Everything else is a low-risk implementation detail — the agent decides it with sound
-engineering judgment and records the decision in the spec as it goes.
+Documents define what must be understood; interviews fill the user-owned gaps.
 
 ## Interviewing well
 
@@ -30,11 +31,14 @@ engineering judgment and records the decision in the spec as it goes.
 - Concrete beats abstract: "Should expired sessions be rejected with 401 or refreshed
   silently?" — not "How should errors be handled?"
 - Offer a best guess as a default: "I'd return 401 and keep refresh opt-in — sound?"
-- Never invent answers to behavior-defining questions; a wrong assumption in the spec
-  becomes a wrong feature in the code.
+- Never invent answers to user-owned questions; a wrong assumption in the spec becomes
+  a wrong feature in the code.
+- Materiality calibrates depth, not entry: within the user-owned gaps, ask about the
+  ones that shape behavior, implementation, or testing; offer defaults for minor ones.
 
-The spec is interview-complete when its remaining unknowns are all low-risk. Each Open
-Question is resolved by asking, then deleted once answered.
+The spec is interview-complete when every important section has a reliable source and
+the remaining unknowns are all agent-owned. Each Open Question is resolved by asking,
+then deleted once answered.
 
 ## The spec template
 

@@ -30,7 +30,7 @@ Idea → Understand → Interview → Documents / Spec → Plan → Tests → Co
 ```
 
 - **Document first** — project documents and Feature Specs are written before code.
-- **Interview driven** — the agent asks about what materially matters instead of guessing.
+- **Interview driven** — documents are filled from what you said, the repository, and engineering judgment; the agent interviews you only about the user-owned gaps.
 - **Test driven** — tests are derived from acceptance criteria, and code runs against them.
 - **Incremental** — features are built in small, verifiable steps.
 - **Kept in sync** — documents are updated when implementation changes reality.
@@ -76,9 +76,9 @@ all three skills listed).
 
 > "Initialize a new greenfield project: a community local-services platform."
 
-`coding-start` reads what you already provided, interviews you about the gaps that
-matter, writes the project documents and `specs/ROADMAP.md` with draft Feature Specs —
-then stops. No business code.
+`coding-start` reads what you already provided, scans the document templates,
+interviews you only about the user-owned gaps, writes the project documents and
+`specs/ROADMAP.md` with draft Feature Specs — then stops. No business code.
 
 **Take over an existing repo:**
 
@@ -93,9 +93,9 @@ reality, and recovers a Roadmap — without changing business behavior.
 > "Implement feature F001 according to the workflow."
 
 `feature-dev` reads the project documents and the relevant code, interviews you until
-the Spec's open questions are resolved, plans small vertical slices, derives tests from
-the acceptance criteria, implements step by step until the tests pass, and updates the
-documents it made untrue.
+the Spec's user-owned questions are resolved, plans small vertical slices, derives tests
+from the acceptance criteria, implements step by step until the tests pass, and updates
+the documents it made untrue.
 
 ## Principles
 

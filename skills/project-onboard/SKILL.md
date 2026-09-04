@@ -72,10 +72,11 @@ next agent (and the user) which facts are safe to rely on.
 
 ## 5. Ask the user when necessary
 
-Ask only about facts that materially affect the documents and that the repository cannot
-answer: original intent, why a subsystem exists, whether an observed broken behavior is
-known. Bring labeled findings to the conversation ("the docs say X, the code does Y —
-which is intended?"). Everything answerable from the code is answered from the code.
+Ask only about what the documents need and the repository cannot answer: original
+intent, why a subsystem exists, whether an observed broken behavior is known. Bring
+labeled findings to the conversation ("the docs say X, the code does Y — which is
+intended?"). Everything the repository can answer — existing behavior, interfaces, data
+structures, test results — is answered from the repository.
 
 ## 6. Create / repair project documents
 

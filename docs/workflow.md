@@ -18,7 +18,7 @@ Idea
  ↓
 Understand          read the repo and docs before anything else
  ↓
-Interview          ask about what materially matters; recommend for the rest
+Interview          scan the documents, then ask about the user-owned gaps
  ↓
 Documents / Spec   write down the agreed outcome
  ↓
@@ -32,6 +32,8 @@ Verify             run the tests; fix until they pass
  ↓
 Sync Docs          update whatever the implementation made untrue
 ```
+
+Documents define what must be understood; interviews fill the user-owned gaps.
 
 ## Principles
 

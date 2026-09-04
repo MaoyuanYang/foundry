@@ -48,15 +48,17 @@ first.
 
 ## 3. Interview the user
 
-Find or create the Feature Spec (`specs/F<nnn>-<slug>.md`), fill in everything the
-documents, code, and request already determine, and identify what remains materially
-unclear. Ask about those gaps; do not invent answers. The test for what to ask:
+Find or create the Feature Spec (`specs/F<nnn>-<slug>.md`) and walk it section by
+section. Fill in everything the documents, code, and request already determine; decide
+low-risk implementation details yourself and record each decision in the spec. What
+remains unfilled is a set of gaps — ask only about the user-owned ones; never invent
+their answers. The test for each gap:
 
-> If an unknown could significantly change external behavior, the core implementation
-> approach, or how the feature is tested, ask the user first.
+> If the answer belongs to the user — product behavior, business rules, success
+> criteria, hard constraints — ask; if it belongs to the repository, read; if it is a
+> low-risk implementation detail, decide and record it.
 
-Low-risk implementation details are yours to decide with sound judgment — record such
-decisions in the spec as you make them. See [references/interview.md](references/interview.md).
+See [references/interview.md](references/interview.md).
 
 ## 4. Feature Spec
 
@@ -65,8 +67,8 @@ Acceptance Criteria, and Open Questions honestly reflect an agreed outcome. Dele
 sections that do not apply. Update `specs/ROADMAP.md` so this feature shows
 `In Progress`.
 
-- MUST NOT start implementation while spec questions that materially affect behavior,
-  implementation, or testing remain unresolved.
+- MUST NOT start implementation while user-owned spec questions (behavior, business
+  rules, success criteria, constraints) remain unresolved.
 
 Scale the artifacts to the change: when a request has one observable behavior, no
 unresolved questions, and no interface or data-model change beyond that behavior, a
