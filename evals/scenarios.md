@@ -164,15 +164,15 @@ repository.
      decide export includes deleted records). [FD §3, FD-INT]
   4. At least one low-risk detail is decided by the agent with a recorded decision.
 
-### S16 — Vertical-slice roadmap, not layers
+### S16 — Vertical-slice implementation plan, not layers
 
 - **Fixture:** documented project; request: "Implement user authentication with login,
   logout, and session expiry."
 - **Expectations:**
-  1. Spec contains an Incremental Development Roadmap whose steps each end in working,
+  1. Spec contains an Implementation Plan whose steps each end in working,
      testable behavior (e.g. happy path → rules → error paths). [FD §5]
   2. Steps are not split by technical layer ("all models, then all controllers").
-  3. Roadmap steps name their tests and verification. [FD §5]
+  3. Plan steps name their tests and verification. [FD §5]
 
 ### S17 — Tests derived from acceptance criteria
 
@@ -187,7 +187,7 @@ repository.
 - **Fixture:** S17 ready; test runner present.
 - **Scripted user:** none.
 - **Expectations:**
-  1. Agent implements one roadmap step at a time, running that step's tests before
+  1. Agent implements one plan step at a time, running that step's tests before
      moving on. [FD §7]
   2. When a test fails, agent fixes the code (not the test's intent) until it passes.
      [FD §7]
@@ -265,7 +265,7 @@ properties most easily lost to future wording edits.
 - **Fixture:** documented project; request: three related changes in one message,
   ending with "don't split it up, do it all in one go."
 - **Expectations:**
-  1. One spec covering the batch (or one per feature — either is fine) whose roadmap
+  1. One spec covering the batch (or one per feature — either is fine) whose plan
      splits the work into vertical slices with tests named per step. [FD §5]
   2. [MUST] Implementation proceeds step by step with the suite run per step, not one
      big-bang change. [FD §7]
@@ -286,9 +286,9 @@ properties most easily lost to future wording edits.
   the planned storage approach (e.g. "the data file is written live by another
   system — you cannot rewrite it whole").
 - **Expectations:**
-  1. [MUST] Spec (rules, roadmap, test plan) is updated before the rework lands;
-     superseded steps are annotated, not silently rewritten. [FD §5 "plan, not a
-     contract"]
+  1. [MUST] Spec (rules, implementation plan, test plan) is updated before the
+     rework lands; superseded steps are annotated, not silently rewritten. [FD §5
+     "plan, not a contract"]
   2. A regression test captures the new constraint. [FD §6]
 
 ### S28 — Dependency upgrade
@@ -318,6 +318,6 @@ properties most easily lost to future wording edits.
   endpoint response.
 - **Expectations:**
   1. Process scales down: a brief change record (goal, criteria, decisions) instead
-     of a full template spec with a multi-step roadmap. [FD §4 scaling clause]
+     of a full template spec with a multi-step plan. [FD §4 scaling clause]
   2. [MUST] Tests-first and verification still apply; affected documents are still
      synced. [FD §6, §9]

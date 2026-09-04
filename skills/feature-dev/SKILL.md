@@ -1,6 +1,6 @@
 ---
 name: feature-dev
-description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, incremental plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), or recovery of an undocumented repository (project-onboard)."
+description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (coding-start), or recovery of an undocumented repository (project-onboard)."
 ---
 
 # feature-dev
@@ -10,7 +10,7 @@ paydown, or dependency upgrade — by turning an agreed spec into verified code,
 sync with the project documents. This is where Foundry's core loop runs in full:
 
 ```text
-Interview → Spec → Incremental Plan → Tests → Code → Verify → Sync Docs
+Interview → Spec → Implementation Plan → Tests → Code → Verify → Sync Docs
 ```
 
 ## Workflow
@@ -26,7 +26,7 @@ Feature Request
     ↓
 4. Fill / refine the Feature Spec
     ↓
-5. Write the Incremental Development Roadmap
+5. Write the Implementation Plan
     ↓
 6. Derive tests from acceptance criteria
     ↓
@@ -71,12 +71,12 @@ sections that do not apply. Update `specs/ROADMAP.md` so this feature shows
 Scale the artifacts to the change: when a request has one observable behavior, no
 unresolved questions, and no interface or data-model change beyond that behavior, a
 brief change record (Goal, Acceptance Criteria, decisions made) is enough — skip the
-empty sections and the multi-step roadmap. Tests-first, verification, and document
+empty sections and the multi-step plan. Tests-first, verification, and document
 sync still apply. When in doubt, write the full spec.
 
-## 5. Incremental Development Roadmap
+## 5. Implementation Plan
 
-Before coding, write the feature's Incremental Development Roadmap (a spec section —
+Before coding, write the feature's Implementation Plan (a spec section —
 unless the change qualified for the brief record above, in which case its single step
 is the plan): small steps, each with a goal, scope, tests, and verification. Prefer
 **vertical slices** — each step ends with working, testable behavior — over
@@ -90,8 +90,8 @@ Step 3  error paths and edge cases
 Step 4  integration and document sync
 ```
 
-The roadmap is a plan, not a contract: when implementation reveals a better split or a
-wrong assumption, update the roadmap and spec, then continue.
+The Implementation Plan is a plan, not a contract: when implementation reveals a better
+split or a wrong assumption, update the plan and spec, then continue.
 
 ## 6. Tests from acceptance criteria
 
@@ -103,9 +103,9 @@ tests before or alongside each implementation step — the intent is that no ste
 
 ## 7. Implement step by step
 
-Work the roadmap one step at a time: implement, run the step's tests, fix until they
-pass, then move on. Keep changes scoped to the spec; park attractive side-ideas as new
-Roadmap entries instead of implementing them now.
+Work the Implementation Plan one step at a time: implement, run the step's tests, fix
+until they pass, then move on. Keep changes scoped to the spec; park attractive
+side-ideas as new Roadmap entries instead of implementing them now.
 
 - MUST run the relevant tests after implementation, and MUST treat test failures as
   work-not-finished, not as noise to suppress.

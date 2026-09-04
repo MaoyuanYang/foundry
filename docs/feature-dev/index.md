@@ -9,7 +9,7 @@ paydown, or dependency upgrade — by turning an agreed spec into verified code,
 sync with the project documents. This is where Foundry's core loop runs in full:
 
 ```text
-Interview → Spec → Incremental Plan → Tests → Code → Verify → Sync Docs
+Interview → Spec → Implementation Plan → Tests → Code → Verify → Sync Docs
 ```
 
 ## When it triggers
@@ -35,7 +35,7 @@ Feature Request
     ↓
 4. Fill / refine the Feature Spec   goal, requirements, acceptance criteria
     ↓
-5. Write the Incremental Development Roadmap   small vertical slices
+5. Write the Implementation Plan   small vertical slices
     ↓
 6. Derive tests                  from the acceptance criteria
     ↓

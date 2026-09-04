@@ -41,7 +41,7 @@ Foundry 是一套包含三个 **Agent Skill** 的技能包，帮助智能体养�
 |---|---|---|
 | [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | 访谈 → 项目文档(`README`、`docs/PRODUCT`、`ARCHITECTURE`、`TESTING` 等)→ Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 先验证仓库可运行 → 相信代码而非过时文档 → 恢复 AS-IS 文档、Roadmap 与 Spec |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 增量计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
+| [`feature-dev`](skills/feature-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 实施计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
 
 ```text
 新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...

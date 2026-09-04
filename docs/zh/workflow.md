@@ -22,7 +22,7 @@ Foundry 用下面这个习惯取而代之:
  ↓
 文档 / Spec   把达成一致的结果写下来
  ↓
-增量计划      小的垂直切片,每步可独立验证
+实施计划      小的垂直切片,每步可独立验证
  ↓
 测试          从验收标准推导而来
  ↓
@@ -51,7 +51,7 @@ Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓�
 |---|---|---|
 | [`coding-start`](./coding-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](./project-onboard/) | Brownfield · 未知 → 理解 | 验证仓库可运行 → 恢复 AS-IS 文档、Roadmap、Spec |
-| [`feature-dev`](./feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 增量计划 → 测试 → 编码 → 验证 → 同步文档 |
+| [`feature-dev`](./feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
 
 ```text
 新想法 ────────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...

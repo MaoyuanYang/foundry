@@ -22,7 +22,7 @@ Interview          ask about what materially matters; recommend for the rest
  ↓
 Documents / Spec   write down the agreed outcome
  ↓
-Incremental Plan   small vertical slices, each independently verifiable
+Implementation Plan  small vertical slices, each independently verifiable
  ↓
 Tests              derived from acceptance criteria
  ↓
@@ -52,7 +52,7 @@ repository context, interviews, and engineering judgment fill in the answers.
 |---|---|---|
 | [`coding-start`](/coding-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
 | [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
-| [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → incremental plan → tests → code → verify → sync docs |
+| [`feature-dev`](/feature-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
 
 ```text
 New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...

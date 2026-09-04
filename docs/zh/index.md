@@ -54,13 +54,13 @@ features:
 Foundry —— 面向 OpenCode、Claude Code 及兼容智能体的三个 Agent Skill —— 这样工作:
 
 ```text
-想法 → 理解 → 访谈 → 文档 / Spec → 增量计划 → 测试 → 编码 → 验证
+想法 → 理解 → 访谈 → 文档 / Spec → 实施计划 → 测试 → 编码 → 验证
 ```
 
 | Skill | 阶段 | 职责 |
 |---|---|---|
 | [`coding-start`](/zh/coding-start/) | Greenfield · 0 → 1 | 访谈 → 项目文档 → Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](/zh/project-onboard/) | Brownfield · 未知 → 理解 | 验证仓库可运行 → 恢复 AS-IS 文档、Roadmap、Spec |
-| [`feature-dev`](/zh/feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 增量计划 → 测试 → 编码 → 验证 → 同步文档 |
+| [`feature-dev`](/zh/feature-dev/) | 开发 · 1 → N | 访谈 → Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档 |
 
 Skill 管流程,文档管项目。模板只定义结构 —— 答案来自仓库上下文、访谈和工程判断。

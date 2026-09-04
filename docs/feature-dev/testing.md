@@ -36,7 +36,7 @@ until it is observable.
 
 ## Test with each step
 
-The Incremental Development Roadmap names each step's tests. Write them before or
+The Implementation Plan names each step's tests. Write them before or
 alongside the step, run them when it lands, and fix until they pass. After all steps,
 run the project's full verification commands (`docs/TESTING.md`) so regressions
 elsewhere surface before the work is called done.
@@ -87,4 +87,4 @@ Then the feature is marked `Done` in `specs/ROADMAP.md`.
 
 ## Next
 
-- [Spec & interview](./spec) — how the spec and its roadmap come together.
+- [Spec & interview](./spec) — how the spec and its plan come together.

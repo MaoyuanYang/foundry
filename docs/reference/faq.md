@@ -41,9 +41,9 @@ testing; recommend for the rest." If it is asking about trivia, say so — or an
 "use your judgment" and the agent will record its decision in the spec and move on.
 
 **What if the spec turns out wrong during implementation?**
-Update the spec, then continue. The roadmap and spec are plans, not contracts; when
-reality disagrees, the documents change in the same piece of work. That is principle 7:
-keep documentation synchronized with implementation.
+Update the spec, then continue. The Implementation Plan and spec are plans, not
+contracts; when reality disagrees, the documents change in the same piece of work.
+That is principle 7: keep documentation synchronized with implementation.
 
 **Is this strict TDD?**
 It is spec-driven testing: tests are derived from acceptance criteria, written before or

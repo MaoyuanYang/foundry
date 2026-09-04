@@ -41,7 +41,7 @@ Idea → Understand → Interview → Documents / Spec → Plan → Tests → Co
 |---|---|---|
 | [`coding-start`](skills/coding-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
-| [`feature-dev`](skills/feature-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → incremental plan → tests from acceptance criteria → code → verify → sync docs |
+| [`feature-dev`](skills/feature-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → implementation plan → tests from acceptance criteria → code → verify → sync docs |
 
 ```text
 New idea ──────▶ coding-start ──────▶ feature-dev ──▶ feature-dev ──▶ ...

@@ -50,7 +50,7 @@ Question is resolved by asking, then deleted once answered.
 ## UI / UX                       only for features with UI impact
 ## API / Data Changes            only when interfaces or data change
 ## Acceptance Criteria           clear, verifiable completion standards
-## Incremental Development Roadmap   small steps, each testable
+## Implementation Plan           small steps, each testable
 ## Test Plan                     how the criteria are verified
 ## Open Questions                unresolved questions that matter
 ```
@@ -61,16 +61,16 @@ not done.
 Artifacts scale to the change: when a request has one observable behavior, no
 unresolved questions, and no interface or data-model change beyond that behavior, a
 brief change record (Goal, Acceptance Criteria, decisions made) is enough — skip the
-empty sections and the multi-step roadmap. Tests-first, verification, and document
+empty sections and the multi-step plan. Tests-first, verification, and document
 sync still apply. When in doubt, write the full spec.
 
-## The Incremental Development Roadmap
+## The Implementation Plan
 
 Before coding, the spec gains a stepwise plan answering one question: *in what order
 should this be built and verified?* (A change covered by the brief record above needs
-no roadmap — its single step is the plan.) Each step has a goal, scope, tests, and
-verification. Prefer **vertical slices** — each step ends with working, testable
-behavior:
+no Implementation Plan — its single step is the plan.) Each step has a goal, scope,
+tests, and verification. Prefer **vertical slices** — each step ends with working,
+testable behavior:
 
 ```text
 Step 1  smallest working happy path
@@ -80,9 +80,9 @@ Step 4  integration and document sync
 ```
 
 Avoid splitting by technical layer (all entities, then all repositories, then all
-services) — those steps cannot be verified until the end. The roadmap is a plan, not a
-contract: when implementation reveals a better split or a wrong assumption, update the
-roadmap and spec, then continue.
+services) — those steps cannot be verified until the end. The Implementation Plan is
+a plan, not a contract: when implementation reveals a better split or a wrong
+assumption, update the plan and spec, then continue.
 
 ## Roadmap status
 

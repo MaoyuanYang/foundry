@@ -49,11 +49,11 @@ are the source for the Test Plan.>
 - [ ] <criterion 1>
 - [ ] <criterion 2>
 
-## Incremental Development Roadmap
+## Implementation Plan
 
 <Small, verifiable implementation steps. Prefer vertical slices — each step produces a
 working, testable behavior — over layer-by-layer work (all entities, then all
-repositories, then all services). Update this roadmap when implementation reveals a
+repositories, then all services). Update this plan when implementation reveals a
 better split.>
 
 ### Step 1: <Name>
