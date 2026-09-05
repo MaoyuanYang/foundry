@@ -83,7 +83,30 @@ for (const s of skills) {
   check('relative markdown links resolve', broken.length === 0, broken.slice(0, 5).join('; '));
 }
 
-// 4. asset templates use angle-bracket guidance, not {{}} placeholders
+// 4. backtick paths into assets/ or references/ resolve inside their own skill:
+//    skills install standalone, so a sibling skill's files cannot satisfy them
+{
+  const broken = [];
+  for (const s of skills) {
+    const skillRoot = join(skillsDir, s);
+    const dirs = [skillRoot, join(skillRoot, 'references')];
+    for (const dir of dirs) {
+      if (!existsSync(dir)) continue;
+      for (const entry of readdirSync(dir)) {
+        const file = join(dir, entry);
+        if (!entry.endsWith('.md') || statSync(file).isDirectory()) continue;
+        const text = readFileSync(file, 'utf8');
+        const rel = relative(root, file).split('\\').join('/');
+        for (const m of text.matchAll(/`((?:assets|references)\/[^`<>]+)`/g)) {
+          if (!existsSync(resolve(skillRoot, m[1]))) broken.push(`${rel}: ${m[1]}`);
+        }
+      }
+    }
+  }
+  check('backtick skill-local paths resolve', broken.length === 0, broken.slice(0, 5).join('; '));
+}
+
+// 5. asset templates use angle-bracket guidance, not {{}} placeholders
 {
   const offenders = [];
   for (const s of skills) {
@@ -96,7 +119,7 @@ for (const s of skills) {
   check('asset templates use no {{}} placeholders', offenders.length === 0, offenders.join('; '));
 }
 
-// 5. removed governance machinery stays out of the skills
+// 6. removed governance machinery stays out of the skills
 const banned = [
   'STAGE_LOCAL', 'STAGE.md', 'Decision Authority', 'foundry_contract_version',
   'SPEC READY', 'UI READY', 'TEST DESIGN READY', 'MACRO DESIGN READY',

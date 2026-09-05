@@ -24,8 +24,8 @@ This file governs the entire Foundry repository.
 
 - Run `npm run docs:build` after documentation or VitePress changes.
 - Run `npm run skills:verify` after any Skill change.
-- The `feature-spec.template.md` file is intentionally duplicated in `project-start` and
-  `project-dev`; keep the two copies byte-identical.
+- The `feature-spec.template.md` file is intentionally duplicated in `project-start`,
+  `project-onboard`, and `project-dev`; keep all three copies byte-identical.
 
 ## Safety and Delivery
 
