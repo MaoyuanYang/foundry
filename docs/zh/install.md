@@ -4,8 +4,9 @@ title: 安装
 
 # 安装
 
-Foundry 遵循标准 **Agent Skills** 格式:每个 Skill 是一个包含 `SKILL.md`、`references/`
-和 `assets/` 的文件夹。安装意味着把四个 Skill 文件夹复制进你的智能体技能目录。
+Foundry 遵循标准 **Agent Skills** 格式:每个 Skill 是一个包含 `SKILL.md` 和 `assets/`
+的文件夹,部分 Skill 还带有 `references/`。安装意味着把四个 Skill 文件夹复制进你的
+智能体技能目录。
 
 ## 前置条件
 
@@ -65,7 +66,7 @@ opencode debug skill
 每个 Skill 都是自包含的:
 
 - `SKILL.md` —— 入口:何时使用以及运行的工作流。
-- `references/` —— 按需加载的方法说明(访谈、测试)。
+- `references/` —— 可选的按需加载方法说明(访谈、测试)。
 - `assets/` —— Skill 生成文档所用的模板。
 - `agents/openai.yaml` —— 宿主显示元数据。
 
@@ -106,6 +107,6 @@ rm -rf ~/.agents/skills/project-start ~/.agents/skills/project-onboard ~/.agents
 
 ## 下一步
 
-- [工作流](../workflow) —— 工作如何从想法走向已验证的代码。
+- [工作流](./workflow) —— 工作如何从想法走向已验证的代码。
 - Skill 页面:[project-start](./project-start/)、[project-onboard](./project-onboard/)、
   [project-dev](./project-dev/)、[project-verify](./project-verify/)。

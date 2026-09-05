@@ -1,6 +1,7 @@
 # ADR-0001: Reposition Foundry as a Document-First, Interview-Driven, Test-Driven Core
 
-- **Status:** Accepted
+- **Status:** Accepted — amended by [ADR-0003](0003-project-verify.md) (the suite is now
+  four skills)
 - **Date:** 2026-09-02
 - **Decision owner:** MaoyuanYang
 

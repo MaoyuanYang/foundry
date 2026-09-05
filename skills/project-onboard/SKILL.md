@@ -92,7 +92,9 @@ docs/TESTING.md      how the system is actually tested, and what fails
 ```
 
 Keep the `Observed / Inferred / Unknown` labels on statements whose reliability matters.
-Fix documents to match reality; do not fix reality to match documents.
+Fix documents to match reality; do not fix reality to match documents. The §2 baseline
+note — `docs/ONBOARDING.md`, from `assets/baseline.template.md` — completes the picture:
+the verified commands, pre-existing failures, and knowledge gaps behind these documents.
 
 ## 7. Recover Roadmap and Specs
 

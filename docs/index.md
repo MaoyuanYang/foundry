@@ -58,14 +58,14 @@ Foundry — four Agent Skills for OpenCode, Claude Code, and compatible agents �
 this:
 
 ```text
-Idea → Understand → Interview → Documents / Spec → Implementation Plan → Tests → Code → Verify
+Idea → Understand → Interview → Documents / Spec → Implementation Plan → Tests → Code → Verify → Sync Docs
 ```
 
 | Skill | Phase | Role |
 |---|---|---|
 | [`project-start`](/project-start/) | Greenfield · 0 → 1 | Interview → project documents → Roadmap → draft Feature Specs |
 | [`project-onboard`](/project-onboard/) | Brownfield · unknown → understood | Verify the repo runs → recover AS-IS documents, Roadmap, Specs |
-| [`project-dev`](/project-dev/) | Development · 1 → N | Interview → Spec → implementation plan → tests → code → verify → sync docs |
+| [`project-dev`](/project-dev/) | Development · 1 → N | Interview → Spec → Implementation Plan → tests → code → verify → sync docs |
 | [`project-verify`](/project-verify/) | Assurance · claimed → checked | Document-driven verification pass → evidence-backed findings report |
 
 Skills hold the process; documents hold the project. Templates define the structure —

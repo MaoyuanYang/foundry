@@ -26,7 +26,7 @@ User Request → Guess Requirements → Start Coding → Implementation Drifts
 Foundry is a set of four **Agent Skills** that install a different habit:
 
 ```text
-Idea → Understand → Interview → Documents / Spec → Plan → Tests → Code → Verify
+Idea → Understand → Interview → Documents / Spec → Implementation Plan → Tests → Code → Verify → Sync Docs
 ```
 
 - **Document first** — project documents and Feature Specs are written before code.
@@ -41,7 +41,7 @@ Idea → Understand → Interview → Documents / Spec → Plan → Tests → Co
 |---|---|---|
 | [`project-start`](skills/project-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
-| [`project-dev`](skills/project-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → implementation plan → tests from acceptance criteria → code → verify → sync docs |
+| [`project-dev`](skills/project-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → Implementation Plan → tests from acceptance criteria → code → verify → sync docs |
 | [`project-verify`](skills/project-verify/SKILL.md) | Assurance · claimed → checked | Derive the verification scope from the documents → run declared verification → exercise documented flows → evidence-backed findings report |
 
 ```text
@@ -62,8 +62,8 @@ to `project-dev`.
 
 ## Installation
 
-Foundry follows the standard Agent Skills format (`SKILL.md` + `references/` + `assets/`).
-Copy the four folders into your agent's skills directory.
+Foundry follows the standard Agent Skills format (`SKILL.md` + `assets/`, plus optional
+`references/`). Copy the four folders into your agent's skills directory.
 
 **OpenCode / Claude-style agents** (auto-discovered):
 

@@ -57,7 +57,7 @@ features:
 Foundry —— 面向 OpenCode、Claude Code 及兼容智能体的四个 Agent Skill —— 这样工作:
 
 ```text
-想法 → 理解 → 访谈 → 文档 / Spec → 实施计划 → 测试 → 编码 → 验证
+想法 → 理解 → 访谈 → 文档 / Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档
 ```
 
 | Skill | 阶段 | 职责 |

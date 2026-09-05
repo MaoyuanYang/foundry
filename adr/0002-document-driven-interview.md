@@ -1,6 +1,7 @@
 # ADR-0002: Document-Driven Interview
 
-- **Status:** Accepted
+- **Status:** Accepted — amended by [ADR-0003](0003-project-verify.md) (ownership
+  vocabulary extended to `project-verify`)
 - **Date:** 2026-09-04
 - **Decision owner:** MaoyuanYang
 

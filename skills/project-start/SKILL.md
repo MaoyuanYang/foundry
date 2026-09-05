@@ -98,6 +98,8 @@ here; leave them in `Open Questions`.
 
 When the documents, Roadmap, and draft Specs exist, stop. Tell the user what was created,
 which feature is marked `Next`, and that implementation continues with `project-dev`.
+Once features are delivered, independent verification against the documents continues
+with `project-verify`.
 
 ## Boundaries
 

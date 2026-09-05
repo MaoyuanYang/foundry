@@ -26,7 +26,7 @@
 Foundry 是一套包含四个 **Agent Skill** 的技能包，帮助智能体养成另一种习惯：
 
 ```text
-想法 → 理解 → 访谈 → 文档 / Spec → 计划 → 测试 → 编码 → 验证
+想法 → 理解 → 访谈 → 文档 / Spec → 实施计划 → 测试 → 编码 → 验证 → 同步文档
 ```
 
 - **文档先行** —— 先写项目文档和 Feature Spec,再写代码。
@@ -59,7 +59,7 @@ Foundry 是一套包含四个 **Agent Skill** 的技能包，帮助智能体养�
 
 ## 安装
 
-Foundry 遵循标准 Agent Skills 格式(`SKILL.md` + `references/` + `assets/`)。
+Foundry 遵循标准 Agent Skills 格式(`SKILL.md` + `assets/`,部分 Skill 另有 `references/`)。
 把四个文件夹复制进你的智能体技能目录即可。
 
 **OpenCode / Claude 类智能体**(自动发现):

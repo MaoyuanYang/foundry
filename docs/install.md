@@ -5,8 +5,8 @@ title: Installation
 # Installation
 
 Foundry follows the standard **Agent Skills** format: each skill is a folder containing
-`SKILL.md`, `references/`, and `assets/`. Installation means copying the four skill
-folders into your agent's skills directory.
+`SKILL.md` and `assets/`, with optional `references/`. Installation means copying the
+four skill folders into your agent's skills directory.
 
 ## Requirements
 
@@ -66,7 +66,7 @@ listed with their locations. Each skill also validates against the Agent Skills 
 Each skill is self-contained:
 
 - `SKILL.md` — the entry point: when to use it and the workflow it runs.
-- `references/` — method notes loaded on demand (interviewing, testing).
+- `references/` — optional method notes loaded on demand (interviewing, testing).
 - `assets/` — templates for the documents the skill generates.
 - `agents/openai.yaml` — host display metadata.
 
