@@ -64,8 +64,8 @@ See [references/interview.md](references/interview.md).
 
 Refine the spec using `assets/feature-spec.template.md` until its Goal, Requirements,
 Acceptance Criteria, and Open Questions honestly reflect an agreed outcome. Delete
-sections that do not apply. Update `specs/ROADMAP.md` so this feature shows
-`In Progress`.
+sections that do not apply; write in the language of the project's existing documents
+and specs. Update `specs/ROADMAP.md` so this feature shows `In Progress`.
 
 - MUST NOT start implementation while user-owned spec questions (behavior, business
   rules, success criteria, constraints) remain unresolved.

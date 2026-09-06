@@ -31,7 +31,7 @@ Project Idea
     ↓
 1. Understand context      read what the user and directory already answer
     ↓
-2. Interview the user      ask only about the user-owned gaps the scan leaves open
+2. Interview the user      ask the user-owned gaps; confirm document language (English default)
     ↓
 3. Write project documents README, PRODUCT, ARCHITECTURE, TESTING (+ applicable extras)
     ↓
@@ -66,6 +66,10 @@ first version — fine unless you expect concurrent writers"). The interview is 
 when every important section has a reliable source and no user-owned gap remains.
 Before writing documents, the agent summarizes the key decisions back to the user for
 correction — one cheap checkpoint that catches most misunderstandings.
+
+The document language is confirmed at the same checkpoint: English by default, overridable
+to any language the user prefers. Re-entering a documented project keeps the language of
+its existing documents.
 
 ## Documents produced
 

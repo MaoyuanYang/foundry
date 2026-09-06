@@ -55,6 +55,12 @@ ask only about the unresolved user-owned gaps (product goals, users, core scenar
 scope, business rules, behavior preferences, success criteria, hard constraints);
 never guess their answers. See [references/interview.md](references/interview.md).
 
+The document language is the one user-owned gap the scan cannot fill: English is the
+default, and the user may prefer another language. Confirm it once — during the
+interview, or in the short confirmation round when the interview is skipped — and write
+every document (`README.md`, `docs/`, `specs/`) in the confirmed language. On a project
+that already has trustworthy documents, keep their language instead of asking.
+
 Before writing documents, briefly summarize the key decisions back to the user and let
 them correct you. This one checkpoint catches most misunderstandings cheaply.
 
@@ -62,7 +68,8 @@ them correct you. This one checkpoint catches most misunderstandings cheaply.
 
 Write the project documents using the templates in `assets/`. Templates define the
 sections to think about; repository context, interview answers, and engineering judgment
-fill them in. A section that genuinely does not apply can be deleted.
+fill them in. A section that genuinely does not apply can be deleted. Write every
+document in the language confirmed in step 2 — English by default.
 
 ```text
 README.md            what the project is, how to run it

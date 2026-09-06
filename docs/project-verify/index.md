@@ -60,6 +60,9 @@ check script, that is allowed — verification-only, never a business-behavior c
 
 ## What is produced
 
+The report is written in the language of the project's documents, defaulting to
+English when they are mixed.
+
 | Artifact | Content |
 |---|---|
 | `docs/VERIFICATION.md` | verified promises, findings with evidence and severity, what was not exercised |

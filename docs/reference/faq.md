@@ -73,6 +73,8 @@ their own tracker and PR workflow on top; the skills only shape how work is spec
 planned, tested, and documented.
 
 **What languages does Foundry work with?**
-The skills are language-agnostic. They read your project's conventions from the
-repository and follow the existing test framework and style. Foundry's own materials
-are English; project documents follow your project's language.
+The skills are language-agnostic about code. They read your project's conventions from
+the repository and follow the existing test framework and style. Generated project
+documents default to English: `project-start` — and `project-onboard` on an
+undocumented repository — confirms the document language with you once, and later work
+matches the documents' language.

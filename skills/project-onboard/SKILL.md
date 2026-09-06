@@ -78,6 +78,9 @@ labeled findings to the conversation ("the docs say X, the code does Y — which
 intended?"). Everything the repository can answer — existing behavior, interfaces, data
 structures, test results — is answered from the repository.
 
+When the repository has no usable documents and the document set is created from
+scratch, also confirm the document language with the user — English is the default.
+
 ## 6. Create / repair project documents
 
 Write or repair the same document set `project-start` produces, in AS-IS form using
@@ -90,6 +93,9 @@ docs/ARCHITECTURE.md modules and data flow as the code shows them
 docs/TESTING.md      how the system is actually tested, and what fails
 + DATABASE / API / FRONTEND when applicable
 ```
+
+Repair existing documents in the language they are already written in; write a
+from-scratch set in the language confirmed in step 5 — English by default.
 
 Keep the `Observed / Inferred / Unknown` labels on statements whose reliability matters.
 Fix documents to match reality; do not fix reality to match documents. The §2 baseline

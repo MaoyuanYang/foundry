@@ -25,6 +25,8 @@ the gaps that remain. The test for each gap:
 
 Documents define what must be understood; interviews fill the user-owned gaps.
 
+The spec is written in the language of the project's existing documents and specs.
+
 ## Interviewing well
 
 - A few related questions per round; answers retire later questions.

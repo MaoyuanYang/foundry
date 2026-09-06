@@ -104,8 +104,9 @@ in the project's own style — and record what was added.
 
 Write `docs/VERIFICATION.md` from `assets/verification-report.template.md`: what was
 verified true, and each finding with the finding, the evidence, the affected document or
-spec, the severity, and the recommended next work. On request, record findings that need
-work as `Draft` entries in `specs/ROADMAP.md`.
+spec, the severity, and the recommended next work. Write the report in the language of
+the project's documents, defaulting to English when they are mixed. On request, record
+findings that need work as `Draft` entries in `specs/ROADMAP.md`.
 
 Do not start fixing — repairs, missing tests for real behavior changes, and document
 repairs continue with `project-dev`. Report what was checked, what held, what did not,

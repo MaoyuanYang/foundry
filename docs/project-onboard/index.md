@@ -33,7 +33,7 @@ Existing Repository
     ↓
 4. Compare code and documents  label findings Observed / Inferred / Unknown
     ↓
-5. Ask the user                only for facts the repository cannot answer
+5. Ask the user                facts the repo cannot answer; language for from-scratch docs
     ↓
 6. Create / repair documents   fix documents to match reality, not reality to match docs
     ↓
@@ -60,6 +60,9 @@ labels:
 - **Unknown** — cannot be determined from the repository.
 
 ## What is produced
+
+Documents created from scratch are written in the language confirmed with the user
+(English by default); repaired documents keep the language they are already written in.
 
 | Artifact | Content |
 |---|---|

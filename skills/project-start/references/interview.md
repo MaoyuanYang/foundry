@@ -58,6 +58,7 @@ context belongs in the draft spec's `Open Questions`, not in another interview r
 ## Summary checkpoint
 
 Before writing the documents, restate the key decisions in a few sentences — the product
-in one line, the users, the first-version scope, the technology direction, and the
-verification approach — and ask the user to confirm or correct. Proposed defaults for
-minor gaps are confirmed here too. Writing starts after this confirmation.
+in one line, the users, the first-version scope, the technology direction, the
+verification approach, and the document language (English by default) — and ask the
+user to confirm or correct. Proposed defaults for minor gaps are confirmed here too.
+Writing starts after this confirmation.
