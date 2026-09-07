@@ -28,7 +28,8 @@ title: project-start
     ↓
 1. 理解上下文      先读用户和目录已经能回答的问题
     ↓
-2. 访谈用户        问用户决定的缺口;并确认文档语言(默认英文)
+2. 访谈用户        问用户决定的缺口;并确认文档语言(默认英文);
+                   在 GitHub 上,询问是否启用协作
     ↓
 3. 写项目文档      README、PRODUCT、ARCHITECTURE、TESTING(+ 适用的补充文档)
     ↓
@@ -36,7 +37,9 @@ title: project-start
     ↓
 5. 写草稿 Spec     specs/F001-<slug>.md,记录开放问题,而不是编造答案
     ↓
-6. 停止            移交 project-dev
+6. 发布到 GitHub   可选:issue、波次 milestone、Projects 看板
+    ↓
+7. 停止            移交 project-dev
 ```
 
 ## 先扫描文档,再访谈
@@ -63,6 +66,17 @@ title: project-start
 文档语言也在同一个检查点确认:默认英文,用户可改为任何偏好的语言。再进入已有
 文档的项目时,沿用现有文档的语言。
 
+## GitHub 模式
+
+当环境具备条件 —— GitHub 远端加已认证的 `gh` CLI —— 访谈还会问一次是否启用
+GitHub 协作。答案记录在 Roadmap 的 `## Tracking` 节(`Collaboration: GitHub —
+enabled <date>` 或 `local`),后续 Skill 直接读取记录,不再重复询问。
+
+启用后,发布跟随文档:每个 Roadmap 功能一个 issue(Goal 摘要加 Spec 链接)、一个
+波次 milestone,以及可选的 Projects 看板(其 Status 字段镜像 Roadmap)。链接回写
+到各 Spec 的 `Tracking` 节和 Roadmap 的 `Issue` 列。没有 GitHub 环境时跳过询问,
+项目照常本地运行。
+
 ## 产出文档
 
 模板定义需要思考的章节;仓库上下文、访谈答案和工程判断来填充。只创建适用的文档:
@@ -88,7 +102,8 @@ Roadmap 展示通往可用产品的最短可信路径,而不是无所不包的�
 - 不写业务代码。(为了让文档中的命令真实而做的最小非业务脚手架是允许的 —— 初始化
   包、搭空的测试运行器。)
 - 不为对称性创建空文件。
-- 未经用户明确授权,不做破坏性或远程操作。
+- 未经用户明确授权,不做破坏性或远程操作。访谈中的 GitHub 决定授权发布这一步;
+  其余远程操作仍需逐一询问。
 
 ## 下一步
 

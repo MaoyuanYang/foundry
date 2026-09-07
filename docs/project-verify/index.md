@@ -58,6 +58,21 @@ A feature marked `Done` whose acceptance criteria have no executable evidence is
 finding, not a pass. When making a promise checkable would require adding a test or a
 check script, that is allowed — verification-only, never a business-behavior change.
 
+## GitHub mode
+
+When the Roadmap records `Collaboration: GitHub — enabled`, GitHub adds evidence
+sources — never scope; the documents still define what gets checked:
+
+- The default branch's latest CI run counts as declared-verification evidence, with
+  its status and URL recorded alongside the local runs.
+- Each `Done` claim is cross-checked against the host: linked PR merged, linked issue
+  closed, CI green at the merge commit. A `Done` feature with an open PR or an open
+  issue is a finding.
+- Open issues contradicting a `Done` claim — a bug report against a feature the
+  Roadmap calls delivered — are findings.
+
+Verification reads GitHub evidence but never writes to it.
+
 ## What is produced
 
 The report is written in the language of the project's documents, defaulting to
@@ -79,7 +94,8 @@ work, not verification work.
   are allowed, clearly separated, and recorded.
 - Documents are not repaired during verification — discrepancies are findings, so the
   report stays an independent audit rather than a party to the drift.
-- No destructive or remote actions without explicit user authorization.
+- No destructive or remote actions without explicit user authorization. Verification
+  reads GitHub evidence but never writes to it.
 
 ## Next
 

@@ -47,6 +47,30 @@ No. The whole project state is the document set (`README.md`, `docs/`, `specs/`)
 there is no status file, no metadata, no bookkeeping to maintain. Removing Foundry
 leaves a normal repository behind.
 
+## GitHub collaboration
+
+**Does Foundry require GitHub?**
+No. The whole loop runs locally — solo, offline, on GitLab or anywhere else. GitHub
+mode is an optional layer enabled by one decision recorded in `specs/ROADMAP.md`
+(`## Tracking`). See [Workflow — Team collaboration on GitHub](../workflow).
+
+**When is that decision made?**
+Once, at project initialization: `project-start` and `project-onboard` ask whether to
+enable GitHub collaboration whenever a GitHub remote and an authenticated `gh` CLI are
+both present. The answer is recorded in the Roadmap's `## Tracking`, and later skills
+read the record instead of re-asking. A documented project with no record gets asked
+once, then recorded.
+
+**Does the agent merge pull requests by itself?**
+Only when collaboration is enabled in the Roadmap and the pull request's CI checks are
+green with required reviews approved — and never a red PR. Force operations, branch
+deletion, releases, and deployment always require explicit per-action authorization.
+
+**What about GitLab or another host?**
+The skills stay host-agnostic: with no GitHub environment they run in local mode with
+zero remote actions. Mirroring onto other hosts is not built in; your own tooling can
+read the same documents.
+
 ## Workflow
 
 **The agent keeps asking me questions. How do I make it stop?**
@@ -68,9 +92,11 @@ prescribe red-green-refactor ceremony — it prescribes "no step is done until i
 verification runs."
 
 **Can I use Foundry with my team's tracker and pull-request process?**
-Yes. Foundry deliberately does not manage issues, branches, or reviews. Teams layer
-their own tracker and PR workflow on top; the skills only shape how work is specified,
-planned, tested, and documented.
+Yes — and on GitHub they are first-class. Enable collaboration at project start and
+issues, pull requests, CI checks, milestones, and a Projects board mirror the Roadmap
+and specs while the documents stay the source of truth. On another host or fully
+local, the skills shape how work is specified, planned, tested, and documented, and
+your tooling layers on top unchanged.
 
 **What languages does Foundry work with?**
 The skills are language-agnostic about code. They read your project's conventions from

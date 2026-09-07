@@ -44,7 +44,9 @@ Feature Request
     ↓
 8. Review the change             full diff against the spec; full test suite
     ↓
-9. Synchronize documents         update whatever the work made untrue
+9. Deliver on GitHub             GitHub mode: push branch, open PR, watch CI + review
+    ↓
+10. Synchronize documents        update whatever the work made untrue
 ```
 
 Read the two companion pages for the parts that reward depth:
@@ -64,6 +66,24 @@ entry point adapts:
 - **Dependency upgrade** — inventory breakage, upgrade, run the full suite, record
   behavioral changes.
 
+## GitHub mode
+
+When the Roadmap records `Collaboration: GitHub — enabled`, delivery runs through the
+platform instead of stopping at the worktree:
+
+- A request may arrive as an issue; it and its comments are read as requirements input
+  and linked in the spec's `Tracking` section.
+- Work happens on a branch named from the spec ID (`F003-short-urls`), one commit per
+  Implementation Plan step.
+- After local verification passes, the agent pushes the branch and opens a PR with the
+  spec's Goal, the Acceptance Criteria checklist, test evidence, and `Closes #<issue>`.
+  The PR's CI checks count as verification — red CI means the work is not finished.
+- Review comments flow back into the spec and plan as new commits. With the standing
+  authorization, the agent merges once CI is green and required reviews are approved;
+  a red PR is never merged.
+- Document sync and the Roadmap flip (`In Progress` → `In Review` → `Done`) travel
+  inside the PR, so merging makes them true and the linked issue closes itself.
+
 ## Hard rules
 
 Very little is mandatory; what is, defines Foundry:
@@ -74,8 +94,11 @@ Very little is mandatory; what is, defines Foundry:
 - **MUST run the relevant tests after implementation**; failures mean work is not
   finished.
 - **MUST preserve unrelated user changes** in the worktree.
-- **MUST NOT perform destructive or remote actions** without explicit user
-  authorization.
+- **MUST NOT perform remote writes** (pushing, issues, PRs, milestones, boards) unless
+  GitHub collaboration is enabled in the Roadmap or the user explicitly authorizes
+  the action.
+- **MUST NOT merge a pull request with failing checks.** Force operations, branch
+  deletion, releases, and deploying always need per-action authorization.
 
 ## Next
 

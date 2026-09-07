@@ -34,6 +34,7 @@ Foundry 是一套包含四个 **Agent Skill** 的技能包，帮助智能体养�
 - **测试驱动** —— 测试从验收标准推导而来，代码在测试下通过。
 - **增量实现** —— Feature 以小的、可验证的步骤交付。
 - **保持同步** —— 实现改变现实时，文档随之更新。
+- **需要时即 GitHub 原生** —— 单人项目完全本地运行;在 GitHub 上,项目启动时的一次询问即可启用 issue、pull request、CI 检查、milestone 和 Projects 看板,作为 Roadmap 与 Spec 的联动镜像。
 
 ## 四个 Skill
 
@@ -41,7 +42,7 @@ Foundry 是一套包含四个 **Agent Skill** 的技能包，帮助智能体养�
 |---|---|---|
 | [`project-start`](skills/project-start/SKILL.md) | Greenfield · 0 → 1 | 访谈 → 项目文档(`README`、`docs/PRODUCT`、`ARCHITECTURE`、`TESTING` 等)→ Roadmap → 草稿 Feature Spec |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · 未知 → 理解 | 先验证仓库可运行 → 相信代码而非过时文档 → 恢复 AS-IS 文档、Roadmap 与 Spec |
-| [`project-dev`](skills/project-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 实施计划 → 从验收标准推导测试 → 编码 → 验证 → 同步文档 |
+| [`project-dev`](skills/project-dev/SKILL.md) | 开发 · 1 → N | 访谈 → Feature Spec → 实施计划 → 从验收标准推导测试 → 编码 → 验证 → (启用协同时)GitHub 交付:分支、PR、CI、review → 同步文档 |
 | [`project-verify`](skills/project-verify/SKILL.md) | 保障 · 声称 → 查证 | 从文档推导验证范围 → 运行文档声明的验证 → 实测文档记录的流程 → 带证据的发现报告 |
 
 ```text
@@ -96,6 +97,16 @@ cp -r foundry/skills/project-verify    ~/.agents/skills/
 
 `project-dev` 读取项目文档和相关代码,通过访谈解决 Spec 中由用户决定的问题,规划
 小的垂直切片,从验收标准推导测试,小步实现直到测试通过,并更新因此失真的文档。
+
+**在团队 GitHub 仓库上开发:**
+
+> "按照工作流修复 issue #12。"
+
+在启用了 GitHub 协作的项目上(项目启动时询问一次,记录在 `specs/ROADMAP.md`),
+同一个 `project-dev` 循环经由平台交付:以 Spec 命名的分支、携带 Spec 摘要与测试
+证据的 pull request、计入验证的 CI 检查、回流到 Spec 的 review 意见,以及全绿后
+(凭该常设授权)的合并。Roadmap 状态翻转与文档同步随 PR 提交,合并即生效,issue
+自动关闭。
 
 **验证项目状态:**
 

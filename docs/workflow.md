@@ -107,11 +107,40 @@ kept short and true; a precise one-page document beats a speculative ten-page on
 - **Draft** — described in a spec, not yet scheduled.
 - **Next** — selected as the next feature to build (exactly one at a time).
 - **In Progress** — currently being implemented.
+- **In Review** — GitHub mode only: the pull request is open, awaiting CI and review.
 - **Done** — implemented and verified.
 
 Planning the next wave of features on a documented project is a `project-start` re-entry:
 interview about the new direction, then add Roadmap entries and draft Specs — no separate
 process.
+
+## Team collaboration on GitHub
+
+Solo and local projects run the whole loop with no hosting platform at all. When a
+project lives on GitHub, Foundry adds an optional collaboration layer:
+
+```text
+spec `Tracking` (issue, PR, milestone)  ←→  GitHub issue  ←→  pull request
+ROADMAP `Tracking` (board, milestone)   ←→  Projects board
+CI runs on the default branch and PRs   →   durable verification evidence
+```
+
+- **Asked once, at project start.** Whenever a GitHub remote and an authenticated
+  `gh` CLI are both present, `project-start` / `project-onboard` ask once whether to
+  enable GitHub collaboration. The answer is recorded in `specs/ROADMAP.md`
+  (`## Tracking`) and later skills read the record instead of re-asking.
+- **Documents stay the truth.** Issues, the Projects board, and milestones are linked
+  mirrors of the Roadmap and the specs. When a mirror disagrees with the documents,
+  the mirror is fixed from the documents.
+- **Delivery uses the platform's gates.** `project-dev` works on a branch named from
+  the spec ID, opens a PR carrying the spec summary and test evidence, treats the PR's
+  CI checks as part of verification, folds review comments back into the spec and
+  plan, and — with the standing authorization — merges once CI is green and required
+  reviews are approved. Document sync and the Roadmap status flip travel inside the
+  PR: merging makes them true, and the linked issue closes itself.
+- **Authorization is explicit.** The Roadmap's `enabled` record authorizes routine
+  operations (branch, PR, issues, milestones, board sync, merge-when-green). Force
+  operations, branch deletion, releases, and deployment always ask, every time.
 
 ## Documents stay synchronized
 
@@ -131,8 +160,9 @@ the same piece of work** — never left to rot.
   maintain, no approval roles. The documents and the Roadmap are the whole state.
 - It does not decide your architecture for you. Templates define sections to think
   about; your repository, your interviews, and engineering judgment fill them.
-- It does not replace your tracker, CI, or review process — teams that need issue
-  tracking and pull-request review layer their own tooling on top.
+- It does not replace your tracker, CI, or review process. On GitHub it plugs into
+  them — issues, pull requests, and CI checks mirror and enforce the documents; off
+  GitHub, teams layer their own tooling on top.
 
 ## Next
 

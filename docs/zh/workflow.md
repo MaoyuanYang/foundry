@@ -103,10 +103,35 @@ specs/
 - **Draft** —— 已有 Spec 描述,尚未排期。
 - **Next** —— 选定为下一个要构建的功能(同一时间只有一个)。
 - **In Progress** —— 正在实现。
+- **In Review** —— 仅 GitHub 模式:pull request 已打开,等待 CI 与评审。
 - **Done** —— 已实现并验证。
 
 在已有文档的项目上规划下一波功能,是 `project-start` 的再进入:就新方向访谈,然后
 添加 Roadmap 条目和草稿 Spec —— 不需要独立流程。
+
+## 在 GitHub 上团队协作
+
+单人和本地项目完全不需要托管平台,整个循环照常运转。当项目托管在 GitHub 上时,
+Foundry 额外提供一层可选的协作层:
+
+```text
+Spec 的 `Tracking`(issue、PR、milestone)  ←→  GitHub issue  ←→  pull request
+ROADMAP 的 `Tracking`(看板、milestone)     ←→  Projects 看板
+默认分支和 PR 上的 CI 运行                  →   可持久保存的验证证据
+```
+
+- **项目启动时询问一次。** 只要 GitHub 远端和已认证的 `gh` CLI 同时存在,
+  `project-start` / `project-onboard` 就会问一次是否启用 GitHub 协作。答案记录在
+  `specs/ROADMAP.md`(`## Tracking`)中,后续 Skill 直接读取记录,不再重复询问。
+- **文档仍是真相源。** Issue、Projects 看板和 milestone 是 Roadmap 与 Spec 的联动
+  镜像;镜像与文档不一致时,以文档为准修复镜像。
+- **交付使用平台的质量门。** `project-dev` 在以 Spec 命名的分支上工作,开出携带
+  Spec 摘要与测试证据的 PR,把 PR 的 CI 检查计入验证,把评审意见回流到 Spec 和
+  计划,并在(常设授权下)CI 全绿、必需评审通过后合并。文档同步与 Roadmap 状态
+  翻转随 PR 提交:合并即生效,关联的 issue 自动关闭。
+- **授权是明确的。** Roadmap 的 `enabled` 记录授权常规操作(分支、PR、issue、
+  milestone、看板同步、全绿即合并)。force 操作、删除分支、发布 release 和部署,
+  每一次都要单独询问。
 
 ## 文档保持同步
 
@@ -124,8 +149,8 @@ Foundry 不把文档当作一次性的前置产物。最终状态是:
 - 它不强加治理体系:没有协调文件、没有需要维护的状态令牌、没有审批角色。文档和
   Roadmap 就是全部状态。
 - 它不替你决定架构。模板定义需要思考的章节;你的仓库、你的访谈和工程判断来填充。
-- 它不取代你的 tracker、CI 或评审流程 —— 需要工单和 PR 评审的团队在其上叠加自己的
-  工具即可。
+- 它不取代你的 tracker、CI 或评审流程。在 GitHub 上它接入其中 —— issue、pull
+  request 和 CI 检查镜像并约束文档;不在 GitHub 上时,团队在其上叠加自己的工具即可。
 
 ## 下一步
 

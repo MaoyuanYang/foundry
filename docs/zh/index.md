@@ -41,6 +41,9 @@ features:
   - icon: 🔄
     title: Greenfield 与 Brownfield
     details: 用 project-start 启动新项目,或用 project-onboard 恢复缺少文档的存量仓库 —— 然后用 project-dev 一个接一个地开发。
+  - icon: 🤝
+    title: 需要时即 GitHub 原生
+    details: 单人项目完全本地运行。在 GitHub 上,项目启动时的一次询问即可启用 issue、pull request、CI 检查、milestone 和 Projects 看板,作为 Roadmap 与 Spec 的联动镜像 —— 文档仍是真相源。
   - icon: 🔎
     title: 对照文档做验证
     details: project-verify 独立核查项目现状与文档是否一致 —— Done 的功能、验收标准、文档声明的命令和流程 —— 给出带证据的发现报告,而不做任何修复。

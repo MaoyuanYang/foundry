@@ -34,6 +34,7 @@ Idea → Understand → Interview → Documents / Spec → Implementation Plan �
 - **Test driven** — tests are derived from acceptance criteria, and code runs against them.
 - **Incremental** — features are built in small, verifiable steps.
 - **Kept in sync** — documents are updated when implementation changes reality.
+- **GitHub-native when you are** — solo projects run fully local; on GitHub, one question at project start enables issues, pull requests, CI checks, milestones, and a Projects board as linked mirrors of the Roadmap and specs.
 
 ## The Four Skills
 
@@ -41,7 +42,7 @@ Idea → Understand → Interview → Documents / Spec → Implementation Plan �
 |---|---|---|
 | [`project-start`](skills/project-start/SKILL.md) | Greenfield · 0 → 1 | Interview → project documents (`README`, `docs/PRODUCT`, `ARCHITECTURE`, `TESTING`, …) → Roadmap → draft Feature Specs |
 | [`project-onboard`](skills/project-onboard/SKILL.md) | Brownfield · unknown → understood | Verify the repo runs → trust code over stale docs → recover AS-IS documents, Roadmap, and Specs |
-| [`project-dev`](skills/project-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → Implementation Plan → tests from acceptance criteria → code → verify → sync docs |
+| [`project-dev`](skills/project-dev/SKILL.md) | Development · 1 → N | Interview → Feature Spec → Implementation Plan → tests from acceptance criteria → code → verify → GitHub delivery (branch, PR, CI, review) when enabled → sync docs |
 | [`project-verify`](skills/project-verify/SKILL.md) | Assurance · claimed → checked | Derive the verification scope from the documents → run declared verification → exercise documented flows → evidence-backed findings report |
 
 ```text
@@ -104,6 +105,18 @@ reality, and recovers a Roadmap — without changing business behavior.
 the Spec's user-owned questions are resolved, plans small vertical slices, derives tests
 from the acceptance criteria, implements step by step until the tests pass, and updates
 the documents it made untrue.
+
+**Develop on a team GitHub repository:**
+
+> "Fix issue #12 according to the workflow."
+
+With GitHub collaboration enabled (asked once at project start, recorded in
+`specs/ROADMAP.md`), the same `project-dev` loop delivers through the platform: a
+branch named from the spec, a pull request carrying the spec summary and test
+evidence, CI checks counted as verification, review comments folded back into the
+spec, and a merge — under that standing authorization — once everything is green.
+The Roadmap flip and document sync travel inside the PR, so merging makes them true
+and the issue closes itself.
 
 **Verify the project state:**
 

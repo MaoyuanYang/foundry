@@ -25,7 +25,8 @@ against its documents ([`project-verify`](../project-verify/)).
 ```text
 Existing Repository
     ↓
-1. Inspect the repository      structure, languages, entry points, config, tests, CI
+1. Inspect the repository      structure, languages, entry points, config, tests, CI,
+                               VCS history, GitHub surfaces when hosted there
     ↓
 2. Run existing verification   build + tests; record pre-existing failures as facts
     ↓
@@ -33,7 +34,8 @@ Existing Repository
     ↓
 4. Compare code and documents  label findings Observed / Inferred / Unknown
     ↓
-5. Ask the user                facts the repo cannot answer; language for from-scratch docs
+5. Ask the user                facts the repo cannot answer; language for from-scratch docs;
+                               on GitHub, whether to adopt collaboration
     ↓
 6. Create / repair documents   fix documents to match reality, not reality to match docs
     ↓
@@ -48,16 +50,27 @@ Existing documentation is a lead, not a source of truth. The agent prefers evide
 this order:
 
 ```text
-runtime behavior > tests > code > migrations/config > docs > inference
+runtime behavior > tests > code > migrations/config > issue & PR history > docs > inference
 ```
 
-When documents and reality disagree, reality wins and the disagreement is recorded. To
+Issue and pull-request history — when the host provides it — is contemporary human
+record: a closed PR's discussion often explains intent that the code cannot. When
+documents and reality disagree, reality wins and the disagreement is recorded. To
 keep the baseline honest without building bureaucracy, findings carry one of three
 labels:
 
 - **Observed** — verified from code, tests, or a successful run.
 - **Inferred** — best reading of the code, not yet verified.
 - **Unknown** — cannot be determined from the repository.
+
+## GitHub mode
+
+On a GitHub-hosted repository with a working `gh` CLI, the interview asks once whether
+to adopt GitHub collaboration; the decision is recorded in the recovered Roadmap's
+`## Tracking`. When enabled, the recovery reconciles with the host: merged pull-request
+history corroborates `Done` features, open issues are imported as candidate `Draft`
+entries (linked, not duplicated), and the existing Projects board and milestones are
+adopted as the mirror of the recovered Roadmap.
 
 ## What is produced
 
@@ -80,7 +93,9 @@ Documents created from scratch are written in the language confirmed with the us
 - No business-behavior changes during onboarding. Build/test tooling fixes are allowed
   when needed to verify the baseline, and anything touched is recorded.
 - Pre-existing test failures are recorded, not fixed — fixing them is `project-dev` work.
-- No destructive or remote actions without explicit user authorization.
+- No destructive or remote actions without explicit user authorization. The
+  collaboration decision authorizes adopting the host's mirrors; every other remote
+  action still asks.
 
 ## Next
 

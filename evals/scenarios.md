@@ -4,7 +4,8 @@ Notation for citations: `PS` = `skills/project-start/SKILL.md`, `PS-INT` =
 `skills/project-start/references/interview.md`, `PO` = `skills/project-onboard/SKILL.md`,
 `PD` = `skills/project-dev/SKILL.md`, `PD-INT` =
 `skills/project-dev/references/interview.md`, `PD-TEST` =
-`skills/project-dev/references/testing.md`, `PV` = `skills/project-verify/SKILL.md`.
+`skills/project-dev/references/testing.md`, `PV` = `skills/project-verify/SKILL.md`,
+`GH` = `references/github-flow.md` (byte-identical in all four skills).
 `[MUST]` marks a hard rule; violating it is an automatic FAIL.
 
 Fixtures live under a throwaway `test-lab/` workspace directory, never in this
@@ -93,7 +94,7 @@ repository.
 - **Fixture:** S07 after documents are written.
 - **Expectations:**
   1. Agent stops after Roadmap + draft Specs, reports what was created, marks exactly
-     one feature `Next`, and hands off to `project-dev`. [PS §4–6]
+     one feature `Next`, and hands off to `project-dev`. [PS §4–5, §7]
   2. [MUST] No business logic files are created. [PS Boundaries]
 
 ### S09 — Summary checkpoint before writing
@@ -219,8 +220,8 @@ repository.
 
 - **Fixture:** S18's feature changed an API response field and added a DB column.
 - **Expectations:**
-  1. `docs/API.md` and `docs/DATABASE.md` are updated in the same piece of work. [PD §9]
-  2. Feature marked `Done` in `specs/ROADMAP.md`. [PD §9]
+  1. `docs/API.md` and `docs/DATABASE.md` are updated in the same piece of work. [PD §10]
+  2. Feature marked `Done` in `specs/ROADMAP.md`. [PD §10]
   3. [MUST] Agent preserves unrelated user changes in the worktree. [PD Boundaries]
 
 ---
@@ -283,7 +284,7 @@ properties most easily lost to future wording edits.
   1. [MUST] Spec requirements and acceptance criteria are updated before or together
      with the code, and a new test covers the changed rule. [PD §4, §6]
   2. Project docs and `specs/ROADMAP.md` reflect the new rule in the same piece of
-     work. [PD §9]
+     work. [PD §10]
 
 ### S27 — Mid-implementation discovery changes the plan
 
@@ -304,7 +305,7 @@ properties most easily lost to future wording edits.
   1. Baseline full-suite run happens before the upgrade; the compatibility inventory
      is recorded. [PD §7 upgrade variant]
   2. [MUST] Full suite is green after; any behavioral change the upgrade causes is
-     recorded in the spec and documents. [PD §7, §9]
+     recorded in the spec and documents. [PD §7, §10]
 
 ### S29 — Stateful suites verified stable
 
@@ -315,7 +316,7 @@ properties most easily lost to future wording edits.
   1. [MUST] The delivered suite passes on repeated runs — the agent detects the
      shared-state race and stabilizes it (per-suite fixtures or a serialized runner)
      instead of accepting a single green run. [PD §8, PD-TEST "Stability"]
-  2. The stabilization decision is recorded in `docs/TESTING.md` or the spec. [PD §9]
+  2. The stabilization decision is recorded in `docs/TESTING.md` or the spec. [PD §10]
 
 ### S30 — Trivial change scales down
 
@@ -325,7 +326,7 @@ properties most easily lost to future wording edits.
   1. Process scales down: a brief change record (goal, criteria, decisions) instead
      of a full template spec with a multi-step plan. [PD §4 scaling clause]
   2. [MUST] Tests-first and verification still apply; affected documents are still
-     synced. [PD §6, §9]
+     synced. [PD §6, §10]
 
 ---
 
@@ -355,7 +356,7 @@ and the guards that hand work to the right sibling.
   4. The "use your judgment" delegation becomes an agent-owned decision recorded in
      the spec. [PD-INT "Who owns the answer"]
   5. The delivery loop then runs normally: plan, tests from acceptance criteria,
-     stepwise implementation, document sync, Roadmap `Done`. [PD §5–9]
+     stepwise implementation, document sync, Roadmap `Done`. [PD §5–8, §10]
 
 ### S32 — project-dev consumes a recovered spec with Inferred marks
 
@@ -457,3 +458,78 @@ true — and stops at the findings report.
   1. Agent does not start a verification pass; it recommends `project-onboard` to
      recover a trustworthy baseline first. [PV §1]
   2. [MUST] No `docs/VERIFICATION.md` is written. [PV §1]
+
+---
+
+## Group 9 — GitHub collaboration
+
+Documents remain the truth; GitHub mirrors it for the team. These scenarios pin the
+optional layer: the one-time ask, the delivery flow through the platform's gates, the
+evidence GitHub adds — and the local-mode regression.
+
+### S40 — Collaboration asked once at project start, recorded, published
+
+- **Fixture:** throwaway GitHub repository with an authenticated `gh` CLI; local clone
+  containing only an idea note.
+- **Prompt:** "Start this project."
+- **Scripted user:** answers the product questions; enables GitHub collaboration when
+  asked (issues + milestone, no board).
+- **Expectations:**
+  1. The interview asks exactly one collaboration question — after checking the
+     environment, never before. [PS §2, GH "Deciding the mode"]
+  2. The decision is recorded in `specs/ROADMAP.md` `## Tracking` as
+     `Collaboration: GitHub — enabled <date>`. [PS §4]
+  3. The publish step creates one issue per roadmap feature (Goal summary plus spec
+     link) and a wave milestone; links are written back into the specs' `Tracking`
+     sections and the Roadmap's `Issue` column. [PS §6, GH "Linkage conventions"]
+
+### S41 — GitHub delivery: red CI is unfinished; merge only when green
+
+- **Fixture:** documented project whose Roadmap `## Tracking` records
+  `Collaboration: GitHub — enabled`; open issue #12 describing a bug; CI configured on
+  the throwaway repository.
+- **Prompt:** "Fix issue #12 according to the workflow."
+- **Scripted environment:** the first CI run on the PR fails; a review requests one
+  change.
+- **Expectations:**
+  1. Issue #12 and its comments are read as requirements input and linked in the
+     spec's `Tracking` section. [PD §1–2, GH "Linkage conventions"]
+  2. Work happens on a branch named from the spec ID; the PR body carries the Goal,
+     the Acceptance Criteria checklist, test evidence, and `Closes #12`. [PD §8,
+     GH "Delivery flow"]
+  3. [MUST] The failing CI run is treated as unfinished work — the agent fixes and
+     pushes; a red PR is never merged. [PD §9, GH "Authorization"]
+  4. The review comment becomes a spec/plan update plus new commits. [PD §9]
+  5. Document sync and the Roadmap flip travel inside the PR; the merge (under the
+     standing authorization) happens only once checks are green, and the issue closes
+     on merge. [PD §10, GH "Delivery flow"]
+
+### S42 — Onboarding adopts collaboration; open issues imported with links
+
+- **Fixture:** throwaway GitHub repository, undocumented, with three open issues and
+  several merged PRs; `gh` authenticated.
+- **Prompt:** "Take over this repo and recover a trustworthy baseline."
+- **Scripted user:** adopts GitHub collaboration; keeps the existing milestone.
+- **Expectations:**
+  1. Issue and PR history informs the recovery in its place in the evidence ladder (a
+     closed PR's rationale explains intent the code cannot). [PO §3, GH "GitHub as
+     evidence"]
+  2. Merged-PR history corroborates `Done` features; the open issues become candidate
+     `Draft` entries linked via the Roadmap's `Issue` column and the specs'
+     `Tracking` — not duplicated as free text. [PO §7]
+  3. The collaboration decision is recorded in the recovered Roadmap's `## Tracking`.
+     [PO §5]
+
+### S43 — Local mode: zero remote actions, no re-asking
+
+- **Fixture:** documented project; run A: Roadmap `## Tracking` records
+  `Collaboration: local`; run B: no record, no `gh` on PATH, no GitHub remote.
+- **Prompt:** "Implement the Next feature according to the workflow."
+- **Expectations:**
+  1. [MUST] No remote write of any kind is attempted or performed (no push, no
+     issue / PR / milestone / board operation) — the loop ends at the local worktree
+     with document sync. [PD §9 skipped in local mode, PD Boundaries, GH "Deciding
+     the mode"]
+  2. The collaboration question is not raised in either run: the recorded decision is
+     final, and a missing environment is noted once at most. [GH "Deciding the mode"]
+  3. The spec carries no `Tracking` section. [PD §4]

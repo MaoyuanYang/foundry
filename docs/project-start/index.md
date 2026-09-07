@@ -32,14 +32,16 @@ Project Idea
 1. Understand context      read what the user and directory already answer
     ↓
 2. Interview the user      ask the user-owned gaps; confirm document language (English default)
-    ↓
+    ↓                         and, on GitHub, whether to enable collaboration
 3. Write project documents README, PRODUCT, ARCHITECTURE, TESTING (+ applicable extras)
     ↓
 4. Create the Roadmap      specs/ROADMAP.md, one feature marked Next
     ↓
 5. Write draft Specs       specs/F001-<slug>.md with open questions, not invented answers
     ↓
-6. Stop                    hand off to project-dev
+6. Publish to GitHub       optional: issues, wave milestone, Projects board
+    ↓
+7. Stop                    hand off to project-dev
 ```
 
 ## Scan the documents, then interview
@@ -71,6 +73,19 @@ The document language is confirmed at the same checkpoint: English by default, o
 to any language the user prefers. Re-entering a documented project keeps the language of
 its existing documents.
 
+## GitHub mode
+
+When the environment offers it — a GitHub remote plus an authenticated `gh` CLI — the
+interview also asks once whether to enable GitHub collaboration. The answer is recorded
+in the Roadmap's `## Tracking` section (`Collaboration: GitHub — enabled <date>` or
+`local`) and later skills read the record instead of re-asking.
+
+When enabled, publishing follows the documents: one issue per roadmap feature (Goal
+summary plus spec link), a milestone for the wave, and optionally a Projects board whose
+Status field mirrors the Roadmap. Links are written back into the specs' `Tracking`
+sections and the Roadmap's `Issue` column. With no GitHub environment the question is
+skipped and the project simply runs locally.
+
 ## Documents produced
 
 Templates define the sections to think about; repository context, interview answers, and
@@ -97,7 +112,8 @@ list. Draft Specs fill in what is decidable and record the rest as **Open Questi
 - No business code. (Minimal non-business scaffolding is allowed when needed to make
   document commands honest — initializing a package, setting up an empty test runner.)
 - No empty files for symmetry.
-- No destructive or remote actions without explicit user authorization.
+- No destructive or remote actions without explicit user authorization. The interview's
+  GitHub decision authorizes the publish step; every other remote action still asks.
 
 ## Next
 

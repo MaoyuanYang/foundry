@@ -41,6 +41,9 @@ features:
   - icon: 🔄
     title: Greenfield and Brownfield
     details: Start a new project with project-start, or recover an undocumented repository with project-onboard — then develop feature after feature with project-dev.
+  - icon: 🤝
+    title: GitHub-Native When You Are
+    details: Solo projects run fully local. On GitHub, one question at project start enables issues, pull requests, CI checks, milestones, and a Projects board as linked mirrors of the Roadmap and specs — documents stay the source of truth.
   - icon: 🔎
     title: Verified Against the Documents
     details: project-verify independently checks the current state against the documents — Done features, acceptance criteria, documented commands and flows — and reports findings with evidence, without fixing anything.
