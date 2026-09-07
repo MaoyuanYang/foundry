@@ -29,7 +29,9 @@ Project Idea
     ↓
 5. Write draft Feature Specs
     ↓
-6. Stop
+6. Publish to GitHub (optional)
+    ↓
+7. Stop
 ```
 
 ## 1. Understand context first
@@ -61,6 +63,15 @@ interview, or in the short confirmation round when the interview is skipped — 
 every document (`README.md`, `docs/`, `specs/`) in the confirmed language. On a project
 that already has trustworthy documents, keep their language instead of asking.
 
+Collaboration is the other question the scan cannot answer. When the environment offers
+it — a GitHub remote plus an authenticated `gh` CLI, checked before asking — ask whether
+to enable GitHub collaboration: issues for the roadmap features, pull requests for
+delivery, CI as verification evidence, a milestone for the wave, and optionally a
+Projects board mirroring the Roadmap. Record the decision; it becomes the
+`Collaboration` line in `specs/ROADMAP.md` (`## Tracking`) and authorizes the §6
+publish step. With no GitHub environment, skip the question — the project simply runs
+locally. See [references/github-flow.md](references/github-flow.md).
+
 Before writing documents, briefly summarize the key decisions back to the user and let
 them correct you. This one checkpoint catches most misunderstandings cheaply.
 
@@ -91,7 +102,9 @@ Create `specs/ROADMAP.md` (see `assets/roadmap.template.md`): an ordered table o
 features that together deliver the product's core value, with a draft spec file for each
 (`specs/F001-<slug>.md`, `F002-...`). Start small — the roadmap should show the shortest
 credible path to a usable product, not an exhaustive wish list. Mark one feature as
-`Next`.
+`Next`. Record the interview's collaboration decision in the Roadmap's `## Tracking`
+section; in GitHub mode the Features table carries an `Issue` column and gains the
+`In Review` status.
 
 ## 5. Draft Feature Specs
 
@@ -101,10 +114,20 @@ Write a draft spec for each roadmap feature using `assets/feature-spec.template.
 `project-dev` to resolve with the user. Do not invent answers to user-owned questions
 here; leave them in `Open Questions`.
 
-## 6. Stop
+## 6. Publish to GitHub (optional)
 
-When the documents, Roadmap, and draft Specs exist, stop. Tell the user what was created,
-which feature is marked `Next`, and that implementation continues with `project-dev`.
+In GitHub mode — collaboration enabled and the environment ready — publish the plan:
+create one issue per roadmap feature (the spec's Goal summary plus a link to the spec
+file), a milestone for this wave, and, if the user chose it, a Projects board whose
+Status field mirrors the Roadmap statuses. Write the links back into the specs'
+`Tracking` sections and the Roadmap's `Issue` column and `## Tracking`. In local mode
+this step is skipped silently.
+
+## 7. Stop
+
+When the documents, Roadmap, and draft Specs exist, stop. Tell the user what was
+created, which feature is marked `Next`, what was published to GitHub (when
+collaboration is enabled), and that implementation continues with `project-dev`.
 Once features are delivered, independent verification against the documents continues
 with `project-verify`.
 
@@ -116,4 +139,7 @@ with `project-verify`.
   runner so `TESTING.md` commands run). Keep it minimal.
 - MUST preserve unrelated user changes in the worktree.
 - MUST NOT perform destructive or remote actions (deleting user data, force operations,
-  pushing, publishing) without explicit user authorization.
+  pushing, publishing, creating or updating issues, pull requests, milestones, or
+  project boards) without explicit user authorization. The interview's collaboration
+  decision is that authorization for the §6 publish step; every other remote action
+  still asks.

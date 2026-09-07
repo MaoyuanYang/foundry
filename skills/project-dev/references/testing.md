@@ -36,7 +36,8 @@ it is observable.
 The Implementation Plan names each step's tests. Write them before or
 alongside the step, run them when the step lands, and fix until they pass. After all
 steps, run the project's full verification commands (`docs/TESTING.md`) so regressions
-elsewhere surface before you call the work done.
+elsewhere surface before you call the work done. In GitHub mode, the pull request's CI
+checks are part of that full verification — green locally plus red on CI is not done.
 
 ## Stability
 

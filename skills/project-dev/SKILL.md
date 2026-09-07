@@ -1,6 +1,6 @@
 ---
 name: project-dev
-description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (project-start), recovery of an undocumented repository (project-onboard), or independent whole-project verification against the documents (project-verify)."
+description: "Use ONLY when the user explicitly asks to implement, change, fix, refactor, or deliver work on one selected feature or component of a project that already has (or will get) its documents: new features, changes, bug fixes, refactors, technical-debt paydown, and dependency upgrades. Drives read context, interview, Feature Spec, implementation plan, tests, code, verification, and documentation sync, plus GitHub delivery (issue, branch, pull request, CI, review) when the project has collaboration enabled. MUST NOT be used for read-only review, diagnosis or explanation only, ordinary Q&A, Greenfield initialization (project-start), recovery of an undocumented repository (project-onboard), or independent whole-project verification against the documents (project-verify)."
 ---
 
 # project-dev
@@ -34,7 +34,9 @@ Feature Request
     ↓
 8. Review the change
     ↓
-9. Synchronize documents
+9. Deliver on GitHub (GitHub mode)
+    ↓
+10. Synchronize documents
 ```
 
 ## 1–2. Read before writing
@@ -45,6 +47,12 @@ Read the project documents (`README`, `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`,
 request text alone — the repository is the primary source. If the project has no
 trustworthy documents at all, stop and recommend `project-start` or `project-onboard`
 first.
+
+Determine the collaboration mode from the Roadmap's `## Tracking` record — GitHub mode
+adds the delivery steps in §8–10; see [references/github-flow.md](references/github-flow.md).
+In GitHub mode a request may arrive as an issue: read it and its comments as
+requirements input, and record the link in the spec's `Tracking` section. A documented
+project with no record and a live GitHub environment gets asked once; record the answer.
 
 ## 3. Interview the user
 
@@ -65,7 +73,8 @@ See [references/interview.md](references/interview.md).
 Refine the spec using `assets/feature-spec.template.md` until its Goal, Requirements,
 Acceptance Criteria, and Open Questions honestly reflect an agreed outcome. Delete
 sections that do not apply; write in the language of the project's existing documents
-and specs. Update `specs/ROADMAP.md` so this feature shows `In Progress`.
+and specs. In GitHub mode, fill the spec's `Tracking` section (issue, milestone); in
+local mode, delete it. Update `specs/ROADMAP.md` so this feature shows `In Progress`.
 
 - MUST NOT start implementation while user-owned spec questions (behavior, business
   rules, success criteria, constraints) remain unresolved.
@@ -107,7 +116,9 @@ tests before or alongside each implementation step — the intent is that no ste
 
 Work the Implementation Plan one step at a time: implement, run the step's tests, fix
 until they pass, then move on. Keep changes scoped to the spec; park attractive
-side-ideas as new Roadmap entries instead of implementing them now.
+side-ideas as new Roadmap entries instead of implementing them now. In GitHub mode,
+work on a branch named from the spec ID (`F003-short-urls`) and make one commit per
+step, in the project's commit-message style.
 
 - MUST run the relevant tests after implementation, and MUST treat test failures as
   work-not-finished, not as noise to suppress.
@@ -130,18 +141,38 @@ new tests share state with other suites or the outside world (files, databases, 
 run the full suite a second time — for stateful suites, one green run is not proof of
 stability.
 
-## 9. Synchronize documents
+In GitHub mode, once local verification passes, push the branch and open the pull
+request: the spec's Goal, the Acceptance Criteria checklist, the test evidence (what
+ran, what passed), and `Closes #<issue>`. The PR's CI checks are part of this
+verification — red CI means the work is not finished.
+
+## 9. Deliver on GitHub (GitHub mode)
+
+Watch the pull request's checks and reviews. Review comments are input to the loop:
+update the spec and plan, implement, push new commits — never route around a failing
+check or an unanswered comment. Merge under the standing authorization once CI is green
+and required reviews are approved (a solo repository without review requirements merges
+when green); never merge a red PR. When the merge decision belongs to a human, leave
+the PR open and say so. Skip this section entirely in local mode.
+
+## 10. Synchronize documents
 
 Documents stay true, or they become worse than none. When implementation changed
 behavior, interfaces, data, or architecture, update the affected documents —
 `docs/API.md`, `docs/DATABASE.md`, `docs/ARCHITECTURE.md`, and the spec — in the same
 piece of work. Then mark the feature `Done` in `specs/ROADMAP.md` and report: what was
-built, which tests verify it, and which documents changed. This verifies this change;
-an independent check of the whole project against its documents is `project-verify`
-work.
+built, which tests verify it, and which documents changed. In GitHub mode these updates
+travel inside the pull request — the Roadmap flip (`In Progress` → `In Review`, or
+directly to `Done` for a brief change) takes effect at merge, the linked issue closes
+itself, and the Projects board is updated to match after merge. This verifies this
+change; an independent check of the whole project against its documents is
+`project-verify` work.
 
 ## Boundaries
 
 - MUST preserve unrelated user changes in the worktree.
-- MUST NOT perform destructive or remote actions (deleting user data, force operations,
-  pushing, publishing, deploying) without explicit user authorization.
+- MUST NOT perform remote writes (pushing, creating or updating issues, pull requests,
+  milestones, or project boards) unless GitHub collaboration is enabled in the Roadmap
+  or the user explicitly authorizes the action.
+- MUST NOT merge a pull request with failing checks. Force operations, branch deletion,
+  releases, and deploying always need explicit per-action authorization.

@@ -43,13 +43,13 @@ for (const s of skills) {
   check(`${s}/SKILL.md routes to siblings`, missing.length === 0, missing.join(', '));
 }
 
-// 2. the shared Feature Spec template stays byte-identical across skills
-{
+// 2. files shared across skills stay byte-identical wherever present
+for (const shared of ['assets/feature-spec.template.md', 'references/github-flow.md']) {
   const hashes = skills
-    .filter((s) => existsSync(join(skillsDir, s, 'assets', 'feature-spec.template.md')))
-    .map((s) => sha(read(`skills/${s}/assets/feature-spec.template.md`)));
+    .filter((s) => existsSync(join(skillsDir, s, shared)))
+    .map((s) => sha(read(`skills/${s}/${shared}`)));
   check(
-    'feature-spec.template.md identical wherever present',
+    `${shared} identical wherever present`,
     hashes.length >= 2 && new Set(hashes).size === 1,
     `${hashes.length} copies`,
   );

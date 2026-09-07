@@ -10,6 +10,15 @@
 
 # Feature: <Name>
 
+## Tracking
+
+<Links to the GitHub issue, pull request(s), and milestone for this feature. GitHub
+mode only — delete this section when the project works locally.>
+
+- Issue: <url>
+- Pull request(s): <url>
+- Milestone: <name>
+
 ## Goal
 
 <The problem this feature solves. One or two sentences.>

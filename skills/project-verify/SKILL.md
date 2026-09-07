@@ -43,6 +43,10 @@ use case, an endpoint, a schema, a feature status. If the project has no trustwo
 documents at all, stop and recommend `project-start` (greenfield) or `project-onboard`
 (brownfield) first.
 
+Determine the collaboration mode from the Roadmap's `## Tracking` record — GitHub mode
+adds the evidence sources noted below; verification reads GitHub but never writes to
+it. See [references/github-flow.md](references/github-flow.md).
+
 ## 2. Derive the verification scope
 
 Turn the promises into the verification checklist. The documents define the scope —
@@ -58,6 +62,10 @@ document them, recording what ran and what happened. Record results honestly —
 failing suite is a finding, not an obstacle to work around. Also note commands that
 only fail because the documents are wrong (a typo'd command is a documentation finding).
 
+In GitHub mode, the default branch's latest CI run is declared-verification evidence:
+record its status and URL alongside the local runs — it is durable proof of exactly
+what it ran, not a substitute for running what this pass can run locally.
+
 ## 4. Check Done features and acceptance criteria
 
 For each feature marked `Done` in `specs/ROADMAP.md` — and each `In Progress` feature
@@ -71,6 +79,10 @@ what you find:
 
 A feature marked `Done` whose acceptance criteria have no executable evidence is a
 finding, not a pass.
+
+In GitHub mode, cross-check each `Done` claim against the host: the linked pull request
+merged, the linked issue closed, CI green at the merge commit. A `Done` feature whose
+PR is still open or whose issue is still open is a finding.
 
 ## 5. Exercise key user flows and cross-feature behavior
 
@@ -88,6 +100,10 @@ endpoints, schema, commands, configuration. When documents and reality disagree,
 the disagreement as a finding. If the disagreement is about intent — "the docs say X,
 the code does Y — which is intended?" — that question belongs to the user; ask it and
 record the answer. Do not repair the documents here; that is implementation work.
+
+In GitHub mode, open issues that contradict a `Done` claim — a bug report against a
+feature the Roadmap calls delivered — are findings. Issues are evidence here, never
+scope: the documents still define what gets checked.
 
 ## 7. Add verification-only checks where evidence is missing
 
@@ -121,4 +137,5 @@ and what you recommend next.
   report stays an independent audit rather than a party to the drift.
 - MUST preserve unrelated user changes in the worktree.
 - MUST NOT perform destructive or remote actions (deleting user data, force operations,
-  pushing, publishing, deploying) without explicit user authorization.
+  pushing, publishing, deploying) without explicit user authorization. Verification
+  reads GitHub evidence but never writes to it.

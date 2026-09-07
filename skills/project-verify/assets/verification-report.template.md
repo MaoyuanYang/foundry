@@ -10,7 +10,8 @@ replace it on each pass, or archive it once its findings have been turned into w
 
 # Verification Report
 
-<When this pass ran, from which commit, and which documents were read.>
+<When this pass ran, from which commit, which documents were read, and — in GitHub
+mode — which issues, pull requests, and CI runs served as evidence.>
 
 ## Verified Promises
 
@@ -19,6 +20,7 @@ replace it on each pass, or archive it once its findings have been turned into w
 | <README: `npm test` passes>      | <ran; 41 passed, 0 failed>      | Verified                |
 | <F002 acceptance criterion 1>    | <tests/export.test.ts:12>       | Verified                |
 | <PRODUCT: export produces CSV>   | <manual run produced CSV>       | Broken                  |
+| <F001 delivery claim>            | <PR #12 merged, CI green — URL> | Verified                |
 | <F003 acceptance criterion 2>    | <no test or runnable flow found | Unverified              |
 |                                  |  in this pass — see below>      |                         |
 
